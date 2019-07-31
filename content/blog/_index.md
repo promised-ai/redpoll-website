@@ -4,9 +4,5 @@ template = "blog.html"
 
 [extra]
 
-subtitle = "some subtitle"
+subtitle = ""
 +++
-
-# Redpoll Blog
-
-This is the blog
