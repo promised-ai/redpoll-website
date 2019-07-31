@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% block head %}
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock title %} - Redpoll</title>
+  <link rel="stylesheet" href="/normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css">
+  <link rel=" stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  {% endblock head %}
+
+</head>
+
+<body>
+  <div id="main">
+    <!-- MOBILE NAVIGATION -->
+    <div id="mobile-nav" class="js-only">
+      <span id="menu-toggle" class="material-icons">menu</span>
+      <div id="mobile-menu" class="mm-hidden">
+        <p><a href="#"><span class="material-icons">home</span></a></p>
+        <p><a href="#features">Features</a></p>
+        <p><a href="#offerings">Use Cases</a></p>
+        <p><a href="#about">About</a></p>
+        <p><a href="#signup">Contact</a></p>
+      </div>
+    </div>
+
+    <!-- LARGE-SCREEN NAVIGATION -->
+    <div id="navbar">
+      <div class="content-box">
+        <ul>
+          <a href="#">
+            <li id="nav-logo">RP</li>
+          </a>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#offerings">Use Cases</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#signup">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    {% block content %}{% endblock content %}
+
+    <div class="content-row gray-bkg">
+      <div class="content-box">
+        <div id="footer">
+          <p>Copyright &copy; 2019 Redpoll</p>
+          <p>info@redpoll.com</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

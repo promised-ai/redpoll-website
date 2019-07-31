@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}{{ section.title }}{% endblock title %}
+{% block head %}
+  {{ super() }}
+  <style>
+    #main {
+      background-color: #eee;
+    }
+
+    #blog-main {
+      min-height: 100%;
+    }
+
+    .heading {
+      font-size: 3rem;
+      font-family: Raleway;
+      text-transform: uppercase;
+      padding: 0;
+      margin: 0;
+    }
+
+    .subheading {
+      font-size: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .post-left, .post-right {
+      display: inline-block;
+    }
+
+    .post {
+      display: block;
+      height: 200px;
+    }
+    
+    .post-left {
+      height: 100%;
+      width: 20%;
+      border-right: 1px solid black;
+    }
+
+    .post-right {
+      height: 100%;
+      width: 76%;
+    }
+
+    .inner {
+      height: 150px;
+    }
+
+    .post-right .inner {
+      padding-left: 2rem;
+      border: 1px solid black;
+      margin: 1rem 2rem 1rem 0;
+    }
+
+    .post-left .inner {
+      padding-left: 2rem;
+      border: 1px solid black;
+      margin: 1rem 0rem 1rem 2rem;
+    }
+  </style>
+{% endblock head %}
+
+{% block content %}
+  <div id="blog-main" class="content-row">
+    <div class="section-spacer"></div>
+    <div class="content-box">
+      <h1 class=heading>{{ section.title }}</h1>
+      <h2 class=subheading>{{ section.extra.subtitle }}</h2>
+
+      <div id="posts">
+
+        <div class="post">
+          <div class="post-left">
+            <div class="inner">
+              <p>31 July 2019</p>
+              <p>Redpoll</p>
+            </div>
+          </div><div class="post-right">
+            <div class="inner">
+              <h1>What it takes to build safe AI</h1>
+              <p>To be safe, AI must become more human.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="section-spacer"></div>
+  </div>
+{% endblock content %}
