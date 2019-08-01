@@ -21,11 +21,12 @@
     <div id="mobile-nav" class="js-only">
       <span id="menu-toggle" class="material-icons">menu</span>
       <div id="mobile-menu" class="mm-hidden">
-        <p><a href="#"><span class="material-icons">home</span></a></p>
-        <p><a href="#features">Features</a></p>
-        <p><a href="#offerings">Use Cases</a></p>
-        <p><a href="#about">About</a></p>
-        <p><a href="#signup">Contact</a></p>
+        <p><a href="{{ config.base_url }}"><span class="material-icons">home</span></a></p>
+        <p><a href="{{ config.base_url }}#features">Features</a></p>
+        <p><a href="{{ config.base_url }}#offerings">Use Cases</a></p>
+        <p><a href="{{ config.base_url }}#about">About</a></p>
+        <p><a href="{{ config.base_url }}/blog">Blog</a></p>
+        <p><a href="{{ config.base_url }}#signup">Contact</a></p>
       </div>
     </div>
 
@@ -33,13 +34,14 @@
     <div id="navbar">
       <div class="content-box">
         <ul>
-          <a href="#">
+          <a href="{{ config.base_url }}">
             <li id="nav-logo">RP</li>
           </a>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#offerings">Use Cases</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#signup">Contact</a></li>
+          <li><a href="{{ config.base_url }}#features">Features</a></li>
+          <li><a href="{{ config.base_url }}#offerings">Use Cases</a></li>
+          <li><a href="{{ config.base_url }}#about">About</a></li>
+          <li><a href="{{ config.base_url }}/blog">Blog</a></li>
+          <li><a href="{{ config.base_url }}#signup">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -57,4 +59,53 @@
 
   </div>
 </body>
+
+<script>
+    function hideMobileMenu() {
+        var mobileMenu =  document.getElementById("mobile-menu");
+        if (mobileMenu.classList.contains("mm-shown")) {
+            mobileMenu.classList.add("mm-hidden");
+            mobileMenu.classList.remove("mm-shown");
+        }
+    }
+
+    function showMobileMenu() {
+        var mobileMenu =  document.getElementById("mobile-menu");
+        if (mobileMenu.classList.contains("mm-hidden")) {
+            mobileMenu.classList.remove("mm-hidden");
+            mobileMenu.classList.add("mm-shown");
+        }
+    }
+
+    function toggleMobileMenu() {
+        var mobileMenu =  document.getElementById("mobile-menu");
+        var hidden = mobileMenu.classList.contains("mm-hidden");
+        if (hidden) {
+            showMobileMenu();
+        } else {
+            hideMobileMenu();
+        }
+    }
+
+    function hideMenuWhenEvent(e) {
+        if (e.target.id != "menu-toggle") {
+            hideMobileMenu();
+        }
+    }
+
+    (function () {
+      var mobileNav = document.getElementById("mobile-nav");
+      mobileNav.classList.remove("js-only");
+      mobileNav.classList.add("mobile-only");
+
+      var nav = document.getElementById("navbar");
+      nav.classList.add("no-mobile");
+
+            var mobileToggle = document.getElementById("menu-toggle");
+
+            mobileToggle.addEventListener('click', toggleMobileMenu);
+            document.addEventListener('click', hideMenuWhenEvent);
+            document.addEventListener('scroll', hideMenuWhenEvent);
+    })();
+</script>
 </html>

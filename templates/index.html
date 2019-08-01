@@ -1,46 +1,8 @@
-<!DOCTYPE html>
 
-<head>
-  <title>Redpoll</title>
+{% import "macros/person.html" as macros %}
+{% extends "base.html" %}
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="normalize.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css">
-  <link rel=" stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-
-<body>
-  <div id="main">
-
-    <!-- MOBILE NAVIGATION -->
-    <div id="mobile-nav" class="js-only">
-      <span id="menu-toggle" class="material-icons">menu</span>
-      <div id="mobile-menu" class="mm-hidden">
-        <p><a href="#"><span class="material-icons">home</span></a></p>
-        <p><a href="#features">Features</a></p>
-        <p><a href="#offerings">Use Cases</a></p>
-        <p><a href="#about">About</a></p>
-        <p><a href="#signup">Contact</a></p>
-      </div>
-    </div>
-
-    <!-- LARGE-SCREEN NAVIGATION -->
-    <div id="navbar">
-      <div class="content-box">
-        <ul>
-          <a href="#">
-            <li id="nav-logo">RP</li>
-          </a>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#offerings">Use Cases</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#signup">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-
+{% block content %}
     <div class="content-row">
       <div class="cr-bkg"></div>
       <div class="content-box">
@@ -220,32 +182,21 @@
           </div>
           <div class="col-xs-12 col-md-7">
             <div class="people">
-              <div class="person">
-                <div class="person-image"
-                  style="background-image: url(img/people/bax.jpg)">></div>
-                <div class="person-description">
-                  <h3 class="person-name">Baxter Eaves, PhD</h3>
-                  <h4 class="person-title">Founder</h4>
-                  <p class="person-bio">
-                    Dr. Eaves has 10 years of experience building analytics tools and designing human cognitive systems
-                    that learn, teach, and selectively trust like people. He has applied these methods to problems in
-                    linguistics, image processing, biotech, and agriculture.
-                  </p>
-                </div>
-              </div><div class="person">
-                <div class="person-image"
-                  style="background-image: url(img/people/pat.jpg)"></div>
-                <div class="person-description">
-                  <h3 class="person-name">Patrick Shafto, PhD</h3>
-                  <h4 class="person-title">Founder</h4>
-                  <p class="person-bio">
-                    Dr. Shafto is the Henry Rutgers Term Chair in Data Sciences at Rutgers University - Newark. He
-                    has led a number of projects for agencies like DARPA, DOD, and NSF; and his publications
-                    have appeared in top journals of machine and human learning.
-                  </p>
-                </div>
-              </div>
-
+              {{
+                macros::person(
+                  name="Baxter Eaves, PhD",
+                  title="Founder",
+                  img="bax.jpg",
+                  bio="Dr. Eaves has 10 years of experience building analytics tools and designing human cognitive systems that learn, teach, and selectively trust like people. He has applied these methods to problems in linguistics, image processing, biotech, and agriculture."
+                )
+              }}{{
+                macros::person(
+                  name="Patrick Shafto, PhD",
+                  title="Founder",
+                  img="pat.jpg",
+                  bio="Dr. Shafto is the Henry Rutgers Term Chair in Data Sciences at Rutgers University - Newark. He has led a number of projects for agencies like DARPA, DOD, and NSF; and his publications have appeared in top journals of machine and human learning."
+                )
+              }} 
             </div>
 
           </div>
@@ -326,74 +277,4 @@
     </div>
 
     <div class="section-spacer"></div>
-
-    <div class="content-row gray-bkg">
-      <div class="content-box">
-        <div id="footer">
-          <p>Copyright &copy; 2019 Redpoll</p>
-          <p>info@redpoll.com</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137238038-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-137238038-1');
-  </script>
-  <script>
-		function hideMobileMenu() {
-      var mobileMenu =  document.getElementById("mobile-menu");
-			if (mobileMenu.classList.contains("mm-shown")) {
-				mobileMenu.classList.add("mm-hidden");
-				mobileMenu.classList.remove("mm-shown");
-			}
-		}
-
-		function showMobileMenu() {
-      var mobileMenu =  document.getElementById("mobile-menu");
-			if (mobileMenu.classList.contains("mm-hidden")) {
-				mobileMenu.classList.remove("mm-hidden");
-				mobileMenu.classList.add("mm-shown");
-			}
-		}
-
-    function toggleMobileMenu() {
-      var mobileMenu =  document.getElementById("mobile-menu");
-			var hidden = mobileMenu.classList.contains("mm-hidden");
-			if (hidden) {
-				showMobileMenu();
-			} else {
-				hideMobileMenu();
-			}
-    }
-
-		function hideMenuWhenEvent(e) {
-			if (e.target.id != "menu-toggle") {
-				hideMobileMenu();
-			}
-		}
-
-    (function () {
-      var mobileNav = document.getElementById("mobile-nav");
-      mobileNav.classList.remove("js-only");
-      mobileNav.classList.add("mobile-only");
-
-      var nav = document.getElementById("navbar");
-      nav.classList.add("no-mobile");
-
-			var mobileToggle = document.getElementById("menu-toggle");
-
-			mobileToggle.addEventListener('click', toggleMobileMenu);
-			document.addEventListener('click', hideMenuWhenEvent);
-			document.addEventListener('scroll', hideMenuWhenEvent);
-    })();
-  </script
-
-</body>
+{% endblock content %}

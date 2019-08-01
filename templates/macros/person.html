@@ -1,0 +1,12 @@
+
+{% macro person(name, title, bio, img) %}
+<div class="person">
+  <div class="person-image"
+       style="background-image: url(img/people/{{ img }})">></div>
+  <div class="person-description">
+    <h3 class="person-name">{{ name }}</h3>
+    <h4 class="person-title">{{ title }}</h4>
+    <p class="person-bio">{{ bio }}</p>
+  </div>
+</div>
+{% endmacro %}
