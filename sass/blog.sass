@@ -10,6 +10,7 @@ $post-author-color: black
 $post-at-color: gray
 
 #blog-main
+  color: #f7f7f7
   min-height: 100%
 
 .blog-heading
@@ -96,7 +97,7 @@ $post-at-color: gray
   padding: 2rem
 
   h1
-    color: $post-title-color
+      color: $post-title-color
 
   p
     color: $post-subtitle-color
@@ -107,28 +108,20 @@ $post-at-color: gray
   background-repeat: no-repeat
   background-position: center
   background-size: cover
-  // background-image: linear-gradient(rgba(255, 255, 255, 0.5), #fff), url(/img/mountain-1.jpg);
   backdrop-filter: blur(10px)
-  // background-image: linear-gradient(rgba(255, 255, 255, 0.5), #fff), url(/img/adult-armor-blur.jpg)
   filter: grayscale(70%)
-  // background-image: url(/img/adult-armor2.jpg);
-  // background-image: url(/img/black-and-white-clouds-cold-2086620.jpg);
 
 
 #post-header
   background-color: #eee
   vertial-align: top
   margin-top: 20vh
-  margin-bottom: 10vh
+  margin-bottom: 15vh
   border: 1px solid #aaa;
   padding-bottom: 1rem
   box-shadow: 0px 15px 30px rgba(33, 33, 33, 0.5)
 
-// #post-header:hover
-//   background-color: rgba(255, 255, 255, 0.2)
-
 #post-meta
-  // background-color: rgba(255, 255, 255, 0.2)
   background-color: #bbbbdd
   z-index: 2
   display: inline-block
@@ -174,12 +167,117 @@ $post-at-color: gray
   font-weight: bold
 
 #post-content
-  background-color: white
   padding-bottom: 5rem
+  background-color: white;
 
   p, h1, h2, h3, h4, h5, h6, pre
-    max-width: 600px
     margin: 1rem auto;
+    max-width: 600px
 
   h1, h2, h3
     margin-top: 2rem;
+
+// MEDIA QUERIES
+// ===================================================================
+@media only screen and (max-width: 900px)
+  .post-left 
+    width: 30%
+
+  .post-right
+    width: 69%
+
+  .post
+    height: 250px
+
+  .post-inner
+    height: 200px
+
+@media only screen and (max-width: 900px)
+  #post-titles
+    width: 60%
+    padding-right: 1rem
+
+    h1, h2
+      margin-left: 1rem;
+
+@media only screen and (max-width: 650px)
+  .post-left
+    border-right: none
+
+  .post-left, .post-right
+    display: block
+    width: 100%
+    padding: 0
+    margin: 0
+
+  .post-left .post-inner
+    margin: 0
+    border-bottom: none
+    border-left: none
+    border-top: white
+    // background-color: #aaaab3
+    padding: 0.5rem 1rem
+
+    p
+      display: inline-block
+      line-height: 1.1rem
+
+  .post-right .post-inner
+    margin: 0
+    margin-bottom: 1rem
+    border: 1px solid #bbb
+    padding: 1rem
+
+  .post-inner-text
+    padding: 0
+
+  .post-inner
+    height: auto
+
+    .post-date
+      display: inline-block
+      margin: 0
+      padding: 0
+      // color: white
+
+    .post-by
+      display: inline-block
+      // color: white
+
+    .post-at
+      display: inline-block
+      color: red
+
+  .post-left .post-inner p
+    padding: 0
+
+  .post
+    height: auto
+
+@media only screen and (max-width: 600px)
+  #post-meta
+    display: block
+    width: 80%
+    margin: 0 auto
+    // margin: 0 1rem
+
+  #post-titles
+    display: block
+    text-align: center
+    width: 100%
+
+    h1
+      margin: 1rem
+      font-size: 7vw
+
+    h2
+      margin: 1rem
+      font-size: 5vw
+
+@media only screen and (max-width: 500px)
+  #post-titles
+    h1
+      font-size: 1.7rem
+
+    h2
+      font-size: 1.2rem

@@ -9,7 +9,6 @@ subheading = "To be safe, AI must be human"
 image = "black-and-white-clouds-cold-2086620.jpg"
 +++
 
-
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elit urna, ultricies at tortor eu, fermentum pretium turpis. Aenean semper placerat diam facilisis egestas. Nullam in augue lacinia, gravida sem eget, auctor nulla. Phasellus rhoncus gravida dui, quis vulputate mauris mattis id. Ut vehicula ultrices dolor, sed feugiat elit sodales et. Phasellus vehicula nibh eu convallis pharetra. Phasellus in finibus est. Mauris tempus lorem erat, nec pretium justo semper quis. Phasellus sit amet arcu leo. Etiam molestie tortor at blandit porta. Nulla ut eros sodales, cursus odio quis, volutpat ipsum. Nulla bibendum mauris vel felis tempor mollis. Morbi ut rutrum nunc, non egestas ipsum. Donec eu euismod est. Cras convallis aliquam porttitor.
 
 ```rust
