@@ -11,18 +11,30 @@
 {% endblock head %}
 
 {% block content %}
-  <div id="post-main" class="content-row" style="background-image: url(/img/{{ page.extra.image }})">
+
+{% set default_theme = "light-opaque" %}
+{% if page.extra.theme %}
+{% set page_theme = page.extra.theme %}
+{% else  %}
+{% set page_theme = default_theme %}
+{% endif  %}
+
+<div id="post-main" class="content-row">
+    <img class=bkg-img src="/img/{{ page.extra.image }}">
     <div class="content-box">
-      <div id=post-header>
-        <br>
-        <div id=post-meta>
-          <div><span class=post-meta-item>BY</span> {{ page.extra.author }}</div>
-          <div><span class=post-meta-item>ON</span> {{ page.date }}</div>
-          <div><span class=post-meta-item>CA</span> programming, rust</div>
-        </div><div id=post-titles>
-          <br>
-          <h1 class=post-heading>{{ page.title }}</h1>
-          <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
+      <div id=post-header class="bh-{{ page_theme }}">
+        <div id="post-header-blur">
+          <!-- <img class=bkg-img-blur src="/img/{{ page.extra.image }}"> -->
+        </div>
+        <div id="post-header-inner">
+          <div id=post-meta>
+            <div><span class=post-meta-item>BY</span> {{ page.extra.author }}</div>
+            <div><span class=post-meta-item>ON</span> {{ page.date }}</div>
+            <div><span class=post-meta-item>CA</span> programming, rust</div>
+          </div><div id=post-titles>
+            <h1 class=post-heading>{{ page.title }}</h1>
+            <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
+          </div>
         </div>
       </div>
     </div>

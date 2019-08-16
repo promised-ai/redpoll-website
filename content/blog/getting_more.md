@@ -8,6 +8,7 @@ template = "post.html"
 author = "Redpoll"
 subheading = "Using tools that put discovery in the hands of the people who know the right questions to ask"
 image = "mountain-1.jpg"
+theme = "light-transparent"
 +++
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elit urna, ultricies at tortor eu, fermentum pretium turpis. Aenean semper placerat diam facilisis egestas. Nullam in augue lacinia, gravida sem eget, auctor nulla. Phasellus rhoncus gravida dui, quis vulputate mauris mattis id. Ut vehicula ultrices dolor, sed feugiat elit sodales et. Phasellus vehicula nibh eu convallis pharetra. Phasellus in finibus est. Mauris tempus lorem erat, nec pretium justo semper quis. Phasellus sit amet arcu leo. Etiam molestie tortor at blandit porta. Nulla ut eros sodales, cursus odio quis, volutpat ipsum. Nulla bibendum mauris vel felis tempor mollis. Morbi ut rutrum nunc, non egestas ipsum. Donec eu euismod est. Cras convallis aliquam porttitor.

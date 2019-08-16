@@ -9,6 +9,36 @@ $post-date-color: black
 $post-author-color: black
 $post-at-color: gray
 
+.bkg-img
+  width: 100%
+  height: 100%
+  position: absolute
+  object-fit: cover
+  z-index: 0
+
+.bkg-img-blur
+  width: 100%
+  height: 100%
+  position: absolute
+  object-fit: cover
+  z-index: 0
+  object-position: 50% 52%
+
+#post-header-blur
+  position: absolute
+  width: 100%
+  height: 100%
+  z-index: 1
+  // filter: blur(15px)
+  // transform: scale(1.7)
+  backdrop-filter: blur(20px)
+
+#post-header-inner
+  position: relative
+  padding-top: 1rem
+  padding-bottom: 1rem
+  z-index: 2
+
 #blog-main
   color: #f7f7f7
   min-height: 100%
@@ -108,40 +138,106 @@ $post-at-color: gray
   background-repeat: no-repeat
   background-position: center
   background-size: cover
-  backdrop-filter: blur(10px)
   filter: grayscale(70%)
 
-
-#post-header
-  background-color: #eee
-  vertial-align: top
-  margin-top: 20vh
-  margin-bottom: 15vh
-  border: 1px solid #aaa;
-  padding-bottom: 1rem
-  box-shadow: 0px 15px 30px rgba(33, 33, 33, 0.5)
-
 #post-meta
-  background-color: #bbbbdd
   z-index: 2
   display: inline-block
   width: 20%
   min-width: 180px
-  border: 1px solid white
   margin-left: 1rem
   vertical-align: top
-  color: white
 
   div
-    // background-color: rgba(255, 255, 255, 0.2)
-    border: 1px solid white
     padding: 0.25rem 0.5rem
     margin: 0.5rem
-    color: white
     text-transform: uppercase
 
-  div:hover
-    background-color: rgba(255, 255, 255, 0.3)
+#post-header
+  position: relative
+  vertial-align: top
+  margin-top: 20vh
+  margin-bottom: 15vh
+  backdrop-filter: blur(20px)
+  overflow: hidden
+
+div.ph-bkg
+  position: absolute
+  heigth: 100%
+  width: 100%
+  background-color: deeppink;
+
+#post-header.bh-light-opaque
+  background-color: #eee
+  box-shadow: 0px 15px 40px rgba(33, 33, 33, 0.5)
+
+  .post-heading
+    color: #666
+
+  .post-subheading
+    color: #666
+
+  #post-meta
+    background-color: #bbbbdd
+    border: 1px solid white
+    color: white
+
+    div
+      border: 1px solid white
+      color: white
+
+#post-header.bh-dark-opaque
+  background-color: #666
+  box-shadow: 0px 15px 40px rgba(33, 33, 33, 0.5)
+
+  .post-heading
+    color: #ccc
+
+  .post-subheading
+    color: #eee
+
+  #post-meta
+    background-color: gray
+    border: 1px solid #bbb
+    color: #ccc
+
+    div
+      border: 1px solid #bbb
+      color: #ccc
+
+#post-header.bh-dark-transparent
+  border: 1px solid #333;
+
+  .post-heading
+    color: #333
+
+  .post-subheading
+    color: #333
+
+  #post-meta
+    border: 1px solid #333
+    color: #222
+
+    div
+      border: 1px solid #333
+      color: #222
+
+#post-header.bh-light-transparent
+  border: 1px solid #eee;
+
+  .post-heading
+    color: white
+
+  .post-subheading
+    color: white
+
+  #post-meta
+    border: 1px solid #ddd
+    color: #eee
+
+    div
+      border: 1px solid #ddd
+      color: #eee
 
 #post-titles
   z-index: 2
@@ -215,7 +311,6 @@ $post-at-color: gray
     border-bottom: none
     border-left: none
     border-top: white
-    // background-color: #aaaab3
     padding: 0.5rem 1rem
 
     p
