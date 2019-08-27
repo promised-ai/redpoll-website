@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ page.title }}{% endblock title %}
+{% block title %}Redpoll - {{ page.title }}{% endblock title %}
 {% block head %}
   {{ super() }}
   <link rel="stylesheet" href="/blog.css">
@@ -30,7 +30,7 @@
           <div id=post-meta>
             <div><span class=post-meta-item>BY</span> {{ page.extra.author }}</div>
             <div><span class=post-meta-item>ON</span> {{ page.date }}</div>
-            <div><span class=post-meta-item>CA</span> programming, rust</div>
+            <div><span class=post-meta-item>CAT</span> {{ page.taxonomies.categories }}</div>
           </div><div id=post-titles>
             <h1 class=post-heading>{{ page.title }}</h1>
             <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
@@ -41,6 +41,8 @@
   </div>
   <div id=post-content class="content-row">
     <div class="content-box">
+      <br>
+      <br>
       {{ page.content | safe }}
     </div>
   </div>

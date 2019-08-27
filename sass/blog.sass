@@ -29,9 +29,6 @@ $post-at-color: gray
   width: 100%
   height: 100%
   z-index: 1
-  // filter: blur(15px)
-  // transform: scale(1.7)
-  backdrop-filter: blur(20px)
 
 #post-header-inner
   position: relative
@@ -158,7 +155,6 @@ $post-at-color: gray
   vertial-align: top
   margin-top: 20vh
   margin-bottom: 15vh
-  backdrop-filter: blur(20px)
   overflow: hidden
 
 div.ph-bkg
@@ -168,7 +164,7 @@ div.ph-bkg
   background-color: deeppink;
 
 #post-header.bh-light-opaque
-  background-color: #eee
+  background-color: #eeeeeedd
   box-shadow: 0px 15px 40px rgba(33, 33, 33, 0.5)
 
   .post-heading
@@ -187,7 +183,7 @@ div.ph-bkg
       color: white
 
 #post-header.bh-dark-opaque
-  background-color: #666
+  background-color: #666666dd
   box-shadow: 0px 15px 40px rgba(33, 33, 33, 0.5)
 
   .post-heading
@@ -207,6 +203,7 @@ div.ph-bkg
 
 #post-header.bh-dark-transparent
   border: 1px solid #333;
+  backdrop-filter: blur(20px)
 
   .post-heading
     color: #333
@@ -224,6 +221,7 @@ div.ph-bkg
 
 #post-header.bh-light-transparent
   border: 1px solid #eee;
+  backdrop-filter: blur(20px)
 
   .post-heading
     color: white
@@ -266,9 +264,21 @@ div.ph-bkg
   padding-bottom: 5rem
   background-color: white;
 
-  p, h1, h2, h3, h4, h5, h6, pre
+  p, h1, h2, h3, h4, h5, h6, pre, ol, ul
     margin: 1rem auto;
     max-width: 600px
+
+  img, div.img-with-caption
+    width: 100%
+    max-width: 800px
+    display: block
+    margin: 1rem auto
+
+  div.img-with-caption
+    padding: 2rem 0
+
+  div.img-caption
+    color: gray
 
   h1, h2, h3
     margin-top: 2rem;

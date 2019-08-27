@@ -11,6 +11,12 @@ highlight_theme = "base16-ocean-light"
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
+generate_rss = true
+
+# taxonomies = [
+# 	{name = "categories", paginate_by = 5, rss = true},
+# 	{name = "authors"},
+# ]
 
 [extra]
 # Put all your custom variables here
