@@ -58,5 +58,3 @@ Just because modern AI is largely unacceptable for science, that doesn't mean th
 - Use models that can be interpreted as they are without need for addition translation. This allows easier communication between scientist and stakeholders, and permits broad input and diverse ideas.
 - AI learn from the data they're given so they need to right data to learn from.
 - An interpretable AI model can simulate experiment which allows users to determine which experiments optimize the learning/cost ratio.
-
-{{ signup(heading="Sign up for updates") }}

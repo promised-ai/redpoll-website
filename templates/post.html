@@ -1,3 +1,4 @@
+{% import "macros/signup.html" as signup %}
 {% extends "base.html" %}
 {% block title %}Redpoll - {{ page.title }}{% endblock title %}
 {% block head %}
@@ -46,4 +47,8 @@
       {{ page.content | safe }}
     </div>
   </div>
+  {{ signup::signup(heading="Sign up for updates") }}
+  <br>
+  <div class=section-spacer></div>
 {% endblock content %}
+
