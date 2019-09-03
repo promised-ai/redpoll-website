@@ -9,6 +9,10 @@
       background-color: #f7f7f7;
     }
   </style>
+  <meta property="og:title" content="{{ page.title }}"/>
+  <meta property="og:image" content="{{ config.base_url }}/{{ page.extra.image }}"/>
+  <meta property="og:description" content="{{ page.extra.subheading }}"/>
+  <meta property='og:url' content="{{ config.base_url }}/{{ page.path }}" />
 {% endblock head %}
 
 {% block content %}
@@ -25,7 +29,7 @@
     <div class="content-box">
       <div id=post-header class="bh-{{ page_theme }}">
         <div id="post-header-blur">
-          <!-- <img class=bkg-img-blur src="/img/{{ page.extra.image }}"> -->
+          <img class=bkg-img-blur src="/img/{{ page.extra.image }}">
         </div>
         <div id="post-header-inner">
           <div id=post-meta>
