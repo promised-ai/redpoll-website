@@ -16,6 +16,7 @@
       <br>
 
       {% for post in section.pages %}
+      {% if not post.draft %}
         <div class="post">
           <div class="post-left">
             <div class="post-inner">
@@ -33,6 +34,7 @@
             </a>
           </div>
         </div>
+      {% endif %} 
       {% endfor %} 
       <div class="section-spacer"></div>
     </div>

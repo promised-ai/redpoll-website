@@ -59,8 +59,8 @@ $post-at-color: gray
 
 .post
   display: block
-  height: 200px
-  min-height: 200px
+  // height: 200px
+  // min-height: 200px
 
   h1, h2, p
     margin: 0
@@ -68,13 +68,12 @@ $post-at-color: gray
     padding-right: 2rem
 
 .post-inner 
-  height: 135px
+  // height: 135px
+  height: 100%
   overflow: hidden
   z-index: 1
 
   .post-date
-    padding-top: 0.5rem
-    margin-top: 2rem
     color: $post-date-color
 
   .post-by
@@ -90,13 +89,13 @@ $post-at-color: gray
   vertical-align: top
   height: 100%
   width: 20%
-  border-right: 1px solid $inner-border-color
 
   .post-inner
     border-top: 1px solid $outer-border-color
     border-left: 1px solid $outer-border-color
     border-bottom: 1px solid $outer-border-color
     margin: 1rem 0rem 1rem 2rem
+    padding: 2rem 0
 
     p
       padding-left: 2rem
@@ -106,6 +105,7 @@ $post-at-color: gray
   vertical-align: top
   height: 100%
   width: 79%
+  border-left: 1px solid $inner-border-color
 
 
   .post-inner
@@ -203,7 +203,7 @@ div.ph-bkg
 
 #post-header.bh-dark-transparent
   border: 1px solid #333;
-  backdrop-filter: blur(20px)
+  backdrop-filter: blur(30px)
 
   .post-heading
     color: #333
@@ -221,7 +221,7 @@ div.ph-bkg
 
 #post-header.bh-light-transparent
   border: 1px solid #eee;
-  backdrop-filter: blur(20px)
+  backdrop-filter: blur(30px)
 
   .post-heading
     color: white
@@ -293,10 +293,10 @@ div.ph-bkg
     width: 69%
 
   .post
-    height: 250px
+    // height: 250px
 
   .post-inner
-    height: 200px
+    // height: 200px
 
 @media only screen and (max-width: 900px)
   #post-titles
@@ -311,6 +311,7 @@ div.ph-bkg
     border-right: none
 
   .post-left, .post-right
+    border-left: none
     display: block
     width: 100%
     padding: 0
