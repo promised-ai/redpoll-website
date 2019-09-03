@@ -201,6 +201,13 @@ div.ph-bkg
       border: 1px solid #bbb
       color: #ccc
 
+@supports not (backdrop-filter: blur(30px))
+  #post-header.bh-dark-transparent
+    background-color: rgba(255, 255, 255, 0.9)
+
+  #post-header.bh-light-transparent
+    background-color: rgba(33, 33, 33, 0.9)
+
 #post-header.bh-dark-transparent
   border: 1px solid #333;
   backdrop-filter: blur(30px)
