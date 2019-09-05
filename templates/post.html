@@ -2,6 +2,8 @@
 {% extends "base.html" %}
 {% block title %}Redpoll - {{ page.title }}{% endblock title %}
 {% block head %}
+  {% set img_url = "../static/img/" ~ page.extra.image %}
+  {% set small_img = resize_image(path=img_url, width=1920, height=1080, op="fill") %}
   {{ super() }}
   <link rel="stylesheet" href="/blog.css">
   <style>
@@ -9,10 +11,11 @@
       background-color: #f7f7f7;
     }
   </style>
+  <meta name="author" content="{{ page.extra.author }} (Redpoll)">
   <meta property="og:title" content="{{ page.title }}"/>
-  <meta property="og:image" content="{{ config.base_url }}/{{ page.extra.image }}"/>
+  <meta property="og:image" content="{{ small_img }}"/>
   <meta property="og:description" content="{{ page.extra.subheading }}"/>
-  <meta property='og:url' content="{{ config.base_url }}/{{ page.path }}" />
+  <meta property="og:url" content="{{ config.base_url }}/{{ page.path }}" />
 {% endblock head %}
 
 {% block content %}
@@ -25,11 +28,11 @@
 {% endif  %}
 
 <div id="post-main" class="content-row">
-    <img class=bkg-img src="/img/{{ page.extra.image }}">
+    <img class=bkg-img src="{{ small_img }}">
     <div class="content-box">
       <div id=post-header class="bh-{{ page_theme }}">
         <div id="post-header-blur">
-          <img class=bkg-img-blur src="/img/{{ page.extra.image }}">
+          <img class=bkg-img-blur src="{{ small_img }}">
         </div>
         <div id="post-header-inner">
           <div id=post-meta>

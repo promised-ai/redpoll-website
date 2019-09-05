@@ -15,7 +15,7 @@
       <br>
       <br>
 
-      {% for post in section.pages %}
+      {% for post in section.pages | sort(attribute="date") | reverse %}
       {% if not post.draft %}
         <div class="post">
           <div class="post-left">
