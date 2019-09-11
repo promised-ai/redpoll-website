@@ -131,11 +131,15 @@ $post-at-color: gray
 
 #post-main
   z-index: 0
-  background-color: #aaa
-  background-repeat: no-repeat
-  background-position: center
-  background-size: cover
-  filter: grayscale(70%)
+  background-color: gray
+  min-height: 50%
+
+.post-scroll-tip
+  padding-bottom: 0.1rem
+  margin-top: 2rem
+  text-align: center
+  font-size: 1.5rem
+  text-transform: lowercase
 
 #post-meta
   z-index: 2
@@ -174,13 +178,17 @@ div.ph-bkg
     color: #666
 
   #post-meta
-    background-color: #bbbbdd
+    background-color: #bbbbcc
     border: 1px solid white
     color: white
 
     div
       border: 1px solid white
       color: white
+
+  .post-scroll-tip
+    color: white
+    background-color: #bbbbcc
 
 #post-header.bh-dark-opaque
   background-color: #666666dd
@@ -200,6 +208,10 @@ div.ph-bkg
     div
       border: 1px solid #bbb
       color: #ccc
+
+  .post-scroll-tip
+    color: #666666
+    background-color: #bbb
 
 @supports (backdrop-filter: blur(30px))
   img.bkg-img-blur
@@ -231,6 +243,10 @@ div.ph-bkg
       border: 1px solid #333
       color: #222
 
+  .post-scroll-tip
+    color: white
+    background-color: #333333dd
+
 #post-header.bh-light-transparent
   border: 1px solid #eee;
   backdrop-filter: blur(30px)
@@ -249,6 +265,10 @@ div.ph-bkg
     div
       border: 1px solid #ddd
       color: #eee
+
+  .post-scroll-tip
+    color: black
+    background-color: #ffffffdd
 
 #post-titles
   z-index: 2
@@ -374,6 +394,9 @@ div.ph-bkg
   .post
     height: auto
 
+  #post-header-inner
+    padding-bottom: 0
+
 @media only screen and (max-width: 600px)
   #post-meta
     display: block
@@ -401,3 +424,6 @@ div.ph-bkg
 
     h2
       font-size: 1.2rem
+
+  #post-main
+    min-height: 100%

@@ -43,6 +43,11 @@
             <h1 class=post-heading>{{ page.title }}</h1>
             <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
           </div>
+          <a href="#content-start">
+              <div class="post-scroll-tip mobile-only">
+                  &blacktriangledown;
+              </div>
+          </a>
         </div>
       </div>
     </div>
@@ -51,6 +56,7 @@
     <div class="content-box">
       <br>
       <br>
+      <a name=content-start></a>
       {{ page.content | safe }}
     </div>
   </div>
