@@ -14,7 +14,7 @@ image = "greenhouse-2.jpg"
 theme = "light-transparent"
 +++
 
-Our businesses run on selling the good stuff, so it seems wasteful to spend resources generating stuff that we don't know will be good or that we know will be bad. But if we're using this stuff we generate in our AI/ML training data, not doing so means we're not really learning, which means we're losing our ability to predict accurately outside a very narrow realm of knowledge, which means we cannot innovate. Fortunately the cost of generating extra data can be mitigated by choosing data in a targeted way. In this post we'll discuss ways to choose data to improve learning.
+Our businesses run on selling the good stuff, so it seems wasteful to spend resources generating stuff that we don't know will be good or that we know will be bad. But if we train our AI/ML with only data about good stuff we're not really learning. We're losing our ability to predict accurately outside a very narrow realm of knowledge. We're losing our ability to innovate. Fortunately the cost of generating extra data can be mitigated by choosing data in a targeted way. In this post we'll discuss ways to choose data to improve learning.
 
 # Why we need to keep our AI in mind when we design experiments
 
@@ -26,11 +26,11 @@ One way to choose which experiments to run is to choose those that improve our a
 
 # Choose data that maximize learning
 
-Alternatively: embrace uncertainty. It might be that your data are noisy, it might be that the world is noisy. Sometimes it's just hard to make confident decisions. We should accept that. We should know when we are unconfident, and be glad that we know. It's a heck of a lot better to say "I don't know" than to confidently make a bad decision.
+Alternatively: embrace uncertainty. It might be that your data are noisy; it might be that the world is noisy. Sometimes it's just hard to make confident decisions. We should accept that. We should know when we are unconfident and be glad that we know. It's a heck of a lot better to say "I don't know" than to confidently make a bad decision.
 
-Let's focus on learning. The strategy is incredible simple: choose to run experiments that we are uncertain about. If we're using the right model, we can quantify the amount of information in an experiment as [bits](https://en.wikipedia.org/wiki/Bit). More bits mean more learning. Now we can put a number to the value of our designated learning set. If the cost of experiments is variable, we can even optimize bits of information per dollar.
+Let's focus on learning. The strategy is incredible simple: choose to run experiments that we are uncertain about. If we're using a probabilistic model, we can quantify the amount of information in an experiment as [bits](https://en.wikipedia.org/wiki/Bit). More bits mean more learning. Now we can put a number to the value of our designated learning set. If the cost of experiments is variable, we can even optimize bits of information per dollar.
 
-The way that we might do this in practice is to set aside a certain proportion of our total data collection efforts to a learning set. Say that we allocate 90% of our data to the main set and 10% to our learning set. We first choose the data in the main set based on there predicted performance. Next, we choose our learning data by measuring their information gain when combined with the main set. If we have time, we can even optimize the size of the learning set by figuring out at what percent of total data that the learning data provides diminishing returns. For example, a 5% learning set may give us 1000 bits, a 10% set may give us 1500 bits, and a 20% set may give us 1750 bits. In a case like this, we might just want to limit our learning set to 10% of total.
+The way that we might do this in practice is to set aside a certain proportion of our total data collection efforts to a learning set. Say that we allocate 90% of our data to the main set and 10% to our learning set. We first choose the data in the main set based on their predicted performance. Next, we choose our learning data by measuring their information gain when combined with the main set. If we have time, we can even optimize the size of the learning set by figuring out at what percent of total data that the learning data provides diminishing returns. For example, a 5% learning set may give us 1000 bits, a 10% set may give us 1500 bits, and a 20% set may give us 1750 bits. In a case like this, we might just want to limit our learning set to 10% of total.
 
 # Wrapping up
 
@@ -39,7 +39,6 @@ If we want to continue developing the best product we have to learn about the ba
 # Key points
 
 - Accurate prediction not only requires quality data, but requires the right set of data. We must collect data that represent the process we want to model.
-- Do not collect data features that are redundant or do not improve prediction.
 - Do not base data collection plans on minimizing uncertainty. Without great care and consideration this is a sure path to biased, uninformative data.
 - Collect data on events you are uncertain about.
 - Quantify the amount of information in your learning set with *bits* and optimize for bit per unit of cost.
