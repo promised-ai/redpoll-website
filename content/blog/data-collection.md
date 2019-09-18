@@ -1,8 +1,7 @@
 +++
 title = "How to design an efficient data collection plan for science and AI"
-date = 2019-09-05
+date = 2019-09-18
 template = "post.html"
-draft = false
 
 [taxonomies]
 categories = ["ai", "science"]
