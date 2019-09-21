@@ -1,8 +1,8 @@
 +++
 title = "Explainable AI is not enough."
-date = 2019-09-05
+date = 2019-10-01
 template = "post.html"
-draft = true
+draft = false
 
 [taxonomies]
 categories = ["ai", "ethics"]
@@ -14,7 +14,7 @@ image = "abandoned-accident-aeroplane-2787456.jpg"
 theme = "dark-transparent"
 +++
 
-The black box nature of modern AI makes it impossible to use in many domains. For example, in defense, when someone makes a decision, they sign their name to a piece of letterhead and they become legally responsible for the outcomes of that decision. Thousands of lives and the fate of nations potentially hang in the balance, so obviously they're not going to just trust the word of what is effectively a magic 8-ball. They need to know where the decision comes from, what the machine knows, when it fails, when it succeeds; when it can be trusted. To this end DARPA launched the [Explainable AI (XAI) project](), which aims to fund development of such AI technologies. In this post, I'll discuss what XAI is, and how *explanation* fails to address concerns of auditability and safety.
+The black box nature of modern AI makes it impossible to use in many domains. For example, in defense, when someone makes a decision, they sign their name to a piece of letterhead and they become legally responsible for the outcomes of that decision. Thousands of lives and the fate of nations potentially hang in the balance, so obviously they're not going to just trust the word of what is effectively a magic 8-ball. They need to know where the decision comes from, what the machine knows, when it fails, when it succeeds; when it can be trusted. To this end DARPA launched the [Explainable AI (XAI) program](), which aims to fund development of such AI technologies. In this post, I'll discuss what XAI is, and how *explanation* fails to address concerns of auditability and safety.
 
 # What is explainable AI
 
@@ -22,7 +22,7 @@ According to (former) XAI program manager David Gunning [(Link to PDF source)](h
 
 > The current generation of AI systems offer tremendous benefits, but their effectiveness will be limited by the machine's inability to explain its decisions and actions to users. 
 
-If we're using AI in transportation, finance, security, medicine, or the military, there are a few key questions an AI needs toi answer. According to the program summary:
+If we're using AI in transportation, finance, security, medicine, or the military, there are a few key questions an AI needs to answer. According to the program summary:
 
 - Why did you do that?
 - Why not something else?
@@ -35,19 +35,34 @@ For AI to be useful in theses high-risk, high-impact domains it must be complete
 
 # Problems with explanation for black box AI
 
-WRITEME
+Some problem with explanation and AI come from after-the-fact nature of explanation; others come from the mechanics of human-human interaction, which arise from humans' bias to project humanity onto (anthropomorphize) machines.
 
 ## Explanations are excuses
 
-The most glaring issue with explanation in AI is that explanations tell you why something happened. Past tense. Something has to go wrong for us to fix it. We're not preventing problems, we're explaining them. Being able to say that your autonomous car struck a pedestrian because it marked her as a fase positive is no use to anyone.
+The most glaring issue with explanation in AI is that explanations tell you why something happened. Past tense. Something has to go wrong for us to fix it. We're not preventing problems, we're explaining them. Being able to say that your [autonomous car struck a pedestrian because it marked her as a false positive](https://www.theverge.com/2018/5/7/17327682/uber-self-driving-car-decision-kill-swerve) should be consolation to no one.
 
-## Explanations don't tell use what the machine knows
+## Explanations don't tell us what the machine knows
 
-An explanation gives us knowledge about a specific decision or prediction. It does not tell us what the machine knows. It does not tell us about the knowledge inside that machine that shaped that decision or prediction.
+An explanation gives us knowledge about a specific decision or prediction. It does not tell us what the machine knows. It does not tell us about the knowledge inside that machine that shaped that decision or prediction. If we're using deep learning on particle accelerator data, the AI has some model of how to classify particles by their collision characteristics, but to get at that knowledge using explanation, we'd have to piece it together by asking about every possible prediction.
 
 ## Explanation makes inappropriate trust worst
 
-People have a tendency to anthropomorphize things, and to find patters where they don't exist. We also tend to trust people. Trusting people is important for learning. If I distrust everything you say, I cannot learn from you; if I trust you implicitly, I can accept everything you say without question, which allows me to learn quickly. If we look at a visualization of an AI explanation, say a heat map explaining the important parts of an image to its classification
+People have a tendency to anthropomorphize things, and to find patters where they don't exist. We also tend to trust people. Trusting people is important for learning. If I distrust everything you say, I cannot learn from you; if I trust you implicitly, I can accept everything you say without question, which allows me to learn quickly. People anthropomorphize machines. They attribute human intentions and characteristics to things that display the slightest human qualities. 
+
+In 1996 Gary Kasporov lost to *Deep Blue*, IBM's chess playing super computer. Deep Blue made a very perplexing move that threw Kasporov through a loop. In [an interview with Time](https://time.com/3705316/deep-blue-kasparov/
+) Kasporv said:
+
+> It was a wonderful and extremely human move [...] I had played a lot of computers but had never experienced anything like this. I could feel — I could smell — a new kind of intelligence across the table.
+
+The problem was that the move was a glitch. But because Kasporov believed it was an intention move made by an opponent on a higher plane of intelligence, he played around it rather than exploiting it. It cost him the match.
+
+Another game-playing machine from IBM [nearly slid a wrong response by *Jeopardy* host Alex Trebek](https://www.wired.com/2011/02/watson-wrong-answer-trebek/). The answer (in Jeopardy, the host gives a question and the player gives questions) Trebek gave was something along the line of "This oddity of Olympian gymnast George Eyser". Ken Jennings responded "What is missing a Hand", which was incorrect. Watson responded "What is a leg", which Trebek initially accepted because George Eyser was missing a leg. The issue is that the correct response should have been "What is *missing* a leg". Trebek assumed that Watson was aware of the context provide by the other players. I'd argue that most of language is implicit in context -- it certainly helps to convey more information with fewer words -- and so it's a very natural assumption to make.
+
+## You shouldn't trust black box AI to begin with
+
+The problem with being made to trust a black box model, like deep learning, is that black box models should never be trusted. You should assume that they will go catastrophically wrong out of nowhere, because they do. Deep learning does not know what it doesn't know (PDF). You can dramatically change the prediction of an image classifier by adding stickers to a stop sign (PDF), or changing a single pixel in an image (PDF). And being vulnerable to odd or malicious data is argued to be an inherent feature of these models (Link). Sure, they can be made to give you an approximation in their certainty in their answers, but because their knowledge is stored as an arbitrary mapping from inputs to outputs, that knowledge -- and the uncertainty -- is nonsensical. Don't use them when anything important is on the line.
+
+This issue is compounded by work that seeks to use black box models to learn to generate plain-text explanations of black box predictions.
 
 # Moving toward the spirit of XAI
 
@@ -66,6 +81,6 @@ But of course, these are temporary problems. The future is bright for explainabl
 - There are some problems with explanation:
     + Explanations don't prevent problems, they offer excuses as to why they happened.
     + Explanation does not tell us what the machine has learned.
-    + Explanations make inappropriate trust worse by increasing trust in brittle, unpredictable models.
+    + Explanations make inappropriate trust worse by increasing trust in brittle, unpredictable, and dangerous models.
 - Some researchers are focusing on general interpretable models, which are trivially explainable
 - Some researchers are focusing on teaching, which embeds machine knowledge into a human mind, which turn questions we'd ask a machine into questions we'd ask ourselves
