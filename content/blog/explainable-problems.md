@@ -2,7 +2,7 @@
 title = "Explainable AI is not enough."
 date = 2019-10-01
 template = "post.html"
-draft = false
+draft = true
 
 [taxonomies]
 categories = ["ai", "ethics"]
