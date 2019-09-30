@@ -14,7 +14,7 @@ image = "abandoned-airplane-apocalypse.jpg"
 theme = "dark-transparent"
 +++
 
-Modern AI are black boxes. They hide what they know. This is a problem if we want to use AI to assist decision-makers in high-risk tasks like medical treatment or military operations. For AI to be safe in tasks like these it must be completely transparent, auditable, and *explainable*. In this post, I'll discuss what XAI is, what it should mean to explain AI, and the current focus on *explanation* not only fails to make AI safe, but makes it more dangerous.
+Modern AI are black boxes. They hide what they know. This is a problem if we want to use AI to assist decision-makers in high-risk tasks like medical treatment or military operations. For AI to be safe in tasks like these it must be completely transparent, auditable, and *explainable*. In this post, I'll discuss what XAI is, what it should mean to explain AI, and how the current focus on *explanation* not only fails to make AI safe, but makes it more dangerous.
 
 # AI hide their knowledge
 
