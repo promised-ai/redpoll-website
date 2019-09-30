@@ -14,9 +14,13 @@ image = "abandoned-airplane-apocalypse.jpg"
 theme = "dark-transparent"
 +++
 
-Modern AI are black boxes. They hide their knowledge away. And even if you use a method to look in the black box, the knowledge inside doesn't makes sense; it doesn't map on to anything in the world. This makes it impossible to use AI in many domains. For example, in defense, when someone makes a decision, they sign their name to a piece of letterhead and they become legally responsible for the outcomes of that decision. Thousands of lives and the fate of nations potentially hang in the balance, so obviously they're not going to just trust the word of what is effectively a magic 8-ball. They need to know where the decision comes from, what the machine knows, when it fails, when it succeeds; when it can be trusted. To this end DARPA launched the [Explainable AI (XAI) program](), which aims to fund development of AI technologies that answer these questions. In this post, I'll discuss what XAI is, and how *explanation* not only fails to make AI safe, but will make it more dangerous.
+Modern AI are black boxes. They hide what they know. This is a problem if we want to use AI to assist decision-makers in high-risk tasks like medical treatment or military operations. For AI to be safe in tasks like these it must be completely transparent, auditable, and *explainable*. In this post, I'll discuss what XAI is, what it should mean to explain AI, and the current focus on *explanation* not only fails to make AI safe, but makes it more dangerous.
 
-# What is explainable AI
+# AI hide their knowledge
+
+AI are epistemically opaque. They hide their knowledge away. And even if you use a method to look in the black box, the knowledge inside doesn't makes sense; it doesn't map on to anything in the world. This makes it impossible to use AI (safely and responsibly) in many domains. For example, in defense, when someone makes a decision, they sign their name to a piece of letterhead and they become legally responsible for the outcomes of that decision. Thousands of lives and the fate of nations potentially hang in the balance, so obviously they're not going to just trust the word of what is effectively a magic 8-ball. They need to know where the decision comes from, what the machine knows, when it fails, when it succeeds; when it can be trusted. To this end DARPA launched the [Explainable AI (XAI) program](), which aims to fund development of AI technologies that answer these questions. 
+
+# Explainable AI
 
 According to (former) XAI program manager David Gunning [(Link to PDF source)](https://www.darpa.mil/attachments/XAIProgramUpdate.pdf):
 
@@ -31,7 +35,17 @@ If we're using AI in transportation, finance, security, medicine, or the militar
 - When can I trust you?
 - How to I correct and error?
 
-For AI to be useful in theses high-risk, high-impact domains it must be completely transparent and intuitive to its human users. However, the bulk of explainable AI research (both separate and as a part of the XAI program) focuses singly on explanation and unfortunately focusing on the *explanation* part of explainable AI won't solve AI's problem. It will likely make them worse.
+In a nut shell, explainable AI is AI that is able to be made completely transparent and intuitive to its decision maker. This has less to do with explanation and more to do with interpretability and understanding. All of the above questions can be answered by a human user who is able to completely understand the structure of the machine knowledge. 
+
+For example, a linear regression is easy to understand. It's a line. In the picture below it is easy to see that the model has learned that change in GDP growth decreases as the change in unemployment rate increases, and that the variance, or error, seems pretty constant through the observable region.  Of course, the linear regression is not particularly generalizable or powerful when it comes to learning from arbitrarily complex data. 
+
+{{ image(
+    src="/img/Okun's_Law_2016.svg.png",
+    caption="Linear regression predicting GDP growth as a function of unemployment. It is easy to see that the model has learned that the change in GDP growth decreases as the change in unemployment rate increases (Source from Wikipedia user Acheck10)."
+    )
+}}
+
+Making interpretable models that are generalizable, powerful, and fast is hard, so the bulk of explainable AI research (both separate and as a part of the XAI program) focuses on explaining events in the AI we already have. Unfortunately focusing on the *explanation* part of explainable AI won't solve AI's problem. It will likely make them worse.
 
 # Problems with explanation for black box AI
 
@@ -52,7 +66,7 @@ People have a tendency to anthropomorphize things, and to find patterns that don
 In 1996 Gary Kasporov lost to *Deep Blue*, IBM's chess-playing supercomputer. Deep Blue made a very perplexing move that threw Kasporov through a loop. In [an interview with Time](https://time.com/3705316/deep-blue-kasparov/
 ) Kasporv said:
 
-> It was a wonderful and extremely human move [...] I had played a lot of computers but had never experienced anything like this. I could feel — I could smell — a new kind of intelligence across the table.
+> It was a wonderful and extremely human move [...] I had played a lot of computers but had never experienced anything like this. I could feel -- I could smell -- a new kind of intelligence across the table.
 
 The problem was that the move was a glitch. But because Kasporov believed it was an intentional move made by an opponent on a higher plane of intelligence, he played around it rather than exploiting it. It cost him the match.
 
@@ -66,11 +80,11 @@ This issue is compounded by work that seeks to use black box models to learn to 
 
 # Capturing the spirit of XAI
 
-To use AI in high-risk high impact domains, we need AI that are completely transparent and intuitive to the humans that will be using them. This is the spirit of XAI. The unfortunate use of the word *explanation* has permitted researchers to continue to use dangerous and inappropriate AI models as long as they can develop additional wrapper models to generate plausible explanations for decisions or predictions. But some AI researchers have taken different approaches, focusing instead on *interpretable* models whose workings can be intuitively understood by human users, or by focusing on embedding machine knowledge directly into human users through *teaching*.
+To use AI in high-risk high-impact domains, we need AI that are completely transparent and intuitive to the humans that will be using them. This is the spirit of XAI. The unfortunate use of the word *explanation* has permitted researchers to continue to use dangerous and inappropriate AI models as long as they can develop additional wrapper models to generate plausible explanations for decisions or predictions. But some AI researchers have taken different approaches, focusing instead on *interpretable* models whose workings can be intuitively understood by human users, or by focusing on embedding machine knowledge directly into human users through *teaching*.
 
-Interpretable models are trivially explainable. The difficulty is that making models that are interpretable, general, and powerful is really, really hard. Then there's making them fast...
+**Interpretable models** are trivially explainable. The difficulty is that making models that are interpretable, general, and powerful is really, really hard. Then there's making them fast...
 
-Teaching is a promising approach. If we can transfer machine knowledge into a human, then we no longer need to ask an AI questions about its behaviour. Those questions become introspection. I can decide how I feel about making a decision based on what the machine has taught me. If I feel icky, I can step back and start figuring out why. The issue with teaching is that it is hard. Computationally, it involves recursive reasoning between teacher and learner, which is hard to make work for complex knowledge.
+**Teaching** is a promising approach. If we can transfer machine knowledge into a human, then we no longer need to ask an AI questions about its behaviour. Those questions become introspection. I can decide how I feel about making a decision based on what the machine has taught me. If I feel icky, I can step back and start figuring out why. The issue with teaching is that it is hard. Computationally, it involves recursive reasoning between teacher and learner, which is hard to make work for complex knowledge.
 
 But of course, these are temporary problems. The future is bright for explainable AI (maybe a name change would be nice), and I think we're on the cusp of a major paradigm shift. AI has been going down the wrong path for a long time; users are butting up hard against its limits, and are eager to fix them.
 
