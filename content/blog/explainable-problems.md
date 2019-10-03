@@ -14,7 +14,7 @@ image = "abandoned-airplane-apocalypse.jpg"
 theme = "dark-transparent"
 +++
 
-Modern AI are black boxes. They hide what they know. This is a problem if we want to use AI to assist decision makers in high-risk tasks like medical treatment (clinical decision support) or military operations. For AI to be safe in tasks like these it must be completely transparent, auditable, and *explainable*. In this post, I'll discuss what explainable AI (XAI) is, what it should mean to explain AI, and how the current focus on *explanation* not only fails to make AI safe, but makes it more dangerous.
+Modern AI are black boxes. They hide what they know. This is a problem if we want to use AI to assist decision makers in high-risk tasks like medical treatment (clinical decision support) or military operations. For AI to be safely usable in tasks like these it must be completely transparent, auditable, and *explainable*. In this post, I'll discuss what explainable AI (XAI) is, what it should mean to explain AI, and how the current focus on *explanation* not only fails to make AI safe, but makes it more dangerous.
 
 # Problem: AI hide their knowledge
 
@@ -45,7 +45,7 @@ For example, a linear regression is easy to understand. It's just a line. In the
     )
 }}
 
-Making interpretable models that are generalizable, powerful, and fast is hard, so the bulk of explainable AI research (both separate and as a part of the XAI program) focuses on explaining events in the types of AI we already have. Unfortunately focusing on the *explanation* part of explainable AI won't solve AI's problem. It will likely make them worse.
+Making interpretable models that are generalizable, powerful, and fast is hard, so the bulk of explainable AI research (both separate and as a part of the XAI program) focuses on explaining the predictions and decisions of the types of AI we already have. To relate to the XAI progrm objectives, it means that researchers are focusing only on the "Why did you do that?" and "Why not something else?" questions. Unfortunately focusing on the *explanation* part of explainable AI won't solve AI's problem. It will likely make them worse.
 
 # Problems with explanation for black box AI
 
@@ -57,7 +57,7 @@ The most glaring issue with explanation in AI is that explanations tell you why 
 
 ## Explanations are not knowledge
 
-An explanation gives us information about a specific decision or prediction. It does not tell us what the machine knows. It does not tell us about the knowledge inside that machine that shaped that decision or prediction. If we're using deep learning on particle accelerator data, the AI has some model of how to classify particles by their collision characteristics -- which physicists would probably be interested in -- but to get at that knowledge using explanation, we'd have to piece it together by asking about every possible prediction.
+An explanation gives us information about a specific decision or prediction. It does not tell us what the machine knows. It does not tell us about the knowledge inside the machine that shaped that decision or prediction. If we're using deep learning on particle accelerator data, the AI has some model of how to classify particles by their collision characteristics -- which physicists would probably be pretty interested in -- but to get at that knowledge using explanation, we'd have to piece it together by asking about every possible prediction. In the mean time we do not understand the limits of the machine's knowledge, or when and how it can fail.
 
 ## Explanation makes inappropriate trust worst
 
@@ -70,7 +70,7 @@ In 1996 Gary Kasporov lost to *Deep Blue*, IBM's chess-playing supercomputer. De
 
 The problem was that the move was a glitch. But because Kasporov believed it was an intentional move made by an opponent on a higher plane of intelligence, he played around it rather than exploiting it. It cost him the match.
 
-Another game-playing machine from IBM [nearly got a wrong response by *Jeopardy* host Alex Trebek](https://www.wired.com/2011/02/watson-wrong-answer-trebek/). The answer (in Jeopardy, the host gives an answer to which the player responds with a question) Trebek gave was something along the line of "This oddity of Olympian gymnast George Eyser". Ken Jennings responded "What is missing a Hand?", which was incorrect. Watson responded "What is a leg?", which Trebek initially accepted because George Eyser was missing a leg. The issue is that the correct response should have been "What is *missing* a leg?". Trebek assumed that Watson was aware of the context provided by the other players; that it was playing off Ken Jenning's response. I'd argue that most of language is implicit in context -- it certainly helps to convey more information with fewer words -- and so it's a very natural assumption to make. But the score had to be corrected after Trebek was notified of the error.
+Another game-playing machine from IBM [nearly got a wrong response by *Jeopardy* host Alex Trebek](https://www.wired.com/2011/02/watson-wrong-answer-trebek/). The answer (in Jeopardy, the host gives an answer to which the player responds with a question) Trebek gave was something along the line of "This oddity of Olympian gymnast George Eyser". Ken Jennings responded "What is missing a Hand?", which was incorrect. Watson responded "What is a leg?", which Trebek initially accepted because George Eyser was missing a leg. The issue was that the correct response should have been "What is *missing* a leg?". Trebek assumed that Watson was aware of the context provided by the other players, and that it was playing off Ken Jenning's response. I'd argue that most of language is implicit in context -- it certainly helps to convey more information with fewer words -- and so it's a very natural assumption to make. But the score had to be corrected after Trebek was notified of the error.
 
 Interestingly, Trebek should have been aware of this because Watson had previously repeated an incorrect response given by a contestant.
 
@@ -78,22 +78,17 @@ Interestingly, Trebek should have been aware of this because Watson had previous
 
 The problem with being made to trust a black box model, like deep learning, is that black box models should never be trusted. You should assume that they will go catastrophically wrong out of nowhere, because they do. Deep learning does not know what it doesn't know ([cite](https://arxiv.org/abs/1810.09136)). You can dramatically change the prediction of an image classifier by adding stickers to a stop sign ([cite](https://arxiv.org/abs/1707.08945)), or changing a single pixel in an image ([cite](https://arxiv.org/abs/1710.08864)). And being vulnerable to odd or malicious data is argued to be an inherent feature of these models ([cite](http://gradientscience.org/adv/) & [discussion](https://distill.pub/2019/advex-bugs-discussion/)). Sure, they can be made to give you an approximation of their certainty in their answers, but because their knowledge is stored as an arbitrary mapping from inputs to outputs, that knowledge -- and that uncertainty -- is nonsensical. Don't use black box AI when anything important is at stake.
 
-This issue is compounded by work that seeks to use black box models to learn to generate plain-text explanations for black box predictions. Black boxes explaining black boxes.
+This issue is compounded by XAI work that seeks to use black box models to learn to generate plain-text explanations for black box predictions. Black boxes explaining black boxes.
 
 # Capturing the spirit of XAI
 
-To use AI in high-risk high-impact domains, we need AI that are completely transparent and intuitive to the humans that will be using them; not just data scientist and AI experts, but the decision makers. This is the spirit of XAI. The unfortunate use of the word *explanation* has encouraged researchers to continue to use dangerous and inappropriate AI models as long as they can develop additional wrapper models to generate plausible explanations for decisions or predictions. But some AI researchers have taken different approaches, focusing instead on *interpretable* models whose workings can be intuitively understood by human users, or by focusing on embedding machine knowledge directly into human users through *teaching*.
+To use AI in high-risk high-impact domains, we need AI that are completely transparent and intuitive to the humans that will be using them; not just data scientist and AI experts, but the decision makers. This is the spirit of XAI. The unfortunate use of the word *explanation* has encouraged researchers to continue to use dangerous and inappropriate AI models as long as they can develop additional wrapper models to generate plausible explanations for decisions or predictions. But some AI researchers have taken different approaches, focusing instead on *interpretable* models whose workings can be intuitively understood by human users, or by focusing on embedding machine knowledge directly into human users through *teaching* (both topics that I will cover in detail in future posts).
 
 **Interpretable models** are trivially explainable. The difficulty is that making models that are interpretable, general, and powerful is really, really hard. Then there's making them fast...
 
-**Teaching** is a promising approach. If we can transfer machine knowledge into a human, then we no longer need to ask an AI questions about its behaviour. Those questions become introspection. I can decide how I feel about making a decision based on what the machine has taught me. If I feel icky, I can step back and start figuring out why. The issue with teaching is that it is hard. Computationally, it involves recursive reasoning between teacher and learner, which is hard to make work for complex knowledge.
+**Teaching** is a promising approach. If we can transfer machine knowledge into a human, then we no longer need to ask an AI questions about its behaviour. Those questions become introspection. I can decide how I feel about making a decision based on what the machine has taught me. If I feel icky, I can step back and start figuring out why. The issue with teaching is that it is hard. Computationally, it involves recursive, back-and-forth reasoning between teacher and learner, which is hard to make work for complex knowledge.
 
-- Teaching is harder than learning.
-- And learning from teachers is harder than teacher.
-- And teaching to learners learning from teachers is harder than learning from teachers.
-- ... and so on. I could probably write a [PCFG](https://en.wikipedia.org/wiki/Probabilistic_context-free_grammar) to generate these.
-
-But of course, all of these are temporary problems. The future is bright for explainable AI (though a name change would be nice), and I think we're on the cusp of a major paradigm shift. AI has been going down the wrong path for a long time; users are butting up hard against its limits, and are eager to fix them.
+But of course, all of these are temporary problems. The future is bright for AI -- though "Explainable AI" is in bad need of a name change -- and I think we're on the cusp of a major paradigm shift. AI has been going down the wrong path for a long time; users are butting up hard against its limits, and are eager to fix them.
 
 # Key points
 
