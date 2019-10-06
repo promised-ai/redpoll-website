@@ -14,7 +14,7 @@ image = "abandoned-airplane-apocalypse.jpg"
 theme = "dark-transparent"
 +++
 
-Modern AI are black boxes. They hide what they know. This is a problem if we want to use AI to assist decision makers in high-risk tasks like medical treatment (clinical decision support) or military operations, where there is too much at stake to trust unjustified decisions. For AI to be safely usable in tasks like these it must be completely transparent, auditable, and *explainable*. In this post, I'll discuss what explainable AI (XAI) is, what it should mean to explain AI, and how the current focus on *explanation* not only fails to make AI safe, but makes it more dangerous.
+Modern AI are black boxes. They hide what they know. This is a problem if we want to use AI to assist decision makers in high-risk tasks like medical treatment (clinical decision support) or military operations where lives are at stake. For AI to be safely usable in tasks like these it must be completely transparent, auditable, and *explainable*. In this post, I'll discuss what explainable AI (XAI) is, what it should mean to explain AI, and how the current focus on *explanation* not only fails to make AI safe, but makes it more dangerous.
 
 # Problem: AI are black boxes
 
@@ -45,7 +45,7 @@ For example, a linear regression is easy to understand. It's just a line. In the
     )
 }}
 
-Making interpretable models that are generalizable, powerful, and fast is incredibly hard, so the bulk of explainable AI research (both separate and as a part of the XAI program) focuses on explaining the predictions and decisions of the types of AI we already have. To relate to the XAI progrm objectives, it means that researchers are focusing only on the "Why did you do that?" and "Why not something else?" questions. Unfortunately focusing on the *explanation* part of explainable AI won't solve AI's problems. It will likely make them worse.
+Making interpretable models that are generalizable, powerful, and fast is incredibly hard, so the bulk of explainable AI research (both separate and as a part of the XAI program) focuses on explaining the predictions and decisions of the types of AI we already have. To relate to the XAI program objectives, it means that researchers are focusing only on the "Why did you do that?" and "Why not something else?" questions. Unfortunately focusing on the *explanation* part of explainable AI won't solve AI's safety problems. It will likely make them worse.
 
 # Problems with explanation for black box AI
 
@@ -57,11 +57,11 @@ The most glaring issue with explanation in AI is that explanations tell you why 
 
 ## Explanations are not knowledge
 
-An explanation gives us information about a specific decision or prediction. It does not tell us what the machine knows. It does not tell us about the knowledge inside the machine that shaped that decision or prediction. If we're using deep learning on particle accelerator data, the AI has some internal model of how to classify particles by their collision characteristics -- which physicists would probably be pretty interested in -- but to get at that knowledge using explanation, we'd have to piece it together by asking about every possible prediction. In the mean time we do not understand the limits of the machine's knowledge, or when and how it can fail.
+An explanation gives us information about a specific decision or prediction. It does not tell us what the machine knows. It does not tell us about the knowledge inside the machine that shaped that decision or prediction. If we're using deep learning on particle accelerator data, the AI has some internal model of how to classify particles by their collision characteristics -- which physicists would probably be pretty interested in -- but to get at that knowledge using explanation, we'd have to piece it together by asking about every possible prediction. In the mean time we do not understand the limits of the machine's knowledge, or when and how the machine can fail.
 
 ## Explanation makes inappropriate trust worst
 
-People have a tendency to anthropomorphize things, and to find patterns that don't exist. We also tend to trust people. Trusting people is important for learning. If I distrust everything you say, I cannot learn from you. If I trust you implicitly, I can accept everything you say without question, which allows me to learn quickly. People anthropomorphize machines. They attribute human intentions and characteristics to things that display the slightest human qualities.
+People anthropomorphize machines. They attribute human intentions and characteristics to things that display the slightest human qualities. We also tend to trust people. Trusting people is important for learning. If I distrust everything you say, I cannot learn from you. If I trust you implicitly, I can accept everything you say without question, which allows me to learn quickly. Since explanation is a human behavior, it primes people to expect other human behaviors from the machine, and because of this, people will tend to over trust the machine.
 
 In 1996 Gary Kasporov lost to *Deep Blue*, IBM's chess-playing supercomputer. Deep Blue made a very perplexing move that threw Kasporov through a loop. In [an interview with Time](https://time.com/3705316/deep-blue-kasparov/
 ) Kasporv said:
@@ -90,7 +90,7 @@ To use AI in high-risk high-impact domains, we need AI that are completely trans
 
 **Teaching** is a promising approach. If we can transfer machine knowledge into a human, then we no longer need to ask an AI questions about its behaviour. Those questions become introspection. I can decide how I feel about making a decision based on what the machine has taught me. If I feel icky, I can step back and start figuring out why. The issue with teaching is that it is also very hard. Computationally, it involves recursive, back-and-forth reasoning between teacher and learner, which is hard to make work for complex knowledge.
 
-But of course, all of these are temporary problems. The future is bright for AI -- though "Explainable AI" is in bad need of a name change -- and I think we're on the cusp of a major paradigm shift. AI has been going down the wrong path for a long time -- maybe it's always been going down the wrong path -- users are butting up hard against its limits, and are eager to fix them.
+But of course, all of these are temporary problems. The future is bright for AI -- though "Explainable AI" is in bad need of a name change -- and I think we're on the cusp of a major paradigm shift. AI has been going down the wrong path for a long time -- maybe it's always been going down the wrong path. Users are butting up hard against its limits, and are eager to fix them.
 
 # Key points
 
