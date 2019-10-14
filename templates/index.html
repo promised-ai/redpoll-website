@@ -1,6 +1,14 @@
 {% import "macros/person.html" as person %}
 {% import "macros/signup.html" as signup %}
 {% extends "base.html" %}
+{% block head %}
+  {{ super() }}
+  <meta name="author" content="Redpoll">
+  <meta property="og:title" content="Redpoll"/>
+  <meta property="og:description" content="Humanistc AI to tackle hard problems safely"/>
+  <meta property="og:url" content="{{ config.base_url }}" />
+  <meta property="keywords" content="AI, Artificial Intelligence, Explainable AI, Science, Genomics, Defense, Health, Healthcare, Medicine, Data Science, Analytics, Machine Learning, Ethics" />
+{% endblock head %}
 
 {% block content %}
     <div class="content-row">
