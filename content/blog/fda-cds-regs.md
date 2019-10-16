@@ -2,7 +2,7 @@
 title = "Training deep networks to skirt FDA regulation"
 date = 2019-10-08
 template = "post.html"
-draft = false
+draft = true
 
 [taxonomies]
 categories = ["ai", "ethics"]
