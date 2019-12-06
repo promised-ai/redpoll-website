@@ -47,7 +47,7 @@ From our portfolio, we choose a set of pairs. For each pair, we grow both plants
 
 ## Molecular Breeding
 
-Molecular breeding is using molecular tools &mdhas; genetics data &mdash; to inform breeding decisions. Mole commonly used in plant and animals breeding. Genetics data are used for a couple of purposes: to get an idea of the performance of a cross without having to grow it, and to ensure genetic diversity. If we have enough data relating the genetics of plants to their phenotypes (observable traits) &mdhas; like grain yield and disease resistance &mdash; we can predict the phenotype from genotype. But selecting only the highest-performing individuals will likely reduce our genetic diversity. This is bad because if a new disease comes along that our crosses are not resistant to, they could be wiped out. We could lose everything. We need diverse genetic material for resistance.
+Molecular breeding is using molecular tools &mdash; genetics data &mdash; to inform breeding decisions. This is a very common technique in in plant and animals breeding. Genetics data are used for a couple of purposes: to get an idea of the performance of a cross without having to grow it, and to ensure genetic diversity. If we have enough data relating the genetics of plants to their phenotypes (observable traits like grain yield and disease resistance) we can predict the phenotype from genotype. But selecting only the highest-performing individuals will likely reduce our genetic diversity. This is bad because if a new disease comes along that our crosses are not resistant to, they could be wiped out. We could lose everything. We need diverse genetic material for resistance.
 
 Of course neither prediction nor diversity are as simple as that. Genetics are extremely complex and you'd need an unattainable amount of data to account for that complexity. And prediction is made more complicated by the environment which influences the development of organisms through epigenetic and external factors. 
 
@@ -57,12 +57,13 @@ Genetic diversity is a fairly well defined concept, but it is not the only type 
 
 Breeding is a game of novelty. Sometimes you seek it out and sometimes you fight with it. **The success of a molecular breeding program is determined by its ability to identify and characterize novelty**.
 
-Performance criterion itself is based on novelty. A breeder is not looking for the cross with the highest predicted performance, but the highest probability of producing a high performer. Image that the performance of a hybrid follows a bell curve (see Figure FIXME). Let's say that hybrid A has high probability of performing well with little variance and that hybrid B is likely to perform poorer than A. Which do we choose? You may think A, but the answer is not so straight forward. What if B has a 10% to perform better 99.99% of the hybrids that A produces? Since we're talking plants we can take the scattergun approach; we can plant 100, and expect around 10 really awesome plants. This is why we seek out novelty, but the world of biology is filled with novelty that we must conquer to achieve our goals.
+Performance criterion itself is based on novelty. A breeder is not looking for the cross with the highest predicted performance, but the highest probability of producing a high performer. We're looking to game-changing genetics, not incremental changes. Imagine that the performance of a hybrid follows a bell curve (see <a href="#breeding-objective-figure">Figure</a>). Let's say that hybrid A has high probability of performing well with little variance and that hybrid B is likely to perform poorer than A. Which do we choose? You may think A, but the answer is not so straight forward. What if B has a high variance? B might perform worse the A on average, but B has long tails that means its best performers vastly outperform A's best performers. Let's say that B has a 5% chance or producing a plant better than 99% of A's. As breeders, since we're talking plants we can take the scattergun approach; we can plant 100, and expect around 5 really awesome plants. This is why we seek out novelty, but the world of biology is filled with novelty that we must detect and react to in order to achieve our goals.
 
+<a class="anchor" name="breeding-objective-figure"></a>
 ![B performs worse than A on average, but 5% of plants from B will outperform 99% of plants from A](/img/breeding_obj.png)
-    <p class="small">
-    <span style="color: red">B (red)</span> performs worse than <span style="color: blue">A (blue)</span> on average, but 5% of plants from <span style="color: red">B</span> will outperform 99% of plants from <span style="color: blue">A</span>.
-    </p>
+<p class="small">
+    <span style="color: red">Figure. B (red)</span> performs worse than <span style="color: blue">A (blue)</span> 75% of the time, but 5% of plants from <span style="color: red">B</span> will outperform 99% of plants from <span style="color: blue">A</span>.
+</p>
 
 
 Evolution is fueled by novelty. When we make a cross we receive an entirely new set of genetics created by [recombination](https://en.wikipedia.org/wiki/Genetic_recombination) and mutation. When we develop the individual, the development of that individual is subject to environmental and epigenetic effects, which the sequence data do not account for. 
