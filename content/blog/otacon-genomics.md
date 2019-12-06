@@ -10,7 +10,8 @@ categories = ["news", "ai"]
 [extra]
 author = "Baxter Eaves"
 subheading = "DARPA's SAIL-ON program focuses on novelty; plant breeding is a game of mastering novelty."
-image = "red-flower.jpg"
+# image = "red-flower.jpg"
+image = "tomato-1.jpg"
 theme = "light-transparent"
 +++
 
@@ -57,6 +58,11 @@ Genetic diversity is a fairly well defined concept, but it is not the only type 
 Breeding is a game of novelty. Sometimes you seek it out and sometimes you fight with it. **The success of a molecular breeding program is determined by its ability to identify and characterize novelty**.
 
 Performance criterion itself is based on novelty. A breeder is not looking for the cross with the highest predicted performance, but the highest probability of producing a high performer. Image that the performance of a hybrid follows a bell curve (see Figure FIXME). Let's say that hybrid A has high probability of performing well with little variance and that hybrid B is likely to perform poorer than A. Which do we choose? You may think A, but the answer is not so straight forward. What if B has a 10% to perform better 99.99% of the hybrids that A produces? Since we're talking plants we can take the scattergun approach; we can plant 100, and expect around 10 really awesome plants. This is why we seek out novelty, but the world of biology is filled with novelty that we must conquer to achieve our goals.
+
+![B performs worse than A on average, but 5% of plants from B will outperform 99% of plants from A](/img/breeding_obj.png)
+    <p class="small">
+    <span style="color: red">B (red)</span> performs worse than <span style="color: blue">A (blue)</span> on average, but 5% of plants from <span style="color: red">B</span> will outperform 99% of plants from <span style="color: blue">A</span>.
+    </p>
 
 
 Evolution is fueled by novelty. When we make a cross we receive an entirely new set of genetics created by [recombination](https://en.wikipedia.org/wiki/Genetic_recombination) and mutation. When we develop the individual, the development of that individual is subject to environmental and epigenetic effects, which the sequence data do not account for. 
