@@ -10,7 +10,7 @@ categories = ["news", "ai"]
 [extra]
 author = "Baxter Eaves"
 subheading = "Redpoll partners with Rutgers University and DARPA to build self-aware AI"
-image = "dunes-1.jpg"
+image = "fish-1.jpg"
 theme = "light-transparent"
 +++
 
@@ -30,16 +30,11 @@ open worlds with dynamic constraints.
 
 OTACON will solve this problem by making AI introspective and malleable.
 
-> OTACON will solve this problem by being introspective and malleable. Whenever
-> it sees something new it is asking itself, “does this make sense given what I
-> believe?” If “no”, the machine will adapt. It determines where its knowledge
-> has broken and why, and rearranges its structure to preserve the still useful
-> knowledge and override the outdated knowledge.
+> OTACON will solve this problem by being introspective and malleable. Whenever it sees something new it asks itself, “does this make sense given what I currently  believe?” If “no”, the machine will adapt. It determines where its knowledge has broken and why, and rearranges its structure to preserve the still useful knowledge and override the outdated knowledge.
 
-> Reliable introspection requires interpretable knowledge. The system is built
-> on our research in cognitive science to learn and store its knowledge like
-> people do. So everything it knows can be communicated to, and scrutinized by
-> the human user.
+> Reliable introspection requires interpretable knowledge. The system is built on our research in cognitive science, so it learns and store its knowledge like people do, which means that everything the machine knows can be communicated to, and scrutinized by the human user.
+
+FIXME. Something about partnerting wit humans
 
 > Quote from DARPA on OTACON
 

@@ -17,17 +17,19 @@ theme = "light-transparent"
 
 "Defense AI" elicits images of satellite imagery overlaid with markers indicating the positions and movements of aircraft, troops, and supplies. Of War Games. So why is it that we're using plant breeding as an internal test bed to develop the AI we're building for DARPA?
 
-In this post I'll discuss DARPA's SAIL-ON program, under which we're developing the OTACON platform, and discuss how plant breeding wrestles with all and more of the problems SAIL-ON hopes to address.
+In this post I'll discuss [DARPA's SAIL-ON program](https://www.darpa.mil/news-events/2019-02-14), under which we're developing the OTACON platform, and discuss how plant breeding wrestles with all and more of the problems SAIL-ON hopes to address.
 
 # The SAIL-ON Program
 
-Along with our colleagues at Rutgers, we're developing AI for DARPA under the SAIL-ON program. The stated objective of the SAIL-ON program is to make learning machines that are more robust to different types of *novelty* in the world. 
+Along with our colleagues at Rutgers, we're developing AI for DARPA under the SAIL-ON program. The stated objective of the SAIL-ON program is to make learning machines that are more robust to different types of *novelty* in the world. According to DARPA ([source](https://www.darpa.mil/news-events/2019-02-14)):
+
+> For AI systems to effectively partner with humans across a spectrum of military applications, intelligent machines need to graduate from closed-world problem solving within confined boundaries to open-world challenges characterized by fluid and novel situations.
 
 Novelty takes many forms.
 
-There are single odd examples. Say an image classifier trained to classify images of fruits receives an image of a toad. How will the machine react? A machine that knows only fruits, may pick up on the green bumpy skin and may, with high certainty, classify the toad as an avocado. What we would like the machine to do is to recognize the toad's weirdness and react to it. Perhaps by discarding the example, creating a new class of item around that example, or by asking a human for help. Recognizing novel examples is especially important for preventing attacks. An attacker may make changes to an image that are imperceptible to a human, but that change the classifier results dramatically (such as attacks can do things like cause a machine to read a *stop* sign as *speed limit 45* signs [FIXME: link]).
+There are single odd examples. Say an image classifier trained to classify images of fruits receives an image of a toad. How will the machine react? A machine that knows only fruits, may pick up on the green bumpy skin and may, with high certainty, classify the toad as an avocado. What we would like the machine to do is to recognize the toad's weirdness and react to it. Perhaps by discarding the example, creating a new class of item around that example, or by asking a human for help. Recognizing novel examples is especially important for preventing attacks. An attacker may make changes to an image that are imperceptible to a human, but that change the classifier results dramatically (such as attacks can do things like [cause a machine to read a *stop* sign as *speed limit 45* signs](https://arxiv.org/abs/1707.08945)).
 
-Novelty may arise from changes in the way the world is represented or in the dynamics of the world. When a person learns to play go, they typically learn on a small 9-by-9 board, and then eventually move up to a standard 19-by-19 board. A machine would have to learn 9-by-9 and 19-by-19 go as separate games; it could not transfer its knowledge from one board to the other. Or what if you decide to keep score differently in the middle of the game, or a third player joins in? Again, these are novel situations that a human can handle with ease, but that a machine must be retrained to do. 
+Novelty may arise from changes in the way the world is represented or in the dynamics of the world. When a person learns to play go, they typically learn on a small 9-by-9 board, and then eventually move up to a standard 19-by-19 board. A machine would have to learn 9-by-9 and 19-by-19 go as separate games; it could not transfer its knowledge from one board size to another. Or what if you decide to keep score differently in the middle of the game, or a third player joins in? Again, these are novel situations that a human can handle with ease, but that a machine must be retrained to do. 
 
 ## Sources of novelty
 
@@ -43,7 +45,7 @@ One of the things we need to do before we determine how well we can detect and r
 
 In plant breeding, we have a portfolio of plants from which we choose pairs to breed in order to achieve some objective &mdash; usually to improve performance. In corn, we might wish to maximize grain yield.
 
-From our portfolio, we choose a set of pairs. For each pair, we grow both plants and breed them. From this breeding we achieve a set of *hybrids* which we plant, grow, and measure. The things we like, we advance; the things we don't like we forget about. Hybrids are usually subject to years of further testing and modification. Aadditional modification is done via other breeding techniques like back-crossing, or biotech modification like gene enineering. Plants that make it through the gauntlet become products and find themselves as a part of the starting portfolio for future breeding.
+From our portfolio, we choose a set of pairs. For each pair, we grow both plants and breed them. From this breeding we achieve a set of *hybrids* which we plant, grow, and measure. The things we like, we advance; the things we don't like we forget about. Hybrids are usually subject to years of further testing and modification. Additional modification is done via other breeding techniques like back-crossing, or biotech modification like gene engineering. Plants that make it through the gauntlet become products and find themselves as a part of the starting portfolio for future breeding.
 
 ## Molecular Breeding
 
@@ -57,12 +59,12 @@ Genetic diversity is a fairly well defined concept, but it is not the only type 
 
 Breeding is a game of novelty. Sometimes you seek it out and sometimes you fight with it. **The success of a molecular breeding program is determined by its ability to identify and characterize novelty**.
 
-Performance criterion itself is based on novelty. A breeder is not looking for the cross with the highest predicted performance, but the highest probability of producing a high performer. We're looking to game-changing genetics, not incremental changes. Imagine that the performance of a hybrid follows a bell curve (see <a href="#breeding-objective-figure">Figure</a>). Let's say that hybrid A has high probability of performing well with little variance and that hybrid B is likely to perform poorer than A. Which do we choose? You may think A, but the answer is not so straight forward. What if B has a high variance? B might perform worse the A on average, but B has long tails that means its best performers vastly outperform A's best performers. Let's say that B has a 5% chance or producing a plant better than 99% of A's. As breeders, since we're talking plants we can take the scattergun approach; we can plant 100, and expect around 5 really awesome plants. This is why we seek out novelty, but the world of biology is filled with novelty that we must detect and react to in order to achieve our goals.
+Performance criterion itself is based on novelty. A breeder is not looking for the cross with the highest predicted performance, but the highest probability of producing a high performer. We're looking to game-changing genetics, not incremental changes. Imagine that the performance of a hybrid follows a bell curve (see <a href="#breeding-objective-figure">Figure 1</a>). Let's say that hybrid A has high probability of performing well with little variance and that hybrid B is likely to perform poorer than A. Which do we choose? You may think A, but the answer is not so straight forward. What if B has a high variance? B might perform worse the A on average, but B has long tails that means its best performers vastly outperform A's best performers. Let's say that B has a 5% chance or producing a plant better than 99% of A's. As breeders, since we're talking plants we can take the scattergun approach; we can plant 100, and expect around 5 really awesome plants. This is why we seek out novelty, but the world of biology is filled with novelty that we must detect and react to in order to achieve our goals.
 
 <a class="anchor" name="breeding-objective-figure"></a>
 ![B performs worse than A on average, but 5% of plants from B will outperform 99% of plants from A](/img/breeding_obj.png)
 <p class="small">
-    <span style="color: red">Figure. B (red)</span> performs worse than <span style="color: blue">A (blue)</span> 75% of the time, but 5% of plants from <span style="color: red">B</span> will outperform 99% of plants from <span style="color: blue">A</span>.
+    <strong>Figure 1.</strong> <span style="color: red">B (red)</span> performs worse than <span style="color: blue">A (blue)</span> 75% of the time, but 5% of plants from <span style="color: red">B</span> will outperform 99% of plants from <span style="color: blue">A</span>.
 </p>
 
 
@@ -78,9 +80,9 @@ To relate back to the hierarchy:
 
 We're also generating our own training data, so the decisions we make not only influence our ability to deliver a great product and maintain diversity, but also influence our ability to make decisions in the future.
 
-## Wrap up
+# Wrap up
 
-Why we chose breeding as a platform to test the *general purpose* AI we're building for DARPA is clear: it's a game of characterizing and exploiting &mdash; mastering &mdash; novelty. And it's really really hard. It's so hard, and there are so many interacting factors, that it's like it doesn't want you to be able to do it...which is why we're excited to create an AI that can.
+The reason that we chose plant breeding as a platform to test the *general purpose* AI we're building for DARPA is clear: pant breeding a game of characterizing and exploiting &mdash; of mastering &mdash; novelty. The ability to build and maintain a leading plant breeding program is a function of the ability to detect, react to, and exploit novelty. **FIXME: last sentence**
 
 # Key Points
 - DARPA's SAIL-ON program focuses on detecting and reacting to different types of novelty
