@@ -55,6 +55,9 @@ li
   position: relative;
   overflow: hidden;
 
+div.content-row div.narrow
+  max-width: 1190px;
+
 .cr-bkg
   position: absolute;
   width: 100%;
@@ -69,11 +72,16 @@ li
 .title-bkg
   background-color: #eee;
 
-.content-box
-  max-width: 1190px;
+.content-box, .content-box-lg
   margin: 0 auto;
   padding: 1rem;
   z-index: 1;
+
+.content-box
+  max-width: 1190px
+
+.content-box-lg
+  max-width: 1400px
 
 
 // NAVBAR
@@ -145,6 +153,7 @@ li
   height: 100vh
   max-width: 600px
   margin: 0 auto
+  padding: 0 2rem;
   z-index: 1
   position: relative
 
@@ -198,6 +207,29 @@ li
     // background-color: rgba(255, 255, 255, 0.1)
     border: 1px solid red
     color: red
+
+// NEWS ITEMS
+// ================================================================
+
+#news
+  // color: white
+  color: #333
+  margin: 0 auto
+  margin-top: 30vh
+  position: relative
+  z-index: 1
+  padding: 0 1rem
+  max-width: 600px
+
+div.news-item
+  display: block
+  padding: 0rem 2rem
+  margin: 1rem
+  margin-bottom: 2rem
+  border: 1px solid #444
+
+  h1
+    font-size: 2rem
 
 
 // CONTACT FORM
@@ -330,6 +362,9 @@ li
 
 // MISC
 // ================================================================
+.relative
+  position: relative
+
 .align-left
   text-align: left;
 
@@ -338,6 +373,9 @@ li
 
 .dark-bkg
   background-color: #666;
+
+.black-bkg
+  background-color: #111;
 
 .callout
   color: #bbb;
@@ -441,14 +479,23 @@ p.small
 
 // MEDIA QUERIES
 // ===================================================================
+@media only screen and (max-width: 1200px)
+  #news
+    display: none
+
 @media only screen and (max-width: 600px)
+  #new
+    margin: 0
+
   #title 
+    text-align: center;
+    padding: 0;
     width: 100%;
 
     h1
-      font-size: 10vw;
-      font-weight: 300;
-      margin-bottom: 1rem;
+      font-size: 10vw
+      font-weight: 300
+      margin-bottom: 1rem
 
     h2
       font-size: 1.2rem;
