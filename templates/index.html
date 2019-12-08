@@ -5,9 +5,9 @@
 {% block content %}
     <div class="content-row">
       <div class="cr-bkg"></div>
-        <div class="row content-box-lg">
+        <div class="row content-box-lg height-100">
         <!-- <div class="row"> -->
-          <div class="col-xs-12 col-lg-6">
+          <div class="col-xs-12 col-lg-6 flex-center-100">
             <div id="title">
               <div id="main-logo">
                 <img src="img/bird.png">
@@ -28,18 +28,23 @@
           </div>
 
           <!-- <div class="col-xs-12 col-lg-6 black-bkg relative no-mobile"> -->
-          <div class="col-xs-12 col-lg-6 relative no-mobile">
+          <div class="col-xs-12 col-lg-6 relative no-mobile flex-center-100">
             <div id="news">
-              <h1 class="section-header">Blog</h1>
-              <div class="news-item">
-                  <h1>Why we're using plant breeding to develop DARPA's AI</h1>
-                  <p>Breeding is a game of mastering novelty</p>
-              </div>
+              <h1 class="section-header">News</h1>
+              {% set count = 1 %}
+              {% set blog_section = section.subsections | nth(n=0) %}
+              {% set blog = get_section(path=blog_section) %}
 
-              <div class="news-item">
-                  <h1>Redpoll partners with Rutgers and DARPA to build 3rd wave AI</h1>
-                  <p>The OTACON AI reacts to changing worlds.</p>
-              </div>
+              {% for post in blog.pages | reverse %}
+                {% if post.extra.front_page %}
+                  <a href="{{ post.permalink }}" class="no-dec">
+                    <div class="news-item">
+                        <h1>{{ post.title }}</h1>
+                        <p>{{ post.extra.subheading }}</p>
+                    </div>
+                  </a>
+                {% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 +++
-title = "Redpoll and Rutgers receive $3.4 million to help DARPA build AI that adapts to dynamic worlds"
+title = "Redpoll partners with Rutgers and DARPA to build AI that adapts to dynamic worlds"
 date = 2019-12-06
 template = "post.html"
 draft = false
@@ -12,6 +12,7 @@ author = "Baxter Eaves"
 subheading = "Redpoll partners with Rutgers University and DARPA to build self-aware AI"
 image = "fish-1.jpg"
 theme = "light-transparent"
+front_page = true
 +++
 
 Redpoll and Rutgers University have entered into a 42-month collaborative

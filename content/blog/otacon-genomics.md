@@ -13,6 +13,7 @@ subheading = "DARPA's SAIL-ON program focuses on novelty; plant breeding is a ga
 # image = "red-flower.jpg"
 image = "tomato-1.jpg"
 theme = "light-transparent"
+front_page = true
 +++
 
 "Defense AI" elicits images of satellite imagery overlaid with markers indicating the positions and movements of aircraft, troops, and supplies. Of War Games. So why is it that we're using plant breeding as an internal test bed to develop the AI we're building for DARPA?

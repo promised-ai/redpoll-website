@@ -132,6 +132,8 @@ div.content-row div.narrow
 
 // TITLE
 // ================================================================
+.height-100
+  height: 100vh
 
 #pre-title
   height: 30vh
@@ -142,7 +144,7 @@ div.content-row div.narrow
 #main-logo
   text-align: center
   padding: 1rem
-  padding-top: 30vh
+  // padding-top: 30vh
 
   img 
     opacity: 0.7
@@ -150,7 +152,7 @@ div.content-row div.narrow
     max-width: 100px
 
 #title
-  height: 100vh
+  // height: 100vh
   max-width: 600px
   margin: 0 auto
   padding: 0 2rem;
@@ -187,9 +189,12 @@ div.content-row div.narrow
   transition: all 0.2s ease-in
 
 .signup-btn:hover
-  border: 1px solid crimson
-  color: rgb(150, 0, 0)
-  background-color: rgba(255, 255, 255, 0.2)
+  // border: 1px solid crimson
+  // color: crimson
+  // background-color: rgba(255, 255, 255, 0.2)
+  background-color: rgba(25, 25, 25, 0.8)
+  // border: 1px solid white
+  color: white
 
 .signup-btn-light
   border: 1px solid white
@@ -204,32 +209,45 @@ div.content-row div.narrow
   transition: all 0.2s ease-in
 
 .signup-btn-light:hover
-    // background-color: rgba(255, 255, 255, 0.1)
-    border: 1px solid red
-    color: red
+  // background-color: rgba(25, 25, 25, 0.8)
+  border: 1px solid red
+  color: red
 
 // NEWS ITEMS
 // ================================================================
 
+.flex-center-100
+  display: flex;
+  align-items: center
+
 #news
-  // color: white
   color: #333
   margin: 0 auto
-  margin-top: 30vh
+  margin-top: 4rem
+  vertical-align: center
   position: relative
   z-index: 1
   padding: 0 1rem
   max-width: 600px
 
 div.news-item
+  color: #333
   display: block
   padding: 0rem 2rem
   margin: 1rem
   margin-bottom: 2rem
   border: 1px solid #444
+  transition: all 0.2s ease-in
+  background-color: rgba(255, 255, 255, 0.0)
 
   h1
-    font-size: 2rem
+    font-size: 1.7rem
+    margin-bottom: 0
+    padding-bottom: 0
+
+div.news-item:hover
+  color: white
+  background-color: rgba(25, 25, 25, 0.8)
 
 
 // CONTACT FORM
@@ -480,8 +498,38 @@ p.small
 // MEDIA QUERIES
 // ===================================================================
 @media only screen and (max-width: 1200px)
+  #title
+    height: 50vh
+    // padding-top: 25vh
+    
   #news
-    display: none
+    text-align: center
+    max-width: 100%
+    min-height: 50vh
+    padding: 0
+    margin-top: 4rem
+
+  div.news-item
+    vertical-align: top
+    max-width: 250px
+    display: inline-block
+
+    h1
+      font-size: 1.4rem
+
+  .flex-center-100
+    display: block;
+
+  #main-logo
+    padding-top: 15vh
+
+@media only screen and (max-height: 1000px)
+  #title
+    height: 100vh
+
+  #main-logo
+    padding-top: 20vh;
+
 
 @media only screen and (max-width: 600px)
   #new
