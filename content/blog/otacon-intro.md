@@ -16,11 +16,7 @@ front_page = true
 +++
 
 Redpoll and Rutgers University have entered into a 42-month collaborative
-agreement with DARPA to develop OTACON, a introspective AI system that thrives in
-dynamic, uncertain worlds. The agreement falls under the Science of Artificial
-Intelligence and Learning for Open-world Novelty (SAIL-ON) program, which aims
-to move AI systems out of closed-world problems with static constraints, into
-open worlds with dynamic constraints.
+agreement with DARPA to develop OTACON, an introspective AI system that thrives in dynamic, uncertain worlds. The agreement falls under the Science of Artificial Intelligence and Learning for Open-world Novelty (SAIL-ON) program, which aims to move AI systems out of closed-world problems with static constraints, into open worlds with dynamic constraints.
 
 > Current artificial intelligence (AI) systems excel at tasks defined by rigid
 > rules – such as mastering the board games Go and chess with proficiency
