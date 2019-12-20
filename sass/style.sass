@@ -149,6 +149,7 @@ div.content-row div.narrow
 #main-logo
   text-align: center
   padding: 1rem
+  padding-top: 0
   // padding-top: 30vh
 
   img 
@@ -228,7 +229,6 @@ div.content-row div.narrow
   color: #333
   margin: 0 auto
   margin-top: 4rem
-  vertical-align: center
   position: relative
   z-index: 1
   padding: 0 1rem
@@ -502,9 +502,11 @@ p.small
 // MEDIA QUERIES
 // ===================================================================
 @media only screen and (max-width: 1200px)
-  #title
+  #title-parent
     min-height: 50vh
-    // padding-top: 25vh
+
+  // #title
+  //   min-height: 50vh
     
   #news
     text-align: center
@@ -521,18 +523,18 @@ p.small
     h1
       font-size: 1.4rem
 
-  .flex-center-100
-    display: block;
+  // .flex-center-100
+  //   display: block;
 
-  #main-logo
-    padding-top: 15vh
+// @media only screen and (max-width: 1200px)
+//   #main-logo
+//     padding-top: 6rem
+
 
 @media only screen and (max-height: 1000px)
-  #title
-    height: 100vh
-
-  #main-logo
-    padding-top: 20vh;
+  #title-parent
+    display: flex
+    height: 90vh
 
 
 @media only screen and (max-width: 600px)
@@ -561,8 +563,9 @@ p.small
   #navbar li
     padding: 0 0.3rem;
 
-  #main-logo
-    padding-top: 20vh;
+  // #main-logo
+  //   // padding-top: 20vh;
+  //   padding-top: 6rem;
 
 @media only screen and (max-height: 412px)
   .no-mobile
@@ -583,8 +586,8 @@ p.small
 
 
 @media only screen and (max-width: 400px) and (max-height: 600px)
-  #main-logo
-    padding-top: 3rem;
+  // #main-logo
+  //   padding-top: 3rem;
 
   blockquote
     margin-left: 0rem
