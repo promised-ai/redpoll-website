@@ -34,7 +34,7 @@ Novelty also arises from changes in the way the world is represented or in the d
 
 ## Sources of novelty
 
-One of the things we need to do before we determine how well we can detect and react to novelty is to define what novelty is and where is comes from. SAIL-ON's *novelty hierarchy*, as laid out in the announcement, is a first attempt at this. I should note that many of the other performers have different thoughts about what novelty is and is not, and how it should be structured theoretically, and are working toward a more formal computational theory of novelty. Making these types of formalizations is outside my wheelhouse, so here I'll collapse the first draft hierarchy using my own hasty classification:
+One of the things we need to do before we determine how well we can detect and react to novelty is to define what novelty is and where is comes from. SAIL-ON's *novelty hierarchy*, as laid out in the announcement, is a first attempt at this. I should note that many of the other performers have different thoughts about what novelty is and is not, and how it should be structured theoretically, and are working toward a more formal computational theory of novelty. One simple hierarchy is as follows:
 
 - **Class**: Previously unseen class or category of object (e.g. new dog breed or type of vehicle)
 - **Features**: Change in how data features are specified or addition/removal of features (e.g. change of coordinate system).
@@ -62,7 +62,7 @@ Genetic diversity is a fairly well defined concept, but it is not the only type 
 
 Breeding is a game of novelty. Sometimes you seek it out and sometimes you fight with it. **The success of a molecular breeding program is determined by its ability to identify and characterize novelty**.
 
-Performance criterion itself is based on novelty. A breeder is not looking for the cross with the highest predicted performance, but the highest probability of producing a high performer. We're looking for game-changing genetics, not incremental changes. Imagine that the performance of a plant follows a bell curve (see <a href="#breeding-objective-figure">Figure 1</a>). Let's say that plant A has high probability of performing well with little variance and that plant B is likely to perform poorer than A. Which do we choose? You may think A, but the answer is not so straight forward. What if B has a high variance? B might perform worse the A on average, but if B has long tails its best performers could vastly outperform A's best performers. Let's say that B has a 5% chance or producing a plant better than 99% of A's. As breeders, since we're talking plants we can take the scattergun approach; we can plant 100, and expect around 5 really awesome plants &mdash; 5 really awesome sets of genetics. This is why we seek out novelty, but the world of biology is filled with novelty that we must detect and react to in order to achieve our goals.
+The performance criterion itself is based on novelty. A breeder is not looking for the cross with the highest predicted performance, but the highest probability of producing a high performer. We're looking for game-changing genetics, not incremental changes. We're looking for the cross that will produce the most novel, highest performing plant. Imagine that the performance of a plant follows a bell curve (see <a href="#breeding-objective-figure">Figure 1</a>). Let's say that plant A has high probability of performing well with little variance and that plant B is likely to perform poorer than A. Which do we choose? You may think A, but the answer is not so straight forward. What if B has a high variance? B might perform worse the A on average, but if the performance distribution of B is wider than A, B's best performers could vastly outperform A's best performers. Let's say that B has a 5% chance or producing a plant better than 99% of A's. As breeders, since we're talking plants we can take the scattergun approach; we can plant 100, and expect around 5 really awesome plants &mdash; 5 really awesome sets of genetics. This is why we seek out novelty, but the world of biology is filled with novelty that we must detect and react to in order to achieve our goals.
 
 <a class="anchor" name="breeding-objective-figure"></a>
 ![B performs worse than A on average, but 5% of plants from B will outperform 99% of plants from A](/img/breeding_obj.png)
@@ -85,9 +85,9 @@ In plant breeding, we're also generating our own training data, so the decisions
 
 # Wrap up
 
-The reason that we chose plant breeding as a platform to test the *general purpose* AI we're building for DARPA is clear: pant breeding a game of characterizing and exploiting &mdash; of mastering &mdash; novelty. The ability to build and maintain a leading plant breeding program is a function of the ability to detect, react to, and exploit novelty.
+The reason that we chose plant breeding as a platform to test the *general purpose* AI we're building for DARPA is clear: plant breeding a game of characterizing and exploiting &mdash; of mastering &mdash; novelty. Nature provides the best examples of the open-world challenges characterized by fluid and novel situations that Sail on seeks to address 
 
 # Key Points
 - DARPA's SAIL-ON program focuses on detecting and reacting to different types of novelty
 - Plant breeding supported by genetics data is subject to all these types of novelty and then some
-- The goals of plant breeding can be defined in terms of seeking out novelty
+- The goals of plant breeding can be defined in terms of balancing seeking and exploiting desirable forms of novelty
