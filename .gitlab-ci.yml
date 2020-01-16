@@ -1,3 +1,5 @@
+image: "rust:1.40"
+
 variables:
   # This variable will ensure that the CI runner pulls in your theme from the submodule
   GIT_SUBMODULE_STRATEGY: recursive  
