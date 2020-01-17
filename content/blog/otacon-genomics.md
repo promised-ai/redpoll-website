@@ -2,7 +2,7 @@
 title = "Why we're using plant breeding to test the AI we're building for DARPA"
 date = 2019-12-15
 template = "post.html"
-draft = false
+draft = true
 
 [taxonomies]
 categories = ["news", "ai"]
@@ -13,7 +13,7 @@ subheading = "DARPA's SAIL-ON program focuses on novelty; plant breeding is a ga
 # image = "red-flower.jpg"
 image = "tomato-1.jpg"
 theme = "light-transparent"
-front_page = true
+front_page = false
 +++
 
 "Defense AI" elicits images of *War Games*: satellite imagery overlaid with markers indicating the positions and movements of aircraft, troops, and supplies. Certainly nothing could be farther from defense than fields full of high school students putting paper bags over corn plants. So why is it that we're using plant breeding as an internal testbed to develop the AI we're building for DARPA?

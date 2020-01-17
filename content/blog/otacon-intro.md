@@ -2,7 +2,7 @@
 title = "Redpoll partners with Rutgers and DARPA to build AI that adapts to dynamic worlds"
 date = 2019-12-06
 template = "post.html"
-draft = false
+draft = true
 
 [taxonomies]
 categories = ["news"]
@@ -12,7 +12,7 @@ author = "Redpoll"
 subheading = "The OTACON project hopes to deliver introspective AI"
 image = "fish-1.jpg"
 theme = "light-transparent"
-front_page = true
+front_page = false
 +++
 
 Redpoll and Rutgers University have entered into a 42-month collaborative agreement with DARPA to develop OTACON, an introspective AI system that thrives in dynamic, uncertain worlds. The agreement falls under the Science of Artificial Intelligence and Learning for Open-world Novelty (SAIL-ON) program, which aims to move AI systems out of closed-world problems with static constraints, into open worlds with dynamic constraints.

@@ -57,7 +57,6 @@
         <a class="anchor" name="features"></a>
         <h1 class="section-header">Platform Features</h1>
         <div class="row">
-
           <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="icon-holder-sm">
               <img src="img/001-thinking.svg">
@@ -176,6 +175,48 @@
 
         </div>
         <!-- END GENOMICS USE CASE -->
+
+        <br><br>
+        <h2 class="center">Data Quality Assurance</h2>
+        <div class="row-xs">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <h3 class=center>
+                        Find bad data; don't fit to it
+                    </h3>
+                    <p>Most AI are concerned with predicting data, which causes them to fit to noise (overfitting). The Redpoll AI is concerned with <i>modeling</i> the data, so Redpoll AI can determine which data are odd, which allows you to identify data that do not make sense and understand why.</p>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <h3 class=center>
+                        Add or modify data without retraining
+                    </h3>
+                    <p>
+                    Traditional AI must be completely retrained when new data come in or old data are modified; throwing away past learning and wasting all the time and money spend on that learning. Redpoll AI learns like a person, allowing it to train only on what is new or revised, saving time and money, and preserving learning.
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <h3 class=center>
+                        Example: find and fix data entry errors
+                    </h3>
+                    <!-- <pre style="border-radius: 20px; border: 1px solid #ddd;"> -->
+                    <pre>
+[1] rp = redpoll.connect("rp.mydomain.com")
+[2] rp.odd_data("hour of day", top=3)
+
+   id   hour of day
+ -----  ------------
+   453          239 
+    24         24.0 
+   501          4.0 
+
+[3] rp.update_data(
+...      row=453,
+...      column="hour of day",
+...      value=23.9
+... )</pre>
+                </div>
+            </div>
+        </div>
       </div>
     </div>
 
@@ -194,7 +235,7 @@
           <h2>Use the AI technology we're developing to solve some of DARPA's hardest problems to solve yours</h2>
           <p>
             <strong>AI and analytics projects are a big risk.</strong> 
-            It's difficult to know what &mdash; if anything &mdash; your data can do for you. Projects begin then change shape as analysts run up against the limits of the data and machine learning technology. Often, what you get is what <i>can</i> be done rather than what <i>must</i> be done. We are developing a new type of humanistic AI for DARPA that solves the slowness of data science discovery and reacts to complex, dynamic data in complex, dynamic worlds. <strong>Know what is possible. Solve new problems, faster, safer, and more reliably.</strong>
+            It's difficult to know what &mdash; if anything &mdash; your data can do for you. Projects begin then change shape as analysts run up against the limits of the data and machine learning technology. Often, what you get is what <i>can</i> be done rather than what <i>must</i> be done. We are developing a new type of humanistic AI that solves the slowness of data science discovery and reacts to complex, dynamic data in complex, dynamic worlds. <strong>Know what is possible. Solve new problems, faster, safer, and more reliably.</strong>
           </p>
           <br>
 
