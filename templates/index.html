@@ -192,7 +192,7 @@
                     <h3 class=center>
                         Find bad data; don't fit to it
                     </h3>
-                    <p>Most AI are concerned with predicting data, which causes them to fit to noise (overfitting). The Redpoll AI is concerned with <i>modeling</i> the data, so Redpoll AI can determine which data are odd, which allows you to identify data that do not make sense and understand why.</p>
+                    <p>Most AI are designed to predict data, which causes them to fit to noise (overfitting). The Redpoll AI is designed to <i>model</i> data, so Redpoll AI can determine which data are odd, which allows you to identify data that do not make sense and understand why.</p>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <h3 class=center>
@@ -204,18 +204,17 @@
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <h3 class=center>
-                        Example: find and fix data entry errors
+                        Example: find and fix a data entry error
                     </h3>
-                    <!-- <pre style="border-radius: 20px; border: 1px solid #ddd;"> -->
-                    <pre>
-[1] rp = redpoll.connect("rp.mydomain.com")
+                    <pre style="padding-top: 0;">
+[1] rp = redpoll.Client("rp.mydomain.com")
 [2] rp.odd_data("hour of day", top=3)
 
-   id   hour of day
- -----  ------------
-   453          239 
-    24         24.0 
-   501          4.0 
+ rank  row  hour of day
+ ----  ---  -----------
+    0  453          239 
+    1   24         24.0 
+    2  501          4.0 
 
 [3] rp.update_data(
 ...      row=453,
@@ -243,7 +242,7 @@
           <h2>Use the AI technology we're developing to solve some of DARPA's hardest problems to solve yours</h2>
           <p>
             <strong>AI and analytics projects are a big risk.</strong> 
-            It's difficult to know what &mdash; if anything &mdash; your data can do for you. Projects begin then change shape as analysts run up against the limits of the data and machine learning technology. Often, what you get is what <i>can</i> be done rather than what <i>must</i> be done. We are developing a new type of humanistic AI that solves the slowness of data science discovery and reacts to complex, dynamic data in complex, dynamic worlds. <strong>Know what is possible. Solve new problems, faster, safer, and more reliably.</strong>
+            It's difficult to know what &mdash; if anything &mdash; your data can do for you. Projects begin then change shape as analysts run up against the limits of the data and machine learning technology. Often what you get is what <i>can</i> be done rather than what <i>must</i> be done. We are developing a new type of humanistic AI that solves the slowness of data science discovery and reacts to complex, dynamic data in complex, dynamic worlds. <strong>Know what is possible. Solve new problems, faster, safer, and more reliably.</strong>
           </p>
           <br>
 
