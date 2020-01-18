@@ -125,6 +125,52 @@
           name="offerings"></a>
         <h1 class="section-header">Use Cases</h1>
 
+        <br><hr><br>
+
+        <h2 class="center">Sustainable Learning</h2>
+        <div class="row-xs">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <h3 class=center>
+                        Find bad data; don't fit to it
+                    </h3>
+                    <p>Most AI are designed to predict data, which causes them to fit to noise (overfitting). The Redpoll AI is designed to <i>model</i> data, so Redpoll AI can determine which data are odd, which allows you to identify data that do not make sense and understand why.</p>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <h3 class=center>
+                        Add or modify data without retraining
+                    </h3>
+                    <p>
+                    Traditional AI must be completely retrained when new data come in or old data are modified; throwing away past learning and wasting all the time and money spend on that learning. Redpoll AI learns like a person, allowing it to train only on what is new or revised, saving time and money, and preserving learning.
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-12 col-lg-4 center">
+                    <div style="text-align: left; max-width: 500px; margin: 0 auto;">
+                    <h3 class=center>
+                        Example: find and fix a data entry error
+                    </h3>
+                    <pre style="padding-top: 0;">
+[1] rp = redpoll.Client("rp.mydomain.com")
+[2] rp.odd_data("hour of day", top=3)
+
+ rank  row  hour of day
+ ----  ---  -----------
+    0  453          239 
+    1   24         24.0 
+    2  501          4.0 
+
+[3] rp.update_data(
+...      row=453,
+...      column="hour of day",
+...      value=23.9
+... )</pre>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <br><hr><br>
+
         <!-- BEGIN GENOMICS USE CASE -->
         <div class="row center-xs">
 
@@ -180,54 +226,12 @@
             </div>
           </div>
           <!-- COLUMN END -->
-
         </div>
         <!-- END GENOMICS USE CASE -->
 
-        <br><br>
-        <h2 class="center">Data Quality Assurance</h2>
-        <div class="row-xs">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <h3 class=center>
-                        Find bad data; don't fit to it
-                    </h3>
-                    <p>Most AI are designed to predict data, which causes them to fit to noise (overfitting). The Redpoll AI is designed to <i>model</i> data, so Redpoll AI can determine which data are odd, which allows you to identify data that do not make sense and understand why.</p>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <h3 class=center>
-                        Add or modify data without retraining
-                    </h3>
-                    <p>
-                    Traditional AI must be completely retrained when new data come in or old data are modified; throwing away past learning and wasting all the time and money spend on that learning. Redpoll AI learns like a person, allowing it to train only on what is new or revised, saving time and money, and preserving learning.
-                    </p>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <h3 class=center>
-                        Example: find and fix a data entry error
-                    </h3>
-                    <pre style="padding-top: 0;">
-[1] rp = redpoll.Client("rp.mydomain.com")
-[2] rp.odd_data("hour of day", top=3)
-
- rank  row  hour of day
- ----  ---  -----------
-    0  453          239 
-    1   24         24.0 
-    2  501          4.0 
-
-[3] rp.update_data(
-...      row=453,
-...      column="hour of day",
-...      value=23.9
-... )</pre>
-                </div>
-            </div>
-        </div>
       </div>
     </div>
 
-    <div class="section-spacer"></div>
     <div class="section-spacer"></div>
 
     <div class="content-row">
