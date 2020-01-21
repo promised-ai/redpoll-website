@@ -65,7 +65,6 @@ $post-at-color: gray
   h1, h2, p
     margin: 0
     padding: 0
-    padding-right: 2rem
 
 .post-inner 
   // height: 135px
@@ -302,7 +301,7 @@ div.ph-bkg
   p, h1, h2, h3, h4, h5, h6, pre, ol, ul, blockquote
     margin: 1rem auto
     text-align: left
-    max-width: 600px
+    max-width: 43rem;
 
   img, div.img-with-caption
     width: 100%
@@ -318,6 +317,9 @@ div.ph-bkg
 
   h1, h2, h3
     margin-top: 2rem;
+
+  h3, h4, h5, h6
+    font-weight: 400
 
 // MEDIA QUERIES
 // ===================================================================
@@ -429,3 +431,43 @@ div.ph-bkg
 
   #post-main
     min-height: 100%
+
+  .post-inner-text h1
+    margin-bottom: 1rem
+
+  .section-spacer:first-child
+    height: 3rem
+
+@media only screen and (max-width: 340px)
+  #post-titles
+    h1
+      font-size: 1.4rem
+
+  #post-header
+    margin-top: 12vh
+
+  .post-inner-text h1
+    font-size: 1.6rem
+
+@media only print
+  #post-meta
+    display: none
+
+  #post-titles
+    width: auto
+    marin: 0
+    padding: 1rem
+
+    h1, h2
+      padding: 0
+      margin: 0
+  
+    h1
+      padding-bottom: 1rem
+
+  #post-header
+    margin: 0
+
+  #post-main
+    min-height: 0
+

@@ -13,9 +13,14 @@ p, h1, h2, h3, h4, h5, h6, div
   outline: none;
 
 pre
-  padding: 2rem
+  padding: 1.5rem
   font-family: "Roboto Mono", monospace
   border-radius: 5px
+  font-size: 0.9rem
+  overflow-x: hidden
+
+code
+  font-size: 0.9rem
 
 a
   color: inherit
@@ -55,6 +60,9 @@ li
   position: relative;
   overflow: hidden;
 
+div.content-row div.narrow
+  max-width: 1190px;
+
 .cr-bkg
   position: absolute;
   width: 100%;
@@ -69,11 +77,16 @@ li
 .title-bkg
   background-color: #eee;
 
-.content-box
-  max-width: 1190px;
+.content-box, .content-box-lg
   margin: 0 auto;
   padding: 1rem;
   z-index: 1;
+
+.content-box
+  max-width: 1190px
+
+.content-box-lg
+  max-width: 1400px
 
 
 // NAVBAR
@@ -124,6 +137,8 @@ li
 
 // TITLE
 // ================================================================
+.height-100
+  min-height: 100vh
 
 #pre-title
   height: 30vh
@@ -134,7 +149,8 @@ li
 #main-logo
   text-align: center
   padding: 1rem
-  padding-top: 30vh
+  padding-top: 0
+  // padding-top: 30vh
 
   img 
     opacity: 0.7
@@ -142,9 +158,9 @@ li
     max-width: 100px
 
 #title
-  height: 100vh
   max-width: 600px
   margin: 0 auto
+  padding: 0 2rem;
   z-index: 1
   position: relative
 
@@ -174,12 +190,68 @@ li
   margin-top: 0.5rem
   margin-left: 0.25rem
   margin-right: 0.25rem
-  background-color: rgba(255, 255, 255, 0.3)
+  background-color: rgba(255, 255, 255, 0.2)
   transition: all 0.2s ease-in
 
 .signup-btn:hover
-    background-color: rgba(255, 255, 255, 0.9)
-    border: 1px solid gray
+  // border: 1px solid crimson
+  // color: crimson
+  // background-color: rgba(255, 255, 255, 0.2)
+  background-color: rgba(25, 25, 25, 0.8)
+  // border: 1px solid white
+  color: white
+
+.signup-btn-light
+  border: 1px solid white
+  color: white
+  width: 13rem
+  margin: 0 auto
+  padding: 0.5rem 1rem
+  margin-top: 0.5rem
+  margin-left: 0.25rem
+  margin-right: 0.25rem
+  background-color: rgba(255, 255, 255, 0.0)
+  transition: all 0.2s ease-in
+
+.signup-btn-light:hover
+  // background-color: rgba(25, 25, 25, 0.8)
+  border: 1px solid red
+  color: red
+
+// NEWS ITEMS
+// ================================================================
+
+.flex-center-100
+  display: flex;
+  align-items: center
+
+#news
+  color: #333
+  margin: 0 auto
+  margin-top: 4rem
+  position: relative
+  z-index: 1
+  padding: 0 1rem
+  max-width: 600px
+
+div.news-item
+  color: #333
+  display: block
+  padding: 0rem 2rem
+  margin: 1rem
+  margin-bottom: 2rem
+  border: 1px solid #444
+  transition: all 0.2s ease-in
+  background-color: rgba(255, 255, 255, 0.0)
+
+  h1
+    font-size: 1.7rem
+    margin-bottom: 0
+    padding-bottom: 0
+
+div.news-item:hover
+  color: white
+  background-color: rgba(25, 25, 25, 0.8)
 
 
 // CONTACT FORM
@@ -312,6 +384,9 @@ li
 
 // MISC
 // ================================================================
+.relative
+  position: relative
+
 .align-left
   text-align: left;
 
@@ -320,6 +395,9 @@ li
 
 .dark-bkg
   background-color: #666;
+
+.black-bkg
+  background-color: #111;
 
 .callout
   color: #bbb;
@@ -423,14 +501,55 @@ p.small
 
 // MEDIA QUERIES
 // ===================================================================
+@media only screen and (max-width: 1200px)
+  #title-parent
+    min-height: 50vh
+
+  // #title
+  //   min-height: 50vh
+    
+  #news
+    text-align: center
+    max-width: 100%
+    min-height: 50vh
+    padding: 0
+    margin-top: 4rem
+
+  div.news-item
+    vertical-align: top
+    max-width: 250px
+    display: inline-block
+
+    h1
+      font-size: 1.4rem
+
+  // .flex-center-100
+  //   display: block;
+
+// @media only screen and (max-width: 1200px)
+//   #main-logo
+//     padding-top: 6rem
+
+
+@media only screen and (max-height: 1000px)
+  #title-parent
+    display: flex
+    height: 90vh
+
+
 @media only screen and (max-width: 600px)
+  #new
+    margin: 0
+
   #title 
+    text-align: center;
+    padding: 0;
     width: 100%;
 
     h1
-      font-size: 10vw;
-      font-weight: 300;
-      margin-bottom: 1rem;
+      font-size: 10vw
+      font-weight: 300
+      margin-bottom: 1rem
 
     h2
       font-size: 1.2rem;
@@ -444,9 +563,16 @@ p.small
   #navbar li
     padding: 0 0.3rem;
 
-  #main-logo
-    padding-top: 20vh;
+  // #main-logo
+  //   // padding-top: 20vh;
+  //   padding-top: 6rem;
 
+@media only screen and (max-height: 412px)
+  .no-mobile
+    display: none;
+
+  .mobile-only
+    display: block;
 
 @media only screen and (max-width: 500px)
   .no-mobile
@@ -455,10 +581,13 @@ p.small
   .mobile-only
     display: block;
 
+  pre
+    padding: 0.5rem
+
 
 @media only screen and (max-width: 400px) and (max-height: 600px)
-  #main-logo
-    padding-top: 3rem;
+  // #main-logo
+  //   padding-top: 3rem;
 
   blockquote
     margin-left: 0rem

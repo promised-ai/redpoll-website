@@ -13,35 +13,58 @@
 {% block content %}
     <div class="content-row">
       <div class="cr-bkg"></div>
-      <div class="content-box">
-        <div id="title">
-          <div id="main-logo">
-            <img src="img/bird.png">
+        <div class="row content-box-lg height-100">
+        <!-- <div class="row"> -->
+          <div id="title-parent" class="col-xs-12 col-lg-6 relative flex-center-100">
+            <div id="title">
+              <div id="main-logo">
+                <img src="img/bird.png">
+              </div>
+              <h1 >Redpoll</h1>
+              <h2>Humanistic AI to tackle hard problems safely.</h2>
+              <br><br>
+              <p style="font-weight: 500;">
+                When your mission&mdash;and lives&mdash;depend on your ability to
+                create, cultivate, and act on new knowledge, Redpoll AI can help
+                you innovate faster, safer, and more sustainably.  </p>
+              <br>
+              <center>
+                <a href="#features" style="display: inline-block" class=no-dec><h3 class="signup-btn" class="center">Learn More</h3></a>
+                <a href="#signup" style="display: inline-block" class=no-dec><h3 class="signup-btn" class="center">Subscribe to Updates</h3></a>
+              </center>
+            </div>
           </div>
-          <h1 >Redpoll</h1>
-          <h2>Humanistic AI to tackle hard problems safely.</h2>
-          <br><br>
-          <p style="font-weight: 500;">
-            When your mission&mdash;and lives&mdash;depend on your ability to
-            create, cultivate, and act on new knowledge, Redpoll AI can help
-            you innovate faster, safer, and more sustainably.  </p>
-          <br>
-          <center>
-            <a href="#features" style="display: inline-block" class=no-dec><h3 class="signup-btn" class="center">Learn More</h3></a>
-            <a href="#signup" style="display: inline-block" class=no-dec><h3 class="signup-btn" class="center">Subscribe to Updates</h3></a>
-          </center>
+
+          <!-- <div class="col-xs-12 col-lg-6 black-bkg relative no-mobile"> -->
+          <div class="col-xs-12 col-lg-6 relative no-mobile flex-center-100">
+            <div id="news">
+              <h1 class="section-header">News</h1>
+              {% set count = 1 %}
+              {% set blog_section = section.subsections | nth(n=0) %}
+              {% set blog = get_section(path=blog_section) %}
+
+              {% for post in blog.pages | reverse %}
+                {% if post.extra.front_page %}
+                  <a href="{{ post.permalink }}" class="no-dec">
+                    <div class="news-item">
+                        <h1>{{ post.title }}</h1>
+                        <p>{{ post.extra.subheading }}</p>
+                    </div>
+                  </a>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
         </div>
-      </div>
+      <!-- </div> -->
       <br>
     </div>
 
     <div class="content-row">
       <div class="content-box">
-        <a class="anchor"
-          name="features"></a>
-        <h1 class="section-header">Features</h1>
+        <a class="anchor" name="features"></a>
+        <h1 class="section-header">Platform Features</h1>
         <div class="row">
-
           <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="icon-holder-sm">
               <img src="img/001-thinking.svg">
@@ -102,6 +125,53 @@
           name="offerings"></a>
         <h1 class="section-header">Use Cases</h1>
 
+        <br><hr><br>
+
+        <h2 class="center">Data QA &amp; Sustainable Learning</h2>
+        <div class="row-xs">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <h3 class=center>
+                        Find bad data; don't fit to it
+                    </h3>
+                    <p>Most AI are designed to predict data, which causes them to fit to noise (overfitting). The Redpoll AI is designed to <i>model</i> data, so Redpoll AI can determine which data are odd, which allows you to identify data that do not make sense and understand why.</p>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <h3 class=center>
+                        Add or modify data without retraining
+                    </h3>
+                    <p>
+                    Traditional AI must be completely retrained when new data come in or old data are modified; throwing away past learning and wasting all the time and money spend on that learning. Redpoll AI learns like a person, allowing it to train only on what is new or revised, saving time and money, and preserving learning.
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-12 col-lg-4 center">
+                    <div style="text-align: left; max-width: 500px; margin: 0 auto;">
+                    <h3 class=center>
+                        Example: find and fix a data entry error
+                    </h3>
+                    <pre style="padding-top: 0;">
+[1] rp = redpoll.Client("rp.mydomain.com")
+[2] rp.odd_data("hour of day", top=3)
+
+ rank  row  hour of day
+ ----  ---  -----------
+    0  453          239 
+    1   24         24.0 
+    2  501          4.0 
+
+[3] rp.update_data(
+...      row=453,
+...      column="hour of day",
+...      value=23.9
+... )</pre>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <br><hr><br>
+
+        <!-- BEGIN GENOMICS USE CASE -->
         <div class="row center-xs">
 
           <!-- COLUMN START -->
@@ -156,11 +226,76 @@
             </div>
           </div>
           <!-- COLUMN END -->
-
         </div>
+        <!-- END GENOMICS USE CASE -->
+
       </div>
     </div>
 
+    <div class="section-spacer"></div>
+
+    <div class="content-row">
+    <!-- <div class="cr-bkg" style="background-image: url(img/white-flower.jpg); z-index: -1; filter: contrast(20%) brightness(40%)"></div> -->
+    <div class="cr-bkg" style="background-image: url(img/white-flower.jpg); background-position: center center; z-index: -1; filter: contrast(20%) brightness(40%)"></div>
+    <div class="section-spacer"></div>
+      <div class="content-box" style="color: white">
+          <br>
+          <br>
+          <a class="anchor" name="consulting"></a>
+          <h1>AI / ML / Analytics Consulting</h1>
+          <h2>Use the AI technology we're developing to solve some of DARPA's hardest problems to solve yours</h2>
+          <p>
+            <strong>AI and analytics projects are a big risk.</strong> 
+            It's difficult to know what &mdash; if anything &mdash; your data can do for you. Projects begin then change shape as analysts run up against the limits of the data and machine learning technology. Often what you get is what <i>can</i> be done rather than what <i>must</i> be done. We are developing a new type of humanistic AI that solves the slowness of data science discovery and reacts to complex, dynamic data in complex, dynamic worlds. <strong>Know what is possible. Solve new problems, faster, safer, and more reliably.</strong>
+          </p>
+          <br>
+
+          <!-- COLUMN START -->
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <h3 class="center">What We Do</h3>
+              <ul class=align-left>
+                <li>Feasibility Studies</li>
+                <li>Analysis</li>
+                <li>Dashboards</li>
+                <li>Automated decision pipelines</li>
+                <li>Human-in-the-loop systems</li>
+              </ul>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <h3 class="center">Our Process</h3>
+              <p>
+               After a project has been identified, we conduct a feasibility study in which we determine whether your data will be effective at achieving your goals. If feasibility is confirmed, we plan, design, and build out the solution; otherwise we can develop a plan to improve the effectiveness of your data.
+              </p>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <h3 class="center">Get Results Months Sooner</h3>
+              <p>
+              <strong>Our in-house technology allows us to determine what is possible with your data and to discover transparent knowledge with unrivaled speed.</strong> By automating many of the processes that require data scientists months to complete, our tools allow us to complete in days tasks that would otherwise take months or years.
+              </p>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <h3 class="center">Safe, Reliable Models</h3>
+              <p><strong>We believe in safety from the bottom up.</strong> Our AI builds models that are robust to weirdness in the real world, and that can quantify uncertainty and ask for human intervention. And we develop our core AI in <a href="https://www.rust-lang.org/">Rust</a>: a safe, performant language <a href="https://www.zdnet.com/article/microsoft-to-explore-using-rust/">that eliminates the cause of ~70% of security vulnerabilities</a>.
+              </p>
+            </div>
+          </div>
+
+
+          <br>
+          <br>
+          <center><a href="mailto:info@redpoll.ai" class=no-dec><h3 class="signup-btn-light" class="center">Contact Us</h3></a></center>
+          <br>
+          <br>
+      </div>
+      <br>
+    <div class="section-spacer"></div>
+    </div>
+
+    <div class="section-spacer"></div>
     <div class="section-spacer"></div>
 
 
