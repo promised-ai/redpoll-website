@@ -43,11 +43,12 @@
               {% set blog_section = section.subsections | nth(n=0) %}
               {% set blog = get_section(path=blog_section) %}
 
-              {% for post in blog.pages | reverse %}
+              {% for post in blog.pages | sort(attribute="date") | reverse %}
                 {% if post.extra.front_page %}
                   <a href="{{ post.permalink }}" class="no-dec">
                     <div class="news-item">
-                        <h1>{{ post.title }}</h1>
+                        <p style="margin-bottom: 0.5rem; border-bottom: 1px solid #bbb; color: #888;">{{ post.date }}</p>
+                        <h1 style="margin-top: 0.5rem;">{{ post.title }}</h1>
                         <p>{{ post.extra.subheading }}</p>
                     </div>
                   </a>
