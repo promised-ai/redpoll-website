@@ -18,5 +18,6 @@ publish:
     - tar -xzf zola.tar.gz
       # Execute zola build
     - ./zola build
+    - cd public
       # users home directory must point to public_html
-    - curl --verbose --user ${FTP_USER}@${FTP_URL}:${FTP_PASS} -T public  ftp://ftp.${FTP_URL}/
+    - find . -type f -exec curl --verbose --user ${FTP_USER}@${FTP_URL}:${FTP_PASS} --ftp-create-dirs -T {} ftp://ftp.${FTP_URL}/{} \;
