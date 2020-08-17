@@ -11,356 +11,120 @@
 {% endblock head %}
 
 {% block content %}
-    <div class="content-row">
-      <div class="cr-bkg"></div>
-        <div class="row content-box-lg height-100">
-        <!-- <div class="row"> -->
-          <div id="title-parent" class="col-xs-12 col-lg-6 relative flex-center-100">
-            <div id="title">
-              <div id="main-logo">
-                <img src="img/bird.png">
-              </div>
-              <h1 >Redpoll</h1>
-              <h2>Humanistic AI to tackle hard problems safely.</h2>
-              <br><br>
-              <p style="font-weight: 500;">
-                When your mission&mdash;and lives&mdash;depend on your ability to
-                create, cultivate, and act on new knowledge, Redpoll AI can help
-                you innovate faster, safer, and more sustainably.  </p>
-              <br>
-              <center>
-                <a href="#features" style="display: inline-block" class=no-dec><h3 class="signup-btn" class="center">Learn More</h3></a>
-                <a href="#signup" style="display: inline-block" class=no-dec><h3 class="signup-btn" class="center">Subscribe to Updates</h3></a>
-              </center>
-            </div>
-          </div>
+  <div class=content style="margin: 0 1rem">
+  <div id="background" class="background-filter"></div>
 
-          <!-- <div class="col-xs-12 col-lg-6 black-bkg relative no-mobile"> -->
-          <div class="col-xs-12 col-lg-6 relative no-mobile flex-center-100">
-            <div id="news">
-              <h1 class="section-header">News</h1>
-              {% set count = 1 %}
-              {% set blog_section = section.subsections | nth(n=0) %}
-              {% set blog = get_section(path=blog_section) %}
+  <div id="call-to-action">
+    <a href="#feature-humanistic" class=no-decoration>
+      <div class=button>Learn more</div>
+    </a>
+    <a href="#subscribe" class=no-decoration>
+      <div class=button>Get updates</div>
+    </a>
+  </div>
 
-              {% for post in blog.pages | sort(attribute="date") | reverse %}
-                {% if post.extra.front_page %}
-                  <a href="{{ post.permalink }}" class="no-dec">
-                    <div class="news-item">
-                        <p style="margin-bottom: 0.5rem; border-bottom: 1px solid #bbb; color: #888;">{{ post.date }}</p>
-                        <h1 style="margin-top: 0.5rem;">{{ post.title }}</h1>
-                        <p>{{ post.extra.subheading }}</p>
-                    </div>
-                  </a>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-      <!-- </div> -->
-      <br>
-    </div>
-
-    <div class="content-row">
-      <div class="content-box">
-        <a class="anchor" name="features"></a>
-        <h1 class="section-header">Platform Features</h1>
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="icon-holder-sm">
-              <img src="img/001-thinking.svg">
-            </div>
-            <h3 class="center">Interpretable</h3>
-            <p> <strong>Make more informed decisions with fewer manual
-              processes and less communication overhead.</strong> Based on
-            human cognition research, Redpoll AI learns and stores its knowledge
-            like people do, making it transparent and intuitive to both
-            stakeholders and data scientists.  </p>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="icon-holder-sm">
-              <img src="img/010-dna-1.svg">
-            </div>
-            <h3 class="center">Expressive</h3>
-            <p> <strong>Learn the complex relationships within your
-              unstructured data.</strong> Simulate or evaluate the likelihood
-            of hypothetical events, predict new values given any number of
-            conditions; quantify uncertainty -- all without needing to
-            partition, transform, or fill in missing data.  </p>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="icon-holder-sm">
-              <img src="img/003-family-tree.svg">
-            </div>
-            <h3 class="center">Zero-cost questions</h3>
-            <p> <strong>No repeated cleaning, coding, or model validation.</strong>
-            While the traditional approach to analytics is to model questions
-            about data, Redpoll AI models the data itself, which streamlines the
-            analytics cycle and eliminates the cost of asking new questions.
-            </p>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="icon-holder-sm">
-              <img src="img/007-conveyor.svg">
-            </div>
-            <h3 class="center">Production ready</h3>
-						<p><strong>From exploration to production in minutes.</strong>
-              End users and machines interact with the platform through the same API, which
-              can be accessed through the web or dropped into your containerized environment.
-						</p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <div class="content-row">
-      <div class="content-box">
-
-        <a class="anchor"
-          name="offerings"></a>
-        <h1 class="section-header">Use Cases</h1>
-
-        <br><hr><br>
-
-        <h2 class="center">Data QA &amp; Sustainable Learning</h2>
-        <div class="row-xs">
-            <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <h3 class=center>
-                        Find bad data; don't fit to it
-                    </h3>
-                    <p>Most AI are designed to predict data, which causes them to fit to noise (overfitting). The Redpoll AI is designed to <i>model</i> data, so Redpoll AI can determine which data are odd, which allows you to identify data that do not make sense and understand why.</p>
-                </div>
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <h3 class=center>
-                        Add or modify data without retraining
-                    </h3>
-                    <p>
-                    Traditional AI must be completely retrained when new data come in or old data are modified; throwing away past learning and wasting all the time and money spent on that learning. Redpoll AI learns like a person, allowing it to train only on what is new or revised, saving time and money, and preserving learning.
-                    </p>
-                </div>
-                <div class="col-xs-12 col-md-12 col-lg-4 center">
-                    <div style="text-align: left; max-width: 500px; margin: 0 auto;">
-                    <h3 class=center>
-                        Example: find and fix a data entry error
-                    </h3>
-                    <pre style="padding-top: 0;">
-[1] rp = redpoll.Client("rp.mydomain.com")
-[2] rp.odd_data("hour of day", top=3)
-
- rank  row  hour of day
- ----  ---  -----------
-    0  453          239 
-    1   24         24.0 
-    2  501          4.0 
-
-[3] rp.update_data(
-...      row=453,
-...      column="hour of day",
-...      value=23.9
-... )</pre>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        <br><hr><br>
-
-        <!-- BEGIN GENOMICS USE CASE -->
-        <div class="row center-xs">
-
-          <!-- COLUMN START -->
-          <div class="col-xs-12 col-md-10">
-            <div class="row center-xs">
-              <div class="col-xs-12">
-                <h2 class="center">Genomics</h2>
-                <div class="image-holder-md">
-                  <img src="img/rp-genomics-2-mdc.png">
-                </div>
-                <p class="small">A demo web client displaying a network of
-                genomic similarity with respect to a disease
-                phenotype. Your interface will differ to reflect your requirements.</p>
-              </div>
-            </div>
-
-            <div class="row center-xs">
-              <div class="col-xs-12 col-sm">
-                <h3 class="center">G x E x Anything</h3>
-                <p class="align-left">
-                <strong>Discover and characterize
-                  multi-locus, epistatic traits, and characterize the
-                  modifying effects of environment, management, and
-                  treatment</strong>. By mapping information flow through the
-                  data, the AI finds and characterizes complex structure in
-                  unstructured data.
-                </p>
-              </div>
-
-              <div class="col-xs-12 col-sm">
-                <h3 class="center">From GWAS to Genome Editing</h3>
-                <p class="align-left">
-                <strong>Predict or simulate phenotypes from genotypes, or
-                  simulate the genetics likely to produce desired
-                  phenotypes</strong>. All information the platform creates is
-                  reversible, which allows users to simulate, optimize, and
-                  compute probabilities bidirectionally.
-                </p>
-              </div>
-
-              <div class="col-xs-12 col-sm">
-                <h3 class="center">Sustainable Science</h3>
-                <p class="align-left">
-                <strong>Design experiments and data collection plans that are
-                  less costly and more effective.</strong> The AI can identify
-                  gaps in its knowledge and can request specific data to fill
-                  those gaps; and it can evaluate the information content of
-                  hypothetical data to help users avoid over-collecting, or
-                  collecting the wrong data.
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- COLUMN END -->
-        </div>
-        <!-- END GENOMICS USE CASE -->
-
-      </div>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <div class="content-row">
-    <!-- <div class="cr-bkg" style="background-image: url(img/white-flower.jpg); z-index: -1; filter: contrast(20%) brightness(40%)"></div> -->
-    <div class="cr-bkg" style="background-image: url(img/white-flower.jpg); background-position: center center; z-index: -1; filter: contrast(20%) brightness(40%)"></div>
-    <div class="section-spacer"></div>
-      <div class="content-box" style="color: white">
-          <br>
-          <br>
-          <a class="anchor" name="consulting"></a>
-          <h1>AI / ML / Analytics Consulting</h1>
-          <h2>Use the AI technology we're developing to solve some of DARPA's hardest problems to solve yours</h2>
-          <p>
-            <strong>AI and analytics projects are a big risk.</strong> 
-            It's difficult to know what &mdash; if anything &mdash; your data can do for you. Projects begin then change shape as analysts run up against the limits of the data and machine learning technology. Often what you get is what <i>can</i> be done rather than what <i>must</i> be done. We are developing a new type of humanistic AI that solves the slowness of data science discovery and reacts to complex, dynamic data in complex, dynamic worlds. <strong>Know what is possible. Solve new problems, faster, safer, and more reliably.</strong>
+  <!-- <div id="main"> -->
+  <div style="position: relative">
+    <div id="landing" class=full-page-flex>
+      <div id="title">
+        <img src="{{ config.base_url }}/img/bird-white.png" width="100px">
+        <div class="mission">
+          <h1>
+            People change the world, not machines.
+          </h1>
+          <!-- <p> -->
+          <!--   A new artificial intelligence architecture that learns, and stores its knowledge, like people do, so it can be a safe and effective partner to people, not a replacement. -->
+          <!-- </p> -->
+          <p style="max-width: 38rem; margin: 0 auto;">
+          Introducing Redpoll <span class=arch-name>reformer</span>: a revolutionary artificial intelligence architecture built on human cognition research. Designed to be a safe and effective partner to people, not a replacement.
           </p>
-          <br>
-
-          <!-- COLUMN START -->
-          <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-3">
-              <h3 class="center">What We Do</h3>
-              <ul class=align-left>
-                <li>Feasibility Studies</li>
-                <li>Analysis</li>
-                <li>Dashboards</li>
-                <li>Automated decision pipelines</li>
-                <li>Human-in-the-loop systems</li>
-              </ul>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-3">
-              <h3 class="center">Our Process</h3>
-              <p>
-               After a project has been identified, we conduct a feasibility study in which we determine whether your data will be effective at achieving your goals. If feasibility is confirmed, we plan, design, and build out the solution; otherwise we can develop a plan to improve the effectiveness of your data.
-              </p>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-3">
-              <h3 class="center">Get Results Months Sooner</h3>
-              <p>
-              <strong>Our in-house technology allows us to determine what is possible with your data and to discover transparent knowledge with unrivaled speed.</strong> By automating many of the processes that require data scientists months to complete, our tools allow us to complete in days tasks that would otherwise take months or years.
-              </p>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-3">
-              <h3 class="center">Safe, Reliable Models</h3>
-              <p><strong>We believe in safety from the bottom up.</strong> Our AI builds models that are robust to weirdness in the real world, and that can quantify uncertainty and ask for human intervention. And we develop our core AI in <a href="https://www.rust-lang.org/">Rust</a>: a safe, performant language <a href="https://www.zdnet.com/article/microsoft-to-explore-using-rust/">that eliminates the cause of ~70% of security vulnerabilities</a>.
-              </p>
-            </div>
-          </div>
-
-
-          <br>
-          <br>
-          <center><a href="mailto:info@redpoll.ai" class=no-dec><h3 class="signup-btn-light" class="center">Contact Us</h3></a></center>
-          <br>
-          <br>
-      </div>
-      <br>
-    <div class="section-spacer"></div>
-    </div>
-
-    <div class="section-spacer"></div>
-    <div class="section-spacer"></div>
-
-
-    <div class="content-row">
-      <div class="content-box">
-
-        <a class="anchor"
-          name="about"></a>
-        <h1 class="section-header">About</h1>
-
-        <div class="row middle-md">
-          <div class="col-xs-12 col-md-4">
-            <h2>Philosophy</h2>
-            <p class="callout">We are engineers, scientists, psychologists, and AI researchers.</p>
-
-            <p>The AI industry is built around black box algorithms, like deep learning, which require incredible
-            amounts of data, and which can fail in unexpected ways. These algorithms have found great success in
-            domains for which data are plentiful and cheap, and for which the cost of failure is low -- domains like
-            ad targeting, speech processing, and image classification. But in safety-intensive, scientific domains
-            like biotech and public health, data are sparse and expensive, and the cost of failure is potentially
-            lost lives. Using the same algorithms is unproductive, unsustainable, and potentially dangerous.</p>
-            
-            <p>We believe the best way to solve these hard, impactful problems safely and sustainably is to start
-            from the ground up. To develop new AI techniques based on human cognition. To build expressive,
-            intuitive, and transparent AI that can be operated and understood by both data scientists and domain
-            experts.</p>
-          </div>
-          <div class="col-xs-12 col-md-8">
-            <div class="people">
-              {{
-                person::person(
-                  name="Baxter Eaves, PhD",
-                  title="Founder",
-                  img="bax.jpg",
-                  bio="Dr. Eaves has 10 years of experience building analytics tools and designing human cognitive systems that learn, teach, and selectively trust like people. He has applied these methods to problems in linguistics, image processing, biotech, and agriculture."
-                )
-              }}{{
-                person::person(
-                  name="Patrick Shafto, PhD",
-                  title="Founder",
-                  img="pat.jpg",
-                  bio="Dr. Shafto is the Henry Rutgers Term Chair in Data Sciences at Rutgers University - Newark. He has led a number of projects for agencies like DARPA, DOD, and NSF; and his publications have appeared in top journals of machine and human learning."
-                )
-              }}{{
-                person::person(
-                  name="Michael Schmidt",
-                  title="Principal ML Engineer",
-                  img="mike.jpg",
-                  bio="Michael has 14 years of research and engineering experience. He has built production models for healthcare, agronomy, finance, and law; and has conducted research in the areas of high-energy physics, differential geometry, plasma physics, and high-performance computing."
-                )
-              }} 
-            </div>
-
-          </div>
         </div>
 
-
+        <a class=no-decoration href="#feature-humanistic">
+          <div class="feature-row">
+              <div class="align-right left">Humanistic</div>
+              <div class="vline"></div>
+              <div class="align-left right">Increase trust. Reduce iteration and communication overhead.</div>
+          </div>
+        </a>
+        <a class=no-decoration href="#feature-introspective">
+          <div class="feature-row">
+            <div class="align-right left">Introspective</div>
+            <div class="vline"></div>
+            <div class="align-left right">Identify and react to anomalies before they do harm.</div>
+          </div>
+        </a>
+        <a class=no-decoration href="#feature-stream-native">
+          <div class="feature-row">
+            <div class="align-right left">Stream-native</div>
+            <div class="vline"></div>
+            <div class="align-left right">Quick, continuous insights. Add, edit, and backfill data without retraining.</div>
+          </div>
+        </a>
+        <!-- <div class="feature-row"> -->
+        <!--   <div class="align-right left">Safe</div> -->
+        <!--   <div class="vline"></div> -->
+        <!--   <div class="align-left right">Increase decision-maker confidence. Reduce waste.</div> -->
+        <!-- </div> -->
       </div>
     </div>
 
-    <a name="signup"></a>
-    <div class="section-spacer"></div>
-    
-    {{ signup::signup(heading="Subscribe to the mailing list") }}
+    <div class="content">
+      <a name="feature-humanistic"></a>
+      <div class="content-inner">
+        <h1>Humanistic</h1>
+        <p class="subheading">Increase trust. Reduce iteration and communication overhead.</p>
+        <p>In high-risk high-impact tasks, people make decisions, not machines. AI must engage with decision-makers directly. <span class=arch-name>reformer</span> is based on cognition research. It learns and stores its knowledge like people do making it fundamentally <strong>human-compatible</strong>. No black boxes. No surrogates. No translators. Understand what the machine believes and why.
+        </p>
+        <a href="{{ config.base_url }}/blog/humanistic-ai/"><div class=button>Learn More</div></a>
+        <!-- <p><span class=arch-name>reformer</span> can be understood and operated by subject area experts and decision makers themselves under <a href="#">a greatly simplified workflow</a> that reduces data munging and eliminates iteration. -->
+        <!-- </p> -->
+      </div>  
 
-    <div class="section-spacer"></div>
+      <br><br>
+      <a name="feature-introspective"></a>
+      <div class="content-inner">
+        <h1>Introspective</h1>
+        <p class="subheading">Identify and react to anomalies before they do harm.</p>
+        <p>Detect, analyze, and react to statistical changes in the world before they manifest as failures in production. In addition to detecting anomalous inputs such as data entry errors and attacks, <span class=arch-name>reformer</span> monitors anomalies in its knowledge, helping to maintain safe, reliable decision support.</p>
+        <!-- <a href="#"><div class=button>Read more</div></a> -->
+      </div>  
+
+      <br><br>
+      <a name="feature-stream-native"></a>
+      <div class="content-inner">
+        <h1>Stream-native</h1>
+        <p class="subheading">Continuous insights. Add, edit, and backfill data without retraining.</p>
+        <p>People do not retrain and neither should AI. <span class=arch-name>reformer</span> learns from streams of data. Users may add new records, add new features and fields, and edit existing data with no retraining or revalidation, minimizing resource use, reducing latency, and ensuring knowledge is always up-to-date.</p>
+        <!-- <a href="#"><div class=button>Read more</div></a> -->
+      </div>  
+    </div>
+  </div>
+</div>
+
+  <a name="subscribe"></a>
+  {{ signup::signup(heading="Subscribe to updates") }}
+
+
+  <script>
+    window.addEventListener('scroll', () => {
+      let y = window.scrollY || window.pageYOffset
+      if (y > 15) {
+        document.getElementById("call-to-action").classList.add("transparent");
+      } else {
+        document.getElementById("call-to-action").classList.remove("transparent");
+      }
+      if (y > screen.height/3) {
+        if (document.getElementById("background").classList.contains("background-filter")) {
+          document.getElementById("background").classList.replace("background-filter", "darken-background");
+        }
+      } else {
+        if (document.getElementById("background").classList.contains("darken-background")) {
+          document.getElementById("background").classList.replace("darken-background", "background-filter");
+        }
+      }
+    })
+  </script>
+    
+
 {% endblock content %}

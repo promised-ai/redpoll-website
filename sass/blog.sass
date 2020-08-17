@@ -1,13 +1,20 @@
-$rp-red: #e56
-$header-color: $rp-red
-$outer-border-color: #ddd
-$inner-border-color: black
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400');
 
-$post-title-color: black
-$post-subtitle-color: black
-$post-date-color: black
-$post-author-color: black
-$post-at-color: gray
+$rp-red: #e56
+$header-color: white
+$outer-border-color: #666
+$outer-border-hover-color: white
+$inner-border-color: #ddd
+$post-hover-color: rgba(70, 70, 70, 0.2)
+
+$post-title-color: white
+$post-subtitle-color: white
+$post-date-color: white
+$post-author-color: white
+$post-at-color: white
+
+#blog-bird
+  width: 100px
 
 .bkg-img
   width: 100%
@@ -36,9 +43,37 @@ $post-at-color: gray
   padding-bottom: 1rem
   z-index: 2
 
+#post-main-background
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: #888;
+  background-image: radial-gradient(circle at top, rgba(70, 70, 70, 1.0) 0%, rgba(80, 80, 80, 1.0) 25%, rgba(95, 95, 95, 1.0) 75%, rgba(115, 115, 115, 1.0) 100%)
+  background-position: center center;
+  background-size: cover;
+  z-index: 0;
+  transition: 1.0s all;
+  transition: 1s filter ease;
+  filter: brightness(1.2)
+
+#blog-main-background
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: #444;
+  background-image: radial-gradient(circle at top, rgba(70, 70, 70, 1.0) 0%, rgba(80, 80, 80, 1.0) 25%, rgba(95, 95, 95, 1.0) 75%, rgba(115, 115, 115, 1.0) 100%)
+  background-position: center center;
+  background-size: cover;
+  z-index: 0;
+  transition: 1.0s all;
+  transition: 1s filter ease;
+  filter: brightness(1.2);
+
 #blog-main
-  color: #f7f7f7
-  min-height: 100%
+  height: 100%
+
+  p, h1, h2, h3, h4, h5, h6, div
+    font-family: "Lato", helvetica, sans-serif
 
 .blog-heading
   font-size: 3rem
@@ -71,6 +106,8 @@ $post-at-color: gray
   height: 100%
   overflow: hidden
   z-index: 1
+  transition: .5s all
+  background-color: rgba(0, 0, 0, 0)
 
   .post-date
     color: $post-date-color
@@ -82,12 +119,15 @@ $post-at-color: gray
     color: $post-at-color
 
 .post-inner:hover
-    background-color: #f3f3f3
+  background-color: $post-hover-color
 
 .post-left 
   vertical-align: top
   height: 100%
   width: 20%
+
+  a
+    text-decoration: none
 
   .post-inner
     border-top: 1px solid $outer-border-color
@@ -99,6 +139,25 @@ $post-at-color: gray
     p
       padding-left: 2rem
 
+.post-left .post-inner:hover
+    border-top: 1px solid $outer-border-hover-color
+    border-left: 1px solid $outer-border-hover-color
+    border-bottom: 1px solid $outer-border-hover-color
+
+div.post-inner.right-hover
+    background-color: $post-hover-color
+    border-top: 1px solid $outer-border-hover-color
+    border-left: 1px solid $outer-border-hover-color
+    border-bottom: 1px solid $outer-border-hover-color
+
+.post-left:hover .post-inner
+  background: $post-hover-color
+
+.post-left:hover + .post-right .post-inner
+  background-color: $post-hover-color
+  border-top: 1px solid $outer-border-hover-color
+  border-right: 1px solid $outer-border-hover-color
+  border-bottom: 1px solid $outer-border-hover-color
 
 .post-right
   vertical-align: top
@@ -119,6 +178,12 @@ $post-at-color: gray
     background-position: center
     background-size: cover
 
+.post-right:hover .post-inner
+    border-top: 1px solid $outer-border-hover-color
+    border-right: 1px solid $outer-border-hover-color
+    border-bottom: 1px solid $outer-border-hover-color
+
+
 .post-inner-text
   height: 100%
   display: block
@@ -132,8 +197,8 @@ $post-at-color: gray
 
 #post-main
   z-index: 0
-  background-color: gray
-  min-height: 50%
+  // background-color: gray
+  min-height: 50vh
 
 .post-scroll-tip
   padding-bottom: 0.1rem
@@ -214,11 +279,11 @@ div.ph-bkg
     color: #666666
     background-color: #bbb
 
-@supports (backdrop-filter: blur(30px))
+@supports (backdrop-filter: blur(30px)) or (-webkit-backdrop-filter: blur(30px))
   img.bkg-img-blur
     display: none
 
-@supports not (backdrop-filter: blur(30px))
+@supports not ((backdrop-filter: blur(30px)) or (-webkit-backdrop-filter: blur(30px)))
   img.bkg-img-blur
     display: block
     filter: blur(30px)
@@ -227,6 +292,7 @@ div.ph-bkg
 
 #post-header.bh-dark-transparent
   border: 1px solid #333;
+  -webkit-backdrop-filter: blur(30px)
   backdrop-filter: blur(30px)
   background-color: rgba(255, 255, 255, 0.2)
 
@@ -250,6 +316,7 @@ div.ph-bkg
 
 #post-header.bh-light-transparent
   border: 1px solid #eee;
+  -webkit-backdrop-filter: blur(30px)
   backdrop-filter: blur(30px)
   background-color: rgba(0, 0, 0, 0.2)
 
@@ -296,7 +363,6 @@ div.ph-bkg
 
 #post-content
   padding-bottom: 5rem
-  background-color: white;
 
   p, h1, h2, h3, h4, h5, h6, pre, ol, ul, blockquote
     margin: 1rem auto
@@ -313,7 +379,7 @@ div.ph-bkg
     padding: 1rem 0
 
   div.img-caption
-    color: gray
+    color: #ddd
 
   h1, h2, h3
     margin-top: 2rem;
@@ -402,6 +468,15 @@ div.ph-bkg
     padding-bottom: 0
 
 @media only screen and (max-width: 600px)
+  #blog-main-background
+    // background-image: radial-gradient(circle at top, rgba(70, 70, 70, 1.0) 0%, rgba(80, 80, 80, 1.0) 25%, rgba(95, 95, 95, 1.0) 75%, rgba(115, 115, 115, 1.0) 100%)
+    background: none
+    background-color: #888
+
+  #post-main-background
+    background: none
+    background-color: #888
+
   #post-meta
     display: block
     width: 80%
@@ -422,6 +497,12 @@ div.ph-bkg
       font-size: 5vw
 
 @media only screen and (max-width: 500px)
+  #blog-bird
+    width: 90px
+
+  h1.blog-heading
+    font-size: 2.5rem
+
   #post-titles
     h1
       font-size: 1.7rem
@@ -430,13 +511,13 @@ div.ph-bkg
       font-size: 1.2rem
 
   #post-main
-    min-height: 100%
+    min-height: 100vh
 
   .post-inner-text h1
     margin-bottom: 1rem
 
   .section-spacer:first-child
-    height: 3rem
+    height: 5rem
 
 @media only screen and (max-width: 340px)
   #post-titles
