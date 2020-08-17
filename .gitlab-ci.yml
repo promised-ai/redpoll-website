@@ -1,10 +1,10 @@
-image: "rust:1.40"
+image: "rust:1.45"
 
 variables:
   # This variable will ensure that the CI runner pulls in your theme from the submodule
   GIT_SUBMODULE_STRATEGY: recursive  
   # Specify the zola version you want to use here
-  ZOLA_VERSION: "v0.9.0"
+  ZOLA_VERSION: "v0.10.1"
 
 publish:
   # Run only on successful MERGE to master. Not on merge request.
