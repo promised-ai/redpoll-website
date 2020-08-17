@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css">
   <link rel=" stylesheet" href="/style.css">
   <link rel=" stylesheet" href="/print.css">
-  <meta name="theme-color" content="#444444" />
+  <meta name="theme-color" content="#222222" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <!-- Uncomment to enable search -->
@@ -24,96 +24,38 @@
 <body>
   <div id="main">
     <!-- MOBILE NAVIGATION -->
-    <div id="mobile-nav" class="js-only">
-      <span id="menu-toggle" class="material-icons">menu</span>
-      <div id="mobile-menu" class="mm-hidden">
-        <p><a href="{{ config.base_url }}"><span class="material-icons">home</span></a></p>
-        <p><a href="{{ config.base_url }}#features">Platform</a></p>
-        <p><a href="{{ config.base_url }}#offerings">Use Cases</a></p>
-        <p><a href="{{ config.base_url }}#consulting">Consulting</a></p>
-        <p><a href="{{ config.base_url }}#about">About</a></p>
-        <p><a href="{{ config.base_url }}/blog">Blog</a></p>
-        <p><a href="{{ config.base_url }}#signup">Contact</a></p>
+    <div id="nav">
+      <div id=nav-left></div>
+      <div id=nav-center>
+        <div class=logo><a href="{{ config.base_url }}">REDPOLL</a></div>
+        <div><a href="{{ config.base_url }}/#feature-humanistic">Learn</a></div>
+        <div><a href="{{ config.base_url }}/blog">Blog</a></div>
+        <div><a href="{{ config.base_url }}/mission/index.html">About</a></div>
       </div>
-    </div>
-
-    <!-- LARGE-SCREEN NAVIGATION -->
-    <div id="navbar">
-      <div class="content-box">
-        <ul>
-          <a href="{{ config.base_url }}">
-            <li id="nav-logo">RP</li>
-          </a>
-          <li><a href="{{ config.base_url }}#features">Platform</a></li>
-          <li><a href="{{ config.base_url }}#offerings">Use Cases</a></li>
-          <li><a href="{{ config.base_url }}#consulting">Consulting</a></li>
-          <li><a href="{{ config.base_url }}#about">About</a></li>
-          <li><a href="{{ config.base_url }}/blog">Blog</a></li>
-          <li><a href="{{ config.base_url }}#signup">Contact</a></li>
-        </ul>
+      <div id=nav-right>
       </div>
     </div>
 
     {% block content %}{% endblock content %}
 
-    <div class="content-row gray-bkg">
-      <div class="content-box">
-        <div id="footer">
-          <p>Copyright &copy; 2019 Redpoll</p>
-          <p>info@redpoll.com</p>
-        </div>
-      </div>
+    <div id="footer">
+      <div>2020 &copy; Redpoll</div>
+      <a href="https://www.linkedin.com/company/redpoll">Linkedin</a>
+      <a href="mailto:info@redpoll.ai">Contact</a>
     </div>
 
   </div>
 </body>
 
-<script>
-    function hideMobileMenu() {
-        var mobileMenu =  document.getElementById("mobile-menu");
-        if (mobileMenu.classList.contains("mm-shown")) {
-            mobileMenu.classList.add("mm-hidden");
-            mobileMenu.classList.remove("mm-shown");
-        }
-    }
+  <script>
+    window.addEventListener('scroll', () => {
+      let y = window.scrollY || window.pageYOffset
+      if (y > 15) {
+        document.getElementById("nav").classList.add("dark-bkg");
+      } else {
+        document.getElementById("nav").classList.remove("dark-bkg");
+      }
 
-    function showMobileMenu() {
-        var mobileMenu =  document.getElementById("mobile-menu");
-        if (mobileMenu.classList.contains("mm-hidden")) {
-            mobileMenu.classList.remove("mm-hidden");
-            mobileMenu.classList.add("mm-shown");
-        }
-    }
-
-    function toggleMobileMenu() {
-        var mobileMenu =  document.getElementById("mobile-menu");
-        var hidden = mobileMenu.classList.contains("mm-hidden");
-        if (hidden) {
-            showMobileMenu();
-        } else {
-            hideMobileMenu();
-        }
-    }
-
-    function hideMenuWhenEvent(e) {
-        if (e.target.id != "menu-toggle") {
-            hideMobileMenu();
-        }
-    }
-
-    (function () {
-      var mobileNav = document.getElementById("mobile-nav");
-      mobileNav.classList.remove("js-only");
-      mobileNav.classList.add("mobile-only");
-
-      var nav = document.getElementById("navbar");
-      nav.classList.add("no-mobile");
-
-            var mobileToggle = document.getElementById("menu-toggle");
-
-            mobileToggle.addEventListener('click', toggleMobileMenu);
-            document.addEventListener('click', hideMenuWhenEvent);
-            document.addEventListener('scroll', hideMenuWhenEvent);
-    })();
-</script>
+    })
+  </script>
 </html>

@@ -6,10 +6,20 @@
 {% endblock head %}
 
 {% block content %}
+  <div id=blog-main-background></div>
   <div id="blog-main" class="content-row">
     <div class="section-spacer"></div>
     <div class="content-box">
-      <h1 class=blog-heading>{{ section.title }}</h1>
+      <table>
+        <tr>
+          <td>
+            <img id=blog-bird src="{{ config.base_url }}/img/bird-white.png" style="padding-right: 0.5rem">
+          </td>
+          <td>
+            <h1 class=blog-heading>{{ section.title }}</h1>
+          </td>
+        </tr>
+      </table>
       <h2 class=blog-subheading>{{ section.extra.subtitle }}</h2>
       <br>
       <br>
@@ -19,10 +29,12 @@
       {% if not post.draft %}
         <div class="post">
           <div class="post-left">
-            <div class="post-inner">
-              <p class="post-date">{{ post.date }}</p>
-              <p><span class=post-at>@</span><span class="post-by">{{ post.extra.author }}</span></p>
-            </div>
+            <a href={{ post.permalink }}>
+              <div class="post-inner">
+                <p class="post-date">{{ post.date }}</p>
+                <p><span class=post-at>@</span><span class="post-by">{{ post.extra.author }}</span></p>
+              </div>
+            </a>
           </div><div class="post-right">
             <a href={{ post.permalink }}>
             <div class="post-inner">
@@ -39,4 +51,16 @@
       <div class="section-spacer"></div>
     </div>
   </div>
+  <script>
+    // Get a reference to the element that needs to be worked with
+    document.querySelectorAll('div.post-right').forEach(item => {
+      item.addEventListener("mouseover", event => {
+        event.currentTarget.previousSibling.children[0].children[0].classList.add("right-hover")
+      });
+      item.addEventListener("mouseout", event => {
+        event.currentTarget.previousSibling.children[0].children[0].classList.remove("right-hover")
+      });
+    })
+
+  </script>
 {% endblock content %}
