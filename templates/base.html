@@ -1,3 +1,4 @@
+{% import "macros/signup.html" as signup %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +37,32 @@
       </div>
     </div>
 
+    {% if show_call_to_action | default(value=true) %}
+    <div id="call-to-action">
+      <div class="flex" style="max-width: 40rem; margin: 0 auto;">
+        <p class="no-mobile" style="text-align: right;">
+        To learn how Redpoll can help your organization harness your data to help make safer, more informed decisions
+        </p>
+        <div class="no-mobile">
+          <a href="#subscribe" class=no-decoration>
+            <div class=button>Request a Consultation</div>
+          </a>
+        </div>
+        <div class="mobile-only">
+          <a href="#subscribe" class=no-decoration>
+            <div class=button style="width: auto">Request a Consultation</div>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
     {% block content %}{% endblock content %}
+
+    {% if show_signup_form | default(value=true) %}
+    <a name="subscribe"></a>
+    {{ signup::signup(heading="Request a consultation") }}
+    {% endif %}
 
     <div id="footer">
       <div>2020 &copy; Redpoll</div>
@@ -52,8 +78,14 @@
       let y = window.scrollY || window.pageYOffset
       if (y > 15) {
         document.getElementById("nav").classList.add("dark-bkg");
+        {% if show_call_to_action | default(value=true) %}
+        document.getElementById("call-to-action").classList.add("transparent");
+        {% endif %}
       } else {
         document.getElementById("nav").classList.remove("dark-bkg");
+        {% if show_call_to_action | default(value=true) %}
+        document.getElementById("call-to-action").classList.remove("transparent");
+        {% endif %}
       }
 
     })

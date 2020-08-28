@@ -1,14 +1,19 @@
-{% import "macros/signup.html" as signup %}
 {% extends "base.html" %}
 {% block title %}Redpoll - {{ page.title }}{% endblock title %}
 {% block head %}
   {% set img_url = "../static/img/" ~ page.extra.image %}
   {% set small_img = resize_image(path=img_url, width=1920, height=1080, op="fill") %}
   {{ super() }}
+  {% set_global show_call_to_action = false %}
+  {% set_global show_signup_form = true %}
   <link rel="stylesheet" href="/blog.css">
   <style>
     #main {
       background-color: #f7f7f7;
+    }
+
+    #call-to-action {
+      background-color: #888;
     }
   </style>
   <meta name="author" content="{{ page.extra.author }} (Redpoll)">
@@ -62,8 +67,5 @@
       {{ page.content | safe }}
     </div>
   </div>
-  {{ signup::signup(heading="Sign up for updates") }}
-  <br>
-  <div class=section-spacer></div>
 {% endblock content %}
 
