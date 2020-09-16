@@ -66,7 +66,7 @@ The performance criterion itself is based on novelty. A breeder is not looking f
 <a class="anchor" name="breeding-objective-figure"></a>
 ![B performs worse than A on average, but 5% of plants from B will outperform 99% of plants from A](/img/breeding_obj.png)
 <p class="small" style="padding-bottom: 0.5rem; border-bottom: 1px solid gray;">
-    <strong>Figure 1.</strong> <span style="color: lightpink">B (red)</span> performs worse than <span style="color: lightskyblue">A (blue)</span> 75% of the time, but 5% of plants from <span style="color: lightpink">B</span> will outperform 99% of plants from <span style="color: lightskyblue">A</span>.
+    <strong>Figure 1.</strong> <span class=red>B (red)</span> performs worse than <span class=blue>A (blue)</span> 75% of the time, but 5% of plants from <span class=red>B</span> will outperform 99% of plants from <span class=blue>A</span>.
 </p>
 
 

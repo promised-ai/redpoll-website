@@ -7,6 +7,7 @@
   {% set_global show_call_to_action = false %}
   {% set_global show_signup_form = true %}
   <link rel="stylesheet" href="/blog.css">
+  <link rel=" stylesheet" href="/light.css">
   <style>
     #main {
       background-color: #f7f7f7;
@@ -14,6 +15,37 @@
 
     #call-to-action {
       background-color: #888;
+    }
+
+    #nav-center div:not([class]) {
+        border: 1px solid rgba(255, 255, 255, 0);
+        color: white;
+    }
+
+    #nav-center div:not([class]):hover {
+        border-top: 1px solid rgba(255, 255, 255, 1);
+        border-bottom: 1px solid rgba(255, 255, 255, 1);
+    }
+
+    #nav {
+      border-bottom: 1px solid #ffffff00
+    }
+
+    #nav.dark-bkg {
+      border-bottom: 1px solid #dddddd
+    }
+
+    #nav.dark-bkg #nav-center div:not([class]) {
+        color: #333;
+    }
+
+    #nav.dark-bkg #nav-center div:not([class]):hover {
+        border-top: 1px solid rgba(0, 0, 0, 1);
+        border-bottom: 1px solid rgba(0, 0, 0, 1);
+    }
+
+    #nav {
+      border-bottom: 1px solid #ffffff00
     }
   </style>
   <meta name="author" content="{{ page.extra.author }} (Redpoll)">
@@ -67,5 +99,14 @@
       {{ page.content | safe }}
     </div>
   </div>
+  <!-- <script> -->
+  <!--   var d = new Date(); -->
+  <!--   var h = d.getHours(); -->
+  <!--   console.log(h); -->
+  <!--   if (h < 6 || h > 20) { -->
+  <!--     var stylesheet = document.styleSheets[6]; -->
+  <!--     stylesheet.disabled = true; -->
+  <!--   } -->
+  <!-- </script> -->
 {% endblock content %}
 

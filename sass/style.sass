@@ -245,7 +245,7 @@ div.content-inner
   a
     text-decoration: none;
 
-  div:hover
+  div:not([class]):hover
     border-top: 1px solid rgba(255, 255, 255, 1);
     border-bottom: 1px solid rgba(255, 255, 255, 1);
     transition-timing-function: ease;
@@ -260,15 +260,6 @@ div.content-inner
   // cancel hover behavior
   div.logo:hover
     background: none;
-
-// #nav-logo 
-//   color: crimson
-//   font-weight: 400
-//   margin-left: 1rem
-//   margin-right: 1rem
-
-//   a
-//     color: crimson
 
 #background 
   background-color: #aaa
@@ -720,6 +711,12 @@ p.small
 
 a.no-decoration
     text-decoration: none
+
+.blue
+  color: lightskyblue
+
+.red
+  color: lightpink
 
 // MEDIA QUERIES
 // ===================================================================

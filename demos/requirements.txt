@@ -1,0 +1,8 @@
+numpy
+scipy
+pandas
+scikit-learn
+forestci
+matplotlib
+seaborn
+IPython[All]
