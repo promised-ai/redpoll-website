@@ -2,7 +2,7 @@
 title = "The REFORMER artificial intelligence platform"
 date = 2020-08-31
 template = "post.html"
-draft = false
+draft = true
 
 [taxonomies]
 categories = ["ai"]

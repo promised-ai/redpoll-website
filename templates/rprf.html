@@ -76,7 +76,7 @@
         <div class="content-box">
           <h1 class="center analysis-title">The <span style="color: #333">Redpoll</span> Platform vs. Standard Machine Learning</h1>
           <p class=analysis-section>
-          Here we demonstrate some of the differences between standard machine learning approaches and the Redpoll discovery platform. This is not meant to be a rigorous analysis, it is meant to showcase the ease of question-asking the Redpoll platform enables. Because, we do not wish to spend months on this analysis, when we are forced to make decisions about which model or method to use under the standard machine learning model we will choose what is easiest, not what is best. To put it differently: <strong>we will be making nearly every bad, lazy decision to make using standard machine learning seem simpler.</strong>
+          Here we demonstrate some of the differences between standard machine learning approaches and the Redpoll discovery platform. This is not meant to be a rigorous analysis, it is meant to showcase the ease of question-asking the Redpoll platform enables. Because we do not wish to spend months on this analysis, when we are forced to make decisions about which model or method to use under the standard machine learning model we will choose what is easiest, not what is best. To put it differently: <strong>we will be making nearly every bad, lazy decision to make using standard machine learning seem simpler.</strong>
           </p>
         </div>
     </div>
@@ -94,7 +94,7 @@
         </center>
 
         <p class=analysis-section>
-        In the figure above the black cells represent present data, and the white cells represent missing data. There are several columns that have more than half their data missing and there are no rows that have zero missing cells. To further complicate matters, the data comprise a combination of continuous-valued columns <code>Apogee_km</code> (the highest point of an orbit), and categorical-valued columns like <code>Class_of_Orbit</code>, which typically requires manual preprocessing and restrict modeling decisions.
+        In the figure above the black cells represent present data, and the white cells represent missing data. There are several columns that have more than half their data missing and there are no rows that have zero missing cells. To further complicate matters, the data comprise a combination of continuous-valued columns like <code>Apogee_km</code> (the highest point of an orbit), and categorical-valued columns like <code>Class_of_Orbit</code>, which typically requires manual preprocessing and restrict modeling decisions.
         </p>
 
       <!--|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-->
@@ -120,12 +120,12 @@
             <h3 class="center">Random Forest</h3>
             <p>The data pose a number of problems for standard machine learning approaches.</p>
 
-            <p>First there are continuous columns like <code>period_min</code> (which describes the time in minutes it takes for a satellite to complete and orbit), and there are categorical columns like <code>Country_of_Contractor</code>. Standard machine learning models usually accept on or the other. Deep Learning and Random Forests work only for continuous inputs and outputs, so we'll have to figure out a way to transform the data to fit the model. You might think that we could simply convert the country into an integer and use that. But is <code>Switzerland + 1 = France</code>? No. So what we have to do is to expand the <code>Country_of_Contractor</code> variable into N - 1 binary variables, where N is the number of possible countries. This is called <a href="">one-hot encoding</a>. Using one-hot for this one column adds 53 variables. Using one-hot for all categorical columns increases our total variable count from 20 to 432. This is really, really bad because for each additional variable, we need exponentially more data to be able to learn. This is the <a href="">curse of dimensionality</a>.</p>
+            <p>First there are continuous columns like <code>period_min</code> (which describes the time in minutes it takes for a satellite to complete and orbit), and there are categorical columns like <code>Country_of_Contractor</code>. Standard machine learning models usually accept one or the other. Deep Learning and Random Forests work only for continuous inputs and outputs, so we'll have to figure out a way to transform the data to fit the model. You might think that we could simply convert the country into an integer and use that. But is <code>Switzerland + 1 = France</code>? No. So what we have to do is to expand the <code>Country_of_Contractor</code> variable into N - 1 binary variables, where N is the number of possible countries. This is called <a href="">one-hot encoding</a>. Using one-hot for this one column adds 53 variables. Using one-hot for all categorical columns increases our total variable count from 20 to 432. This is really, really bad because for each additional variable, we need exponentially more data to be able to learn. This is the <a href="">curse of dimensionality</a>.</p>
 
             <p>The second problem is that there are columns with tons of missing data. Random Forests and Deep Learning require complete data. There are a few ways to handle this. We could drop all columns with missing values. This would leave us with <strong>zero</strong> data. No good. We could fill in the data. Using the mean or median is common for continuous data, but it is biasing because we are feeding the model data we made up; data that were not generated by the process we're trying to learn about. But what about the categorical columns? What is the mean or median country? We could fill in using the most common value (the mode), but this is extremely biasing. We can't just assume that the <code>Class_of_Orbit</code> for every satellites is geosynchronous.</p>
 
             <p>Another option is to create a imputation model that uses the other columns to infer the value of the missing column. So now we are predicting before we predict, and will still have to navigate all the data processing issues to make these imputation models. </p>
-            <p>Since we must make a decision, we will impute categorical columns with the median and we will impute categorical columns with the mode</p>
+            <p>Since we must make a decision, we will impute continuous columns with the median and we will impute categorical columns with the mode</p>
 
             <pre>
 >>> import pandas as pd
@@ -204,7 +204,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-6">
               <h3 class=center>Redpoll</h3>
-              <p>The Redpoll platform does not require tuning or validating. This does not mean that tuning and validation occur under the hood, out of sight of the user; the mathematical foundations of the Redpoll platform make these procedures unnecessary. That said, it is easy to discover what the platform thinks is important. For example, we visualize which features are important to every possible prediction. This is called <i>structure learning</i> and is one of the most difficult problems in machine learning.</p>
+              <p>The Redpoll platform does not require tuning or validating. This does not mean that tuning and validation occur under the hood, out of sight of the user; the mathematical foundations of the Redpoll platform make these procedures unnecessary. That said, it is easy to discover what the platform thinks is important. For example, we visualize which features are important to every possible prediction. This is called <i>structure learning</i> and is one of the most difficult problems in machine learning. The Redpoll platform does this automatically.</p> 
               <pre>
 >>> rp.heatmap("importance")
               </pre>
@@ -215,7 +215,7 @@
               <h3 class=center>Random Forests</h3>
               <p>The above model was our first pass. It is virtually guaranteed to be suboptimal, especially because we have an average of only two data points per feature. We need to do a couple of things: 1) tweak the random forest parameters, and 2) reduce the number of features so we're not overburdening our data.</p>
 
-              <p>If we look at <a href="">the documentation for the scikit-learn <code>RandomForestRegressor</code></a> we see that there are 14 parameters to tweak. We're not going to tweak all of those. It's too much work for a questionable payoff. We're going to focus on <code>n_estimators</code> (the number of trees in the forest), <code>criterion</code> (the method for scoring the model), and <code>max_features</code> (the number of features considered). To determine the best parameter set to use we must do a search. We will test a large number of parameter sets and determine which one produces the best performance. We measure performance with <a href="">cross-validation</a>, which breaks the training set up in to chunks, trains on part of the training set and tests on the left out set. There are many strategies for this, but cross-validation is a must because standard ML models are prone to fit to noise, or to <a href="">overfit</a>). Overfitting is a common reason that machine learning fails in production.</p>
+              <p>If we look at <a href="">the documentation for the scikit-learn <code>RandomForestRegressor</code></a> we see that there are 14 parameters to tweak. We're not going to tweak all of those. It's too much work for a questionable payoff. We're going to focus on <code>n_estimators</code> (the number of trees in the forest), <code>criterion</code> (the method for scoring the model), and <code>max_features</code> (the number of features considered). To determine the best parameter set to use we must do a search. We will test a large number of parameter sets and determine which one produces the best performance. We measure performance with <a href="">cross-validation</a>, which breaks the training set up in to chunks, trains on part of the training set and tests on the left out set. There are many strategies for this, but cross-validation is a must because standard ML models are prone to fit to noise, or to <a href="">overfit</a>. Overfitting is a common reason that machine learning fails in production.</p>
               <pre>
 >>> from sklearn.ensemble import RandomForestRegressor
 >>> from sklearn.model_selection import cross_validate
@@ -316,7 +316,8 @@
                       id   uncertainty   Expected_Lifetime
                       --   -----------   -----------------
  Advanced Orion 2 (NR...     0.0581857             8.38443
- Advanced Orion 3 (NR...     0.0497906             8.54544 Advanced Orion 4 (NR...      0.033794             8.22257
+ Advanced Orion 3 (NR...     0.0497906             8.54544
+ Advanced Orion 4 (NR...      0.033794             8.22257
  Advanced Orion 5 (NR...      0.240803             13.8332
  Advanced Orion 6 (NR...     0.0794021             8.10581
               </pre>
@@ -357,7 +358,7 @@
           </div>
           <div class="col-sm-12 col-md-6">
               <h3 class=center>Random Forests</h3>
-              <p>We have to start from square one. We have to go back to the raw data because we filled in the missing values in this column. We have to then fill in the missing values for the old target, so it can be used as a predictior; and we have to spit the dataset into one set were the target is present (training data), and the set for which the target is missing.</p>
+              <p>We have to start from square one. We have to go back to the raw data because we filled in the missing values in this column. Then we have to fill in the missing values for the old target, so it can be used as a predictior; and we have to spit the dataset into one set were the target is present (training data), and the set for which the target is missing.</p>
 
               <p>We also need to re-do the parameter search and validation.</p>
 
@@ -523,7 +524,7 @@ py:667: UserWarning: The least populated class in y has only 1 members, which is
         <div class="row">
           <div class="col-sm-12 col-md-6">
               <h3 class=center>Redpoll</h3>
-              <p>We have already computed the imputation uncertainty. But what do those numbers mean?</p>
+              <p>As a part of computing the imputation, we have already computed the imputation uncertainty. But what do those numbers mean?</p>
               <pre>
 >>> el_predictions.head(3)
 
@@ -534,7 +535,7 @@ py:667: UserWarning: The least populated class in y has only 1 members, which is
  Advanced Orion 4 (NR...      0.033794             8.22257
               </pre>
 
-              <p>Redpoll's prediction certainty is a measure of the platform's certainty in its ability to model a prediction. It has nothing to do with the variance of the distribution. We can visualize impute uncertainty to get a sense of what it means. For a high-certainty imputation:</p>
+              <p>Redpoll's prediction certainty is a measure of the platform's certainty in its ability to model a prediction. It has nothing to do with the variance of the distribution &mdash; the model might be very certain there is a high variance. We can visualize impute uncertainty to get a sense of what it means. For a high-uncertainty imputation:</p>
 
               <pre>
 >>> rp.impute_uncertainty(
@@ -546,7 +547,7 @@ py:667: UserWarning: The least populated class in y has only 1 members, which is
 
               <img width="100%" src="{{ config.base_url }}/img/rp-vs-ml/high_unc.png"/>
 
-              <p>And for a low-certainty imputation:</p>
+              <p>And for a low-uncertainty imputation:</p>
 
               <pre>
 >>> rp.impute_uncertainty(
@@ -562,7 +563,7 @@ py:667: UserWarning: The least populated class in y has only 1 members, which is
           </div>
           <div class="col-sm-12 col-md-6">
               <h3 class=center>Random Forests</h3>
-              <p>A Random Forest classifier provides a <a href="https://en.wikipedia.org/wiki/Softmax_function">softmax</a> function that produces "probabilities" for each class. These probabilities are not uncertainties &mdhash; though they are often confused for them. We would like to know the uncertainty of each class over softmax functions.
+              <p>A Random Forest classifier provides a <a href="https://en.wikipedia.org/wiki/Softmax_function">softmax</a> function that produces "probabilities" for each class. These probabilities are not uncertainties &mdash; though they are often confused for them. We would like to know the uncertainty of each class over softmax functions.
               </p>
               <p>There are few methods for quantifying uncertainty in random forests, but there is nothing in the machine learning library we're using, so we have to bring in another library, <a href="http://contrib.scikit-learn.org/forest-confidence-interval/index.html">forestci</a>.</p>
               <pre>
@@ -589,7 +590,7 @@ array([15.77225733, 16.83583305, 16.14404858, ..., 24.89957166, 16.18654164, 15.
         <div class="row">
           <div class="col-sm-12 col-md-6">
               <h3 class=center>Redpoll</h3>
-              <p>Again, we've done our learning already. We have created a model of satellites, which means we have an idea of how features of satellites affect other features. Because we have this type of intuitive model, it is easy to see when a satellite violates our intuitive model. We say the degree to which a data point violates are expectation is its novelty &mdash; or anomalousness.</p>
+              <p>Again, we've done our learning already. We have created a model of satellites, which means we have an idea of how features of satellites affect other features. Because we have this type of intuitive model, it is easy to see when a satellite violates our intuitive model. We say the degree to which a data point violates our expectation is its novelty &mdash; or anomalousness.</p>
 
               <p>First, we ask which satellites have unexpected lifetimes.</p>
               <pre>
