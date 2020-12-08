@@ -10,23 +10,30 @@ categories = ["data science", "demo", "ai"]
 [extra]
 author = "Bryan Dannowitz"
 subheading = "Hands-on with Reformer - Uncertainty and Anomaly Detection"
-image = "magic-laser-calibration.jpg"
+image = "gamma/magic-laser-calibration.jpg"
 theme = "light-transparent"
 +++
 
-Machine Learning is often spoken of in hushed, reverent tones as a panacea to
-whatever data woes one might have. This is in unfortunate contrast to the
-capabilities of the typical solutions that are widely available. Most
+Machine Learning is, at times, treated as an all-purpose panacea to
+whatever data woes one might have. This is in contrast to the limited
+capabilities of typical ML solutions that are widely available. Almost
 any model — from the humble perceptron to the formidable, pre-trained VGG-19
-deep neural network — are very focused and limited in their scope; they're
-trained and tuned to perform one task well. They tend to be of little use for
-any other task, even one which is based on the exact same dataset.
+deep neural network — is very focused and limited in its immediate scope.
+The model is trained and tuned to perform one task well. These tend to be of
+little use for any other task, even one which is based on the exact same dataset.
 
 In this post, we'll review a simple supervised classification task as it's
 commonly encountered, and deal with it via traditional ML methods. Then we
 will extend the scope of what can be performed on such a dataset when
-a more holistic AI engine is applied. Topic emphasized will be inference
-(predictions), simulation, anomaly detection, and uncertainty estimation.
+Redpoll's Braid, a holistic AI engine, is applied. The (non-exhaustive)
+capabilities covered will be:
+
+* Inference (predictions)
+* Missing data handling
+* Feature importances
+* Simulation
+* Anomaly detection
+* Uncertainty estimation
 
 # Gamma Ray Detection with the MAGIC Observatory
 
@@ -41,16 +48,16 @@ The problem is that Earth is continuously pummeled by high-energy particles
 (cosmic rays) that are decidedly _not_ gamma rays, causing a noisy
 background of gamma ray-like events. Being able to automatically discriminate
 between real gamma shower events and _"hadronic showers"_ would be very useful,
-especially since hadronic showers much more commonly occur.
+especially since hadronic showers are much more common to occur.
 
 ![Measurements of an incident gamma/hadron shower](/img/magic-experiment.png)
 
 Without going into much detail, these events light up "pixels" of a detector,
 forming an ellipse. These ellipses can be parametrized by characteristics such
 as _distance from the center of the camera_ (`fDist`), length (`fLength`) and
-width (`fWidth`) of the ellipse, and angle of its long axis (`fAlpha`). There
-are also metrics with respect to how bright the pixels are (`fSize`) and how
-concentrated that brightness is (`fConc`). You can find the dataset and the
+width (`fWidth`) of the ellipse's axes, and angle of its long axis (`fAlpha`).
+There are also metrics with respect to how bright the pixels are (`fSize`) and
+how concentrated that brightness is (`fConc`). You can find the dataset and the
 full definition of the features at the
 [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/MAGIC+Gamma+Telescope)
 
@@ -71,7 +78,7 @@ sns.pairplot(
 ![MAGIC Pairplot](/img/gamma/magic-pairplot.png)
 
 From this brief peek into the features broken down by target class ('g' for
-gamma, 'h' for hadron), one can see significan distribution overlap, which
+gamma, 'h' for hadron), one can see significant distribution overlap, which
 means that gamma detection will not be too easy, and there _should_ be some
 uncertainty inherent in many predictions. Let's start by treating this as a
 typical binary classification problem.
@@ -110,12 +117,12 @@ for m in metrics:
 ```
 
 Here we have instantiated and trained a tool for one specific task.
-It faithfully measures up with an excellent 89% precision — a good metric
+It faithfully measures up with an excellent 88.5% precision — a good metric
 to focus on for a situation where you want to end up with a pure gamma sample
 to study.
 
 But... what else can solutions like this accomplish? Let's give it a fair
-shake and  cover feature importance, which can be forcibly extracted from a
+shake and  cover feature importance, which can be extracted from a
 trained model. Without writing an entire tangent on caveats, cautions, and
 co-linearities, we can demonstrate the ability to derive impurity- and
 permutation-based feature importances.
@@ -148,63 +155,37 @@ pi = permutation_importance(
 )
 pi_indices = np.argsort(pi["importances_mean"])[::-1]
 
-# Plot two kinds of feature importance measures
-# TODO: Leave this verbose plotting section out?
-fig, axs = plt.subplots(1, 2, figsize=(18, 5))
-
-axs[0].set_title("Impurity-Based Feature Imporances")
-axs[0].bar(
-    x=range(X.shape[1]),
-    height=importances[indices],
-    yerr=std[indices],
-    align="center"
-)
-axs[0].set_xticks(range(X.shape[1]))
-axs[0].set_xticklabels(X.columns[indices], rotation=40)
-axs[0].set_xlim([-1, X.shape[1]])
-
-axs[1].set_title("Permutation-Based Feature Importances")
-axs[1].bar(
-    x=range(X.shape[1]),
-    height=pi["importances_mean"][pi_indices],
-    yerr=pi["importances_std"][pi_indices],
-    align="center"
-)
-axs[1].set_xticks(range(X.shape[1]))
-axs[1].set_xticklabels(X.columns[pi_indices], rotation=40)
-axs[1].set_xlim([-1, X.shape[1]])
-plt.show()
+# Plot these two kinds of feature importance measures side by side
+# <snip>
 ```
 
 ![RFC Impurity and Permutation Importances](/img/gamma/gamma-rfc-importance.png)
 
 This type of inspection can lead to a better understanding of what
 drives the predictions made, and can better inform the user on
-certain matters specific to the problem at hand.
+certain details specific to the problem at hand.
 
-There's also "partial dependence", which can be helpful in the same way.
+There is also "partial dependence", which can be helpful in much the same way.
+The model can be exploited by artificially changing individual datum for
+single samples and measuring  how that changes predictions.
 
 ```python
 from sklearn.inspection import plot_partial_dependence
 
-# The model can be exploited by changing individual samples' individual
-# features to observe the average change in prediction values
-fig, ax = plt.subplots(figsize=(15, 7))
 plot_partial_dependence(
-    rfc, X=X.sample(100), features=X.columns, n_cols=5, ax=ax
+    rfc, X=X.sample(100), features=X.columns, n_cols=5,
 )
-fig.tight_layout()
 ```
 
 ![RFC Partial Dependence Plots](/img/gamma/rfc-partial-dependence.png)
 
-There are some great insights in plots like this that can tell you
+There are some great insights in plots like these that can tell you,
 "if this value is higher, then prediction probabilities of class 'g'
 drop," as is the case with `fAlpha` here.
 
-And there we have it, a certainly not exhaustive, but a fairly
+And there we have it, a certainly not exhaustive, but fairly
 comprehensive assessment of what can do with a traditional ML model
-on a dataset. One is required to specify the feature set and the target,
+on a dataset. One is required to specify the features and the target,
 train the model, and then one is able to:
 
 1. Make predictions
@@ -217,18 +198,16 @@ _... and that's about it_. The problem is that this approach assumes:
 * **You don't care a whole lot about the input features**
 * **You don't want any information pertaining to individual samples**
 * **All of your data is anomaly-free, or you don't care about anomalous or
-surprising values**
+surprising values influencing your predictions**
 
-This sets aside the matter of being able to update the model as new data
-comes in, as there are architectures our there that can support live model
-updates. Now, there are certainly platforms out there that
-go the full Dr. Frankenstein and stitch together N different individual models
+There are certainly platforms out there that
+go the full _Dr. Frankenstein_ and stitch together N different individual models
 to be able to describe each individual feature or do anomaly detection,
-but this becomes inelegant and unsatisfying.
+but this can become inelegant, unwieldy, and generally unsatisfying.
 
 Now that the lede has been sufficiently buried, let's take a look at what can
 be achieved if we take a step into a new world of holistically data-aware
-modeling like we find in Redpoll's Braid Engine.
+modeling as we find in Redpoll's Braid Engine.
 
 # Redpoll's Braid Engine
 
@@ -237,12 +216,12 @@ any number of requests. This has a number of benefits over maintaining,
 updating, and distributing a model file, but let's focus on task utility
 for the moment.
 
-Let's begin with inference — roughly the equivalent of _prediction_ in the
-traditional ML sense. We have prepared a data file with the 1/3rd of the
-`class` values `NaN`'d out; the same values as in the `X_test` samples above, for
+Let's begin with inference (prediction) of the target.
+We have prepared a data file with the 1/3rd of the
+`class` values `NaN`'d out — the same rows as in `X_test` above, for
 _apples-to-apples_ comparison's sake. We then created a _braid file_ from
 that data and started up a server on it locally. That done, inference, along
-with many other operations, are a simple matter to execute.
+with many other operations, is a simple matter to execute.
 
 ```python
 import pybraid
@@ -251,7 +230,7 @@ import pybraid
 c = pybraid.Client("0.0.0.0:8000", secure=False)
 
 # Identify which rows you want a prediction for
-pred_ixs = X_test.index.values.astype(str)
+pred_ixs = X_test.index.values
 
 # Request imputed values for these rows
 y_pred_rp = c.impute(col="class", rows=pred_ixs)
@@ -278,6 +257,7 @@ from sklearn.metrics import confusion_matrix
 accuracy = accuracy_score(y_test, y_pred_rp)
 precision = precision_score(y_test, y_pred_rp)
 
+# TODO: Remove this function for brevity's sake?
 def get_conf_df(y_test, y_pred):
     """Helper function to render a nice confusion matrix dataframe."""
     conf_arr = confusion_matrix(y_test, y_pred)
@@ -322,7 +302,7 @@ conf_df
 ```
 
 Feature importance can also be derived from the braid engine by calculating
-the proportion of information related to the target carried in each column.
+the _proportion of information_ related to the target carried in each column.
 
 ```python
 def get_feat_importance(client, target_cols, predictor_cols):
@@ -365,20 +345,22 @@ sns.barplot(
 
 We see in this apples-to-apples evaluation that a stock RandomForestClassifier
 wins out, 88.5% to 86% on precision. If one is not participating in a Kaggle
-competition, eking out every point possible, and is able to accept this
-marginal difference, we can begin to delve into the opportunities created with
-Redpoll's Braid engine.
+competition, eking out every point possible, and is able to tolerate this
+marginal difference, we can begin to explore the host of opportunities created
+with Redpoll's Braid engine.
 
-# Beyond Target Prediction
+# Beyond the Target
 
 Let's turn our attention to how the Braid engine has modeled the **entire**
-dataset. Let us consider a situation where a gamma ray has hit our hard disk
-and we have lost 1/3rd of the values in our dataset.
+dataset. We consider a situation where a particularly energetic gamma ray
+has struck our hard disk and we have lost 1/3rd of all values in our dataset.
 
 ```python
+import missingno as mno
+
 missing_df = df.copy()
 
-# Get the number of feature values in the dataset
+# Flatten all of the values into a single array
 vals = missing_df.drop(["class"], axis=1).values.flatten()
 
 # Select one third of them randomly
@@ -387,6 +369,7 @@ null_ixs = np.random.choice(
     size=round(len(vals)/3.0),
     replace=False
 )
+# Set these selected values to NaN
 vals[null_ixs] = np.NaN
 
 # Overwrite the values in the dataframe with this 1/3rd empty set
@@ -401,20 +384,22 @@ missing_df[["fLength", "fWidth", "fConc", "fAlpha"]].sample(5)
 # 9525   20.1855     NaN     NaN      NaN
 # 18742  20.8995     NaN  0.7428  81.0387
 
-import missingno as mno
+# Visualize the missing values in the dataset
+# (Dark regions are present data, white is missing)
 mno.matrix(missing_df)
 ```
 
 ![Dataset with aggressive data dropout](/img/gamma/missing.png)
 
-In this case of aggressive data loss, most traditional methods would have
-issues with using a dataset like this for its class prediction. One might
-handle this by using mean/median imputation on the missing values in their
-data pre-processing step, or they might even go overboard and train individual
-models for predicting each feature.
+The result is this heavily redacted dataset. There's even a sample that has
+only one datum! In this case of aggressive data loss, most traditional methods
+would have issues with managing to cope for class prediction.
+One might handle this by using mean imputation or adding sentinel values during
+the pre-processing step, or they might even go overboard and train
+individual models for predicting each feature.
 
-Braid, however, performs just as it did before without any issue. It is able
-to use what is given in order to render a prediction (along with uncertainty).
+Braid, however, functions just as it did before without any issue. It is able
+to use whatever information is given in order to render a prediction.
 
 ```python
 y_pred = c.impute("class")
@@ -439,29 +424,30 @@ get_conf_df(y_test, y_pred)
 
 But, to go even further, imagine you did want to fill in the gaps as best you
 can. Go ahead and use your Braid engine to make predictions on
-***any feature*** in your dataset.
+***any feature*** in your dataset. Here, we're imputing all of the `fLength`
+values that have been removed and evaluating the predictions.
 
 ```python
 from sklearn.metrics import r2_score
 
-# Predict any missing values of any feature
-y_pred_alpha = c.impute("fAlpha")["fAlpha"]
+# Predict any missing values of *any* feature
+y_pred_len = c.impute("fLength")["fLength"]
 
 # Pull the true values from the full dataset
-y_true_alpha = df.loc[y_pred_alpha.index.astype(int), "fAlpha"]
+y_true_len = df.loc[y_pred_len.index, "fLength"]
 
-# Do some evaluation
-print(f"R2: {round(r2_score(y_true_alpha, y_pred_alpha), 3)}")
+# Calculate the evaluation metric of your choice
+print(f"R2: {round(r2_score(y_true_len, y_pred_len), 3)}")
 
-# R2: 0.06
+# R2: 0.81
 
 # Plot the residuals
 fig, ax = plt.subplots(figsize=(12, 6))
-sns.histplot(y_pred_alpha.values - y_true_alpha.values, ax=ax)
-_ = ax.set_title("fAlpha Prediction Residuals")
+sns.histplot(y_pred_len.values - y_true_len.values, ax=ax)
+_ = ax.set_title("fLength Prediction Residuals")
 ```
 
-![fAlpha Residuals](/img/gamma/falpha-residuals.png)
+![fLength Residuals](/img/gamma/flength-residuals.png)
 
 It bears repeating: Braid has modeled the **entire dataset**. As such, it is able
 to model all of the features, not just the designated target. In fact,
@@ -471,20 +457,20 @@ to work with.
 # Data-Aware
 
 It's often the case that once our data is fed into fitting a model, we're done
-looking at it. It is the culmination of all the pre-screening and preprocessing
-that has been laid out before. But what if your framework could help you be
-introspective about the information that you have.
+looking at it. Only the weights/parameters are saved. But what if your framework
+could help you be introspective about the data that you have.
 
 ## Similarity
 
-With Braid, one can look to a single sample and find the most similar other
-samples in your dataset. This is no mere euclidean or cosine distance
-calculation. Those metrics are affected by scale. More importantly, what happens
+With Braid, one can look to a single sample and find the most similar
+samples in the rest of the dataset. This is no basic euclidean or cosine distance
+calculation; those metrics are affected by scale. More importantly, what happens
 if an attribute's distribution is flat noise across the feature space? In that
-case, different values shouldn't matter so much with sample similarity. Simple
-distances cannot suffice when identifying similar samples.
+case, different values shouldn't matter so much with sample-to-sample similarity.
+Simple distances don't suffice when identifying similar samples.
 
 ```python
+# Choose three arbitrary rows
 df.iloc[[0, 26, 15000]][["fLength", "fWidth", "fConc", "fAlpha", "class"]]
 
 #        fLength   fWidth   fConc   fAlpha class
@@ -527,18 +513,30 @@ all_pairs = [["0", str(i)] for i in range(1, len(df))]
 # 7864  0  7865   0.875
 ```
 
+This last one can be confusing, since we're not asking simply for rows with
+similar `fAlpha` values. Within Braid are many states, each of which utilize
+a subset of all features. When asking for similarity with respect to any one
+feature, it will only utilize internal states that factor in that aspect of the
+dataset to calculate similarities.
+
+This functionality is not found in any traditional ML architectures. The
+closest that one might come to sample-sample similarity is if one were to
+compress the features to some kind of latent space and create a metric of
+distance in that learned space. This would typically not be a component
+of any standard classifier like the one used above.
+
 ## Anomaly Detection
 
-Another capability with high utility is the ability to understand when a value
-is surprising, or anomalous. Much like the similarity metric, this can be a
-complicated measure to define. Yes, if a value is many sigma outside its
-distribution, it's anomalous, but it's also anomalous if a gamma event has
-a high `fAlpha` value (see jointplot above).
+Another data-aware strength with Braid is the ability to understand when a
+value is surprising, or anomalous. Much like the similarity metric, this can be
+a complicated measure to define. Yes, if a value is several standard deviations
+outside its distribution, it's anomalous — but it's also a bit surprising if a
+gamma event has a high `fAlpha` value (see the jointplot at the top).
 
 Traditional solutions stand helpless to identify these for you before
 or after training. There are plenty of standalone solutions and models
-that are made specifically for anomaly detection, but then you've just
-increased the amount of complexity of your project.
+that are designed specifically for anomaly detection, but then you've
+significantly increased the complexity of the project.
 
 Braid can natively highlight these samples for your consideration and evaluation.
 
@@ -575,12 +573,11 @@ Whether or not one might wish to keep an erroneous outlier in the training set
 is a judgment call, but one that can only be made once outliers have been
 identified.
 
-The capabilities and data-awareness doesn't end there; it is possible to find
+The data-aware capabilities don't end there; it is possible to find
 samples that are anomalous with respect to a _single feature_ or set of features.
 There may be cases where most of a sample's values are well within the realm of
-high probability, but feature X might be way off from what would be expected.
-This can be especially surprising given that the rest of the values are
-being rather average.
+high probability, but feature `X` might be way off from what would be otherwise
+expected.
 
 ```python
 # Calculate all the fWidth surprisals and get the top 5 most surprising
@@ -602,7 +599,7 @@ _ = ax.vlines(256.382, 0, ax.get_ylim()[1], color='r')
 
 This is a trivial example of an outlier. It's the same sample as the one
 found above, and can be seen in the `fWidth` plot.  This is not too
-interesting, but consider this example:
+interesting, but consider this next example:
 
 ```python
 # Calculate all the fAlpha surprisals and get the top 5 most surprising
@@ -618,29 +615,30 @@ interesting, but consider this example:
 # 12450  89.4816   6.628395
 
 ax = sns.histplot(df.fAlpha, kde=True)
-_ = ax.vlines(12.6281, ymin=0, ymax=ax.get_ylim()[1])
+_ = ax.vlines(12.4080, ymin=0, ymax=ax.get_ylim()[1])
 ```
 ![fAlpha Anomaly](/img/gamma/alpha.png)
 
 Here we have an interesting case where a particularly common `fAlpha` value
-of 12.4 is even more surprising than a fringe value of 89.9 — why is that?
-This is due to the context of the rest of the sample's information. We can
+of `12.4` is even more surprising than a fringe value of `89.9` — why is that?
+This is due to the context of the rest of the sample's data. We can
 get even more introspective about this anomaly by utilizing Braid's
 **simulation** capabilities.
 
 ## Simulation
 
-While the MAGIC gamma ray dataset is itself a Monte Carlo generated sample,
+While the MAGIC gamma ray dataset is itself a Monte Carlo (MC) generated sample,
 by training the Braid engine with its data, Braid itself can now act as a
-mimicking Monte Carlo generator. The MAGIC dataset is imbalanced, favoring
-gamma ray samples over hadronic 2-to-1. If a more balanced set is desired,
-downsampling is an option, or selecting the same hadron samples over again
-is also possible.
+Monte Carlo generator. The MAGIC dataset is imbalanced, favoring
+gamma ray samples over hadronic 2-to-1. If, for whatever reason, a more balanced
+set is desired, downsampling of gamma events is an option. Selecting the same
+hadron samples over again is also possible.
 
 But what if we generate our own simulated hadron samples? With `simulate()`,
 it's possible to create new samples based on what we know about the features,
-based on how they depend and relate to each other. Certain values can be hard
-set, such as the `class` value.
+based on how they depend and relate to each other. Specific values can be
+assigned as a "given" in this process, such as the case here where the `class`
+value is set to `h`.
 
 ```python
 # Generate new MC hadron samples
@@ -674,10 +672,11 @@ sim.head()
 # 2  282.019657  0.188556     g
 # 3  307.293975  0.231327     h
 # 4  342.755502  0.225058     h
+```
 
-With this capability in hand, let's return to that anomalous `fAlpha = 12.4`.
-We can simulate a distribution of `fAlpha` based on the rest of the values in
-that particular sample.
+With this capability in hand, let's return to that anomalous `fAlpha = 12.4`
+situation. We can simulate a distribution of `fAlpha` based on the rest of
+the values in that particular sample.
 
 ```python
 # Get the non-fAlpha values from this sample
@@ -689,7 +688,9 @@ sim_alphas = c.simulate(
     given=falpha_sample_data,
     n=10000,
 )
-sns.histplot(sim_alphas, kde=True)
+
+# Plot the simulated fAlpha values
+ax = sns.histplot(sim_alphas, kde=True)
 
 # Plot the anomalous fAlpha value over the distribution
 ax.vlines(12.4, ymin=0, ymax=ax.get_ylim()[1], color='r')
@@ -699,7 +700,8 @@ ax.vlines(12.4, ymin=0, ymax=ax.get_ylim()[1], color='r')
 ax.vlines(
     [mean-i*std for i in range(-3,4)],
     ymin=0,
-    ymax=ax.get_ylim()[1]*0.1, color='gray',
+    ymax=[ax.get_ylim()[1]*(0.4-(abs(i)*0.1)) for i in range(-3, 4)],
+    color='gray',
 )
 ```
 ![Simulated fAlpha](/img/gamma/sim-alpha.png)
@@ -708,14 +710,14 @@ And here we have the awaited answer to _"why is this perfectly average
 `fAlpha` value considered anomalous?"_ Given the rest of the data in the
 sample, according to Braid's understanding of how all the features
 depend on and predict one another, `fAlpha` is expected to lie almost
-entirely between 0 and 10. That it is 12.4 is pretty surprising to Braid,
+entirely between 0 and 10. A value of 12.4 is pretty surprising to Braid,
 as you can see it's past the 3σ mark of the right tail.
 
 # Uncertainties
 
 It's been touched on before, but let's talk about the ability to
-provide. In a very similar procedure to the simulation method above,
-we ask for a prediction given limited information:
+provide a measure of uncertainty. In a very similar procedure to
+the simulation method above, we ask for a prediction given limited information:
 
 ```python
 # Predict class, given two feature values
@@ -728,15 +730,17 @@ c.predict(
 # ('g', 0.19497380732945924)
 ```
 
-This uncertainty metric is not a measure of feature-specific variance,
-It is instead a unitless metric specific to Redpoll's Braid
-platform as a way for it to communicate its certainty in an imputation
-or hypothetical prediction. This can be a very important metric to keep in mind
-when making critical decisions. Perhaps, depending on the circumstances,
-one might only want to take action when the certainty is high.
+The `class` `g` is predicted with an uncertainty value. This uncertainty metric
+is not a measure of feature-specific variance. It is instead a unitless metric
+specific to Redpoll's Braid platform: 0.00 meaning no uncertainty, and 1.0
+meaning maximum uncertainty. It is available as a way for it to communicate
+its confidence in an imputation or hypothetical prediction. This can be a very
+important metric to keep in mind when making critical decisions. Perhaps,
+depending on the circumstances, one might only want to take action when the
+certainty is high.
 
-Let's give it some very clear hypotheticals and some confusing ones to
-see what it does, using this jointplot as a reference.
+Let's give it some very clear hypotheticals and some confusing ones, too, to
+see what it returns. We use this jointplot as a reference.
 
 ![Jointplot for Uncertianty](/img/gamma/jointplot-uncertainty.png)
 
@@ -749,7 +753,7 @@ c.predict(
 # ('h', 0.015325633697621743)
 
 # Values with high degree of overlap between gamma and hadron class,
-# which will introduce some uncertainty
+# which *should* report higher uncertainty without more information
 c.predict(
     "class",
     given={"fM3Long": 0.0, "fWidth": 10.0},
@@ -765,14 +769,14 @@ c.predict(
 # ('g', 0.29104324615324395)
 ```
 
-To provide a more intuitive understanding of what drives this these
+To provide a more intuitive understanding of what drives these
 predictions and uncertainties, let's assemble some visualizations.
 First, it helps to understand that Braid has multiple internal _states_,
 with each one providing its own probabilistic view on the question
 posed. In general, if all of these states agree with each other,
-the uncertainty will be low, but if they wildly differ, a superposition
-of all of the distributions will provide a prediction, but the uncertainty
-will be higher.
+the uncertainty will be lower, but if they wildly differ, a superposition
+of all of the distributions will provide a prediction, with the uncertainty
+will be elevated.
 
 
 ```python
@@ -857,8 +861,9 @@ def uncertainty_plot(client, df, col, row_ix, value_list):
 ```
 
 Now, choosing a random sample from our dataset (row 6), let's ask it what
-it would predict for a couple of its feature attributes, and what distribution
-each internal state would have chosen from.
+it would predict for a couple of its feature attributes. We also see the
+distributions (and aggregate distribution) that drive the results of
+the `predict()` method.
 
 In these examples, we will see
 
@@ -896,25 +901,34 @@ uncertainty_plot(
 ![fAlpha Uncertainty](/img/gamma/falpha-uncertainty.png)
 ![fLength Uncertainty](/img/gamma/flength-uncertainty.png)
 
-It's also worth noting that when asking Braid for simulated samples, these
-are the types of distributions that are calculated and used to draw from.
+It's also worth noting that, when asking Braid for simulated samples, these
+are the types of distributions that Braid's MC draws from.
 
 # Conclusion
 
-There is a limited paradigm in which the idea of AI and machine learning is
-currently entrenched. There exists entire toolboxes of "unit-taskers" that
-can successfully do one thing pretty well. I hope you have found in this post
+AI and machine learning is currently entrenched in a rather limited paradigm
+of functionality and scope.
+There exist entire toolboxes of "unit-taskers" that
+can successfully do one thing pretty well. I hope you have found in this post as
 evidence that a new paradigm is possible with the Braid engine. One that can
 model an entire data set or domain and do many, many things well.
 
 * Prediction (of **all** features)
-* Work with missing data — and is able to intelligently impute missing data
-* Provide a feature importance w.r.t. any other feature or group of features
+* Work with missing data — and is able to intelligently impute absent values
+* Provide feature importance w.r.t. any other feature or group of features
 * Provide uncertainty of predictions
 * Simulate new samples
 * Detect anomalous whole samples
-* Detect anomalous individual values, given the context of the rest of a sample
+* Detect anomalous individual datum, given the context of the rest of a sample
+
+This, in contrast to typical ML solutions which can only, on their own:
+
+* Make predictions of one feature
+* Provide feature importance of one feature
+* Provide kind of uncertainty/score as far as sigmoid or softmax values
 
 And all of this is done not as some Frankenstein Suite of unrelated products and
-models, but as the result of exploiting all of the benefits that come from one
-platform understanding the whole feature space.
+models, but as the result of exploiting all of the benefits that come from **one**
+platform understanding how it's all connected.
+
+This is holistic, humanistic AI in action.
