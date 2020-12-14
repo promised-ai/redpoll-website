@@ -2,15 +2,8 @@
 {% block title %}Redpoll Mission{% endblock title %}
 {% block head %}
   {{ super() }}
-  <link rel="stylesheet" href="/blog.css">
+  <!-- <link rel="stylesheet" href="/blog.css"> -->
 <style>
-  #title h1, #title p {
-    color: white;
-  }
-
-  #call-to-action {
-    background-color: gray;
-  }
 
   @media only screen and (max-width: 600px) {
     .full-page-flex {
@@ -27,13 +20,14 @@
 {% endblock head %}
 
 {% block content %}
-  <div id=blog-main-background></div>
+  <!-- <div id=blog-main-background></div> -->
+  <div id=background class="background-filter"></div>
   <div style="position: relative; margin: 0 0.5rem;">
     <div id="landing" class=full-page-flex>
       <div id="title">
         <img src="{{ config.base_url }}/img/bird-white.png" width="100px">
         <div class="mission">
-          <h1>
+          <h1 style="letter-spacing: 1vw">
             What We Believe
           </h1>
           <div style="max-width: 40rem; margin: 0rem auto;">

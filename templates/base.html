@@ -41,6 +41,7 @@
       </div>
     </div>
 
+    {# uncomment to add signup popup
     {% if show_call_to_action | default(value=true) %}
     <div id="call-to-action">
       <div class="flex" style="max-width: 40rem; margin: 0 auto;">
@@ -60,12 +61,15 @@
       </div>
     </div>
     {% endif %}
+    #}
 
     {% block content %}{% endblock content %}
 
     {% if show_signup_form | default(value=true) %}
-    <a name="subscribe"></a>
-    {{ signup::signup(heading="Request a consultation") }}
+      <a name="subscribe"></a>
+      {# uncomment to add signup form at bottm of page
+        {{ signup::signup(heading="Request a consultation") }}
+      #}
     {% endif %}
 
     <div id="footer">

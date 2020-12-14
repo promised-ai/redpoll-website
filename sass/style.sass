@@ -264,7 +264,7 @@ div.content-inner
 #background 
   background-color: #aaa
   position: fixed;
-  background-image: radial-gradient(circle at 15% 15%, rgba(15, 15, 15, 0.0) 0%, rgba(115, 15, 15, 0.2) 25%, rgba(15, 15, 15, 0.9) 75%, rgba(15, 15, 15, 1.0) 100%), url('img/child-1.jpg');
+  background-image: radial-gradient(circle at 15% 15%, rgba(15, 15, 35, 0.0) 0%, rgba(15, 15, 35, 0.2) 25%, rgba(15, 15, 25, 0.9) 75%, rgba(15, 15, 15, 1.0) 100%), url('img/dunes-1.jpg');
   background-position: center center;
   background-size: cover;
   height: 100%;
@@ -305,12 +305,8 @@ div.content-inner
 
 #title
   text-align: center
-  max-width: 53rem
-
-  h1, h2, p
-    // margin: 0
-    // padding: 0
-    color: white
+  // max-width: 53rem
+  color: white
 
 div.mission
   padding-bottom: 2rem;
@@ -320,8 +316,11 @@ div.mission
     font-family: "Raleway"
     text-transform: uppercase
     text-align: center
-    font-weight: 300
+    font-weight: 100
     margin: 1rem 0;
+    letter-spacing: 3vw
+    font-size: 8vw
+    color: crimson
 
   p
     font-family: "Prompt", "Avenir Next"
@@ -751,20 +750,20 @@ a.no-decoration
 //   #main-logo
 //     padding-top: 6rem
 
-@media screen and (max-width: 1000px)
-  .background-filter
-    transition-timing-function: ease;
-    transition: 0.3s all;
-    filter: brightness(0.5);
+// @media screen and (max-width: 1000px)
+//   .background-filter
+//     transition-timing-function: ease;
+//     transition: 0.3s all;
+//     filter: brightness(0.5);
 
-  .mission h1
-    font-size: 3rem;
-    letter-spacing: 0.75rem
+  // .mission h1
+  //   font-size: 3rem;
+  //   letter-spacing: 0.75rem
 
-@media screen and (min-width: 1000px)
-  .mission h1
-    font-size: 4.5rem;
-    letter-spacing: 1.15rem
+// @media screen and (min-width: 1000px)
+  // .mission h1
+  //   font-size: 4.5rem;
+  //   letter-spacing: 1.15rem
 
 @media screen and (max-width: 480px)
   #nav-center div
@@ -773,9 +772,9 @@ a.no-decoration
     font-weight: 300;
     font-size: 0.9rem
 
-  .mission h1
-    font-size: 2rem;
-    letter-spacing: 0.4rem
+  // .mission h1
+  //   font-size: 2rem;
+  //   letter-spacing: 0.4rem
 
   #background
     // filter: brightness(0.5);
