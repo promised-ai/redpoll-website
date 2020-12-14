@@ -28,6 +28,40 @@ responsibility has been placed upon the user &mdash; who is likely the person
 that least understands the technology. Ethical discussion aside, this post will
 discuss what AI needs &mdash; other than reliance on people &mdash; to be safe.
 
+
+# Interpretability and explainability are insufficient
+
+In recent year, there has been a great deal of focus on so-called "explainable"
+artificial intelligence (XAI). The goal of XAI is to develop approaches to
+explain black box models to human decision makers. Opponents of XAI argue that,
+rather than expending resources developing wrappers around uninterpretable
+models, that we should focus of developing more general, scaleable interpretable
+models because explaining and model that is interpretable is trivial.
+Certainly, understanding your AI is good, but both explanation and
+interpretation require time. Time for a person to observe an explanation, to
+formulate an interpretation, and to understand.
+
+AI/ML exists because it is impossible for people to process and learn from
+massive data sets, and neither Interpretable nor Explainable AI solve this
+problem. They simply replace the problem of processing impossible amount of data
+with scrutinizing impossible amounts of knowledge.
+
+Machine knowledge must be interpretable, and the machine must be aware of, and
+curate, its knowledge because a person cannot.
+
+## Epistemic awareness
+
+Safe AI must be aware of its knowledge, or *epistemically aware*. This means
+that it knows what it knows and can tell you when it does not. It can tell you
+under what conditions it is likely to succeed, and under what conditions it is
+likely to fail. Furthermore, it can tell you when things look weird (anomalies
+or data entry errors), and identify and characterized overarching world-level
+changes that affect its performance and understanding of the world. 
+
+In addition to increasing the robustness of an AI, a number of other safety
+features arise from epistemic awareness.
+
+<!-- 
 # Interpretability; not explainability
 
 In the past year or two "Explainable AI" has become a buzzword. It is a kind of
@@ -78,6 +112,7 @@ selectively trust the model based on its beliefs.
 
 Again, find a more in-depth discussion of explainabilty and interpretability
 [here](@/blog/explainable-problems.md).
+-->
 
 # Learning from streams
 
@@ -87,18 +122,6 @@ instant information and are able to react to situations with the most up-to-date
 knowledge possible. Waiting a week for an updated model is unacceptable in
 health and defense applications where things can change dramatically without
 warning.
-
-# Epistemic awareness
-
-Safe AI must be aware of its knowledge, or *epistemically aware*. This means
-that it knows what it knows and can tell you when it does not. It can tell you
-under what conditions it is likely to succeed, and under what conditions it is
-likely to fail. Furthermore, it can tell you when things look weird (anomalies
-or data entry errors), and identify and characterized overarching world-level
-changes that affect its performance and understanding of the world. 
-
-In addition to increasing the robustness of an AI, a number of other safety
-features arise from epistemic awareness.
 
 ## Uncertainty quantification
 
