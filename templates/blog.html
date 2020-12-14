@@ -2,6 +2,8 @@
 {% block title %}{{ section.title }}{% endblock title %}
 {% block head %}
   {{ super() }}
+  {% set_global show_call_to_action = false %}
+  {% set_global show_signup_form = false %}
   <link rel="stylesheet" href="/blog.css">
 {% endblock head %}
 
@@ -26,7 +28,6 @@
       <br>
 
       {% for post in section.pages | sort(attribute="date") | reverse %}
-      {% if not post.draft %}
         <div class="post">
           <div class="post-left">
             <a href={{ post.permalink }}>
@@ -46,7 +47,6 @@
             </a>
           </div>
         </div>
-      {% endif %} 
       {% endfor %} 
       <div class="section-spacer"></div>
     </div>

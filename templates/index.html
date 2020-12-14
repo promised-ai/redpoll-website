@@ -15,15 +15,6 @@
   <div class=content style="margin: 0 1rem">
   <div id="background" class="background-filter"></div>
 
-  <div id="call-to-action">
-    <a href="#feature-humanistic" class=no-decoration>
-      <div class=button>Learn more</div>
-    </a>
-    <a href="#subscribe" class=no-decoration>
-      <div class=button>Get updates</div>
-    </a>
-  </div>
-
   <!-- <div id="main"> -->
   <div style="position: relative">
     <div id="landing" class=full-page-flex>
@@ -31,7 +22,8 @@
         <img src="{{ config.base_url }}/img/bird-white.png" width="100px">
         <div class="mission">
           <h1>
-            People change the world, not machines.
+            <!-- PeForople change the world, not machines. -->
+            REDPOLL
           </h1>
           <!-- <p> -->
           <!--   A new artificial intelligence architecture that learns, and stores its knowledge, like people do, so it can be a safe and effective partner to people, not a replacement. -->
@@ -103,18 +95,9 @@
   </div>
 </div>
 
-  <a name="subscribe"></a>
-  {{ signup::signup(heading="Subscribe to updates") }}
-
-
   <script>
     window.addEventListener('scroll', () => {
       let y = window.scrollY || window.pageYOffset
-      if (y > 15) {
-        document.getElementById("call-to-action").classList.add("transparent");
-      } else {
-        document.getElementById("call-to-action").classList.remove("transparent");
-      }
       if (y > screen.height/3) {
         if (document.getElementById("background").classList.contains("background-filter")) {
           document.getElementById("background").classList.replace("background-filter", "darken-background");
