@@ -31,15 +31,15 @@ discuss what AI needs &mdash; other than reliance on people &mdash; to be safe.
 
 # Interpretability and explainability are insufficient
 
-In recent year, there has been a great deal of focus on so-called "explainable"
-artificial intelligence (XAI). The goal of XAI is to develop approaches to
-explain black box models to human decision makers. Opponents of XAI argue that,
-rather than expending resources developing wrappers around uninterpretable
-models, that we should focus of developing more general, scaleable interpretable
-models because explaining and model that is interpretable is trivial.
-Certainly, understanding your AI is good, but both explanation and
+In recent years, there has been a great deal of focus on so-called
+"explainable" artificial intelligence (XAI). The goal of XAI is to develop
+approaches to explain black box models to human decision makers. Opponents of
+XAI argue that, rather than expending resources developing wrappers around
+uninterpretable models, that we should focus of developing more general,
+scaleable interpretable models because explaining an interpretable model tha
+trivial.  Certainly, understanding your AI is good, but both explanation and
 interpretation require time. Time for a person to observe an explanation, to
-formulate an interpretation, and to understand.
+formulate an interpretation, and to understand. What is happening in that time?
 
 AI/ML exists because it is impossible for people to process and learn from
 massive data sets, and neither Interpretable nor Explainable AI solve this
@@ -55,7 +55,7 @@ Safe AI must be aware of its knowledge, or *epistemically aware*. This means
 that it knows what it knows and can tell you when it does not. It can tell you
 under what conditions it is likely to succeed, and under what conditions it is
 likely to fail. Furthermore, it can tell you when things look weird (anomalies
-or data entry errors), and identify and characterized overarching world-level
+or data entry errors), and identify and characterize overarching world-level
 changes that affect its performance and understanding of the world. 
 
 In addition to increasing the robustness of an AI, a number of other safety
@@ -125,16 +125,16 @@ warning.
 
 ## Uncertainty quantification
 
-There are really two types of uncertainty: uncertainty associated with the data
+There are two types of uncertainty: uncertainty associated with the data
 and uncertainty associated with the model. The model may be very certain that a
 particular prediction has high variability simply because the data are highly
 variable; or it may be highly uncertain about a low variance prediction because
-it just can figure out what is going on. We need to know both of these things.
-If the natural variance of the data are high, we may need to search for another
+it just cannot figure out what is going on. We need to know both of these things.
+If the natural variance of the data is high, we may need to search for a new
 supporting variable to explain that variance. For example, the height of any
-human is more variable than the height of a two-year-old human. On the other
+human is more variable than the height of any two-year-old human. On the other
 hand, if the model cannot figure out how to model a prediction, we need to hedge
-our bets, or to ask the system what extra data it needs to do a better job, or
+our bets or to ask the system what extra data it needs to do a better job, or
 to take some other intervention.
 
 ## Anomaly detection
@@ -152,13 +152,13 @@ be incompatibilities which lead to failures, distrust, and disuse.
 ## Novelty detection
 
 Novelty detection is a broader concept than anomaly detection. We think of an
-anomaly being a one-off observation, while novelty can be an event that changes
+anomaly as a one-off observation, while novelty can be an event that changes
 many observations. For example, a new class arises: our model which is trained
-to classify images of fruits starts receiving images of a vegetable. Or maybe
+to classify images of fruits starts receiving images of a vegetables. Or maybe
 the interaction between variables changes: the floor of the building in which we
 run an assay becomes important to prediction because of mold issue. Or maybe the
-entire world goes crazy because of a global viral pandemic (a rather far-fetched
-scenario). How will your AI respond? It will break. Tragically.
+entire world goes crazy because of a global viral pandemic (a far-fetched
+scenario to be sure). How will your AI respond? It will break. Tragically.
 
 A safe AI must recognize these situations. It must tell the user what changed,
 when the change occurred and what affect the change has on its performance.
@@ -168,7 +168,7 @@ when the change occurred and what affect the change has on its performance.
 Detecting when things go wrong is great, but detecting and reacting is better.
 Reaction can take many forms. Maybe the AI re-composes itself to handle
 world-breaking events, or perhaps it asks for help. For example, systems meant
-to track power use behavior pre- and post-global-pandemic can probably be broken
+to track power-use behavior pre- and post-global-pandemic can probably be broken
 into two distinct parts. But it would be good for policy makers to know which
 model, pre- or post-pandemic, better describes behavior at a given time to help
 determine the mood of the public at large.
@@ -196,7 +196,7 @@ issues.
 
 # Key Points
 
-To be safe, and artificial intelligence must
+To be safe, an artificial intelligence must
 
 1. Store its knowledge in a way that is naturally human interpretable
 2. Learn from streams of data
