@@ -9,7 +9,7 @@ categories = ["ai"]
 
 [extra]
 author = "Baxter Eaves"
-subheading = "What artificial intelligence needs — other than people — to be safe"
+subheading = "What artificial intelligence needs — in addition to people — to be safe"
 image = "burning.jpg"
 theme = "light-transparent"
 front_page = false
