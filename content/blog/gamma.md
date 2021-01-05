@@ -1,8 +1,8 @@
 +++
 title = "Use Case: Gamma Ray Detection with the MAGIC Telescope"
-date = 2020-12-05
+date = 2021-01-06
 template = "post.html"
-draft = true
+draft = false
 
 [taxonomies]
 categories = ["data science", "demo", "ai"]
@@ -14,13 +14,13 @@ image = "gamma/magic-laser-calibration.jpg"
 theme = "light-transparent"
 +++
 
-Machine Learning is, at times, treated as an all-purpose panacea to
+Machine Learning is often treated as a panacea to
 any data woes one might have. This is in contrast to the limited
-capabilities of typical ML solutions that are widely available. Almost
+capabilities of typical, widely available ML solutions. Almost
 any model — from the humble perceptron to the formidable, pre-trained VGG-19
-deep neural network — is very focused and limited in its immediate scope.
-The model is trained and tuned to perform one task well. These tend to be of
-little use for any other task, even one which is based on the exact same dataset.
+deep neural network — is very focused and restricted in its immediate scope.
+They are trained and tuned to perform **one task** well. These tend to be of
+little use for any other goals, even one which is based on the exact same dataset.
 
 In this post, we'll review a simple supervised classification task as it's
 commonly encountered, and deal with it via traditional ML methods. Then we
@@ -57,7 +57,7 @@ Without going into much detail, these events light up "pixels" of a detector,
 forming an ellipse. These ellipses can be parametrized by characteristics such
 as _distance from the center of the camera_ (`fDist`), length (`fLength`) and
 width (`fWidth`) of the ellipse's axes, and angle of its long axis (`fAlpha`).
-There are also metrics with respect to how bright the pixels are (`fSize`) and
+There are also metrics representing how bright the pixels are (`fSize`) and
 how concentrated that brightness is (`fConc`). You can find the dataset and the
 full definition of the features at the
 [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/MAGIC+Gamma+Telescope)
@@ -172,7 +172,7 @@ certain details specific to the problem at hand.
 
 There is also *"partial dependence"*, which can be helpful in much the same way.
 The model can be exploited by artificially changing individual datum for
-single samples and measuring  how that changes predictions.
+single samples and measuring how that changes predictions.
 
 ```python
 from sklearn.inspection import plot_partial_dependence
@@ -344,8 +344,8 @@ id
 
 ![Dataset with aggressive data dropout](/img/gamma/missing.png)
 
-The result is this heavily redacted dataset. In the graphic above, imagine this
-the entire dataframe compressed, with each horizontal line being a sample. For
+The result is this heavily redacted dataset. In the graphic above, imagine
+the entire dataframe compressed, with each horizontal line being a sample row. For
 each feature column, dark means that the data is present, and white means that
 this value is missing. Looking to the right, we see there's even a sample that
 has only one datum!
@@ -380,7 +380,7 @@ Precision: 0.813
          Predicted       Total
                  -     +
 Actual -      1343   868  2211
-      +       296  3770  4066
+       +       296  3770  4066
 Total         1639  4638  6277
 ```
 
@@ -415,7 +415,7 @@ R2: 0.81
 ![fLength Residuals](/img/gamma/flength-residuals.png)
 
 It bears repeating: Reformer has modeled the **entire dataset**. As such, it is
-able to make informed assessments with respect to each features, not just the
+able to make informed assessments with respect to each feature, not just the
 designated target. In fact, Reformer doesn't even ask you to designate a target
 when providing it data to work with.
 
@@ -492,11 +492,12 @@ built separately.
 ## Anomaly Detection
 
 Another data-aware strength with Reformer is the ability to understand when a
-value is surprising, unexpected, or anomalous. Much like the similarity metric,
+value or sample is anomalous. Much like the similarity metric,
 this can be a complicated measure to define. Yes, if a value is several
-standard deviations outside its distribution, it's anomalous — but it's
-also a surprising if a gamma event has a high `fAlpha` angle value (see the
-jointplot at the top).
+standard deviations outside of its distribution, it's anomalous — but it's
+also surprising if a gamma event has a high `fAlpha` angle value (see the
+jointplot at the top) even if the value isn't an outlier  for the whole
+population.
 
 Traditional solutions stand helpless to identify these for you before
 or even after training. There are plenty of standalone solutions and models
@@ -504,33 +505,26 @@ that are _designed specifically for_ anomaly detection, but then incorporating
 it significantly increases the complexity of the ML pipeline.
 
 Reformer can natively highlight these samples for your consideration and
-evaluation. Here, we calculate the overall probability of each sample,
-convert it to surprisal, and fetch the most surprising sample. We then plot
-the values of this sample over all of the base distributions.
+evaluation. The statistical property of _"surprisal"_ is used by Reformer
+to determine how surprising, unexpected, or **anomalous** a sample is.
+Here, we calculate the overall _surprisal_ of each sample and
+fetch the most extreme one. We then plot
+the values of this anomaly over all of the base distributions.
 
 ```python
 from math import ceil, floor
 
-# TODO: Mock this up to look like the surprisal calls below?
-
-# Calculate the log probability of each sample
-logps = client.logp_scaled(
-    cols=df.columns,
-    values=[list(x) for x in df.values]
-)
-# Convert to probability
-sample_probs = [np.exp(x) for x in logps]
-
-# Get the least probable sample
-anomaly_ix = np.argmin(sample_probs)
-anomaly = df.iloc[anomaly_ix]
+# Calculate all the sample surprisals and fetch the most surprising
+top_anomaly = (client.surprisal()
+    .sort_values(by=["surprisal"], ascending=False)
+    .iloc[0])
 
 # Plot the values of this sample over the base distributions
 fig, axs = plt.subplots(2, 5, figsize=(15, 5))
 for i, col in enumerate(df.columns[:-1]):
     ax = axs[floor(i // 5)][i%5]
     sns.histplot(df[col], ax=ax, kde=True)
-    ax.vlines(anomaly[col], 0, ax.get_ylim()[1], color='r')
+    ax.vlines(top_anomaly[col], 0, ax.get_ylim()[1], color='r')
 fig.tight_layout()
 ```
 
@@ -560,7 +554,7 @@ top_fwidth_anomalies = (client.surprisal("fWidth")
 print(top_fwidth_anomalies)
 ```
 ```
-Output
+Output:
          fWidth  surprisal
 17717  256.3820  12.352112
 17754  228.0385  10.388123
@@ -569,7 +563,7 @@ Output
 13496  201.3640   8.389742
 ```
 
-This top anomaly is a trivial example of an outlier — it's value is at the very
+This top anomaly is a trivial example of an outlier — its value is at the very
 fringe of the base distribution. It's the same sample as the one found above,
 and can be seen in the `fWidth` plot.  This is not too interesting, but consider
 this next example:
@@ -660,8 +654,8 @@ Output:
 With this capability in hand, let's return to that anomalous `fAlpha = 12.4`
 situation.
 
-We get all of the values of that anomalous sample, and the those are used to
-simulate 10,000 `fAlpha` values, given the sample values at hand. Then we plot
+We fetch the attributes of that anomalous sample, and those are used to
+simulate 10,000 `fAlpha` values, given the rest of the sample values. Then we plot
 that distribution to gain insight into what the likely `fAlpha` distribution
 for one such sample is expected to be in **Model Space**.
 
@@ -779,7 +773,7 @@ Uncertainty: 0.291
 
 To provide a more intuitive understanding of what drives these
 predictions and uncertainties, let's assemble some visualizations.
-In Reformer's **Model Space**, there exist various views, or perspectives
+In Reformer's **Model Space**, there exist various views or perspectives
 on what distribution a datum might have. This is based on _structure_ that
 Reformer has detected in the data. Various combinations of features may
 exhibit structure that Reformer can learn and use for inferences. Sometimes,
@@ -839,7 +833,7 @@ evidence that a new paradigm is possible with the Reformer engine. One that can
 model an entire data set or domain and do many, many things well.
 
 * Prediction (of **all** features)
-* Work with missing data — and is able to intelligently impute absent values
+* Work with missing data — and can intelligently impute absent values
 * Provide feature importance
 * Simulate new samples
 * Detect anomalous whole samples
