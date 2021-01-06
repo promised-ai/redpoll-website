@@ -52,6 +52,7 @@ between real gamma shower events and _"hadronic showers"_ would be very useful,
 especially since hadronic showers are much more common to occur.
 
 ![Measurements of an incident gamma/hadron shower](/img/gamma/magic-experiment.png)
+*<p style="font-style: italic; text-align: center;">Geometric feature extraction from gamma event</p>*
 
 Without going into much detail, these events light up "pixels" of a detector,
 forming an ellipse. These ellipses can be parametrized by characteristics such
