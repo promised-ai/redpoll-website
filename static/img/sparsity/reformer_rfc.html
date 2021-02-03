@@ -1,0 +1,85 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Reformer Telco Accuracy</title>
+      
+      
+        
+          
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.1.min.js" integrity="sha384-kLr4fYcqcSpbuI95brIH3vnnYCquzzSxHPU6XGQCIkQRGJwhg0StNbj1eegrHs12" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="cf2ab73d-f1ef-4087-b0dc-cd48a4ca6d5f" data-root-id="57412"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="57660">
+          {"d5554bb8-8c3d-4b56-808b-e1ad1b9ef776":{"roots":{"references":[{"attributes":{"line_alpha":0.8,"line_color":"#2ca02c","line_width":2,"x":{"field":"frac"},"y":{"field":"RFC (preprocessing required)"}},"id":"57480","type":"Line"},{"attributes":{"callback":null,"tooltips":[["Feature","$name"],["Accuracy","$y{%i}"],["% Missing","$x{%i}"]]},"id":"57411","type":"HoverTool"},{"attributes":{},"id":"57495","type":"Selection"},{"attributes":{},"id":"57454","type":"BasicTickFormatter"},{"attributes":{"data":{"RFC (preprocessing required)":{"__ndarray__":"CrjOsnJL6T+uFuS/2M3oP82hh7u29+g/2gcKGwaW6D/H6tHcMcnoP0UHjg818+c/7hxZ+x+k5z/8evL8tIPmPy4jzjZneuY/","dtype":"float64","order":"little","shape":[9]},"Refomer":{"__ndarray__":"MfI+Lxvl6D8x8j4vG+XoPxJnmzM9u+g/XeNkikit6D8MsOVUuIzoP5zxwiNKQug/wiszoPLb5z/oZaMcm3XnP5cyJOcKVec/","dtype":"float64","order":"little","shape":[9]},"frac":{"__ndarray__":"mpmZmZmZuT+amZmZmZnJPzMzMzMzM9M/mpmZmZmZ2T8AAAAAAADgPzMzMzMzM+M/ZmZmZmZm5j+amZmZmZnpP83MzMzMzOw/","dtype":"float64","order":"little","shape":[9]},"index":[0,1,2,3,4,5,6,7,8]},"selected":{"id":"57476"},"selection_policy":{"id":"57475"}},"id":"57461","type":"ColumnDataSource"},{"attributes":{"source":{"id":"57461"}},"id":"57467","type":"CDSView"},{"attributes":{"data":{"RFC (preprocessing required)":{"__ndarray__":"CrjOsnJL6T+uFuS/2M3oP82hh7u29+g/2gcKGwaW6D/H6tHcMcnoP0UHjg818+c/7hxZ+x+k5z/8evL8tIPmPy4jzjZneuY/","dtype":"float64","order":"little","shape":[9]},"Refomer":{"__ndarray__":"MfI+Lxvl6D8x8j4vG+XoPxJnmzM9u+g/XeNkikit6D8MsOVUuIzoP5zxwiNKQug/wiszoPLb5z/oZaMcm3XnP5cyJOcKVec/","dtype":"float64","order":"little","shape":[9]},"frac":{"__ndarray__":"mpmZmZmZuT+amZmZmZnJPzMzMzMzM9M/mpmZmZmZ2T8AAAAAAADgPzMzMzMzM+M/ZmZmZmZm5j+amZmZmZnpP83MzMzMzOw/","dtype":"float64","order":"little","shape":[9]},"index":[0,1,2,3,4,5,6,7,8]},"selected":{"id":"57517"},"selection_policy":{"id":"57516"}},"id":"57498","type":"ColumnDataSource"},{"attributes":{},"id":"57432","type":"WheelZoomTool"},{"attributes":{},"id":"57456","type":"UnionRenderers"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","logo":null,"tools":[{"id":"57431"},{"id":"57432"},{"id":"57433"},{"id":"57434"},{"id":"57435"},{"id":"57411"}]},"id":"57437","type":"Toolbar"},{"attributes":{"source":{"id":"57498"}},"id":"57504","type":"CDSView"},{"attributes":{"data":{"RFC (preprocessing required)":{"__ndarray__":"CrjOsnJL6T+uFuS/2M3oP82hh7u29+g/2gcKGwaW6D/H6tHcMcnoP0UHjg818+c/7hxZ+x+k5z/8evL8tIPmPy4jzjZneuY/","dtype":"float64","order":"little","shape":[9]},"Refomer":{"__ndarray__":"MfI+Lxvl6D8x8j4vG+XoPxJnmzM9u+g/XeNkikit6D8MsOVUuIzoP5zxwiNKQug/wiszoPLb5z/oZaMcm3XnP5cyJOcKVec/","dtype":"float64","order":"little","shape":[9]},"frac":{"__ndarray__":"mpmZmZmZuT+amZmZmZnJPzMzMzMzM9M/mpmZmZmZ2T8AAAAAAADgPzMzMzMzM+M/ZmZmZmZm5j+amZmZmZnpP83MzMzMzOw/","dtype":"float64","order":"little","shape":[9]},"index":[0,1,2,3,4,5,6,7,8]},"selected":{"id":"57457"},"selection_policy":{"id":"57456"}},"id":"57444","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.8},"fill_color":{"value":"#ff7f0e"},"line_alpha":{"value":0.8},"line_color":{"value":"#ff7f0e"},"size":{"units":"screen","value":5},"x":{"field":"frac"},"y":{"field":"Refomer"}},"id":"57463","type":"Circle"},{"attributes":{},"id":"57476","type":"Selection"},{"attributes":{"line_alpha":0.8,"line_color":"#ff7f0e","line_width":2,"x":{"field":"frac"},"y":{"field":"Refomer"}},"id":"57446","type":"Line"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#2ca02c"},"line_alpha":{"value":0.2},"line_color":{"value":"#2ca02c"},"size":{"units":"screen","value":5},"x":{"field":"frac"},"y":{"field":"RFC (preprocessing required)"}},"id":"57502","type":"Circle"},{"attributes":{},"id":"57457","type":"Selection"},{"attributes":{"data":{"RFC (preprocessing required)":{"__ndarray__":"CrjOsnJL6T+uFuS/2M3oP82hh7u29+g/2gcKGwaW6D/H6tHcMcnoP0UHjg818+c/7hxZ+x+k5z/8evL8tIPmPy4jzjZneuY/","dtype":"float64","order":"little","shape":[9]},"Refomer":{"__ndarray__":"MfI+Lxvl6D8x8j4vG+XoPxJnmzM9u+g/XeNkikit6D8MsOVUuIzoP5zxwiNKQug/wiszoPLb5z/oZaMcm3XnP5cyJOcKVec/","dtype":"float64","order":"little","shape":[9]},"frac":{"__ndarray__":"mpmZmZmZuT+amZmZmZnJPzMzMzMzM9M/mpmZmZmZ2T8AAAAAAADgPzMzMzMzM+M/ZmZmZmZm5j+amZmZmZnpP83MzMzMzOw/","dtype":"float64","order":"little","shape":[9]},"index":[0,1,2,3,4,5,6,7,8]},"selected":{"id":"57495"},"selection_policy":{"id":"57494"}},"id":"57478","type":"ColumnDataSource"},{"attributes":{},"id":"57516","type":"UnionRenderers"},{"attributes":{"label":{"value":"RFC (preprocessing required)"},"renderers":[{"id":"57483"},{"id":"57503"}]},"id":"57497","type":"LegendItem"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#ff7f0e"},"line_alpha":{"value":0.2},"line_color":{"value":"#ff7f0e"},"size":{"units":"screen","value":5},"x":{"field":"frac"},"y":{"field":"Refomer"}},"id":"57465","type":"Circle"},{"attributes":{"axis":{"id":"57423"},"grid_line_color":null,"ticker":null},"id":"57426","type":"Grid"},{"attributes":{"source":{"id":"57478"}},"id":"57484","type":"CDSView"},{"attributes":{"overlay":{"id":"57436"}},"id":"57433","type":"BoxZoomTool"},{"attributes":{"data_source":{"id":"57478"},"glyph":{"id":"57480"},"hover_glyph":null,"muted_glyph":{"id":"57482"},"name":"RFC (preprocessing required)","nonselection_glyph":{"id":"57481"},"selection_glyph":null,"view":{"id":"57484"}},"id":"57483","type":"GlyphRenderer"},{"attributes":{"axis_label":"% All Values Missing","formatter":{"id":"57454"},"ticker":{"id":"57424"}},"id":"57423","type":"LinearAxis"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#ff7f0e"},"line_alpha":{"value":0.1},"line_color":{"value":"#ff7f0e"},"size":{"units":"screen","value":5},"x":{"field":"frac"},"y":{"field":"Refomer"}},"id":"57464","type":"Circle"},{"attributes":{"data_source":{"id":"57461"},"glyph":{"id":"57463"},"hover_glyph":null,"muted_glyph":{"id":"57465"},"name":"Refomer","nonselection_glyph":{"id":"57464"},"selection_glyph":null,"view":{"id":"57467"}},"id":"57466","type":"GlyphRenderer"},{"attributes":{"axis":{"id":"57427"},"dimension":1,"ticker":null},"id":"57430","type":"Grid"},{"attributes":{"label":{"value":"Refomer"},"renderers":[{"id":"57449"},{"id":"57466"}]},"id":"57460","type":"LegendItem"},{"attributes":{},"id":"57475","type":"UnionRenderers"},{"attributes":{"click_policy":"mute","items":[{"id":"57460"},{"id":"57497"}]},"id":"57459","type":"Legend"},{"attributes":{},"id":"57431","type":"PanTool"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"57436","type":"BoxAnnotation"},{"attributes":{},"id":"57417","type":"DataRange1d"},{"attributes":{"fill_alpha":{"value":0.8},"fill_color":{"value":"#2ca02c"},"line_alpha":{"value":0.8},"line_color":{"value":"#2ca02c"},"size":{"units":"screen","value":5},"x":{"field":"frac"},"y":{"field":"RFC (preprocessing required)"}},"id":"57500","type":"Circle"},{"attributes":{},"id":"57428","type":"BasicTicker"},{"attributes":{},"id":"57421","type":"LinearScale"},{"attributes":{"line_alpha":0.1,"line_color":"#2ca02c","line_width":2,"x":{"field":"frac"},"y":{"field":"RFC (preprocessing required)"}},"id":"57481","type":"Line"},{"attributes":{"data_source":{"id":"57444"},"glyph":{"id":"57446"},"hover_glyph":null,"muted_glyph":{"id":"57448"},"name":"Refomer","nonselection_glyph":{"id":"57447"},"selection_glyph":null,"view":{"id":"57450"}},"id":"57449","type":"GlyphRenderer"},{"attributes":{"below":[{"id":"57423"}],"center":[{"id":"57426"},{"id":"57430"},{"id":"57459"}],"left":[{"id":"57427"}],"renderers":[{"id":"57449"},{"id":"57466"},{"id":"57483"},{"id":"57503"}],"title":{"id":"57413"},"toolbar":{"id":"57437"},"toolbar_location":null,"x_range":{"id":"57415"},"x_scale":{"id":"57419"},"y_range":{"id":"57417"},"y_scale":{"id":"57421"}},"id":"57412","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"57424","type":"BasicTicker"},{"attributes":{"source":{"id":"57444"}},"id":"57450","type":"CDSView"},{"attributes":{"line_alpha":0.2,"line_color":"#2ca02c","line_width":2,"x":{"field":"frac"},"y":{"field":"RFC (preprocessing required)"}},"id":"57482","type":"Line"},{"attributes":{},"id":"57494","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"57498"},"glyph":{"id":"57500"},"hover_glyph":null,"muted_glyph":{"id":"57502"},"name":"RFC (preprocessing required)","nonselection_glyph":{"id":"57501"},"selection_glyph":null,"view":{"id":"57504"}},"id":"57503","type":"GlyphRenderer"},{"attributes":{},"id":"57415","type":"DataRange1d"},{"attributes":{},"id":"57419","type":"LinearScale"},{"attributes":{"line_alpha":0.2,"line_color":"#ff7f0e","line_width":2,"x":{"field":"frac"},"y":{"field":"Refomer"}},"id":"57448","type":"Line"},{"attributes":{},"id":"57434","type":"ResetTool"},{"attributes":{},"id":"57452","type":"BasicTickFormatter"},{"attributes":{"text":"Churn Prediction"},"id":"57413","type":"Title"},{"attributes":{"axis_label":"Accuracy","formatter":{"id":"57452"},"ticker":{"id":"57428"}},"id":"57427","type":"LinearAxis"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#2ca02c"},"line_alpha":{"value":0.1},"line_color":{"value":"#2ca02c"},"size":{"units":"screen","value":5},"x":{"field":"frac"},"y":{"field":"RFC (preprocessing required)"}},"id":"57501","type":"Circle"},{"attributes":{"line_alpha":0.1,"line_color":"#ff7f0e","line_width":2,"x":{"field":"frac"},"y":{"field":"Refomer"}},"id":"57447","type":"Line"},{"attributes":{},"id":"57435","type":"SaveTool"},{"attributes":{},"id":"57517","type":"Selection"}],"root_ids":["57412"]},"title":"Bokeh Application","version":"2.1.1"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('57660').textContent;
+                  var render_items = [{"docid":"d5554bb8-8c3d-4b56-808b-e1ad1b9ef776","root_ids":["57412"],"roots":{"57412":"cf2ab73d-f1ef-4087-b0dc-cd48a4ca6d5f"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
