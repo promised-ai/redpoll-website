@@ -82,7 +82,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-04.png" style="max-width: 190px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p style="font-size:150%;">Then you choose from one of infinite machine learning models, each with a legion of parameters, hyperparameters, and optional add-ons..</p>
+        <p style="font-size:150%;">Then you choose from one of infinite machine learning models, each with a legion of parameters, hyperparameters, and optional add-ons.</p>
     </div>
 </div>
 
@@ -176,29 +176,32 @@ If this is too-often occurring, there are costs of compounding interruptions, in
 
 ## The Death Spiral
 
-The whole data science cycle is rough, but the Death Spiral is the model - train - validate cycle.
+The whole data science cycle is rough, but the model - train - validate process is a Death Spiral.
 This cycle is where I have seen the most data science projects "go off the rails".
-Many things come together to make this part of the process particularly nasty, but most of the trouble is in measuring and maximizing performance.
+Many aspects converge to make the process particularly nasty, but most of the trouble is in measuring and maximizing performance.
 
 Machine learning does not give you a good way to know whether your question is answerable with your data or how well you should expect to do.
 The first time you try a model, you are likely to fail.
 Your options are then to find a model that will work or prove that no model will work.
 You must succeed, or you must prove unicorns do not exist.
-Under some circumstances, even if have the math and the problem is well-behaved, you may be able to prove that modeling is impossible.
+Under some circumstances, even if you have the math and the problem is well-behaved, you may be able to prove that modeling is impossible.
 Nevertheless, in my experience (much to my dismay), mathematical proof is not compelling to stakeholders.
 People want and understand empirical results.
 In practice, the only way to prove that no model will work &mdash; or no model will work better &mdash; is by deduction, to try *everything*.
 
-There is no shortage of things to try.
+Due to sheer combinatorics, there is no shortage of things to try.
 And since none of them quite fit your question and your data, there is always something to blame.
 "Well, this model does not work well with categorical data, so maybe we could try a different encoding or embedding", "This deep network only has two layers, so it's probably not very expressive", or "We have a lot of missing data, and we've only tried this one imputation method".
 
-Of course, each time you make a modeling choice, you must explain it to, and get the thumbs up from, a subject area expert.
+With each modeling choice, you must explain it to — and get the thumbs up from — a subject area expert.
 Communication becomes a bottleneck.
-So you either communicate properly, dragging out your process out by months (or longer), or you do not communicate and deliver something likely to fail or to be rejected by decision-makers because they do not understand because they haven't been included (hell, they might not understand even if they're included because machine learning is opaque).
-As a result, it is common for data science projects to be shelved after months or even years of development.
+As a result, there are two communication pitfalls:
+1. You communicate properly, as frequently as CRISP-DM demands, dragging out your process out by months (or longer)
+1. You do not communicate and deliver something likely to fail or to be rejected by decision-makers. This can be because they do not understand or don't want it (because they haven't been included) or even because the machine learning aspect is opaque.
 
-## Why The Data Science Death Spiral Exists
+As a result of all of this, it is common for data science projects to be shelved after months or even _years_ of investment and development.
+
+### So why does the data science Death Spiral exist? 
 
 The Data Science Death Spiral exists because machine learning is, and always has been, focused on modeling questions.
 What is the value of Y given X?
@@ -206,21 +209,23 @@ Which data are similar?
 What factors determine Z?
 Machine learning assumes the user has a well-defined problem with nice, neat, and complete data.
 This is rarely the case.
-**Your problem is more nuanced than you think and your data are gross**.
+> **Your problem is more nuanced than you think and your data are gross**.
 
-Because machine learning focuses on modeling questions, the standard data science process must focus on modeling questions; so the standard process is good when you have a well-defined problem and nice data.
+Because machine learning focuses on modeling individual questions, the standard data science process must focus on modeling questions; so the standard process is good when you have a well-defined problem and nice data.
 It is bad when you have a nebulous problem and ugly data, and is disastrous when exploring.
-**And since the Data Science process is tragically bad for exploration, it is tragically bad for innovation because innovation comes from exploration.**
+> **Since this CRISP-DM process is tragically inept at exploration, it is tragically unfit for innovation because innovation comes from exploration.**
 
-# Toward a better data science process through humanistic systems
+# A better data science process through humanistic systems
 
 People do not model questions.
 You do not have to know what you want to learn before you learn it.
 You go out in the world, you observe data, and learn from those data.
-You learn about the process that produced the data: the world.
-What if we had machine learning or artificial intelligence technology focused on modeling the whole data rather than just modeling single questions?
+You learn about the process that produced the data: the _world_.
+
+What if we had machine learning or artificial intelligence technology focused on modeling the **whole data** rather than just modeling single questions?
 We would be able to answer any number of questions within the realm of our data without re-training or re-validating.
 We would know which questions we'd be able to answer and how well.
+
 The data science process would look like this:
 
 <div class=row>
@@ -277,20 +282,20 @@ The data science process would look like this:
     </div>
 </div>
 
-
 The first thing to notice is that there are far fewer steps and that every step takes us closer to where we want to be.
 The key in this process is asking sensible questions.
-Asking sensible questions requires deep domain expertise, so it would be most effective for this Data Science process to be run by the domain expert.
+Asking sensible questions requires deep domain expertise, so it would be most effective for this Data Science process to be run by a domain expert.
 
-Eliminating iteration through up-front learning and turning a *question-modeling* system into a *question-answering* system reduces, in a significant want, discovery and production time.
+Eliminating iteration through up-front learning and turning a *question-modeling* system into a *question-answering* system significantly reduces discovery and production time.
 Under this process, discovery-to-production takes hours or days rather than months or years.
 
-**And the best part is this technology exists today. You can check out what this looks like in practice <span style="color: crimson">[here](@/redpoll-vs-ml.md)</span> and <span style="color: crimson">[here](@/blog/gamma.md)</span>.**
+**And the best part is: this technology exists today. You can check out what this looks like in practice <span style="color: crimson">[here](@/redpoll-vs-ml.md)</span> and <span style="color: crimson">[here](@/blog/gamma.md)</span>.**
 
 When we consult for clients, we take their data, feed it through Reformer, and wait until the client has an hour or so to sit with us.
 Then we let them do our job for us.
 We sit and translate their questions into Reformer language (which they could do with a bit of training) and get feedback in real-time.
-It sounds like a racket, but I do not have 20 years of orthopedics, aircraft maintenance, or plant breeding experience to call upon, so I do not know which questions to ask or which insights are novel.
+
+It sounds like a racket, but I do not have 20 years of experience in orthopedics, aircraft maintenance, or plant breeding to call upon, so I do not know which questions to ask or which insights are potentially novel.
 It would be arrogant to think that I, a layperson, could solve these problems by blinding throwing AI at data.
 
 ## Limitations of the humanistic approach
@@ -314,8 +319,8 @@ Data science is a difficult process.
 Creating production models takes much effort from several people and significant IT resources.
 Data science is also a wasteful process because you can never know 1) whether what you want to do is possible or 2) whether the result will be accepted/trusted by the stakeholder.
 
-The primary contributor to data science's difficulty and wastefulness is: often machine learning structures lend themselves to inefficient modeling approaches.
-Machine learning models specific questions, which places unreasonable demands on the practitioner.
+The primary contributor to data science's difficulty and wastefulness is: machine learning structures lend themselves to inefficient modeling approaches.
+Machine learning only models specific questions, which places unreasonable demands on the practitioner.
 These demands are namely, the model, well-behaved, complete data, and the underlying question is well-formed.
 Alternatively, humanistic systems model data, which allows the user flexibility in both the state of the data and the statement &mdash; or existence &mdash; of the question.
 The result is the elimination of the vast majority of backtracking and iteration.
@@ -326,6 +331,6 @@ The result is the elimination of the vast majority of backtracking and iteration
 - The standard data science process, CRISP-DM, is slow and wasteful. It has as many paths away from answers as toward them; and has cycles where the process breaks down.
 - CRISP-DM's design was meant to compensate for today's inadequate machine learning models.
 - Today's machine learning is question-oriented rather than data-oriented; therefore one machine learning model can answer one question.
-- Data-oriented humanistic AI enables a much simpler workflow in which all paths point toward answers, and the only cycle is answering more questions.
-- The humanistic workflow allows users to immediately ask and answer questions and enables stakeholders to directly engage in the discovery process.
+- Data-oriented, humanistic AI enables a much simpler workflow in which all paths point toward answers, and the only cycle is answering more questions.
+- The humanistic workflow enables _immediate_ ask-and-answer capabilities, enabling stakeholders to directly engage in the discovery process.
 - To see how Redpoll's Reformer platform enables faster discovery [click here](@/redpoll-vs-ml.md).
