@@ -21,12 +21,12 @@ A hospital scrubs its efforts to integrate clinical support software after faili
 These are not uncommon realities of the Machine Learning industries today.
 
 The data science process is hard.
-It process is inefficient, error-prone, and fragile.
+Its processes are inefficient, error-prone, and fragile.
 It is full of iteration and cycles: we do not like what we are producing, so we take a few steps back, tweak, and try again.
-Every step requires communication with subject area experts and stakeholders; it requires those subject area experts to stop their work to ensure our work does not make faulty assumptions.
-It requires careful archival and documentation of all previous steps to ensure reproducibility, so we continually progress toward the goal and avoid tripping over our past failures.
+Every step requires communication with subject area experts and stakeholders; it requires those subject area experts to stop their forward momentum to ensure our work does not make faulty assumptions.
+It requires careful archival and documentation of all previous steps to ensure reproducibility, so we can continually progress toward the goal and avoid tripping over our past failures.
 Cycles are fragile. Every cycle presents an opportunity for the process to fail.
-This fragility causes a great deal of unnecessary waste, from the support work required for infrastructure and ML platforms' management to domain-specific ML solutions.
+This fragility incurs a great deal of unnecessary waste, from the support work required for infrastructure and ML platforms' management to domain-specific ML solutions.
 
 # The standard data science process: CRISP-DM
 
@@ -55,7 +55,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-01.png" style="max-width: 150px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>You start by identifying a question that would be valuable to answer.</p>
+        <p style="font-size:150%;">You start by identifying a question that would be valuable to answer.</p>
     </div>
 </div>
 
@@ -64,7 +64,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-02.png" style="max-width: 150px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Then you must find data that support answering your question.</p>
+        <p style="font-size:150%;">Then you must find data that support answering your question.</p>
     </div>
 </div>
 
@@ -73,7 +73,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-03.png" style="max-width: 190px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>However, it turns out you do not have &mdash; or cannot get &mdash; the data you need, so you must reformulate the question to reflect the state of the data.</p>
+        <p style="font-size:150%;">However, it turns out you do not have &mdash; or cannot get &mdash; the data you need, so you must reformulate the question to reflect the state of the data.</p>
     </div>
 </div>
 
@@ -82,7 +82,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-04.png" style="max-width: 190px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Then you choose from one of infinite machine learning models, each with numerous parameter settings and innumerable potential add-ons and tweaks.</p>
+        <p style="font-size:150%;">Then you choose from one of infinite machine learning models, each with a legion of parameters, hyperparameters, and optional add-ons..</p>
     </div>
 </div>
 
@@ -91,8 +91,14 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-05.png" style="max-width: 190px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Nevertheless, the model you chose does not support your data, so you have to transform your data. You might have to encode your categorical values as continuous (e.g., one-hot) or transform data that lie across unfavorable support or do not adhere to the model's assumptions (normality?).</p>
-        <p>Perhaps you have records with missing values, which you will either have to fill in or throw out. Imputation requires its own CRISP-DM process and biases your data. Throwing out all records with missing cells is wasteful, and for some problems with sparse data, you might end up with no records at all.</p>
+        <p style="font-size:150%;">Nevertheless, the model you chose does not support your data, so you have to transform the input. You may need to:
+            <ul>
+                <li style="font-size:125%;"> Encode your categorical values as continuous (e.g., one-hot)
+                <li style="font-size:125%;"> Transform data that lie across unfavorable support
+                <li style="font-size:125%;"> Transform data that do not adhere to the model's assumptions, such as normality
+                <li style="font-size:125%;"> Fill in missing data or throw out entire records with missing values
+            </ul>
+        </p>
     </div>
 </div>
 
@@ -101,7 +107,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-06.png" style="max-width: 220px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Then maybe you cannot find a model that answers the exact question you want to ask with the data you have. You'll have to ask an adjacent question.</p>
+        <p style="font-size:150%;">Then maybe you cannot find a model that answers the exact question you want to ask with the data you have.</br></br>You'll have to ask an adjacent question.</p>
     </div>
 </div>
 
@@ -110,7 +116,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-07.png" style="max-width: 220px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Once you get the question, your data, and the first-try model sorted out, and then you can train the model.</p>
+        <p style="font-size:150%;">Once you get the question, your data, and the first-try model sorted out, and then you can train the model.</p>
     </div>
 </div>
 
@@ -119,7 +125,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-08.png" style="max-width: 220px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Now, you validate/score the model.</p>
+        <p style="font-size:150%;">Now, you validate/score the model.</p>
     </div>
 </div>
 
@@ -128,7 +134,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-09.png" style="max-width: 250px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Now, you discover, it does not work (for whatever definition of "work"), because things rarely work on the first try. So you tweak the model or select a different model entirely.</p>
+        <p style="font-size:150%;">Now, you discover, it does not work adequately, because things rarely work on the first try.</br></br>So you tweak the model or select a different model entirely.</p>
     </div>
 </div>
 
@@ -137,7 +143,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
         <img src="/img/workflows/standard-10.png" style="max-width: 250px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>One of two things happens: you try a bunch of things and find that you are doing the best you can or hit your deadline. In either case, it is time to report. <strong>Congrats! You have answered a question!</strong></p>
+        <p style="font-size:150%;">One of two things happens: you attempt many iterations and find some optimum, ... or hit your deadline. In either case, it is time to report.</br></br><strong>Congrats! You have answered a question!</strong></p>
     </div>
 </div>
 <!--
@@ -152,24 +158,21 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
 -->
 
 Things to note:
-- People are doing the work, not AI.
-- It takes a significant amount of work to answer a single question.
-- Sometimes you do not answer the question because the information does not exist in the data.
+- People are doing much of the required procedure, not AI.
+- It takes a significant amount of iterative work to answer a single question.
+- Sometimes you cannot answer the question because the information does not exist in the data.
 - There are nearly as many paths back as there are paths forward.
-- The question you end up answering is usually not the one you set out to answer.
-- Not pictured: all the people you have to bother to get things right.
+- The question you end up answering is frequently not the one you set out to answer.
+<!-- - Not pictured: all the people you have to bother to get things right. -->
 
-This process is a game of *Chutes and Ladders*.
+The process eventually begins to resemble a game of *Chutes and Ladders*.
 If you are lucky, you will always progress &mdash; up the ladders &mdash; toward an answer.
-However, in this process, we, more often than not, find ourselves on the backward path &mdash; falling down chutes &mdash; having to iterate and try again.
-In this game of *Chutes and Ladders,* there are four chutes and five ladders.
-Those are not good odds.
-Furthermore, each time we retrace the old path, there is a chance we will fall down those earlier chutes.
-The more complex your problem, the more iteration you will have to do, and the less the question you end up answering looks like the question you set out to answer.
+However, we inevitably step into one of the many modeling pitfalls &mdash; falling down chutes &mdash; having to iterate and try again.
+By this design, we put ourselves at the risk of more of these chutes than is strictly necessary.
 
-Here's the thing: in complex domains, like health and biotech, where there is a lot of science involved and high cost for failure, domain experts *must* be involved in each step of the process (apart from training).
+To compound the issue: in complex domains, like health and biotech, where there is extensive science involved and high cost for failure, domain experts *must* be involved in every step of the process (apart from training).
 Each step requires e-mailing an expert, scheduling time &mdash; days or weeks out &mdash; for them to stop what they are doing, and then sitting down with them, to tell you what is wrong and what is right.
-If these steps are often occurring, this furthers the harm caused by compounding interruptions and increasing the chance of potentially dangerous mistakes.
+If this is too-often occurring, there are costs of compounding interruptions, increasing chances of potentially dangerous mistakes, and loss of confidence. 
 
 ## The Death Spiral
 
@@ -192,7 +195,7 @@ And since none of them quite fit your question and your data, there is always so
 
 Of course, each time you make a modeling choice, you must explain it to, and get the thumbs up from, a subject area expert.
 Communication becomes a bottleneck.
-So you either communicate properly, dragging out your process out by months (or longer), or you do not communicate and deliver something likely to fail or to be rejected by decision makers because they do not understand because they haven't been included (hell, they might not understand even if they're included because machine learning is opaque).
+So you either communicate properly, dragging out your process out by months (or longer), or you do not communicate and deliver something likely to fail or to be rejected by decision-makers because they do not understand because they haven't been included (hell, they might not understand even if they're included because machine learning is opaque).
 As a result, it is common for data science projects to be shelved after months or even years of development.
 
 ## Why The Data Science Death Spiral Exists
@@ -225,7 +228,7 @@ The data science process would look like this:
         <img src="/img/workflows/human-01.png" style="max-width: 150px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Get a vaguely coherent dataset.</p>
+        <p style="font-size:150%;">Get a vaguely coherent dataset.</p>
     </div>
 </div>
 
@@ -234,7 +237,7 @@ The data science process would look like this:
         <img src="/img/workflows/human-02.png" style="max-width: 150px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Learn a causal model that explains the data.</p>
+        <p style="font-size:150%;">Learn a causal model that explains the data.</p>
     </div>
 </div>
 
@@ -243,7 +246,7 @@ The data science process would look like this:
         <img src="/img/workflows/human-03.png" style="max-width: 150px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Ask a question.</p>
+        <p style="font-size:150%;">Ask a question.</p>
     </div>
 </div>
 
@@ -252,7 +255,7 @@ The data science process would look like this:
         <img src="/img/workflows/human-04.png" style="max-width: 200px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Ask more questions.</p>
+        <p style="font-size:150%;">Ask more questions.</p>
     </div>
 </div>
 
@@ -261,7 +264,7 @@ The data science process would look like this:
         <img src="/img/workflows/human-05.png" style="max-width: 200px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Report to stakeholders.</p>
+        <p style="font-size:150%;">Report to stakeholders.</p>
     </div>
 </div>
 
@@ -270,9 +273,10 @@ The data science process would look like this:
         <img src="/img/workflows/human-06.png" style="max-width: 240px;">
     </div>
     <div class="col-xs-12 col-sm col-right">
-        <p>Ask their questions.</p>
+        <p style="font-size:150%;">Ask their questions.</p>
     </div>
 </div>
+
 
 The first thing to notice is that there are far fewer steps and that every step takes us closer to where we want to be.
 The key in this process is asking sensible questions.
@@ -294,7 +298,7 @@ It would be arrogant to think that I, a layperson, could solve these problems by
 We built Reformer on humanistic AI.
 Humanistic AI allows us to chew through analyses.
 It is especially powerful for discovery and green-fielding: getting answers from your data when there is no preexisting model or no satisfactory preexisting model.
-If you are considering dropping a dataset into a random forest or neural net to see what comes out, your experience would better using a humanistic AI system.
+If you are considering dropping a dataset into a random forest or neural net to see what comes out, your experience would be much improved using a humanistic AI system.
 That said, there are situations when you might want to go another route.
 
 The humanistic approach is fast because it is flexible, and it is flexible because it makes few assumptions.
@@ -310,10 +314,10 @@ Data science is a difficult process.
 Creating production models takes much effort from several people and significant IT resources.
 Data science is also a wasteful process because you can never know 1) whether what you want to do is possible or 2) whether the result will be accepted/trusted by the stakeholder.
 
-The primary contributor to data-science's difficulty and wastefulness is often machine learning takes the wrong modeling approach.
-Machine learning models questions which places unreasonable demands at the practitioner.
+The primary contributor to data science's difficulty and wastefulness is: often machine learning structures lend themselves to inefficient modeling approaches.
+Machine learning models specific questions, which places unreasonable demands on the practitioner.
 These demands are namely, the model, well-behaved, complete data, and the underlying question is well-formed.
-Alternatively, humanistic systems model data, which allows the user flexibility in both the state of the data and the state &mdash; or existence &mdash; of the question.
+Alternatively, humanistic systems model data, which allows the user flexibility in both the state of the data and the statement &mdash; or existence &mdash; of the question.
 The result is the elimination of the vast majority of backtracking and iteration.
 
 
@@ -321,7 +325,7 @@ The result is the elimination of the vast majority of backtracking and iteration
 
 - The standard data science process, CRISP-DM, is slow and wasteful. It has as many paths away from answers as toward them; and has cycles where the process breaks down.
 - CRISP-DM's design was meant to compensate for today's inadequate machine learning models.
-- Today's machine learning is question-oriented rather than data-oriented; therefor one machine learning model can answer one question.
+- Today's machine learning is question-oriented rather than data-oriented; therefore one machine learning model can answer one question.
 - Data-oriented humanistic AI enables a much simpler workflow in which all paths point toward answers, and the only cycle is answering more questions.
 - The humanistic workflow allows users to immediately ask and answer questions and enables stakeholders to directly engage in the discovery process.
 - To see how Redpoll's Reformer platform enables faster discovery [click here](@/redpoll-vs-ml.md).
