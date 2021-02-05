@@ -1,11 +1,15 @@
 {% set data = load_data(path=path, format="plain") %}
-{{ data }}
-<noscript>
-    <style type="text/css">
-        .pagecontainer {display:none;}
-    </style>
-    <div class=img-with-caption>
-      <img src={{ img }} width=30>
-      <div class=img-caption>{{caption}}</div>
-    </div>
-</noscript>
+<center>
+  <div style="max-width: 100%">
+    {{ data | safe }}
+  </div>
+  <noscript>
+      <style type="text/css">
+          .pagecontainer {display:none;}
+      </style>
+      <div class=img-with-caption>
+        <img src={{ img }} width=30>
+        <div class=img-caption>{{caption}}</div>
+      </div>
+  </noscript>
+</center

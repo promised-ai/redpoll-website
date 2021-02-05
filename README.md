@@ -15,6 +15,10 @@ $ zola serve
 All work should be done off the `draft` branch. The `master` branch contains
 the live site.
 
+To use bokeh plots in posts make sure `bokeh = true` in the `extras` section of
+the post header. For specific use examples using the `jsplot` shortcode, see
+`content/blog/sparse.md`
+
 ## Demos
 
 Some blog posts may have demos inside them. Demo code should be included in the
