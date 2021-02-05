@@ -13,6 +13,22 @@ $post-date-color: white
 $post-author-color: white
 $post-at-color: white
 
+table
+  margin: 2.5rem auto
+  border-collapse: collapse
+
+  tr:nth-child(even)
+    background-color: #eee
+
+th
+  padding: 0.2rem 0.5rem
+  margin: 0
+  border-bottom: 1px solid black
+
+td
+  // padding: 0.2rem 0.5rem
+  padding: 0.5rem
+
 #blog-bird
   width: 100px
 
@@ -361,13 +377,23 @@ div.ph-bkg
 .post-meta-item
   font-weight: bold
 
+.content-box, .content-box-lg
+  margin: 0 auto;
+  padding: 1rem;
+  z-index: 1;
+
+.content-box
+  max-width: 60rem
+
+.content-box-lg
+  max-width: 60rem
+
 #post-content
   padding-bottom: 5rem
 
   p, h1, h2, h3, h4, h5, h6, pre, ol, ul, blockquote
     margin: 1rem auto
     text-align: left
-    max-width: 50rem;
 
   img, div.img-with-caption
     width: 100%
