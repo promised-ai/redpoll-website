@@ -1,6 +1,6 @@
 +++
 title = "Faster and cheaper with stream-native artificial intelligence"
-date = 2021-02-18
+date = 2021-02-04
 template = "post.html"
 draft = false
 
