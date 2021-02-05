@@ -15,8 +15,6 @@ theme = "light-transparent"
 bokeh = true
 +++
 
-# Intro
-
 Incomplete datasets are a fact of life in almost every discipline. All
 but the most meticulously curated datasets are going to have some degree
 of missing information. How does one handle modeling processes when these gaps are present?
@@ -51,14 +49,16 @@ this can add significantly to development time.
 Once a model pipeline is in place, one can go back and _"let's see if this different
 preprocessing step increases the model's performance..."_.
 
-Wouldn't it be far better for a predictive model to be able to grasp
-the concept of incomplete data? 
-We want a platform that's built to understand that "we'll rarely know all the attributes, and that's okay."_
+The requirement of filling data or dropping samples seems wholly unnatural and unnecessary.
+Shouldn't your model be able to grasp the concept of incomplete data? 
+We want a platform that's built to understand that _"we'll rarely know everything, and that's okay."_
 
-# Reformer: Built to handle incomplete data
+> **Shouldn't a model be able to grasp the concept of incomplete data?**
 
-Customer data is often plagued
-with incomplete information. In this example, we will use the mercifully complete
+# Reformer: Working with what you've got
+
+Customer data is often plagued with incomplete information.
+In this example, we will use the mercifully complete
 [Telco Customer Churn](https://www.kaggle.com/blastchar/telco-customer-churn)
 dataset and induce some artificial sparsity. A certain proportion (10%, for
 starters) of the information will be dropped "Missing Completely at Random"
@@ -75,14 +75,25 @@ df = pd.read_csv("telco_churn.csv", index_col="id")
 
 # A helper function that drops 10% of all feature values
 missing_df = missing_completely_at_random(df, frac=0.1, target="Churn")
+missing_df.to_csv("telco_missing_10.csv")
 
 mno.matrix(missing_df.sample(250))
 ```
-![Missing Data Visualization](/img/sparsity/mno.png)
+<div style="width: 100%; display: table;">
+    <div style="display: table-row; height: 100px;">
+        <div style="width: 50%; display: table-cell;">
+            {{ image(src="/img/sparsity/mno.png", caption="10% of all feature values removed at random.") }}
+        </div>
+        <div style="display: table-cell;"> 
+            {{ image(src="/img/sparsity/mno_90.png", caption="90% of all feature values removed at random.") }}
+        </div>
+    </div>
+</div>
 
 Here, the black bars indicate where we have data, and the white gaps
-between them represent missing values. In this case, 10% of feature
+between them represent missing values. In this case, 10% (left) of feature
 data is missing, and 25% of samples are unlabeled (have no `Churn` value).
+A 90% missing dataset is also prepared for later use (right).
 
 Now we run the Reformer engine on this new dataset and impute all missing
 target values.
@@ -93,6 +104,9 @@ preprocessing steps** for training and imputation to work
 * One does not need to specify which samples require imputation.
 Reformer will provide a prediction for each one that is missing
 a `Churn` value.
+
+These predictions can be compared against the true values by whatever evaluation
+metric desired.
 
 ```python
 import redpoll as rp
@@ -115,7 +129,7 @@ id              uncertainty     Churn
 0280-XJGEX	0.093614	No
 5129-JLPIS	0.002760	No
 3655-SNQYZ	0.004449	No
-...	...	...
+...             ...             ...
 9710-NJERN	0.009755	No
 7203-OYKCT	0.004449	No
 8456-QDAVC	0.015933	Yes
@@ -125,15 +139,12 @@ id              uncertainty     Churn
 1761 rows × 2 columns
 ```
 
-These values can be compared against the true values by whatever evaluation
-metric desired.
-
 ## Impute Every Feature
 
 Now, we have a dataset in which 10% of the features values are missing.
 Reformer, without any additional configuration or commmands, stands ready
 to impute **any other feature** that exists in the dataset.
-This applies to both categorical and numeric imputation tasks.
+This applies to both categorical and numeric values.
 
 ```python
 client.impute("MonthlyCharges")
@@ -145,7 +156,7 @@ id              uncertainty	MonthlyCharges
 7469-LKBCI	0.001955	19.962660
 0280-XJGEX	0.110770	91.588106
 4183-MYFRB	0.126903	87.122360
-...	...	...
+...             ...             ...
 7203-OYKCT	0.029650	98.639224
 9281-CEDRU	0.239033	67.092866
 2234-XADUH	0.029650	98.639224
@@ -157,7 +168,6 @@ id              uncertainty	MonthlyCharges
 This stands apart from the current paradigm of operational data science:
 _one must always decide the question we want to ask before modeling._
 Reformer lets you ask any question you want **without any retraining or reconfiguration.**
-
 
 # How much sparsity can Reformer handle?
 
@@ -180,9 +190,11 @@ Here we see the accuracy metric for each categorical feature as a function of
 information loss:
 
 {{
-    jsplot(path="static/img/sparsity/reformer_telco_accuracy_headless.html",
-    img="/img/sparsity/reformer-accuracy.png",
-    caption="test")
+    jsplot(
+        path="static/img/sparsity/reformer_telco_accuracy.html",
+        img="/img/sparsity/reformer_accuracy.png",
+        caption="test"
+    )
 }}
 
 It's worth taking a step back and appreciating that each vertical slice of this
@@ -197,6 +209,7 @@ a single feature.
 The key takeaway here is: **Reformer can handle any degree of sparsity and deliver
 without any preprocessing**.
 
+
 ### Comparison to Stock Models
 
 Performance metrics on their own are difficult to gauge without something to compare
@@ -205,34 +218,33 @@ prediction at varying levels of sparsity.
 
 This adds multiple additional steps just to get most models functioning at all.
 In order to do so with something like a Random Forest Classifier (RFC), we will need to
-perform the following preprocessing:
+perform the following preprocessing steps:
 
 1. Calculate the modes (categorical) and means (numeric) of all features
 1. Fill all missing values with mode/mean values, since RFC cannot handle missing info
 1. Encode all categorical features into numeric/boolean types (here, one-hot encoded), since RFC cannot handle non-numeric
 1. Train the RFC, specifying the feature set and the target at training
 
-
 {{
     jsplot(
         path="static/img/sparsity/reformer_rfc.html",
         img="/img/sparsity/reformer_rfc.png",
-        caption="test"
+        caption="Reformer and RandomForest (with extensive pre-processing) predicting Churn with respect to data sparsity"
     )
 }}
 
-Reformer performs at the same level as a stock model, while
+Reformer attains performance at the same level as as stock models, while
 * Being robust against missing values
 * Supporting all standard data types
 * Retaining the ability to make imputations on all features in the dataset
 
-# Conclusion
+# Wrapping Up
 
 Here, we have exhibited the novel flexibility of Reformer to model **the whole dataset** as
-it is, without additional steps to make the metaphorical square peg fit into the round hole.
+it is, without additional steps, even if it's not whole.
 
-As the sparsity increased in the above example, the data began to resemble a whole different
-brand of dataset — an unstructured recommender-engine style dataset. In an upcoming post, we will
+As the sparsity increased in the above example, the data begins to resemble a different
+genre of dataset — an unstructured recommender-engine style dataset. In an upcoming post, we will
 show how the same Reformer engine, without any changes in configuration, could be used to model
 even these kinds of situations with the _MovieLens 100k_ dataset.
 
