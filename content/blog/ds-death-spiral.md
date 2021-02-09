@@ -15,8 +15,8 @@ theme = "light-transparent"
 front_page = false
 +++
 
-After five years in development, the recommendations of a multi-million-dollar decision support project are delivered to a committee of decision-makers who patently ignore them.
-A nine-figure data-science company lays off 60% of its workforce after two years failing to develop a Machine Learning (ML) model that can bring value to its target market.
+After three years in development, the recommendations of a multi-million-dollar decision support project are delivered to a committee of decision-makers who patently ignore them.
+A nine-figure data-science company lays off 60% of its workforce after two years failing to develop a Machine Learning (ML) solution that can bring value to its target market.
 A hospital scrubs its efforts to integrate clinical support software after failing to make useful recommendations, more than three years and $60 million later.
 Mega-scale data science waste is commonplace.
 
@@ -160,7 +160,7 @@ You might not be aware what you do is called "CRISP-DM", but this is how everybo
 </div>
 
 Things to note:
-- There are nearly as many paths back as there are paths forward.
+- There are nearly as many paths backward as there are paths forward.
 - It takes a significant amount of iterative work to answer a single question.
 - People are doing most of this work; not AI.
 - Sometimes you cannot answer the question because the information does not exist in the data.
@@ -183,7 +183,7 @@ Machine learning does not give you a good way to know whether your question is a
 The first time you try a model, you are likely to fail.
 Your options are then to find a model that will work, or to prove that no model will work.
 You must succeed, or you must prove unicorns do not exist.
-Under some circumstances, if you have the math and the problem is well-behaved, you may be able to prove that modeling is impossible.
+Under some circumstances, if you have the math and the problem is well-behaved, you may be able to mathematically prove that modeling is impossible.
 But, alas, in my experience, mathematical proof is not compelling to stakeholders.
 People want and understand empirical results.
 In practice, the only way to prove that no model will work &mdash; or no model will work better &mdash; is by deduction: to try *everything*.
@@ -198,7 +198,7 @@ In complex domains, like health, biotech, and engineering, where there is extens
 Each step requires e-mailing an expert, scheduling time &mdash; days or weeks out &mdash; for them to stop what they are doing, and then sitting with them so they can tell us what is wrong and what is right.
 But communication is a bottleneck. There are two options
 
-1. We communicate properly, as frequently as CRISP-DM demand, and risk both annoying our experts and dragging out our project out by months (or longer).
+1. We communicate properly, as frequently as CRISP-DM requires, and risk both annoying our experts and dragging out our project out by months (or longer).
 2. We do not communicate and risk delivering something likely to fail or to be rejected by decision-makers.
 
 Stakeholder rejection may rightly occur because, in failing to consult decision-makers, we have not understood their needs and have delivered something unwanted or unusable; or because we have made something opaque (Machine Learning is opaque by nature), which they do not understand and cannot be expected to trust.
@@ -221,7 +221,7 @@ It is bad when you have a nebulous problem and ugly data, and is disastrous when
 
 People do not model questions.
 You do not have to know what you want to learn before you learn it.
-You go out in the world, you observe data, and learn from those data.
+You go out into the world, you observe data, and learn from those data.
 You learn about the process that produced the data: the _world_.
 
 What if we had Machine Learning or artificial intelligence technology focused on modeling the **whole data** rather than just modeling single questions?
@@ -307,7 +307,7 @@ When we consult for clients, we take their data, feed it through Reformer, and w
 Then we let them do our job for us.
 We sit and translate their questions into Reformer language (which they could do independently with a bit of training) and get feedback in real-time.
 
-It sounds like a racket, but none of us Redpollers have 20 years of experience in orthopedics, aircraft maintenance, or plant breeding to call upon; we do not know which questions to ask or which insights are potentially novel.
+It sounds like a racket, but none of us Redpollers has decades of experience in orthopedics, aircraft maintenance, or plant breeding to call upon. We do not know which questions to ask or which insights are potentially novel.
 It would be arrogant to think that any of us laypeople could solve these problems by blindly throwing AI at a dataset.
 
 ## Limitations of the humanistic approach
@@ -321,8 +321,7 @@ That said, there are situations when you might want to go another route.
 The humanistic approach is fast because it is flexible, and it is flexible because it makes few assumptions.
 This is how it can go from nothing to a causal model.
 A model that makes strong assumptions (that are also correct) will better account for the data.
-This property is the [no free lunch theorem](https://en.wikipedia.org/wiki/No_free_lunch_in_search_and_optimization).
-However, developing that robust model takes a lot of science and iteration.
+However, developing that domain-specific model takes a lot of science and iteration.
 The humanistic approach can get you 90% of the way there by allowing you to check your modeling assumptions before you start modeling.
 
 # Wrapping up
@@ -342,7 +341,7 @@ The result is the elimination of the vast majority of backtracking and iteration
 
 - The standard data science process, CRISP-DM, is slow and wasteful. It has as many paths away from answers as toward them; and has cycles where the process breaks down.
 - CRISP-DM's design was meant to compensate for today's inadequate Machine Learning models.
-- Today's Machine Learning is question-oriented rather than data-oriented; therefore one Machine Learning model can answer one question.
+- Today's Machine Learning is question-oriented rather than data-oriented; therefore one Machine Learning model can address only one question.
 - Data-oriented, humanistic AI enables a much simpler workflow in which all paths point toward answers, and the only cycle is answering more questions.
 - The humanistic workflow enables _immediate_ ask-and-answer capabilities, enabling stakeholders to directly engage in the discovery process.
 - To see how Redpoll's Reformer platform enables faster discovery [click here](@/redpoll-vs-ml.md).
