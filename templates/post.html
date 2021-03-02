@@ -88,6 +88,13 @@
   <meta property="og:description" content="{{ page.extra.subheading }}"/>
   <meta property="og:url" content="{{ config.base_url }}/{{ page.path }}" />
   <meta property="keywords" content="{% for item in page.taxonomies.categories %}{% if loop.index == page.taxonomies.categories | length %}{{ item }}{% else %}{{ item }}, {% endif %}{% endfor %}" />
+
+  {% if page.extra.bokeh %}
+    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.1.min.js" integrity="sha384-kLr4fYcqcSpbuI95brIH3vnnYCquzzSxHPU6XGQCIkQRGJwhg0StNbj1eegrHs12" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        Bokeh.set_log_level("info");
+    </script>
+  {% endif %}
 {% endblock head %}
 
 {% block content %}
