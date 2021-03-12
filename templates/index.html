@@ -22,75 +22,106 @@
         <img src="{{ config.base_url }}/img/bird-white.png" width="100px">
         <div class="mission">
           <h1>
-            <!-- PeForople change the world, not machines. -->
-            REDPOLL
+          Eliminate the pain and waste of data science.
           </h1>
-          <!-- <p> -->
-          <!--   A new artificial intelligence architecture that learns, and stores its knowledge, like people do, so it can be a safe and effective partner to people, not a replacement. -->
-          <!-- </p> -->
-          <p style="max-width: 38rem; margin: 0 auto;">
-          Introducing Redpoll <span class=arch-name>reformer</span>: a revolutionary artificial intelligence architecture built on human cognition research. Designed to be a safe and effective partner to people, not a replacement.
-          </p>
+          <h1>
+          Eliminate the cost of asking questions.
+          </h1>
+          <br>
+          <br>
+          <a href="#workflows" style="border: none"><div class=button>Learn more</div></a>
+          <a href="{{ config.base_url }}/beta" style="border: none"><div class=button>Watch demo</div></a>
         </div>
-
-        <a class=no-decoration href="#feature-humanistic">
-          <div class="feature-row">
-              <div class="align-right left">Humanistic</div>
-              <div class="vline"></div>
-              <div class="align-left right">Increase trust. Reduce iteration and communication overhead.</div>
-          </div>
-        </a>
-        <a class=no-decoration href="#feature-introspective">
-          <div class="feature-row">
-            <div class="align-right left">Introspective</div>
-            <div class="vline"></div>
-            <div class="align-left right">Identify and react to anomalies before they do harm.</div>
-          </div>
-        </a>
-        <a class=no-decoration href="#feature-stream-native">
-          <div class="feature-row">
-            <div class="align-right left">Stream-native</div>
-            <div class="vline"></div>
-            <div class="align-left right">Quick, continuous insights. Add, edit, and backfill data without retraining.</div>
-          </div>
-        </a>
-        <!-- <div class="feature-row"> -->
-        <!--   <div class="align-right left">Safe</div> -->
-        <!--   <div class="vline"></div> -->
-        <!--   <div class="align-left right">Increase decision-maker confidence. Reduce waste.</div> -->
-        <!-- </div> -->
       </div>
     </div>
 
-    <div class="content">
-      <a name="feature-humanistic"></a>
-      <div class="content-inner">
-        <h1>Humanistic</h1>
-        <p class="subheading">Increase trust. Reduce iteration and communication overhead.</p>
-        <p>In high-risk high-impact tasks, people make decisions, not machines. AI must engage with decision-makers directly. <span class=arch-name>reformer</span> is based on cognition research. It learns and stores its knowledge like people do making it fundamentally <strong>human-compatible</strong>. No black boxes. No surrogates. No translators. Understand what the machine believes and why.
-        </p>
-        <a href="{{ config.base_url }}/blog/humanistic-ai/"><div class=button>Learn More</div></a>
-        <!-- <p><span class=arch-name>reformer</span> can be understood and operated by subject area experts and decision makers themselves under <a href="#">a greatly simplified workflow</a> that reduces data munging and eliminates iteration. -->
-        <!-- </p> -->
-      </div>  
+    <a name="workflows"></a>
+    <div class="full-page-flex flex-wrap">
+    <div style="flex-basis: 100%; text-align: center; align-self: flex-end;">
+      <h1>A new way to do data science</h1>
+    </div>
+      <!-- <div class="full-height-flex flex-wrap-rev" style="filter: sepia() saturate(1000%) hue-rotate(20deg)"> -->
+      <div class="full-height-flex flex-wrap-rev">
+        <div class="flow-desc">
+          <h2 class=no-mobile>TODAY</h2>
+          <h1 class=no-mobile>The Grind (<a href="https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining">CRISP-DM</a>)</h1>
+          <h2>Question-first workflow</h2>
+          <p>Today's standard data science workflow (<a href="https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining">CRISP-DM</a>) is a question-first process designed for today's question-oriented, black-box AI/ML technology. Users first identify a question then set about finding data and technology to answer it. Note that:</p>
+          <ul>
+            <li>There is a long distance between question and answer.</li>
+            <li>There are many paths away from answers.</li>
+            <li>The question you answer may not be the one you started with.</li>
+            <li>The only way to know whether, or how well, you can perform is to try things until you are satisfied or give up.</li>
+          </ul>
+          <br>
+          <a href="{{ config.base_url }}/blog/ds-death-spiral" style="border: none"><div class=button>Know thy enemy</div></a>
+        </div>
+        <div class=flow-img>
+          <h2 class=mobile-only>TODAY</h2>
+          <h1 class=mobile-only>The Grind (CRISP-DM)</h1>
+          <img src="{{ config.base_url }}/img/crisp-dm.png">
+        </div>
+      </div>
 
-      <br><br>
-      <a name="feature-introspective"></a>
-      <div class="content-inner">
-        <h1>Introspective</h1>
-        <p class="subheading">Identify and react to anomalies before they do harm.</p>
-        <p>Detect, analyze, and react to statistical changes in the world before they manifest as failures in production. In addition to detecting anomalous inputs such as data entry errors and attacks, <span class=arch-name>reformer</span> monitors anomalies in its knowledge, helping to maintain safe, reliable decision support.</p>
-        <!-- <a href="#"><div class=button>Read more</div></a> -->
-      </div>  
+      <!-- <div class="full-height-flex flex-wrap-rev" style="filter: sepia() saturate(1000%) hue-rotate(-50deg)"> -->
+      <div class="full-height-flex flex-wrap-rev">
+        <div class="flow-desc">
+          <h2 class=no-mobile>REDPOLL</h2>
+          <h1 class=no-mobile>Zero-Cost Questions</h1>
+          <h2>Data-first workflow</h2>
+          <!-- <h2>How you <span style="font-weight: bold">could</span> do data science</h2> -->
+          <p>Redpoll technology enables a new <stong>data-first</strong> workflow that is <strong>Humanistic</strong>. The user provides the machine with data, the machine learns about the data, then the user may ask any number of questions with zero additional effort. Note that:</p>
+          <ul>
+            <li>All paths move toward answers.</li>
+            <li>Users can know which questions are answerable before they ask them.</li>
+            <li>Feedback is instant.</li>
+          </ul>
+          <br>
 
-      <br><br>
-      <a name="feature-stream-native"></a>
-      <div class="content-inner">
-        <h1>Stream-native</h1>
-        <p class="subheading">Continuous insights. Add, edit, and backfill data without retraining.</p>
-        <p>People do not retrain and neither should AI. <span class=arch-name>reformer</span> learns from streams of data. Users may add new records, add new features and fields, and edit existing data with no retraining or revalidation, minimizing resource use, reducing latency, and ensuring knowledge is always up-to-date.</p>
-        <a href="{{ config.base_url }}/blog/stream-native/"><div class=button>Learn more</div></a>
-      </div>  
+          <a href="{{ config.base_url }}/beta" style="border: none"><div class=button>See it in action</div></a>
+        </div>
+        <div class=flow-img>
+          <h2 class=mobile-only>REDPOLL</h2>
+          <h1 class=mobile-only>Zero-Cost Questions</h1>
+          <img src="{{ config.base_url }}/img/rp-flow.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="full-page-flex">
+      <div>
+        <center>
+          <h1>Redpoll AI Platform Features</h1>
+        </center>
+        <div class="content">
+          <a name="feature-humanistic"></a>
+          <div class="content-inner">
+            <h1>Humanistic</h1>
+            <p class="subheading">Increase trust. Reduce iteration and communication overhead.</p>
+            <p>In high-risk high-impact tasks, people make decisions, not machines. AI must engage with decision-makers directly. <span class=arch-name>reformer</span> is based on cognition research. It learns and stores its knowledge like people do making it fundamentally <strong>human-compatible</strong>. No black boxes. No surrogates. No translators. Understand what the machine believes and why.
+            </p>
+            <a href="{{ config.base_url }}/blog/humanistic-ai/"><div class=button>Learn More</div></a>
+          </div>  
+
+          <br><br>
+          <a name="feature-introspective"></a>
+          <div class="content-inner">
+            <h1>Introspective</h1>
+            <p class="subheading">Identify and react to anomalies before they do harm.</p>
+            <p>Detect, analyze, and react to statistical changes in the world before they manifest as failures in production. In addition to detecting anomalous inputs such as data entry errors and attacks, <span class=arch-name>reformer</span> monitors anomalies in its knowledge, helping to maintain safe, reliable decision support.</p>
+            <!-- <a href="#"><div class=button>Read more</div></a> -->
+          </div>  
+
+          <br><br>
+          <a name="feature-stream-native"></a>
+          <div class="content-inner">
+            <h1>Stream-native</h1>
+            <p class="subheading">Continuous insights. Add, edit, and backfill data without retraining.</p>
+            <p>People do not retrain and neither should AI. <span class=arch-name>reformer</span> learns from streams of data. Users may add new records, add new features and fields, and edit existing data with no retraining or revalidation, minimizing resource use, reducing latency, and ensuring knowledge is always up-to-date.</p>
+            <a href="{{ config.base_url }}/blog/stream-native/"><div class=button>Learn more</div></a>
+          </div>  
+        </div>
+      </div>
     </div>
   </div>
 </div>
