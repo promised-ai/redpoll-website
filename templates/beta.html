@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% block title %}Redpoll Beta{% endblock title %}
+{% block head %}
+  {{ super() }}
+  <!-- <link rel="stylesheet" href="/blog.css"> -->
+<style>
+
+  #background {
+    filter: brightness(50%);
+  }
+
+
+  .mission h1 {
+    font-size: 8rem;
+  }
+
+  .qa {
+    padding: 0 1rem;
+    margin: 3rem 0;
+    border-left: 2px solid white;
+  }
+
+  .qa p:first-child {
+    font-weight: bold;
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  .flex-half {
+    max-width: 40rem;
+    padding: 1rem;
+  }
+
+  .phase {
+    border: 1px solid #33333300;
+    border-left: 1px solid white;
+    padding: 1rem 0;
+    padding-bottom: 3rem;
+    transition: 0.5s ease all;
+  }
+
+  .phase:hover {
+    border: 1px solid white;
+    background: #ffffff11;
+  }
+
+  .phase h2 {
+    padding: 1rem;
+    background-color: #ffffff11;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    <!-- padding-top: 0; -->
+  }
+
+  .phase p {
+    padding: 0 1rem;
+  }
+
+  .roadmap h1, .roadmap h2 {
+    font-family: "Raleway", sans;
+    font-weight: 200;
+    text-transform: uppercase;
+  }
+
+  .roadmap h1 {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .full-page-flex {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .mission h1 {
+      font-size: 20vw;
+    }
+
+    .flex-half {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    #landing {
+      padding-top: 8rem;
+    }
+  }
+</style>
+{% endblock head %}
+
+{% block content %}
+  <!-- <div id=blog-main-background></div> -->
+  <div id=background class="background-filter"></div>
+  <div style="position: relative; margin: 0 0.5rem;">
+
+    <div id="landing" class=full-page-flex>
+      <div class="flex-half">
+        <div id="title">
+          <img src="{{ config.base_url }}/img/bird-white.png" width="100px">
+          <div class="mission">
+            <h1 style="letter-spacing: 1vw">
+              beta 
+            </h1>
+            <div>
+              <p>We are working hard toward launching a <strong>closed beta</strong> of the Redpoll Core AI/ML technology. Tentative launch: <strong>May-June 2021</strong></p>
+            </div>
+            <div class='video-wrapper'>
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/1HEJBin_H_s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <p style="margin-top: 0; font-size: 0.85rem;">The above demo represents an early prototype run on local hardware. The look, feel, and functionality will differ in the beta.</p>
+          <br>
+          <a class="typeform-share link button" href="https://form.typeform.com/to/ITkLSOaB?typeform-medium=embed-snippet" data-mode="drawer_right" style="text-decoration:none;" target="_blank">Apply to Beta</a> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
+          <a href="#" class=mobile-only><div class=button>View Roadmap</div></a>
+        </div>
+      </div> <!-- flex left -->
+
+      <div class="flex-half roadmap">
+        <div>
+          <h1>Roadmap</h1>
+          <div class=phase>
+            <h2>Phase 1 // Learn the ropes</h2>
+            <p>At launch, users will have access to a number of curated datasets. Users will be able to start an oracle (question-answering) server instance, which they may access through a web applciation.</p>
+            <!-- <ul> -->
+            <!--   <li>Curated datasets</li> -->
+            <!--   <li>Core oracle platform</li> -->
+            <!--   <li>GUI</li> -->
+            <!-- </ul> -->
+          </div>
+          <div class=phase>
+            <h2>Phase 2 // Python</h2>
+            <p>Phase 2 allows users to bring Redpoll Core into their code by providing a python client to the backend services.</p>
+            <!-- <h3>Features</h3> -->
+            <!-- <ul> -->
+            <!--   <li>Python Client to Oracle servers</li> -->
+            <!-- </ul> -->
+          </div>
+          <div class=phase>
+            <h2>Phase 3 // Bring your own data</h2>
+            <p>In phase 3, users will be able to upload and analyze their own small datasets.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div style="max-width: 35rem; margin: 0 auto;">
+      <h1>Questions and Answers</h1>
+
+      <div class=qa>
+        <p>Q: What is the Redpoll beta?</p> 
+
+        <p>A: The beta is an opportunity for you to get your hands on our zero-cost question tech and for us to learn from you.</p>
+      </div>
+
+      <div class=qa>
+        <p>Q: When will the beta launch?</p> 
+
+        <p>A: We are aiming for a May or June 2021 lanch.</p> 
+      </div>
+
+      <div class=qa>
+        <p>Q: Who is the beta for?</p> 
+
+        <p>A: Technical subject area experts. Redpoll technology is designed for people who know a domain really well and have some experience doing simple analyses in Excel, SAS, Tableau, R, or similar tools.</p> 
+      </div>
+
+      <div class=qa>
+        <p>Q: Why can't I import my own data at launch?</p> 
+
+        <p>A: We want to minimize frustration by controlling variables. Core is different technology, so we want to give users time to understand how it works before applying it to their own data. Additionally, building the data import feature after launch allows us to launch earlier.</p>
+      </div>
+
+      <div class=qa>
+        <p>Q: What is the difference between 'Core' and 'Reformer'?</p> 
+
+        <p>A: Core is the core of our AI technology. Reformer is a system that sits on top of Core and adds streaming data capabilities. Since the beta will focus on static data, Reformer capabilities will not be included in the beta.</p>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
