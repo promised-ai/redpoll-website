@@ -2,5 +2,5 @@
 title = "Redpoll.ai"
 template = "beta.html"
 
-description = "Beta"
+description = "Apply to the Redpoll Core Beta"
 +++

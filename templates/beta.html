@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Redpoll Beta{% endblock title %}
 {% block head %}
+  <meta property="og:title" content="Redpoll Beta"/>
+  <meta property="og:image" content="{{ config.base_url }}/img/prototype-demo.png"/>
+  <meta property="og:description" content="Apply to the Redpoll Core closed beta"/>
+  <meta property="og:url" content="{{ config.base_url }}/beta" />
+  <meta property="keywords" content="AI, Artificial Intelligence, Explainable AI, Science, Genomics, Defense, Health, Healthcare, Medicine, Data Science, Analytics, Machine Learning, Ethics" />
   {{ super() }}
   <!-- <link rel="stylesheet" href="/blog.css"> -->
 <style>
