@@ -56,7 +56,7 @@ To help you distinguish each curve, they are colored according to the lag before
 The three plots below show the three values: Nei's genetic distance per generation, mean information content, and a change point detector's probability of a change point.
 
 1. _Nei's genetic distance_ [[4](#citations)] represents the genetic difference between the current generation and the ancestral genome used to see the first generation.
-2. The _mean information content_ can is an expression of the diversity of a population. If the mean information content of a generation increases, the population is expressing more diversity, whereas if it decreases, that population is expressing less diversity.
+2. The _mean information content_ is an expression of the diversity of a population. If the mean information content of a generation increases, the population is expressing more diversity, whereas if it decreases, that population is expressing less diversity.
 3. Finally, the _probability of a change point_ or _P(ChangePoint)_ is the change point detector's probability that a change has occurred. This probability helps automated detections. However, the human eye can often see a change before the software can detect it.
 
 We see here that the genetic distance from a reference genome generally increases over time.
