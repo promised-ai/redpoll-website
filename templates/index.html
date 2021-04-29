@@ -9,6 +9,24 @@
   <meta property="og:description" content="Artificial Intelligence to partner with people; not replace them."/>
   <meta property="og:url" content="{{ config.base_url }}/" />
   <meta property="keywords" content="AI, Artificial Intelligence, Explainable AI, Science, Genomics, Defense, Health, Healthcare, Medicine, Data Science, Analytics, Machine Learning, Ethics" />
+
+  <style>
+  .embedded-video-16-9 {
+    width:  90vw;
+    height: 50.625vw; /* 90*9/16 */
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+
+  @media (min-width: 893px) {
+    .embedded-video-16-9 {
+      width: 45vw;
+      height: 25.3125vw; /* 45*9/16 */
+      margin-left: 2vw;
+      margin-right: 2vw
+    }
+  }
+  </style>
 {% endblock head %}
 
 {% block content %}
@@ -30,7 +48,7 @@
           <br>
           <br>
           <a href="#workflows" style="border: none"><div class=button>Learn more</div></a>
-          <a href="{{ config.base_url }}/beta" style="border: none"><div class=button>Watch demo</div></a>
+          <a href="{{ config.base_url }}#demo" style="border: none"><div class=button>Watch demo</div></a>
         </div>
       </div>
     </div>
@@ -78,7 +96,7 @@
           </ul>
           <br>
 
-          <a href="{{ config.base_url }}/beta" style="border: none"><div class=button>See it in action</div></a>
+          <a href="{{ config.base_url }}#demo" style="border: none"><div class=button>See it in action</div></a>
         </div>
         <div class=flow-img>
           <h2 class=mobile-only>REDPOLL</h2>
@@ -87,6 +105,7 @@
         </div>
       </div>
     </div>
+
 
     <div class="full-page-flex">
       <div>
@@ -123,6 +142,20 @@
         </div>
       </div>
     </div>
+
+    
+    <a name="demo"></a>
+    <div class="full-page-flex">
+      <div>
+        <center>
+          <h1>See Core in action</h1>
+          <iframe height=100% width=100% class="embedded-video-16-9" src="https://www.youtube.com/embed/1HEJBin_H_s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <p style="margin-top: 0; font-size: 0.85rem;">The above demo represents an early GUI prototype run on local hardware. The look, feel, and functionality of the final product will differ.</p>
+        </center>
+      </div>
+    </div>
+
+
   </div>
 </div>
 
