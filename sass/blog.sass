@@ -2,10 +2,11 @@
 
 $rp-red: #e56
 $header-color: white
-$outer-border-color: #666
-$outer-border-hover-color: white
-$inner-border-color: #ddd
-$post-hover-color: rgba(70, 70, 70, 0.2)
+$outer-border-color: #333
+$outer-border-hover-color: #555
+$inner-border-color: #555
+// $post-hover-color: rgba(70, 70, 70, 0.2)
+$post-hover-color: rgba(20, 20, 20, 0.1)
 
 $post-title-color: white
 $post-subtitle-color: white
@@ -73,17 +74,18 @@ td
   filter: brightness(1.2)
 
 #blog-main-background
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  background-color: #444;
-  background-image: radial-gradient(circle at top, rgba(70, 70, 70, 1.0) 0%, rgba(80, 80, 80, 1.0) 25%, rgba(95, 95, 95, 1.0) 75%, rgba(115, 115, 115, 1.0) 100%)
-  background-position: center center;
-  background-size: cover;
-  z-index: 0;
-  transition: 1.0s all;
-  transition: 1s filter ease;
-  filter: brightness(1.2);
+  height: 100%
+  width: 100%
+  position: fixed
+  background-color: #111
+  // background-image: radial-gradient(circle at top, rgba(70, 70, 70, 1.0) 0%, rgba(80, 80, 80, 1.0) 25%, rgba(95, 95, 95, 1.0) 75%, rgba(115, 115, 115, 1.0) 100%)
+  background-image: radial-gradient(circle at 15% 15%, rgba(15, 15, 35, 0.0) 0%, rgba(15, 15, 35, 0.2) 25%, rgba(15, 15, 25, 0.9) 75%, rgba(15, 15, 15, 1.0) 100%), url('img/star-trails-1.jpg')
+  background-position: center center
+  background-size: cover
+  z-index: 0
+  transition: 1.0s all
+  transition: 1s filter ease
+  filter: brightness(1.0) contrast(0.5) grayscale(1) blur(0px) invert(1)
 
 #blog-main
   height: 100%
@@ -151,6 +153,8 @@ td
     border-bottom: 1px solid $outer-border-color
     margin: 1rem 0rem 1rem 2rem
     padding: 2rem 0
+    backdrop-filter: blur(30px)
+    -webkit-backdrop-filter: blur(30px)
 
     p
       padding-left: 2rem
@@ -188,6 +192,8 @@ div.post-inner.right-hover
     border-top: 1px solid $outer-border-color
     border-right: 1px solid $outer-border-color
     border-bottom: 1px solid $outer-border-color
+    backdrop-filter: blur(50px)
+    -webkit-backdrop-filter: blur(50px)
 
     margin: 1rem 2rem 1rem 0
     background-repeat: no-repeat
@@ -449,9 +455,8 @@ div.ph-bkg
 
   .post-left .post-inner
     margin: 0
-    border-bottom: none
-    border-left: none
-    border-top: white
+    border: none
+    border-bottom: 1px solid white
     padding: 0.5rem 1rem
 
     p
@@ -461,11 +466,34 @@ div.ph-bkg
   .post-right .post-inner
     margin: 0
     margin-bottom: 1rem
-    border: 1px solid #bbb
+    // border: 1px solid $outer-border-color
+    border: none
     padding: 1rem
 
   .post-inner-text
     padding: 0
+
+  div.post-inner.right-hover
+    border: none
+
+  .post-left:hover .post-inner
+    // border: none
+    border-top: 1px solid #ffffff00
+    border-right: 1px solid #ffffff00
+    border-left: 1px solid #ffffff00
+    border-bottom: 1px solid white
+
+  .post-left:hover + .post-right .post-inner
+    border: none
+
+  .post-inner:hover
+    border: none
+
+  .post-right:hover .post-inner
+    border-bottom: 1px solid #ffffff00
+    border-right: 1px solid #ffffff00
+    border-left: 1px solid #ffffff00
+    border-top: 1px solid white
 
   .post-inner
     height: auto
@@ -494,20 +522,13 @@ div.ph-bkg
     padding-bottom: 0
 
 @media only screen and (max-width: 600px)
-  #blog-main-background
-    // background-image: radial-gradient(circle at top, rgba(70, 70, 70, 1.0) 0%, rgba(80, 80, 80, 1.0) 25%, rgba(95, 95, 95, 1.0) 75%, rgba(115, 115, 115, 1.0) 100%)
-    background: none
-    background-color: #888
-
   #post-main-background
     background: none
-    background-color: #888
 
   #post-meta
     display: block
     width: 80%
     margin: 0 auto
-    // margin: 0 1rem
 
   #post-titles
     display: block
