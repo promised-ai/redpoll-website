@@ -1,6 +1,6 @@
 # Redpoll static website
 
-This website is generated with [zola](https://www.getzola.org/).
+This website is generated with [zola](https://www.getzola.org/). **Built with zola 0.14.1**
 
 To install zola check out their [installation page](https://www.getzola.org/documentation/getting-started/installation/)
 

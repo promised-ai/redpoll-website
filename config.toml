@@ -3,20 +3,22 @@ base_url = "https://redpoll.ai"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
-
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = true
-highlight_theme = "zenburn"
-
-# Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
-generate_rss = true
+generate_feed = true
+# feed_filename = "feed.xml"
 
 # taxonomies = [
 # 	{name = "categories", paginate_by = 5, rss = true},
 # 	{name = "authors"},
 # ]
+
+[markdown]
+highlight_code = true
+# highlight_theme = "zenburn"
+highlight_theme = "OneHalfDark"
+render_emoji = true
+external_links_target_blank = true
+smart_punctuation = false
 
 [extra]
 # Put all your custom variables here
