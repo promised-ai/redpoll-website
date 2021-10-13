@@ -1,4 +1,4 @@
-<div class=img-with-caption style="max-width: 90%">
+<div class=img-with-caption style="max-width: {{ max_width | default(value="100%") }}">
   <img src={{src}}>
   <center>
     <div class=img-caption>{{caption}}</div>

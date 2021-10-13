@@ -86,7 +86,7 @@
   </style>
   <meta name="author" content="{{ page.extra.author }} (Redpoll)">
   <meta property="og:title" content="{{ page.title }}"/>
-  <meta property="og:image" content="{{ small_img }}"/>
+  <meta property="og:image" content="{{ small_img['url'] }}"/>
   <meta property="og:description" content="{{ page.extra.subheading }}"/>
   <meta property="og:url" content="{{ config.base_url }}/{{ page.path }}" />
   <meta property="keywords" content="{% for item in page.taxonomies.categories %}{% if loop.index == page.taxonomies.categories | length %}{{ item }}{% else %}{{ item }}, {% endif %}{% endfor %}" />
@@ -117,7 +117,7 @@
 
 <div id=post-main-background></div>
 <div id="post-main" class="content-row">
-    <img class=bkg-img src="{{ small_img }}">
+    <img class=bkg-img src="{{ small_img['url'] }}">
     <div class="content-box">
       <div id=post-header class="bh-{{ page_theme }}">
         <div id="post-header-blur">
