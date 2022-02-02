@@ -81,7 +81,7 @@ The generative process of and IMM looks like this:
 \[ x_i \sim f(x|\theta_{z_i}) \]
 </p>
 
-where \\(CRP(\alpha)\\) is the [Chinese Restaurant Process](#) with discount parameter \\(\alpha\\). Note that CRP is not your only choice for this process, but it is the most common. \\(z\\) is an n-length list where each entry, \\(z_i\\) is an integer indicating to which component datum \\(x_i\\) is assigned; and \\(\theta_k\\) is the parameters component \\(k\\). So, we draw an assignment from CRP, draw a set of parameters for each component, then draw data from their assigned components.
+where \\(CRP(\alpha)\\) is the [Chinese Restaurant Process](https://en.wikipedia.org/wiki/Chinese_restaurant_process) with discount parameter \\(\alpha\\). Note that CRP is not your only choice for this process, but it is the most common. \\(z\\) is an n-length list where each entry, \\(z_i\\) is an integer indicating to which component datum \\(x_i\\) is assigned; and \\(\theta_k\\) is the parameters component \\(k\\). So, we draw an assignment from CRP, draw a set of parameters for each component, then draw data from their assigned components.
 
 Here is what an IMM looks like in action:
 
