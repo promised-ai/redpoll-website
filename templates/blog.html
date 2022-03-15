@@ -4,34 +4,17 @@
   {{ super() }}
   {% set_global show_call_to_action = false %}
   {% set_global show_signup_form = false %}
-  <link rel="stylesheet" href="/blog.css">
-  <style>
-  .dark-bkg {
-      background-color: #b4b4b4;
-      border-bottom: 1px solid #888;
-  }
-  </style>
+  <link rel="stylesheet" href="{{ config.base_url }}/blog.css">
 {% endblock head %}
 
 {% block content %}
-  <div id=blog-main-background></div>
   <div id="blog-main" class="content-row">
-    <div class="section-spacer"></div>
     <div class="content-box">
-      <table>
-        <tr>
-          <td>
-            <img id=blog-bird src="{{ config.base_url }}/img/bird-white.png" style="padding-right: 0.5rem">
-          </td>
-          <td>
-            <h1 class=blog-heading>{{ section.title }}</h1>
-          </td>
-        </tr>
-      </table>
+      <br>
+      <br>
+      <br>
+      <h1 class=blog-heading>{{ section.title }}</h1>
       <h2 class=blog-subheading>{{ section.extra.subtitle }}</h2>
-      <br>
-      <br>
-      <br>
 
       {% for post in section.pages | sort(attribute="date") | reverse %}
         <div class="post">
@@ -57,16 +40,5 @@
       <div class="section-spacer"></div>
     </div>
   </div>
-  <script>
-    // Get a reference to the element that needs to be worked with
-    document.querySelectorAll('div.post-right').forEach(item => {
-      item.addEventListener("mouseover", event => {
-        event.currentTarget.previousSibling.children[0].children[0].classList.add("right-hover")
-      });
-      item.addEventListener("mouseout", event => {
-        event.currentTarget.previousSibling.children[0].children[0].classList.remove("right-hover")
-      });
-    })
-
-  </script>
+  <!-- </script> -->
 {% endblock content %}

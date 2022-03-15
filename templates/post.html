@@ -6,50 +6,10 @@
   {{ super() }}
   {% set_global show_call_to_action = false %}
   {% set_global show_signup_form = true %}
-  <link rel="stylesheet" href="/blog.css">
-  <link rel=" stylesheet" href="/light.css">
+  <link rel="stylesheet" href="{{ config.base_url }}/blog.css">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
-    #main {
-      background-color: #f7f7f7;
-    }
-
-    #call-to-action {
-      background-color: #888;
-    }
-
-    #nav-center div:not([class]) {
-        border: 1px solid rgba(255, 255, 255, 0);
-        color: white;
-    }
-
-    #nav-center div:not([class]):hover {
-        border-top: 1px solid rgba(255, 255, 255, 1);
-        border-bottom: 1px solid rgba(255, 255, 255, 1);
-    }
-
-    #nav {
-      border-bottom: 1px solid #ffffff00
-    }
-
-    #nav.dark-bkg {
-      border-bottom: 1px solid #dddddd
-    }
-
-    #nav.dark-bkg #nav-center div:not([class]) {
-        color: #333;
-    }
-
-    #nav.dark-bkg #nav-center div:not([class]):hover {
-        border-top: 1px solid rgba(0, 0, 0, 1);
-        border-bottom: 1px solid rgba(0, 0, 0, 1);
-    }
-
-    #nav {
-      border-bottom: 1px solid #ffffff00
-    }
-
     #lightbox {
       height: 100%;
       width: 100%;
@@ -115,36 +75,43 @@
     </div>
 </div>
 
-<div id=post-main-background></div>
 <div id="post-main" class="content-row">
     <img class=bkg-img src="{{ small_img['url'] }}">
-    <div class="content-box">
-      <div id=post-header class="bh-{{ page_theme }}">
-        <div id="post-header-blur">
-          <img class=bkg-img-blur src="{{ small_img }}">
-        </div>
-        <div id="post-header-inner">
-          <div id=post-meta>
-            <div><span class=post-meta-item>BY</span> {{ page.extra.author }}</div>
-            <div><span class=post-meta-item>ON</span> {{ page.date }}</div>
-            <div><span class=post-meta-item>CAT</span> {{ page.taxonomies.categories }}</div>
-          </div><div id=post-titles>
+    <div class="content-box-lg" style="display: flex; align-items: center; justify-content:center;">
+      <div id=post-header class="bh-light-transparent">
+
+        <!-- <div id="post-header-blur"> -->
+        <!--   <img class=bkg-img-blur src="{{ small_img }}"> -->
+        <!-- </div> -->
+
+        <!-- <div id="post-header-inner"> -->
+        <!--   <div id=post-meta> -->
+        <!--     <div><span class=post-meta-item>BY</span> {{ page.extra.author }}</div> -->
+        <!--     <div><span class=post-meta-item>ON</span> {{ page.date }}</div> -->
+        <!--     <div><span class=post-meta-item>CAT</span> {{ page.taxonomies.categories }}</div> -->
+          <div id=post-titles>
             <h1 class=post-heading>{{ page.title }}</h1>
-            <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
+
+            <div style="max-width: 40rem; margin: 0 auto; border-top: 1px solid #fff;">
+              <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
+
+              <div><span class=post-meta-item>BY</span> {{ page.extra.author }}</div>
+              <div><span class=post-meta-item>ON</span> {{ page.date }}</div>
+              <div><span class=post-meta-item>CAT</span> {{ page.taxonomies.categories }}</div>
+            </div>
           </div>
-          <a href="#content-start" class=no-dec>
-              <div class="post-scroll-tip mobile-only">
-                  &blacktriangledown;
-              </div>
-          </a>
+          <!-- <a href="#content-start" class=no-dec> -->
+          <!--     <div class="post-scroll-tip mobile-only"> -->
+          <!--         &blacktriangledown; -->
+          <!--     </div> -->
+          <!-- </a> -->
         </div>
       </div>
     </div>
   </div>
+
   <div id=post-content class="content-row">
-    <div class="content-box">
-      <br>
-      <br>
+    <div class="content-box-sm">
       <a name=content-start></a>
       {{ page.content | safe }}
     </div>

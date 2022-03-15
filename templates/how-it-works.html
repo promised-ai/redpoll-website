@@ -1,0 +1,295 @@
+{% extends "base.html" %}
+{% block title %}Redpoll Mission{% endblock title %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark-reasonable.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+{% endblock head %}
+
+{% block content %}
+    <div id="page-header"">
+      <div style="padding-top: 2rem;">
+        <div id="tagline">
+          <br><br>
+          <h1>How Redpoll Works</h1>
+          <!-- <h2>Upload. Fit. Deploy. Ask.</h2> -->
+          <!-- START THING -->
+          <div class="flex-container thing">
+            <div class="thing-half">
+              <h3>Upload. Fit. Deploy. <a href="#ask-questions">Ask</a>.</h3>
+              <p>Redpoll is a data-oriented probabilistic ML technology designed for fast discovery, effortless deployment, and extreme transparency.</p>
+              <p>
+              Users upload their data and Redpoll learns a model over the <strong>entire dataset</strong>. In a few keystrokes, users can deploy their model after which they may ask question after question, and recieve transparent answers with zero extra effort.
+              </p>
+            </div>
+            <div class="thing-half">
+              <pre><code class="language-python">import redpoll as rp
+
+rp.upload('myfile.csv', name='mydataset')
+rp.fit('mydataset')
+c = rp.deploy('mydataset')
+
+# Determine the question after the model is built
+pred, unc = c.predict(
+    'Country_of_Operator',
+    given={'Class_of_Orbit': 'MEO'}
+)</code></pre>
+            </div>
+          </div>
+          <!-- END THING -->
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+<!-- BEGIN THINGS -->
+<div class="content">
+  <a id="ask-questions"></a>
+  <div>
+      <h1 class="section-header">Ask and answer questions instantly and transparently</h1>
+  </div>
+
+
+  <!-- START THING -->
+  <div class="flex-container thing">
+    <div class="thing-half">
+      <h2>Map the information in your data</h2>
+      <p>
+        Discover which variables are mutually predictive; know which questions you can answer before you ask them.
+      </p>
+    </div>
+    <div class="thing-half">
+      <pre><code class="language-python">_ = c.heatmap('mi', cmap='gray_r', vmin=0, vmax=1)</code></pre>
+      <img src="{{ config.base_url }}/img/how-it-works/animals-mi-normed.png">
+    </div>
+  </div>
+  <!-- END THING -->
+
+  <div class="flex-container thing">
+  <!-- START THING -->
+    <div class="thing-half">
+      <h2>Predict anything given anything</h2>
+      <p>
+        Free yourself from defining inputs and output. Once you've fit a model you can predict anything in your dataset given anything else (or nothing at all). And Redpoll gives you uncertainty information by default. Always know how confident the model is in its prediction.
+      </p>
+    </div>
+    <div class="thing-half">
+      <pre><code class="language-python">pred, uncertainty = c.predict(
+  'swims', given={'flippers': 1}
+)</code></pre>
+
+  <p>Output: (1, 0.11245375174067118)</p>
+
+      <pre><code class="language-python"># Apply confusing conditions
+pred, uncertainty = c.predict(
+  'swims',
+  given={'flipper': 1, 'water': 0}
+)</code></pre>
+
+  <p>Output: (1, 0.25341787277036454)</p>
+    </div>
+  </div>
+  <!-- END THING -->
+
+  <div class="flex-container thing">
+  <!-- START THING -->
+    <div class="thing-half">
+      <h2>Identify the sources and magnitude of uncertianty</h2>
+      <p>
+        When you predict using today's ML technology you get a number. Take it or leave it. But Redpoll gives you uncertainty information, and allows you to visualize multiple sources of uncertainty so you know when to hold, when to fold, and when to collect more data and what type to collect.
+      </p>
+    </div>
+    <div class="thing-half">
+      <pre><code class="language-python">c.pred_plot(
+  'Period_minutes',
+  given={'Class_of_Orbit': 'MEO'},
+)</code></pre>
+      <img src="{{ config.base_url }}/img/how-it-works/pred_plot.png">
+    </div>
+  </div>
+  <!-- END THING -->
+
+  <!-- BEGIN THING -->
+  <div class="flex-container thing">
+    <div class="thing-half">
+      <h2>Identify anomalies and error</h2>
+      <p>
+      Because Redpoll build an intuitive model of the process that generated your data, it's easy do intuit when data do not adhere to the model. When you build a model in Redpoll, you get data QA/QC for free.
+      </p>
+    </div>
+    <div class="thing-half">
+      <pre><code class="language-python"># 5 most surprising animals by fierceness
+surp = c.surprisal('fierce') \
+  .sort_values(by='surprisal', ascending=False) \
+  .head(5)
+</code></pre>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>fierce</th>
+          <th>surprisal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>pig</th>
+          <td>1</td>
+          <td>1.378306</td>
+        </tr>
+        <tr>
+          <th>rhinoceros</th>
+          <td>1</td>
+          <td>0.965808</td>
+        </tr>
+        <tr>
+          <th>buffalo</th>
+          <td>1</td>
+          <td>0.938079</td>
+        </tr>
+        <tr>
+          <th>collie</th>
+          <td>0</td>
+          <td>0.621530</td>
+        </tr>
+        <tr>
+          <th>chimpanzee</th>
+          <td>1</td>
+          <td>0.533208</td>
+        </tr>
+      </tbody>
+    </table>
+
+    </div>
+  </div>
+  <!-- END THING -->
+
+  <!-- BEGIN THING -->
+  <div class="flex-container thing">
+    <div class="thing-half">
+      <h2>Simulate synthetic data</h2>
+      <p>
+      Generate secure synthetic datasets that maintain the same statistical propoerties as the original data or create de-biased datasets. Increase the speed of innovation by reducing the barrier to collaboration.
+      </p>
+    </div>
+    <div class="thing-half">
+      <pre><code class="language-python"># generate hypotheticals
+values = c.simulate(
+  ['swims', 'flippers'],
+  given={'fast': 1},
+  n=10
+)
+
+# synthesize a new dataset
+full_data = c.simulate(
+  c.columns,
+  n=c.shape[0],
+)</code></pre>
+    </div>
+  </div>
+  <!-- END THING -->
+
+  <!-- BEGIN THING -->
+  <div class="flex-container thing">
+    <div class="thing-half">
+      <h2>Find knowledge gaps</h2>
+      <p>Ever wonder where you need to improve your data &mdash; where either messiness or lack of data causes uncertainty in your prediction? With Redpoll, it's easy.
+      </p>
+    </div>
+    <div class="thing-half">
+      <pre><code class="language-python">import numpy as np
+
+lifetimes = np.linspace(0, 40, 200)
+uncertainties = []
+for lifetime in lifetimes:
+    _, u = c.predict(
+        'Class_of_Orbit',
+        given={'Expected_Lifetime': lifetime}
+    ) 
+    uncertainties.append(u)
+</code></pre>
+      <img src="{{ config.base_url }}/img/how-it-works/unc-over-lifetime.png">
+    </div>
+  </div>
+  <!-- END THING -->
+</div>
+<!-- BEGIN THINGS -->
+
+
+<!-- BEGIN THINGS -->
+<div class="content">
+  <div class="spacer"></div>
+
+  <a id="ask-questions"></a>
+  <div>
+      <h1 class="section-header">Stream-native means you never retrain</h1>
+      <!-- <h2 class="section-subheader">Data collection is a continual process. Legacy AI/ML must be retrained when the data change, which means your insights always lag the data. With Redpoll, retraining is never required and your insights are always up-to-date.</h2> -->
+  </div>
+
+  <!-- START THING -->
+  <div class="flex-container thing">
+    <div class="thing-half">
+      <h2>Edit existing values</h2>
+      <p>Because Redpoll has already mapped the statistical sturcuture of the data, it knows which parts of the structure are affected by updated data.
+      </p>
+    </div>
+    <div class="thing-half">
+      <pre><code class="language-python">c.edit_value(
+    row='pig',
+    column='fierce',
+    value=0
+)</code></pre>
+    </div>
+  </div>
+  <!-- END THING -->
+
+  <!-- START THING -->
+  <div class="flex-container thing">
+    <div class="thing-half">
+      <h2>Scales with your business: add new rows or columns</h2>
+      <p>Data collections is a continual process, so Redpoll accepts new data continually. And if you start collecting new fields, that's fine too. Redpoll is designed to grow with your data.
+      </p>
+    </div>
+    <div class="thing-half">
+      <pre><code class="language-python">c.append_row(
+    'tribble',
+    values={'fierce': 1, 'hunter': 0, 'meatteeth': 0},
+)
+
+import pandas as pd
+
+c.append_column(
+    pd.read_csv('is_alien.csv', index_col=0).is_alien,
+)</code></pre>
+    </div>
+  </div>
+  <!-- END THING -->
+</div>
+<!-- BEGIN THINGS -->
+
+<div class="content">
+  <div class="spacer"></div>
+
+  <a id="lifelong-learning"></a>
+  <div>
+      <h1 class="section-header">Lifelong learning</h1>
+  </div>
+
+  <!-- START THING -->
+  <div style="max-width: 40rem; margin: 0 auto;">
+      <p style="line-height: 1.5">Redpoll is a lifelong learning system that thrives where traditional ML/AI systems fail. Redpoll's streaming capabilities allow it to
+      </p> 
+      <ul style="line-height: 1.5">
+        <li> serve as an automated QA/QC platform that can detect anomalies before they enter the dataset</li>
+        <li>detect and adapt to data drift so your model are as dynamic as the world</li>
+        <li>learn new concepts as more data become available</li>
+      </ul>
+  </div>
+  <!-- END THING -->
+</div>
+
+{% endblock content %}

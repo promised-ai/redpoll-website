@@ -22,13 +22,20 @@
   {% elif page %}
     <title>{% block title %}{{ page.title }}{% endblock title %}</title>
   {% endif %}
-  <link rel="stylesheet" href="/normalize.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css">
-  <link rel=" stylesheet" href="/style.css">
-  <link rel=" stylesheet" href="/print.css">
+  <link rel="stylesheet" href="{{ config.base_url }}/normalize.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css"> -->
+  <link rel=" stylesheet" href="{{ config.base_url }}/style.css">
+  <link rel="stylesheet" href="{{ config.base_url }}/nav.css">
+  <link rel="stylesheet" href="{{ config.base_url }}/form.css">
+  <link rel=" stylesheet" href="{{ config.base_url }}/print.css">
+  <link rel=" stylesheet" href="{{ config.base_url }}/mobile.css">
   <meta name="theme-color" content="#222222" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
@@ -44,11 +51,13 @@
 <body>
   <div id="main">
     <!-- MOBILE NAVIGATION -->
-    <div id="nav">
+    <div id="nav" class="no-mobile">
       <div id=nav-left></div>
-      <div id=nav-center>
-        <div class=logo><a href="{{ config.base_url }}">REDPOLL</a></div>
-        <div><a href="{{ config.base_url }}/#feature-humanistic">Learn</a></div>
+      <div id=nav-center class="flex-container">
+        <div class=logo>
+          <a href="{{ config.base_url }}">REDPOLL</a>
+        </div>
+        <div><a href="{{ config.base_url }}/how-it-works">How it works</a></div>
         <div><a href="{{ config.base_url }}/blog">Blog</a></div>
         <div><a href="{{ config.base_url }}/mission">About</a></div>
       </div>
@@ -56,36 +65,53 @@
       </div>
     </div>
 
-    {# uncomment to add signup popup
-    {% if show_call_to_action | default(value=true) %}
-    <div id="call-to-action">
-      <div class="flex" style="max-width: 40rem; margin: 0 auto;">
-        <p class="no-mobile" style="text-align: right;">
-        To learn how Redpoll can help your organization harness your data to help make safer, more informed decisions
-        </p>
-        <div class="no-mobile">
-          <a href="#subscribe" class=no-decoration>
-            <div class=button>Request a Consultation</div>
-          </a>
-        </div>
-        <div class="mobile-only">
-          <a href="#subscribe" class=no-decoration>
-            <div class=button style="width: auto">Request a Consultation</div>
-          </a>
-        </div>
+    <a href="#contact-form">
+      <div id="contact">
+        <p>Get in touch</p>
       </div>
+    </a>
+
+    <div id="mobile-logo" class="no-desktop">
+      <p style="color: crimson; font-weight: 300; letter-spacing: 0.2rem">
+          <a href="{{ config.base_url }}" style="text-decoration: none">REDPOLL</a>
+      </p>
     </div>
-    {% endif %}
-    #}
+
+    <div id="mobile-nav" class="no-desktop">
+      &#9776;
+    </div>
+
+    <div id="mobile-nav-menu" class="no-desktop">
+      <div style="margin: 3rem;">
+        <div id="mobile-nav-title">
+          <center>
+            <img src="{{ config.base_url }}/img/bird-white.png">
+          </center>
+          <h1>REDPOLL</h1>
+          <p>Navigation</p>
+          <hr>
+        </div>
+        <ul>
+          <li><a href="{{ config.base_url }}">Home</a></li>
+          <li><a href="{{ config.base_url }}/how-it-works">How it works</a></li>
+          <li><a href="{{ config.base_url }}/blog">Blog</a></li>
+          <li><a href="{{ config.base_url }}/mission">About</a></li>
+        </ul>
+        <hr>
+        <p style="line-height: 1.8rem">
+            For decades, data scientists have been forced into an opaque and wasteful question-first data science workflow by black-box, question-oriented AI/ML. We're changing that.
+        </p>
+      </div>
+      <div id="mobile-nav-exit">X</div>
+    </div>
 
     {% block content %}{% endblock content %}
 
-    {% if show_signup_form | default(value=true) %}
-      <a name="subscribe"></a>
-      {# uncomment to add signup form at bottm of page
-        {{ signup::signup(heading="Request a consultation") }}
-      #}
-    {% endif %}
+      <div class="spacer"></div>
+    <a id="contact-form"></a>
+    <div class="content" style="min-height: 100vh; display: flex; align-items: center;">
+      {{ signup::signup(heading="Get in touch") }}
+    </div>
 
     <div id="footer">
       <div>2022 &copy; Redpoll</div>
@@ -93,24 +119,21 @@
       <a href="mailto:info@redpoll.ai">Contact</a>
     </div>
 
-  </div>
-</body>
-
-  <script>
-    window.addEventListener('scroll', () => {
-      let y = window.scrollY || window.pageYOffset
-      if (y > 15) {
-        document.getElementById("nav").classList.add("dark-bkg");
-        {% if show_call_to_action | default(value=true) %}
-        document.getElementById("call-to-action").classList.add("transparent");
-        {% endif %}
-      } else {
-        document.getElementById("nav").classList.remove("dark-bkg");
-        {% if show_call_to_action | default(value=true) %}
-        document.getElementById("call-to-action").classList.remove("transparent");
-        {% endif %}
+    <script>
+      function toggleMobileNav() {
+        var nav = document.getElementById("mobile-nav-menu");
+        if (window.getComputedStyle(nav).display == "none") {
+          nav.style.display = "block";
+        } else {
+          nav.style.display = "none";
+        }
       }
 
-    })
-  </script>
+      document.getElementById("mobile-nav").addEventListener("click", toggleMobileNav);
+      document.getElementById("mobile-nav-exit").addEventListener("click", toggleMobileNav);
+
+    </script>
+
+  </div>
+</body>
 </html>

@@ -1,6 +1,6 @@
 +++
-title = "Redpoll.ai"
+title = "Redpoll.ai - About"
 template = "mission.html"
 
-description = "What we believe"
+description = "About"
 +++

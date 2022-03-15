@@ -1,18 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400');
 
 $rp-red: #e56
-$header-color: white
-$outer-border-color: #333
-$outer-border-hover-color: #555
-$inner-border-color: #555
-// $post-hover-color: rgba(70, 70, 70, 0.2)
-$post-hover-color: rgba(20, 20, 20, 0.1)
+$header-color: black
+$outer-border-color: white
+$outer-border-hover-color: white
+$inner-border-color: white
+$post-hover-color: white
 
-$post-title-color: white
-$post-subtitle-color: white
-$post-date-color: white
-$post-author-color: white
-$post-at-color: white
+$post-title-color: black
+$post-subtitle-color: black
+$post-date-color: black
+$post-author-color: black 
+$post-at-color: black
 
 html
   scroll-padding-top: 80px
@@ -42,6 +41,7 @@ td
   position: absolute
   object-fit: cover
   z-index: 0
+  filter: brightness(80%) contrast(80%)
 
 .bkg-img-blur
   width: 100%
@@ -62,19 +62,6 @@ td
   padding-top: 1rem
   padding-bottom: 1rem
   z-index: 2
-
-#post-main-background
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  background-color: #888;
-  background-image: radial-gradient(circle at top, rgba(70, 70, 70, 1.0) 0%, rgba(80, 80, 80, 1.0) 25%, rgba(95, 95, 95, 1.0) 75%, rgba(115, 115, 115, 1.0) 100%)
-  background-position: center center;
-  background-size: cover;
-  z-index: 0;
-  transition: 1.0s all;
-  transition: 1s filter ease;
-  filter: brightness(1.2)
 
 #blog-main-background
   height: 100%
@@ -97,12 +84,13 @@ td
     font-family: "Lato", helvetica, sans-serif
 
 .blog-heading
-  font-size: 3rem
-  font-family: Raleway
+  font-size: 10rem
   text-transform: uppercase
   padding: 0
   margin: 0
   color: $header-color
+  // letter-spacing: 0.5rem
+  font-weight: 400
 
 .blog-subheading
   font-size: 1.5rem
@@ -139,8 +127,8 @@ td
   .post-at
     color: $post-at-color
 
-.post-inner:hover
-  background-color: $post-hover-color
+// .post-inner:hover
+//   background-color: $post-hover-color
 
 .post-left 
   vertical-align: top
@@ -156,31 +144,31 @@ td
     border-bottom: 1px solid $outer-border-color
     margin: 1rem 0rem 1rem 2rem
     padding: 2rem 0
-    backdrop-filter: blur(30px)
-    -webkit-backdrop-filter: blur(30px)
+    // backdrop-filter: blur(30px)
+    // -webkit-backdrop-filter: blur(30px)
 
     p
       padding-left: 2rem
 
-.post-left .post-inner:hover
-    border-top: 1px solid $outer-border-hover-color
-    border-left: 1px solid $outer-border-hover-color
-    border-bottom: 1px solid $outer-border-hover-color
+// .post-left .post-inner:hover
+//     border-top: 1px solid $outer-border-hover-color
+//     border-left: 1px solid $outer-border-hover-color
+//     border-bottom: 1px solid $outer-border-hover-color
 
-div.post-inner.right-hover
-    background-color: $post-hover-color
-    border-top: 1px solid $outer-border-hover-color
-    border-left: 1px solid $outer-border-hover-color
-    border-bottom: 1px solid $outer-border-hover-color
+// div.post-inner.right-hover
+//     background-color: $post-hover-color
+//     border-top: 1px solid $outer-border-hover-color
+//     border-left: 1px solid $outer-border-hover-color
+//     border-bottom: 1px solid $outer-border-hover-color
 
-.post-left:hover .post-inner
-  background: $post-hover-color
+// .post-left:hover .post-inner
+//   background: $post-hover-color
 
-.post-left:hover + .post-right .post-inner
-  background-color: $post-hover-color
-  border-top: 1px solid $outer-border-hover-color
-  border-right: 1px solid $outer-border-hover-color
-  border-bottom: 1px solid $outer-border-hover-color
+// .post-left:hover + .post-right .post-inner
+//   background-color: $post-hover-color
+//   border-top: 1px solid $outer-border-hover-color
+//   border-right: 1px solid $outer-border-hover-color
+//   border-bottom: 1px solid $outer-border-hover-color
 
 .post-right
   vertical-align: top
@@ -195,18 +183,18 @@ div.post-inner.right-hover
     border-top: 1px solid $outer-border-color
     border-right: 1px solid $outer-border-color
     border-bottom: 1px solid $outer-border-color
-    backdrop-filter: blur(50px)
-    -webkit-backdrop-filter: blur(50px)
+    // backdrop-filter: blur(50px)
+    // -webkit-backdrop-filter: blur(50px)
 
     margin: 1rem 2rem 1rem 0
     background-repeat: no-repeat
     background-position: center
     background-size: cover
 
-.post-right:hover .post-inner
-    border-top: 1px solid $outer-border-hover-color
-    border-right: 1px solid $outer-border-hover-color
-    border-bottom: 1px solid $outer-border-hover-color
+// .post-right:hover .post-inner
+//     border-top: 1px solid $outer-border-hover-color
+//     border-right: 1px solid $outer-border-hover-color
+//     border-bottom: 1px solid $outer-border-hover-color
 
 
 .post-inner-text
@@ -218,6 +206,7 @@ div.post-inner.right-hover
       color: $post-title-color
 
   p
+    margin-top: 0.5rem
     color: $post-subtitle-color
 
 #post-main
@@ -247,9 +236,6 @@ div.post-inner.right-hover
 
 #post-header
   position: relative
-  vertial-align: top
-  margin-top: 20vh
-  margin-bottom: 15vh
   overflow: hidden
 
 div.ph-bkg
@@ -259,8 +245,10 @@ div.ph-bkg
   background-color: deeppink;
 
 #post-header.bh-light-opaque
-  background-color: #eeeeeedd
-  box-shadow: 0px 15px 40px rgba(33, 33, 33, 0.5)
+  // background-color: #eeeeeedd
+  // box-shadow: 0px 15px 40px rgba(33, 33, 33, 0.5)
+  *
+    color: white
 
   .post-heading
     color: #666
@@ -304,21 +292,21 @@ div.ph-bkg
     color: #666666
     background-color: #bbb
 
-@supports (backdrop-filter: blur(30px)) or (-webkit-backdrop-filter: blur(30px))
-  img.bkg-img-blur
-    display: none
+// @supports (backdrop-filter: blur(30px)) or (-webkit-backdrop-filter: blur(30px))
+//   img.bkg-img-blur
+//     display: none
 
-@supports not ((backdrop-filter: blur(30px)) or (-webkit-backdrop-filter: blur(30px)))
-  img.bkg-img-blur
-    display: block
-    filter: blur(30px)
-    transform: scale(1.4)
+// @supports not ((backdrop-filter: blur(30px)) or (-webkit-backdrop-filter: blur(30px)))
+//   img.bkg-img-blur
+//     display: block
+//     filter: blur(30px)
+//     transform: scale(1.4)
 
 
 #post-header.bh-dark-transparent
   border: 1px solid #333;
-  -webkit-backdrop-filter: blur(30px)
-  backdrop-filter: blur(30px)
+  // -webkit-backdrop-filter: blur(30px)
+  // backdrop-filter: blur(30px)
   background-color: rgba(255, 255, 255, 0.2)
 
   .post-heading
@@ -340,10 +328,12 @@ div.ph-bkg
     background-color: #333333dd
 
 #post-header.bh-light-transparent
-  border: 1px solid #eee;
-  -webkit-backdrop-filter: blur(30px)
-  backdrop-filter: blur(30px)
-  background-color: rgba(0, 0, 0, 0.2)
+  // border: 1px solid #eee;
+  // -webkit-backdrop-filter: blur(30px)
+  // backdrop-filter: blur(30px)
+  // background-color: rgba(0, 0, 0, 0.2)
+  *
+    color: white
 
   .post-heading
     color: white
@@ -369,40 +359,48 @@ div.ph-bkg
   display: inline-block
   vertical-align: top
   padding-right: 2rem
-  width: 70%
 
   h1
-    font-size: 2.5rem
+    font-size: 7vw
     text-transform: uppercase
-
-  h1, h2
-    padding: 0
-    margin: 0
-    margin-left: 3rem;
+    font-weight: 400
 
   h2
     margin-bottom: 2rem
+    font-weight: 300
+    line-height: 1.5
 
 .post-meta-item
   font-weight: bold
 
-.content-box, .content-box-lg
+.content-box-sm,  .content-box, .content-box-lg
   margin: 0 auto;
-  padding: 1rem;
   z-index: 1;
+  min-height: 100vh;
+
+.content-box-sm
+  max-width: 50rem
 
 .content-box
-  max-width: 60rem
+  max-width: 70rem
 
 .content-box-lg
-  max-width: 60rem
+  width: 100vw
+//   max-width: 60rem
 
 #post-content
+  background-color: white
   padding-bottom: 5rem
+
+  .content-box-sm
+    padding: 1rem
+    padding-top: 2rem
+    overflow: scroll
 
   p, h1, h2, h3, h4, h5, h6, pre, ol, ul, blockquote
     margin: 1rem auto
     text-align: left
+    line-height: 1.8
 
   img, div.img-with-caption
     width: 100%
@@ -424,6 +422,10 @@ div.ph-bkg
   h3, h4, h5, h6
     font-weight: 400
 
+  pre
+    padding: 1rem
+    border-radius: 8px
+
 // MEDIA QUERIES
 // ===================================================================
 @media only screen and (max-width: 900px)
@@ -433,19 +435,11 @@ div.ph-bkg
   .post-right
     width: 69%
 
-  .post
-    // height: 250px
-
-  .post-inner
-    // height: 200px
-
-@media only screen and (max-width: 900px)
   #post-titles
-    width: 60%
     padding-right: 1rem
 
-    h1, h2
-      margin-left: 1rem;
+    h1, h2, div
+      margin-left: 1rem
 
 @media only screen and (max-width: 650px)
   .post-left
@@ -478,27 +472,27 @@ div.ph-bkg
   .post-inner-text
     padding: 0
 
-  div.post-inner.right-hover
-    border: none
+  // div.post-inner.right-hover
+  //   border: none
 
-  .post-left:hover .post-inner
-    // border: none
-    border-top: 1px solid #ffffff00
-    border-right: 1px solid #ffffff00
-    border-left: 1px solid #ffffff00
-    border-bottom: 1px solid white
+  // .post-left:hover .post-inner
+  //   // border: none
+  //   border-top: 1px solid #ffffff00
+  //   border-right: 1px solid #ffffff00
+  //   border-left: 1px solid #ffffff00
+  //   border-bottom: 1px solid white
 
-  .post-left:hover + .post-right .post-inner
-    border: none
+  // .post-left:hover + .post-right .post-inner
+  //   border: none
 
-  .post-inner:hover
-    border: none
+  // .post-inner:hover
+  //   border: none
 
-  .post-right:hover .post-inner
-    border-bottom: 1px solid #ffffff00
-    border-right: 1px solid #ffffff00
-    border-left: 1px solid #ffffff00
-    border-top: 1px solid white
+  // .post-right:hover .post-inner
+  //   border-bottom: 1px solid #ffffff00
+  //   border-right: 1px solid #ffffff00
+  //   border-left: 1px solid #ffffff00
+  //   border-top: 1px solid white
 
   .post-inner
     height: auto
@@ -527,9 +521,6 @@ div.ph-bkg
     padding-bottom: 0
 
 @media only screen and (max-width: 600px)
-  #post-main-background
-    background: none
-
   #post-meta
     display: block
     width: 80%
@@ -537,27 +528,29 @@ div.ph-bkg
 
   #post-titles
     display: block
-    text-align: center
+    // text-align: center
     width: 100%
 
+    h1, h2, div
+      margin: 1rem 0.5rem
+
     h1
-      margin: 1rem
-      font-size: 7vw
+      font-size: 10vw
 
     h2
-      margin: 1rem
       font-size: 5vw
+      line-height: 1.2
 
 @media only screen and (max-width: 500px)
   #blog-bird
     width: 90px
 
   h1.blog-heading
-    font-size: 2.5rem
+    font-size: 18vw
 
   #post-titles
     h1
-      font-size: 1.7rem
+      font-size: 10vw
 
     h2
       font-size: 1.2rem
@@ -575,9 +568,6 @@ div.ph-bkg
   #post-titles
     h1
       font-size: 1.4rem
-
-  #post-header
-    margin-top: 12vh
 
   .post-inner-text h1
     font-size: 1.6rem
