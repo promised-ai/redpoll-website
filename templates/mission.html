@@ -20,25 +20,79 @@
 {% endblock head %}
 
 {% block content %}
-  <!-- <div id=blog-main-background></div> -->
-  <div id=background class="background-filter"></div>
-  <div style="position: relative; margin: 0 0.5rem;">
-    <div id="landing" class=full-page-flex>
-      <div id="title">
-        <img src="{{ config.base_url }}/img/bird-white.png" width="100px">
-        <div class="mission">
-          <h1 style="letter-spacing: 1vw">
-            What We Believe
-          </h1>
-          <div style="max-width: 40rem; margin: 0rem auto;">
-            <p style="font-size: 1rem;">
-            The AI industry is built around black box algorithms, like deep learning, which require incredible amounts of data, and which can fail in unexpected ways. These algorithms have found great success in domains for which data are plentiful and cheap, and for which the cost of failure is low -- domains like ad targeting, speech processing, and image classification. But in safety-intensive domains like healthcare, defense, and public policy, data are sparse and expensive, and the cost of failure is potentially lost lives. Using the same algorithms is unproductive, unsustainable, and dangerous.</p>
-            <p style="font-size: 1rem;">
-            We believe the best way to solve these hard, impactful problems safely and sustainably is to start from the ground up. To develop new AI techniques based on human cognition. To build expressive, intuitive, and transparent AI that can be operated and understood by both data scientists and domain experts.
-            </p>
-          </div>
-        </div>
+
+<div class="content">
+  <br><br>
+  <div style="text-align: center;">
+      <h1 style="font-size: 5vw">Meet the team</h1>
+      <h2 style="font-weight: 300; font-size: 2rem;">In people-driven domains, AI/ML must work with people; and to work with people effectively, <span style="color: crimson">AI/ML must work like people.</span></h2>
+  </div>
+  <div id="people">
+
+    <div class="person">
+      <div class="person-img" style="background-image: url({{ config.base_url }}/img/people/bax.jpeg)">
+      </div>
+      <div class="person-bio">
+        <h1>Baxter Eaves, PhD</h1>
+        <h2>CoFounder & CEO</h2>
+        <p>Baxter is a US Navy veteran and holds a PhD in Experimental Psychology from the University of Louisville, where he developed computational models of human trust and social learning. He brings 12 years of experience deploying human-inspired AI tech to solving seemingly impossible problems in high-risk industries.
+        </p>
+      </div>
+    </div> <!-- END PERSON -->
+
+    <div class="person">
+      <div class="person-img" style="background-image: url({{ config.base_url }}/img/people/pat.jpg)">
+      </div>
+      <div class="person-bio">
+        <h1>Patrick Shafto, PhD</h1>
+        <h2>CoFounder & CSO</h2>
+        <p>
+        Patrick is the Henry Rutgers Term Chair in Data Sciences at Rutgers University - Newark. He has led a number of projects for agencies including DARPA, DOD, and NSF, and his publications have appeared in top journals of machine and human learning.
+        </p>
+      </div>
+    </div> <!-- END PERSON -->
+
+    <div class="person">
+      <div class="person-img" style="background-image: url({{ config.base_url }}/img/people/mike.jpg)">
+      </div>
+      <div class="person-bio">
+        <h1>Michael Schmidt</h1>
+        <h2>Principal ML Engineer</h2>
+        <p>Michael has 14 years of research and engineering experience. He has built production models for healthcare, agronomy, finance, and law; and has conducted research in the areas of high-energy physics, differential geometry, plasma physics, and high-performance computing.</p>
+      </div>
+    </div> <!-- END PERSON -->
+
+    <div class="person">
+      <div class="person-img" style="background-image: url({{ config.base_url }}/img/people/ken.jpeg)">
+      </div>
+      <div class="person-bio">
+        <h1>Ken Swanson</h1>
+        <h2>Data Engineer</h2>
+        <p>Ken is a veteran engineer with a BSc in Computer Science and Mathematics from Washington University in St. Louis and over 20 years of experience in fields from genetic sequencing to agricultural data science. He has extensive expertise in building and running complex systems to solve difficult problems.</p>
+      </div>
+    </div> <!-- END PERSON -->
+
+  </div>
+</div>
+
+<hr>
+
+<div id="page-header" style="align-items: flex-start; min-height: 100vh; height: none;">
+  <div style="width: 100%; text-align: center; margin-top: 2rem;">
+    <img src="{{ config.base_url }}/img/bird.png" width="100px">
+    <div class="mission">
+      <h1 style="letter-spacing: 1vw; font-size: 12vw; margin: 0; padding: 0;">
+        What We <span style="color: crimson">Believe</span>
+      </h1>
+      <div style="max-width: 40rem; margin: 0rem auto; text-align: left; line-height: 2">
+        <p style="font-size: 1rem;">
+        The AI industry is built around black box algorithms, like deep learning, which require incredible amounts of data, and which can fail in unexpected ways. These algorithms have found great success in domains for which data are plentiful and cheap, and for which the cost of failure is low -- domains like ad targeting, speech processing, and image classification. But in safety-intensive domains like healthcare, defense, and public policy, data are sparse and expensive, and the cost of failure is potentially lost lives. Using the same algorithms is unproductive, unsustainable, and dangerous.</p>
+        <p style="font-size: 1rem;">
+        We believe the best way to solve these hard, impactful problems safely and sustainably is to start from the ground up. To develop new AI techniques based on human cognition. To build expressive, intuitive, and transparent AI that can be operated and understood by both data scientists and domain experts. <span style="color: crimson;">That's why we founded Redpoll.</span>
+        </p>
       </div>
     </div>
   </div>
+</div>
+
 {% endblock content %}

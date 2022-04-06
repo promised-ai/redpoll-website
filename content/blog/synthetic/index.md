@@ -13,6 +13,7 @@ subheading = "Complex artificial data creation that maintains meaning"
 image = "synthetic/silicon.jpg"
 theme = "light-transparent"
 front_page = false
+old_redpoll = true
 +++
 
 Oftentimes data is a scarce resource or difficult to share. Data-hungry models
