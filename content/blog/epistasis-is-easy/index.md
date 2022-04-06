@@ -13,6 +13,7 @@ subheading = "Nonlinearity can be understood simply... with the right tools"
 image = "yellow-lab-lights.jpg"
 theme = "light-transparent"
 front_page = false
+old_redpoll = true
 +++
 
 <!-- Genomic data are expensive to generate: it takes time, facilities, and care to raise a bacterium, a plant, a cow; a person. Genomic data are expensive to collect: a full sequence is round about [$1000](https://www.genome.gov/about-genomics/fact-sheets/Sequencing-Human-Genome-cost#:~:text=Based%20on%20the%20data%20collected,sequence%20was%20generally%20below%20%241%2C000.). Genomic data are massive: a human genome contains 3 billion base pairs. Presumably there is a reason we go through the considerable trouble and expense of generating, collecting, and storing these data. -->

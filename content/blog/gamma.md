@@ -12,6 +12,7 @@ author = "Bryan Dannowitz"
 subheading = "Hands-on with Reformer"
 image = "gamma/magic-laser-calibration.jpg"
 theme = "light-transparent"
+old_redpoll = true
 +++
 
 Machine Learning is often treated as a panacea to

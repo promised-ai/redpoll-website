@@ -9,8 +9,9 @@
 {% endblock head %}
 
 {% block content %}
-    <div id="page-header"">
-      <div style="padding-top: 2rem;">
+    <div id="page-header">
+      <div class="interesting-bkg"></div>
+      <div style="padding-top: 2rem; z-index: 1">
         <div id="tagline">
           <br><br>
           <h1>How Redpoll Works</h1>
@@ -43,7 +44,7 @@ pred, unc = c.predict(
       </div>
     </div>
 
-    <hr>
+    <div class="spacer noline"></div>
 
 <!-- BEGIN THINGS -->
 <div class="content">
@@ -62,8 +63,8 @@ pred, unc = c.predict(
       </p>
     </div>
     <div class="thing-half">
-      <pre><code class="language-python">_ = c.heatmap('mi', cmap='gray_r', vmin=0, vmax=1)</code></pre>
-      <img src="{{ config.base_url }}/img/how-it-works/animals-mi-normed.png">
+      <pre><code class="language-python">_ = c.heatmap('depprob', cmap='gray_r', vmin=0, vmax=1)</code></pre>
+      <img src="{{ config.base_url }}/img/how-it-works/sats-depprob.png">
     </div>
   </div>
   <!-- END THING -->
@@ -73,23 +74,26 @@ pred, unc = c.predict(
     <div class="thing-half">
       <h2>Predict anything given anything</h2>
       <p>
-        Free yourself from defining inputs and output. Once you've fit a model you can predict anything in your dataset given anything else (or nothing at all). And Redpoll gives you uncertainty information by default. Always know how confident the model is in its prediction.
+      Free yourself from defining inputs and output. Once you've fit a model, you can predict anything in your dataset given anything else (or nothing at all). And Redpoll gives you uncertainty information by default. Always know how confident the model is in its prediction.
       </p>
     </div>
     <div class="thing-half">
       <pre><code class="language-python">pred, uncertainty = c.predict(
-  'swims', given={'flippers': 1}
+  'Country_of_Operator', given={'Launch_Mass_kg': 5000}
 )</code></pre>
 
-  <p>Output: (1, 0.11245375174067118)</p>
+  <p>('USA', 0.09967501286209424)</p>
 
       <pre><code class="language-python"># Apply confusing conditions
 pred, uncertainty = c.predict(
-  'swims',
-  given={'flipper': 1, 'water': 0}
+    'Country_of_Operator',
+    given={
+        'Launch_Mass_kg': 5000,
+        'Launch_Site': 'Taiyuan Launch Center'
+    }
 )</code></pre>
 
-  <p>Output: (1, 0.25341787277036454)</p>
+  <p>('China (PR)', 0.4270984931675438)
     </div>
   </div>
   <!-- END THING -->
@@ -104,8 +108,8 @@ pred, uncertainty = c.predict(
     </div>
     <div class="thing-half">
       <pre><code class="language-python">c.pred_plot(
-  'Period_minutes',
-  given={'Class_of_Orbit': 'MEO'},
+    'Period_minutes',
+    given={'Class_of_Orbit': 'MEO'},
 )</code></pre>
       <img src="{{ config.base_url }}/img/how-it-works/pred_plot.png">
     </div>
@@ -115,54 +119,79 @@ pred, uncertainty = c.predict(
   <!-- BEGIN THING -->
   <div class="flex-container thing">
     <div class="thing-half">
-      <h2>Identify anomalies and error</h2>
+      <h2>Identify anomalies and errors</h2>
       <p>
-      Because Redpoll build an intuitive model of the process that generated your data, it's easy do intuit when data do not adhere to the model. When you build a model in Redpoll, you get data QA/QC for free.
+      Because Redpoll builds an intuitive model of the process that generates your data, it's easy to intuit when data do not adhere to the model. When you build a model in Redpoll, you get data QA/QC for free.
+
       </p>
     </div>
     <div class="thing-half">
-      <pre><code class="language-python"># 5 most surprising animals by fierceness
-surp = c.surprisal('fierce') \
-  .sort_values(by='surprisal', ascending=False) \
-  .head(5)
+      <pre><code class="language-python"># 5 most surprising satellites by Orbital Period
+c.surprisal('Period_minutes') \
+    .sort_values(by=['surprisal'], ascending=False) \
+    .head(10)
 </code></pre>
-
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>fierce</th>
-          <th>surprisal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>pig</th>
-          <td>1</td>
-          <td>1.378306</td>
-        </tr>
-        <tr>
-          <th>rhinoceros</th>
-          <td>1</td>
-          <td>0.965808</td>
-        </tr>
-        <tr>
-          <th>buffalo</th>
-          <td>1</td>
-          <td>0.938079</td>
-        </tr>
-        <tr>
-          <th>collie</th>
-          <td>0</td>
-          <td>0.621530</td>
-        </tr>
-        <tr>
-          <th>chimpanzee</th>
-          <td>1</td>
-          <td>0.533208</td>
-        </tr>
-      </tbody>
-    </table>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Period_minutes</th>
+      <th>surprisal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Wind (International Solar-Terrestrial Program)</th>
+      <td>19700.45</td>
+      <td>13.884460</td>
+    </tr>
+    <tr>
+      <th>Spektr-R/RadioAstron</th>
+      <td>0.22</td>
+      <td>9.523201</td>
+    </tr>
+    <tr>
+      <th>Interstellar Boundary EXplorer (IBEX)</th>
+      <td>0.22</td>
+      <td>9.494666</td>
+    </tr>
+    <tr>
+      <th>Integral (INTErnational Gamma-Ray Astrophysics Laboratory)</th>
+      <td>4032.86</td>
+      <td>9.182491</td>
+    </tr>
+    <tr>
+      <th>Geotail (Geomagnetic Tail Laboratory)</th>
+      <td>2474.83</td>
+      <td>9.143796</td>
+    </tr>
+    <tr>
+      <th>Chandra X-Ray Observatory (CXO)</th>
+      <td>3808.92</td>
+      <td>8.922031</td>
+    </tr>
+    <tr>
+      <th>XMM Newton (High Throughput X-ray Spectroscopy Mission)</th>
+      <td>2872.15</td>
+      <td>8.910115</td>
+    </tr>
+    <tr>
+      <th>Tango (part of Cluster quartet, Cluster 2 FM8)</th>
+      <td>3442.00</td>
+      <td>8.341243</td>
+    </tr>
+    <tr>
+      <th>Rumba (part of Cluster quartet, Cluster 2 FM5)</th>
+      <td>3431.10</td>
+      <td>8.310921</td>
+    </tr>
+    <tr>
+      <th>Samba (part of Cluster quartet, Cluster 2 FM7)</th>
+      <td>3430.28</td>
+      <td>8.308759</td>
+    </tr>
+  </tbody>
+</table>
 
     </div>
   </div>
@@ -173,21 +202,21 @@ surp = c.surprisal('fierce') \
     <div class="thing-half">
       <h2>Simulate synthetic data</h2>
       <p>
-      Generate secure synthetic datasets that maintain the same statistical propoerties as the original data or create de-biased datasets. Increase the speed of innovation by reducing the barrier to collaboration.
+      Generate secure synthetic datasets that maintain the same statistical properties as the original data or create de-biased datasets. Increase the speed of innovation by reducing the barrier to collaboration.
       </p>
     </div>
     <div class="thing-half">
       <pre><code class="language-python"># generate hypotheticals
 values = c.simulate(
-  ['swims', 'flippers'],
-  given={'fast': 1},
-  n=10
+    ['Launch_Mass_kg', 'Country_of_Operator'],
+    given={'Class_of_Orbit': 'GEO'},
+    n=10
 )
 
 # synthesize a new dataset
 full_data = c.simulate(
-  c.columns,
-  n=c.shape[0],
+    c.columns,
+    n=c.shape[0],
 )</code></pre>
     </div>
   </div>
@@ -234,14 +263,14 @@ for lifetime in lifetimes:
   <div class="flex-container thing">
     <div class="thing-half">
       <h2>Edit existing values</h2>
-      <p>Because Redpoll has already mapped the statistical sturcuture of the data, it knows which parts of the structure are affected by updated data.
+      <p>Because Redpoll has already mapped the statistical structure of the data, it knows which parts of the structure are affected by updated data.
       </p>
     </div>
     <div class="thing-half">
       <pre><code class="language-python">c.edit_value(
-    row='pig',
-    column='fierce',
-    value=0
+    row='Sicral 1B',
+    column='Expected_Lifetime',
+    value=13
 )</code></pre>
     </div>
   </div>
@@ -251,19 +280,23 @@ for lifetime in lifetimes:
   <div class="flex-container thing">
     <div class="thing-half">
       <h2>Scales with your business: add new rows or columns</h2>
-      <p>Data collections is a continual process, so Redpoll accepts new data continually. And if you start collecting new fields, that's fine too. Redpoll is designed to grow with your data.
+      <p>Data collection is a continual process, so Redpoll accepts new data continually. And if you start collecting new fields, that's fine too. Redpoll is designed to grow with your data.
       </p>
     </div>
     <div class="thing-half">
       <pre><code class="language-python">c.append_row(
-    'tribble',
-    values={'fierce': 1, 'hunter': 0, 'meatteeth': 0},
+    'Landsat 9',
+    values={
+        'Expected_Lifetime': 9,
+        'Class_of_Orbit': 'GEO',
+        'Launch_Mass_kg': 2711
+    },
 )
 
 import pandas as pd
 
 c.append_column(
-    pd.read_csv('is_alien.csv', index_col=0).is_alien,
+  pd.read_csv('functional.csv', index_col=0).is_functional,
 )</code></pre>
     </div>
   </div>
@@ -285,7 +318,7 @@ c.append_column(
       </p> 
       <ul style="line-height: 1.5">
         <li> serve as an automated QA/QC platform that can detect anomalies before they enter the dataset</li>
-        <li>detect and adapt to data drift so your model are as dynamic as the world</li>
+        <li>detect and adapt to data drift so your models are as dynamic as the world</li>
         <li>learn new concepts as more data become available</li>
       </ul>
   </div>

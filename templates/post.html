@@ -112,6 +112,11 @@
 
   <div id=post-content class="content-row">
     <div class="content-box-sm">
+    {% if page.extra.old_redpoll %}
+      <div class='old-redpoll-warning'>
+        <strong>NOTE:</strong> This post was written using an early, and now deprecated, version of Redpoll software. The API has changed, but the concepts are the same.
+      </div>
+    {% endif %}
       <a name=content-start></a>
       {{ page.content | safe }}
     </div>

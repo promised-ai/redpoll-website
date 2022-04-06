@@ -12,6 +12,7 @@ author = "Baxter Eaves"
 subheading = ""
 image = "star-trails-1.jpg"
 theme = "light-transparent"
+old_redpoll = true
 +++
 
 Data collection is a never-ending process because data _generation_ is a
