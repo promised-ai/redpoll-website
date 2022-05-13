@@ -25,10 +25,10 @@
     }
 
     .lightbox-btn {
-      color: white;
+      color: crimson;
       font-size: 1.2rem;
       padding: 0.5rem 1rem;
-      border: 1px solid white;
+      border: 1px solid crimson;
       cursor: pointer;
       margin: 0 0.5rem;
       text-align: center;
@@ -100,12 +100,10 @@
               <div><span class=post-meta-item>CAT</span> {{ page.taxonomies.categories }}</div>
             </div>
           </div>
-          <!-- <a href="#content-start" class=no-dec> -->
-          <!--     <div class="post-scroll-tip mobile-only"> -->
-          <!--         &blacktriangledown; -->
-          <!--     </div> -->
-          <!-- </a> -->
         </div>
+        {% if page.extra.image_attr %}
+        <div class="image-attr"><strong>Image</strong>: {{page.extra.image_attr}}</div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -134,11 +132,11 @@
     document.getElementById('lightbox-theme').addEventListener('click', function (e) {
       if (lightbox_dark) {
         lightbox_dark = false
-        lightbox.style.backgroundColor = "rgba(155, 155, 155, 0.85)"
+        lightbox.style.backgroundColor = "rgba(255, 255, 255, 0.95)"
         this.textContent = "Dark"
       } else {
         lightbox_dark = true
-        lightbox.style.backgroundColor = "rgba(0, 0, 0, 0.85)"
+        lightbox.style.backgroundColor = "rgba(0, 0, 0, 0.95)"
         this.textContent = "Light"
       }
     });
