@@ -1,6 +1,6 @@
 {% import "macros/signup.html" as signup %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dracula">
 
 <head>
   {% if "redpoll" in config.base_url %}
@@ -17,122 +17,52 @@
   {% block head %}
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   {% if section %}
     <title>{% block title %}{{ section.title }}{% endblock title %}</title>
   {% elif page %}
     <title>{% block title %}{{ page.title }}{% endblock title %}</title>
   {% endif %}
-  <link rel="stylesheet" href="{{ config.base_url }}/normalize.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css"> -->
+
+  <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.5/dist/full.css" rel="stylesheet" type="text/css" /> -->
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
   <link rel=" stylesheet" href="{{ config.base_url }}/style.css">
-  <link rel="stylesheet" href="{{ config.base_url }}/nav.css">
-  <link rel="stylesheet" href="{{ config.base_url }}/form.css">
-  <link rel=" stylesheet" href="{{ config.base_url }}/print.css">
-  <link rel=" stylesheet" href="{{ config.base_url }}/mobile.css">
-  <meta name="theme-color" content="#222222" />
-  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <meta name="theme-color" content="#111111" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/avicon/favicon-16x16.png">
   <link rel="manifest" href="/favicon/site.webmanifest">
-  <!-- Uncomment to enable search -->
-  <!-- <script src="search_index.en.js"></script> -->
-  <!-- <script src="elasticlunr.min.js"></script> -->
-
   {% endblock head %}
 </head>
 
 <body>
   <div id="main">
-    <!-- MOBILE NAVIGATION -->
-    <div id="nav" class="no-mobile">
-      <div id=nav-left></div>
-      <div id=nav-center class="flex-container">
-        <div class=logo>
-          <a href="{{ config.base_url }}">REDPOLL</a>
-        </div>
-        <div><a href="{{ config.base_url }}/how-it-works">How it works</a></div>
-        <div><a href="{{ config.base_url }}/blog">Blog</a></div>
-        <div><a href="{{ config.base_url }}/mission">About</a></div>
-      </div>
-      <div id=nav-right>
-      </div>
-    </div>
-
-    <a href="#contact-form">
-      <div id="contact">
-        <p>Get in touch</p>
-      </div>
-    </a>
-
-    <div id="mobile-logo" class="no-desktop">
-      <p style="color: crimson; font-weight: 300; letter-spacing: 0.2rem">
-          <a href="{{ config.base_url }}" style="text-decoration: none">REDPOLL</a>
-      </p>
-    </div>
-
-    <div id="mobile-nav" class="no-desktop">
-      &#9776;
-    </div>
-
-    <div id="mobile-nav-menu" class="no-desktop">
-      <div style="margin: 3rem;">
-        <div id="mobile-nav-title">
-          <center>
-            <img src="{{ config.base_url }}/img/bird-white.png">
-          </center>
-          <h1>REDPOLL</h1>
-          <p>Navigation</p>
-          <hr>
-        </div>
-        <ul>
-          <li><a href="{{ config.base_url }}">Home</a></li>
-          <li><a href="{{ config.base_url }}/how-it-works">How it works</a></li>
-          <li><a href="{{ config.base_url }}/blog">Blog</a></li>
-          <li><a href="{{ config.base_url }}/mission">About</a></li>
-        </ul>
-        <hr>
-        <p style="line-height: 1.8rem">
-            For decades, data scientists have been forced into an opaque and wasteful question-first data science workflow by black-box, question-oriented AI/ML. We're changing that.
-        </p>
-      </div>
-      <div id="mobile-nav-exit">X</div>
-    </div>
+    <nav class="flex-center-left">
+      <div class="logo"><a href="#">REDPOLL</a></div>
+      <div><a href="#">Consulting</a></div>
+      <div><a href="#">About</a></div>
+      <div><a href="#">Blog</a></div>
+    </nav>
 
     {% block content %}{% endblock content %}
 
-      <div class="spacer"></div>
     <a id="contact-form"></a>
-    <div class="content" style="min-height: 100vh; display: flex; align-items: center;">
-      {{ signup::signup(heading="Get in touch") }}
+  <div class="content">
+    <div class="content-inner">
+      <div class="content-inner-content">
+        {{ signup::signup(heading="Get in touch") }}
+      </div>
     </div>
+  </div>
 
     <div id="footer">
-      <div>2022 &copy; Redpoll</div>
-      <a href="https://www.linkedin.com/company/redpoll">Linkedin</a>
-      <a href="mailto:info@redpoll.ai">Contact</a>
+        <div>2022 &copy; Redpoll</div>
+        <a href="https://www.linkedin.com/company/redpoll">Linkedin</a>
+        <a href="mailto:info@redpoll.ai">Contact</a>
     </div>
-
-    <script>
-      function toggleMobileNav() {
-        var nav = document.getElementById("mobile-nav-menu");
-        if (window.getComputedStyle(nav).display == "none") {
-          nav.style.display = "block";
-        } else {
-          nav.style.display = "none";
-        }
-      }
-
-      document.getElementById("mobile-nav").addEventListener("click", toggleMobileNav);
-      document.getElementById("mobile-nav-exit").addEventListener("click", toggleMobileNav);
-
-    </script>
 
   </div>
 </body>
