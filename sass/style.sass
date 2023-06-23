@@ -30,29 +30,76 @@ h1, h2, h3, h4, h5, h6, p, li, div
 a
   color: white
 
-html
-  // background-image: linear-gradient( 135deg, #FFAA85 10%, #B3315F 100%)
+.plain
+  text-decoration: none
+
+#main
+  overflow-x: hidden
+
+#gradient-background-1
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 100vw
+  display: block
+  z-index: -3
   background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
-  // background-image: linear-gradient(-225deg, #FF3CAC 0%, #562B7C 52%, #2B86C5 100%);
-  // background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);
+  // background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);
+  // background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
   // background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  // background-image: linear-gradient(to bottom, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
+  // background-image: linear-gradient(to bottom, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%);
+  // background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+
+#gradient-background-2
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 100vw
+  display: block
+  z-index: -3
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+
+#gradient-background-3
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 100vw
+  display: block
+  z-index: -3
+  // background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+  // background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
+  // background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+  // background-image: linear-gradient(-225deg, #2CD8D5 0%, #6B8DD6 48%, #8E37D7 100%);
+  // background-image: linear-gradient(-225deg, #A8BFFF 0%, #884D80 100%);
+  background-image: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
+
 
 .bold
   font-weight: bold
 
 .background
-  z-index: 0
   position: fixed
   top: 0
   left: 0
+  z-index: -2
 
 .enlarge-20
   transform: scale(150%)
 
+ul, ol
+  padding: 0.25rem 1.5rem
+
 .full-page
   height: 100vh
-  // padding-top: 10rem
-  // padding-bottom: 10rem
+  width: 100vw
+
+.half-page
+  height: 40rem
+  width: 100vw
 
 .flex-center-left
   display: flex
@@ -63,6 +110,9 @@ html
   display: flex
   justify-content: center
   align-items: center
+
+.center
+  text-align: center
 
 nav
   position: fixed
@@ -122,10 +172,12 @@ nav
     font-size: 4rem
     line-height: 1.2
     font-weight: 300
+    // color: #333
 
   p
     padding-top: 2rem
     font-size: 1.2rem
+    // color: #333
 
 .shift-up
   transform: translate(0, -7.4rem)
@@ -165,13 +217,299 @@ div.content
       padding: 5rem
       // box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5)
 
+    h1
+      font-size: 3rem
+      font-weight: 300
+
+    p
+      padding-bottom: 1rem
+
 
 #footer
-  height: 20rem
-  display: flex
-  align-items: center
-  justify-content: center
+  display: block
+  z-index: 2
+  margin-top: 5rem
 
-  div, a
+  #footer-inner
+    height: 20rem
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-top: 4.8rem
+    background-color: #111111
+
+    div, a
+      padding: 1rem
+
+  &::before
+    content: ""
+    width: 0
+    height: 0
+    border-bottom: 5rem solid #111111
+    border-left: 100vw solid transparent;
+
+
+input[type=text], input[type=email]
+  outline: none
+  color: white
+  border-radius: 10px
+  background-color: #222222
+  border: 1px solid #555555
+  margin-top: 0.5rem
+  margin-bottom: 0.5rem
+  padding: 0.5rem 2rem
+  transition: border-color 0.3s ease
+  transition: color 0.3s ease
+  transition: background-color 0.3s ease
+
+  &:active, &:focus
+    border-color: white
+
+input[type=submit]
+  outline: none
+  border-radius: 10px
+  background-color: #111111
+  border: 1px solid #555555
+  margin-top: 0.5rem
+  color: #cccccc
+  padding: 0.5rem 2rem
+  transition: border-color 0.3s ease
+  transition: color 0.3s ease
+  transition: background-color 0.3s ease
+
+  &:hover
+    border-color: white
+    color: white
+
+  &:active
+    border-color: white
+    color: white
+    background-color: #555
+
+div.button
+  border: 2px solid white
+  font-size: 1.2rem
+  color: white
+  border-radius: 10px
+  padding: 1rem
+  background: none
+  display: inline
+  transition: all 0.3s ease
+  background-color: #fff2
+
+  &:hover
+    // color: deeppink
+    // border-color: deeppink
+    background-color: #fff4
+
+#contact-form
+  max-width: 30rem
+
+  h1
+    font-size: 2rem
+
+  p
+    padding-top: 1rem
+    padding-bottom: 1rem
+
+#blog-main
+  display: flex
+  justify-content: center
+  align-items: center
+
+  .content-box
+    padding-top: 10rem
+    max-width: 50rem
+
+    .blog-heading
+      font-size: 4rem
+      margin-bottom: 3rem
+
+  *
+    color: #333
+
+  a
+    text-decoration: none
+
+  .post
+    display: grid
+    grid-template-columns: 1fr 3fr
+    margin-bottom: 3rem
+
+    .post-left
+      padding-right: 2rem
+
+    h1
+      font-size: 1.3rem
+
+pre
+  padding: 1rem 1rem
+  margin: 1rem 0rem
+  margin-bottom: 2rem
+  border-radius: 10px
+  overflow-x: scroll
+
+#post-main
+  overflow-x: hidden
+
+  h1, h2, h3, h4, h5, h6, p, tr, td, a, li
+    color: #333
+
+  #post-body
+    max-width: 50rem
+
+    img
+      margin: 1rem auto
+
+    .old-redpoll-warning
+      padding: 0 2rem
+      border-left: 4px solid crimson
+      background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+      margin-bottom: 1rem
+
+      p
+        color: white
+
+  h1
+    font-size: 2rem
+    padding: 1rem 0
+    padding-bottom: 0
+
+  h2
+    font-size: 1.5rem
+    padding-bottom: 0.5rem
+
+  p
+    line-height: 1.7
+    padding-top: 0.7rem
+    padding-bottom: 0.7rem
+
+  .img-with-caption
+    .img-caption
+      display: flex
+      justify-content: center
+
+      p
+        max-width: 40rem
+        line-height: 1.2
+
+.absolute
+  position: absolute
+
+#post-title
+  position: relative
+  display: grid
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  margin-bottom: 1rem
+
+  #post-image
+    background-size: cover;
+    filter: contrast(80%)
+
+  div.image-attr
+    position: absolute
+    bottom: 0
+    right: 2rem
     padding: 1rem
 
+
+  #post-header
+    max-width: 50rem
+    
+    h1, h2, p, div
+      color: white
+
+    h1
+      font-size: 4rem
+      line-height: 1.2
+      font-weight: 300
+
+    h2
+      padding-bottom: 2rem
+      font-weight: 400
+      font-size: 1.5rem
+
+#post-info
+  border-top: 1px solid #333333
+  margin-top: 2rem
+  margin-bottom: 2rem
+  padding-top: 1rem
+  padding-bottom: 2rem
+  margin-left: 2rem
+  margin-right: 2rem
+  display: grid
+  grid-template-columns: 2fr 4fr 4fr
+
+  p
+    padding: 0
+
+  div
+    padding: 0 2rem
+
+
+table
+  border-collapse: collapse
+  margin: 2rem 0
+
+  td, th
+    padding: 0.25rem 0.5rem
+
+  thead
+    border-bottom: 2px solid #333
+
+  tbody
+    tr
+      border-bottom: 1px solid #fff0
+      transition: border-color 0.3s ease
+
+      &:hover
+        border-color: #333
+        
+.w70
+  max-width: 70rem
+
+.spacer.h10
+  height: 5rem
+
+#people
+  display: flex
+  justify-content: center
+  margin-bottom: 5rem
+  margin-top: 10rem
+
+  #people-container
+    margin-top: 3rem
+    display: flex
+    justify-content: center
+    gap: 2rem
+    flex-wrap: wrap
+
+  h1
+    font-size: 4rem
+
+  .person-image
+    width: 10rem
+    height: 10rem
+    background-size: cover
+    border-radius: 100%
+    margin: 0 auto
+    margin-bottom: 1.5rem
+    border: 1px solid white
+
+  .person
+    width: 15rem
+    height: 35rem
+    border: 1px solid white
+    border-radius: 10px
+    padding: 2rem 1rem
+
+  .person-name
+    font-weight: bold
+    font-size: 1.2rem
+
+  .person-title
+    font-weight: bold
+
+  .person-bio
+    margin-top: 0.5rem
+    line-height: 1.2

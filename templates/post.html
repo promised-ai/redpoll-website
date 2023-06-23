@@ -75,50 +75,53 @@
     </div>
 </div>
 
-<div id="post-main" class="content-row">
-    <img class=bkg-img src="{{ small_img['url'] }}">
-    <div class="content-box-lg" style="display: flex; align-items: center; justify-content:center;">
-      <div id=post-header class="bh-light-transparent">
+<div id="post-main">
+  <div id="post-title" class="half-page">
+    <div id="post-image" style="background-image: url({{ small_img['url'] }})">
+      <!-- <img src="{{ small_img['url'] }}"/> -->
 
-        <!-- <div id="post-header-blur"> -->
-        <!--   <img class=bkg-img-blur src="{{ small_img }}"> -->
-        <!-- </div> -->
-
-        <!-- <div id="post-header-inner"> -->
-        <!--   <div id=post-meta> -->
-        <!--     <div><span class=post-meta-item>BY</span> {{ page.extra.author }}</div> -->
-        <!--     <div><span class=post-meta-item>ON</span> {{ page.date }}</div> -->
-        <!--     <div><span class=post-meta-item>CAT</span> {{ page.taxonomies.categories }}</div> -->
-          <div id=post-titles>
-            <h1 class=post-heading>{{ page.title }}</h1>
-
-            <div style="max-width: 40rem; margin: 0 auto; border-top: 1px solid #fff;">
-              <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
-
-              <div><span class=post-meta-item>BY</span> {{ page.extra.author }}</div>
-              <div><span class=post-meta-item>ON</span> {{ page.date }}</div>
-              <div><span class=post-meta-item>CAT</span> {{ page.taxonomies.categories }}</div>
-            </div>
-          </div>
-        </div>
-        {% if page.extra.image_attr %}
-        <div class="image-attr"><strong>Image</strong>: {{page.extra.image_attr}}</div>
-        {% endif %}
+    </div>
+    <div class="half-page absolute flex-center">
+      <div id=post-header>
+        <h1 class=post-heading>{{ page.title }}</h1>
+        <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
       </div>
     </div>
-  </div>
-
-  <div id=post-content class="content-row">
-    <div class="content-box-sm">
-    {% if page.extra.old_redpoll %}
-      <div class='old-redpoll-warning'>
-        <strong>NOTE:</strong> This post was written using an early, and now deprecated, version of Redpoll software. The API has changed, but the concepts are the same.
-      </div>
+    {% if page.extra.image_attr %}
+    <div class="image-attr"><strong>Image</strong>: {{page.extra.image_attr}}</div>
     {% endif %}
-      <a name=content-start></a>
-      {{ page.content | safe }}
+  </div>
+
+  <div id="post-info">
+    <div>
+      <p>{{ page.date }}</p>
+    </div>
+    <div>
+      <p class="bold">Author</p>
+      <p>{{ page.extra.author }}</p>
+    </div>
+    <div>
+      <p>{{ page.taxonomies.categories }}</p>
     </div>
   </div>
+
+  <div class="flex-center">
+    <div id="post-body">
+      <div class="content-box-sm">
+        {% if page.extra.old_redpoll %}
+        <div class='old-redpoll-warning'>
+          <p><strong>NOTE:</strong> This post was written using an early, and now deprecated, version of Redpoll software. The API has changed, but the concepts are the same.
+          </p>
+        </div>
+        {% endif %}
+        <a name=content-start></a>
+        {{ page.content | safe }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
   <script>
     var lightbox = document.getElementById("lightbox");

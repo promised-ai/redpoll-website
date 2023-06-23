@@ -8,13 +8,11 @@
 {% endblock head %}
 
 {% block content %}
+  <div id="gradient-background-2"></div>
   <div id="blog-main" class="content-row">
     <div class="content-box">
-      <br>
-      <br>
-      <br>
-      <h1 class=blog-heading>{{ section.title }}</h1>
-      <h2 class=blog-subheading>{{ section.extra.subtitle }}</h2>
+      <h1 class=blog-heading><span style="font-weight: 300">REDPOLL</span> Blog</h1>
+      <!-- <h2 class=blog-subheading>{{ section.extra.subtitle }}</h2> -->
 
       {% for post in section.pages | sort(attribute="date") | reverse %}
         <div class="post">

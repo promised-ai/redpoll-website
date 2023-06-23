@@ -41,10 +41,11 @@
 <body>
   <div id="main">
     <nav class="flex-center-left">
-      <div class="logo"><a href="#">REDPOLL</a></div>
-      <div><a href="#">Consulting</a></div>
-      <div><a href="#">About</a></div>
-      <div><a href="#">Blog</a></div>
+      <div class="logo"><a href="{{ config.base_url }}">REDPOLL</a></div>
+      <div><a href="{{ config.base_url }}/consulting">Consulting</a></div>
+      <div><a href="{{ config.base_url }}/mission">About</a></div>
+      <div><a href="{{ config.base_url }}/blog">Blog</a></div>
+      <div><a href="#subscribe-form">Contact</a></div>
     </nav>
 
     {% block content %}{% endblock content %}
@@ -58,11 +59,13 @@
     </div>
   </div>
 
-    <div id="footer">
+  <div id="footer">
+    <div id="footer-inner">
         <div>2022 &copy; Redpoll</div>
         <a href="https://www.linkedin.com/company/redpoll">Linkedin</a>
         <a href="mailto:info@redpoll.ai">Contact</a>
     </div>
+  </div>
 
   </div>
 </body>
