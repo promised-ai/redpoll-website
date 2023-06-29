@@ -51,21 +51,23 @@
     {% block content %}{% endblock content %}
 
     <a id="contact-form"></a>
-  <div class="content">
-    <div class="content-inner">
-      <div class="content-inner-content">
+    <section class="diagonal">
+      <div class="wrapper">
         {{ signup::signup(heading="Get in touch") }}
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div id="footer">
-    <div id="footer-inner">
-        <div>2022 &copy; Redpoll</div>
-        <a href="https://www.linkedin.com/company/redpoll">Linkedin</a>
-        <a href="mailto:info@redpoll.ai">Contact</a>
-    </div>
-  </div>
+    <section class="diagonal half">
+      <div class="wrapper flex-center footer">
+        <div>
+          <a href="https://www.linkedin.com/company/redpoll">Linkedin</a>
+        </div>
+        <div>
+          <a href="mailto:info@redpoll.ai">Contact</a>
+        </div>
+        <div>2023 &copy; Redpoll</div>
+      </div>
+    </section>
 
   </div>
 </body>

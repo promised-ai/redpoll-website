@@ -6,11 +6,18 @@
 
 {% block content %}
 
-<div id="gradient-background-3"></div>
+<div id="gradient-background-4"></div>
 
-<div id="people">
-  <div class="w70">
+
+<section class="header push-up">
+
+  <div class="wrapper">
     <h1>Meet the team</h1>
+    <p>
+    Porta lorem mollis aliquam ut porttitor. Vulputate mi sit amet mauris commodo quis imperdiet massa. Interdum posuere lorem ipsum dolor. Felis donec et odio pellentesque. Laoreet id donec ultrices tincidunt arcu non sodales neque. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet.
+    </p>
+  </div>
+  <div id="people" class="wrapper full-width">
     <div id="people-container">
 
       <div class="person">
@@ -47,15 +54,35 @@
       <div class="person-image" style="background-image: url({{ config.base_url }}/img/people/ken.jpg)"></div>
       <div>
         <p class="person-name">Ken Swanson</p>
-        <p class="person-title">Data Engineer</p>
+        <p class="person-title">Software Engineer</p>
         <p class="person-bio">Ken is a veteran engineer with a BSc in Computer Science and Mathematics from Washington University in St. Louis and over 20 years of experience in fields from genetic sequencing to agricultural data science. He has extensive expertise in building and running complex systems to solve difficult problems.</p>
+      </div>
+    </div> <!-- END PERSON -->
+
+    <div class="person">
+      <div class="person-image" style="background-image: url({{ config.base_url }}/img/people/scott-yang.jpg)"></div>
+      <div>
+        <p class="person-name">Scott Yang, PhD</p>
+        <p class="person-title">ML Scientist</p>
+        <p class="person-bio">Scott, with a PhD in Biophysics from Simon Fraser University, brings over 15 years of research experience in ML. He excels in developing computational models for intricate systems such as DNA replication. Scott has been at the forefront of advancing human-machine interaction, notably in the field of explainable AI.</p>
       </div>
     </div> <!-- END PERSON -->
 
 
     </div>
   </div>
-</div>
+</section>
+
+<section class="diagonal">
+  <div class="wrapper">
+  <h1>What we believe</h1>
+  <p>
+    The AI industry is built around black box algorithms, like deep learning, which require incredible amounts of data, and which can fail in unexpected ways. These algorithms have found great success in domains for which data are plentiful and cheap, and for which the cost of failure is low -- domains like ad targeting, speech processing, and image classification. But in safety-intensive domains like healthcare, defense, and public policy, data are sparse and expensive, and the cost of failure is potentially lost lives. Using the same algorithms is unproductive, unsustainable, and dangerous.</p>
+    <p>
+    We believe the best way to solve these hard, impactful problems safely and sustainably is to start from the ground up. To develop new AI techniques based on human cognition. To build expressive, intuitive, and transparent AI that can be operated and understood by both data scientists and domain experts. <span class="bold">That's why we founded Redpoll.</span>
+    </p>
+  </div>
+</section>
 
 <!--   <br><br> -->
 <!--   <div style="text-align: center;"> -->

@@ -9,12 +9,13 @@
 
 {% block content %}
   <div id="gradient-background-2"></div>
-  <div id="blog-main" class="content-row">
-    <div class="content-box">
+  <section id="blog-main">
+    <div class="wrapper">
       <h1 class=blog-heading><span style="font-weight: 300">REDPOLL</span> Blog</h1>
       <!-- <h2 class=blog-subheading>{{ section.extra.subtitle }}</h2> -->
 
       {% for post in section.pages | sort(attribute="date") | reverse %}
+      <div>
         <div class="post">
           <div class="post-left">
             <a href={{ post.permalink }}>
@@ -36,7 +37,8 @@
         </div>
       {% endfor %} 
       <div class="section-spacer"></div>
-    </div>
+      </div>
   </div>
+</section>
   <!-- </script> -->
 {% endblock content %}

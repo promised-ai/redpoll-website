@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock title %}
+{% block head %}
+  {{ super() }}
+{% endblock head %}
+
+{% block content %}
+  <div id="gradient-background-4"></div>
+  <section class="header">
+    <div class="wrapper">
+      <h1>Work with us</h1>
+      <h2 style="font-weight: 300">More than 80% of data science efforts are wasted. We believe this is due to the uninterpretability and brittleness of traditional ML models and DS methods. We take a different approach to ML using probabilistic methodology, which allow us to complete months of work &mdash; with interpretable, actionable results &mdash; in days.</h2>
+      <br/>
+      <div>
+        <a href="#subscribe-form" class="plain"><div class="button transparent">Get in touch</div></a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="diagonal">
+    <div class="wrapper">
+      <h1>Services</h1>
+      <br>
+      <div class="grid-2 small">
+        <div>
+          <img src="{{ config.base_url }}/img/icons/noun-research-5840824-FFFFFF.svg" class="icon-md"/>
+          <h2>R&D</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Tempor commodo ullamcorper a lacus. Elementum nisi quis eleifend quam adipiscing vitae. Aliquet risus feugiat in ante metus dictum at. Sed velit dignissim sodales ut eu sem integer vitae justo. 
+          </p>
+        </div>
+        <div>
+          <img src="{{ config.base_url }}/img/icons/noun-team-1674392-FFFFFF.svg" class="icon-md"/>
+          <h2>Team Building</h2>
+          <p>
+          Amet nisl suscipit adipiscing bibendum est ultricies integer. Lacinia quis vel eros donec ac odio tempor. In tellus integer feugiat scelerisque. Aenean sed adipiscing diam donec adipiscing. Tortor aliquam nulla facilisi cras fermentum. Risus ultricies tristique nulla aliquet enim tortor at.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrapper">
+      <h1>Why <span class="bold">Probabilistic</span> AI/ML?</h1>
+      <p>We have chosen the Bayesian probabilistic AI/ML paradigm because it prioritizes understanding and uncertainty quantification, which is critical for the domains we work in. We have repeatedly observed first hand how traditional ML models and Data Science methods produce models that cross validate well but fail in production. In direct contrast to traditional ML the Bayesian probabilistic paradigm provides the following advantages:
+      </p>
+      <ul>
+        <li>Interpretability</li>
+        <li>Predictions are come from distributions, which tell us variance and uncertainty</li>
+        <li>Provides rigorous frameworks for choosing between models</li>
+        <li>Does more with far less data</li>
+        <li>Enables active learning, which help determine which future data would help us best learn</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="diagonal">
+    <div class="wrapper">
+      <h1>Dedicated to Open Source and Rust</h1>
+      <p>Since our whole shtick is building transparent and safe ML tools, it only makes sense to write performance-critical code in a memory safe language like rust, and to make the source available for scrutiny.
+      </p>
+      <ul>
+        <li>Lace: Bayesian tabular data analysis for Rust and Python</li>
+        <li>Changepoint: Bayesian change point analysis for Rust and Python</li>
+        <li>rv: Probability distribution and statistical utilities for Rust</li>
+      </ul>
+    </div>
+  </section>
+{% endblock content %}
