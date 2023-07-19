@@ -55,18 +55,16 @@
     </div>
   </div>
 
-  <div class="flex-center">
-    <div id="post-body">
-      <div class="content-box-sm">
-        {% if page.extra.old_redpoll %}
-        <div class='old-redpoll-warning'>
-          <p><strong>NOTE:</strong> This post was written using an early, and now deprecated, version of Redpoll software. The API has changed, but the concepts are the same.
-          </p>
-        </div>
-        {% endif %}
-        <a name=content-start></a>
-        {{ page.content | safe }}
-        </div>
+  <div id="post-body">
+    <div class="content-box-sm">
+      {% if page.extra.old_redpoll %}
+      <div class='old-redpoll-warning'>
+        <p><strong>NOTE:</strong> This post was written using an early, and now deprecated, version of Redpoll software. The API has changed, but the concepts are the same.
+        </p>
+      </div>
+      {% endif %}
+      <a name=content-start></a>
+      {{ page.content | safe }}
       </div>
     </div>
   </div>

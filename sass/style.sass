@@ -1,4 +1,4 @@
-$mobile-width: 35rem;
+$mobile-width: 30rem;
 
 *, *::before, *::after
   box-sizing: border-box
@@ -79,14 +79,20 @@ a
   top: 0
   left: 0
   height: 100%
-  width: 100vw
+  width: 100%
   display: block
   z-index: -3
+  background: radial-gradient(circle at 100%, #222, #222 50%, #777 75%, #222 75%)
+  transform: scale(110%)
+
+
+  // background-image: linear-gradient(to bottom, #29323c 0%, #485563 100%);
   // background-image: linear-gradient( 58.2deg,  rgba(40,91,212,0.73) -3%, rgba(171,53,163,0.45) 49.3%, rgba(255,204,112,0.37) 97.7% );
   // background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
   // background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%);
   // background-image: linear-gradient(to left, #df89b5 0%, #bfd9fe 100%);
-  background-image: linear-gradient(-225deg, #77FFD2 0%, #6297DB 48%, #1EECFF 100%);
+  // background-image: linear-gradient(-225deg, #77FFD2 0%, #6297DB 48%, #1EECFF 100%);
+  // background-image: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
 
 .bold
   font-weight: bold
@@ -247,14 +253,28 @@ nav
 .wrapper.full-width
   max-width: 100vw
 
+#animation
+  // mix-blend-mode: screen
+  mix-blend-mode: color-dodge
+  // mix-blend-mode: color-burn
+  // mix-blend-mode: hard-light
+  // mix-blend-mode: difference
+  // mix-blend-mode: luminosity
+  // filter: invert(90%)
+
+
 section
 
   &.header
     padding-top: 10rem
 
+    @media (max-width: $mobile-width)
+      padding-top: 5rem
+
     h1
       font-size: 4rem
       font-weight: 300
+      line-height: 1.2
 
       @media (max-width: $mobile-width)
         font-size: 2.5rem
@@ -266,10 +286,13 @@ section
     padding-block: 8rem
     margin-block: 10rem
     --skew-angle: -5deg
-    --background: #111
+    --background: #1112
     --translate-y: 0
     position: relative
     isolation: isolate
+
+    // &.gradient
+    //   --background: linear-gradient(-225deg, #77FFD2 0%, #6297DB 48%, #1EECFF 100%);
 
     &.half
       margin-top: 0rem
@@ -287,6 +310,8 @@ section
       inset: 0
       transform: skewY(var(--skew-angle)) translateY(var(--translate-y))
       box-shadow: 10px 10px 30px #1114
+      -webkit-backdrop-filter: blur(100px)
+      backdrop-filter: blur(100px)
 
   h1
     font-size: 2.5rem
@@ -416,6 +441,7 @@ pre
   margin-bottom: 2rem
   border-radius: 10px
   overflow-x: scroll
+  font-size: 1rem
 
 img.icon-md
   width: 100px
@@ -430,7 +456,11 @@ img.icon-md
   #post-body
     padding-left: 1rem
     padding-right: 1rem
-    max-width: 50rem
+    margin: 0 auto
+    max-width: 60rem
+
+    // @media (max-width: $mobile-width)
+    //   m: 5rem  
 
     img
       margin: 1rem auto
@@ -489,6 +519,8 @@ img.icon-md
 
   #post-header
     max-width: 50rem
+    padding-left: 1rem
+    padding-right: 1rem
     
     h1, h2, p, div
       color: white
@@ -539,6 +571,10 @@ table
   border-collapse: collapse
   margin: 2rem 0
 
+
+  @media (max-width: $mobile-width)
+    font-size: 0.8rem
+
   td, th
     padding: 0.25rem 0.5rem
 
@@ -584,14 +620,27 @@ table
     border-radius: 100%
     margin: 0 auto
     margin-bottom: 1.5rem
-    border: 1px solid white
+    border: 1px solid #777
+    transition: border-color 0.3s ease
+    transition: filter 0.3s ease
+    filter: grayscale(50%)
 
   .person
     width: 17rem
     height: 35rem
-    border: 1px solid white
+    border: 1px solid #777
     border-radius: 10px
     padding: 2rem 1rem
+    -webkit-backdrop-filter: blur(100px)
+    backdrop-filter: blur(100px)
+    transition: border-color 0.3s ease
+
+    &:hover
+      border-color: white
+
+      .person-image
+        border-color: white
+        filter: grayscale(0)
 
   .person-name
     font-weight: bold

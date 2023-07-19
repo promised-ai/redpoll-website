@@ -25,17 +25,25 @@
   <div id="tri-2"></div>
 </div>
 
-<!-- <div id="gradient-background-1"></div> -->
+<div id="animation" style="position: fixed; max-width: 100%; height: 100vh; z-index: -1; overflow-x: hidden;"></div>
+
 <div id="gradient-background-4"></div>
 
-<section class="flex-center header">
+<section class="flex-center header" style="min-height: 80vh;">
   <div id="title" class="wrapper">
     <!-- <h1> -->
     <!--   Artificial Intelligence designed from the ground up to work with <span class="bold">Human Intelligence</span> -->
     <!-- </h1> -->
-    <h1>We build probabilistic AI/ML tools, programs, and teams for organizations working in humanity’s most important domains.</h1>
+    <div class="flex-center">
+      <img
+        src="{{ config.base_url }}/img/bird-white.png"
+        width="100px"
+        style="margin-right: 2rem;"
+      />
+      <h1> AI for <span class="bold">Understanding</span></h1>
+    </div>
 
-    <p>People drive innovation in high-risk high-impact domains. To succeed in these domains, AI must work effectively with people. The only way to do that is for AI to work like people.</p>
+    <p>At Redpoll we are developing a new classes of Artificial Intelligence designed to work <em>with</em> people, not <em>instead of</em> people.</p>
     <br>
     <div>
       <a href="#subscribe-form" class="plain"><div class="button transparent">Get in touch</div></a>
@@ -44,9 +52,9 @@
 </section>
 
 
-<section class="diagonal">
+<section class="diagonal gradient">
   <div class="wrapper">
-    <h1 style="font-size: 2.3rem; font-weight: 300">We're developing new AI/ML techniques to work with human intelligence.</h1>
+    <h1 style="font-size: 2.3rem; font-weight: 300">Artificial Intelligence designed from the ground up to work with <span class="bold">human intelligence.</span></h1>
     <br/>
   </div>
   <div class="wrapper w-80">
@@ -59,9 +67,9 @@
             <img src="{{ config.base_url }}/img/workflows/crisp-dm-light.svg" width="250px">
           </div>
           <div>
-            <h3>It is too difficult to ask and answer questions</h3>
+            <h3>Modern machine learning is designed for automation, not discovery</h3>
             <p>
-            Porta lorem mollis aliquam ut porttitor. Vulputate mi sit amet mauris commodo quis imperdiet massa. Interdum posuere lorem ipsum dolor. Felis donec et odio pellentesque. Laoreet id donec ultrices tincidunt arcu non sodales neque. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet.
+            Today's machine learning (ML) tools are designed to highly optimize and automate away individual tasks. One ML model solves one problem. Thus, the data science workflow consists of doing loads work to (maybe) address a single problem/question. And because ML is developed to take tasks from people, ML hides knowledge in a black box, making it inappropriate for high-risk or knowledge-critical tasks.
             </p>
           </div>
         </div>
@@ -76,7 +84,9 @@
           </div>
           <div>
             <h3>A new way to do data science</h3>
-            <p>Viverra suspendisse potenti nullam ac tortor vitae purus faucibus. Lobortis elementum nibh tellus molestie nunc non blandit. Sit amet nisl purus in. Quisque egestas diam in arcu cursus euismod quis viverra. </p>
+            <p>
+            Redpoll technology is designed to work <em>with</em> people, not <em>instead</em> of people. Our technology enables a much streamlined workflow in which learning occurs up front, which allows users to ask questions with no additional effort and receive transparent answers to drive discovery and innovation in high-risk, high-impact domains.
+            </p>
           </div>
         </div>
       </div>
@@ -85,6 +95,317 @@
   </div>
 </section>
 
+<!-- THREE -->
+
+
+  <script type="x-shader/x-vertex" id="vertexshader">
+    attribute float scale;
+    void main() {
+      vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+      gl_PointSize = scale * ( 300.0 / - mvPosition.z );
+      gl_Position = projectionMatrix * mvPosition;
+    }
+  </script>
+
+  <script type="x-shader/x-fragment" id="fragmentshader">
+    uniform vec3 color;
+    void main() {
+      if ( length( gl_PointCoord - vec2( 0.5, 0.5 ) ) > 0.475 ) discard;
+      gl_FragColor = vec4( color, 1.0 );
+    }
+  </script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.148.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.148.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module">
+
+			import * as THREE from 'three';
+
+			import Stats from 'three/addons/libs/stats.module.js';
+			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+			let group;
+			let container, stats;
+			const particlesData = [];
+			let camera, scene, renderer;
+			let positions, colors;
+			let particles;
+			let pointCloud;
+			let particlePositions;
+			let linesMesh;
+
+			const maxParticleCount = 1000;
+			let particleCount = 226;
+			const r = 4000;
+			const rHalf = r / 2;
+
+			const effectController = {
+				showDots: false,
+				showLines: true,
+				minDistance: 1000,
+				limitConnections: false,
+				maxConnections: 2,
+				particleCount: 226
+			};
+
+			init();
+			animate();
+
+			function initGUI() {
+
+				const gui = new GUI();
+
+				gui.add( effectController, 'showDots' ).onChange( function ( value ) {
+
+					pointCloud.visible = value;
+
+				} );
+				gui.add( effectController, 'showLines' ).onChange( function ( value ) {
+
+					linesMesh.visible = value;
+
+				} );
+				gui.add( effectController, 'minDistance', 10, 300 );
+				gui.add( effectController, 'limitConnections' );
+				gui.add( effectController, 'maxConnections', 0, 30, 1 );
+				gui.add( effectController, 'particleCount', 0, maxParticleCount, 1 ).onChange( function ( value ) {
+
+					particleCount = parseInt( value );
+					particles.setDrawRange( 0, particleCount );
+
+				} );
+
+			}
+
+			function init() {
+
+				// initGUI();
+
+				container = document.getElementById( 'animation' );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.z = 3000;
+				// camera.position.x = 800;
+
+				camera.rotation.x = 0.2;
+				camera.rotation.y = -0.4;
+				// camera.rotation.z = 400;
+
+				// const controls = new OrbitControls( camera, container );
+				// controls.minDistance = 500;
+				// controls.maxDistance = 2000;
+
+        // // camera.rotation.set(-2.14, -0.44, -2.14);
+        // camera.lookAt(100, 100, 100);
+
+        // controls.update();
+
+				scene = new THREE.Scene();
+        // scene.background = new THREE.Color( 0x1e90ff );
+        scene.background = new THREE.Color( 0x000000 );
+
+				group = new THREE.Group();
+				scene.add( group );
+
+				// const helper = new THREE.BoxHelper( new THREE.Mesh( new THREE.BoxGeometry( r, r, r ) ) );
+				// helper.material.color.setHex( 0x111111 );
+				// helper.material.blending = THREE.AdditiveBlending;
+				// helper.material.transparent = true;
+				// group.add( helper );
+
+				const segments = maxParticleCount * maxParticleCount;
+
+				positions = new Float32Array( segments * 3 );
+				colors = new Float32Array( segments * 3 );
+
+				const pMaterial = new THREE.PointsMaterial( {
+					color: 0x111111,
+					size: 3,
+					blending: THREE.AdditiveBlending,
+					transparent: true,
+					sizeAttenuation: false
+				} );
+
+				particles = new THREE.BufferGeometry();
+				particlePositions = new Float32Array( maxParticleCount * 3 );
+
+				for ( let i = 0; i < maxParticleCount; i ++ ) {
+
+					const x = Math.random() * r - r / 2;
+					const y = Math.random() * r - r / 2;
+					const z = Math.random() * r - r / 2;
+
+					particlePositions[ i * 3 ] = x;
+					particlePositions[ i * 3 + 1 ] = y;
+					particlePositions[ i * 3 + 2 ] = z;
+
+					// add it to the geometry
+					particlesData.push( {
+						velocity: new THREE.Vector3( - 1 + Math.random() * 2, - 1 + Math.random() * 2, - 1 + Math.random() * 2 ),
+						numConnections: 0
+					} );
+
+				}
+
+				particles.setDrawRange( 0, particleCount );
+				particles.setAttribute( 'position', new THREE.BufferAttribute( particlePositions, 3 ).setUsage( THREE.DynamicDrawUsage ) );
+
+				// create the particle system
+				pointCloud = new THREE.Points( particles, pMaterial );
+				group.add( pointCloud );
+
+				const geometry = new THREE.BufferGeometry();
+
+				geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ).setUsage( THREE.DynamicDrawUsage ) );
+				geometry.setAttribute( 'color', new THREE.BufferAttribute( colors, 3 ).setUsage( THREE.DynamicDrawUsage ) );
+
+				geometry.computeBoundingSphere();
+
+				geometry.setDrawRange( 0, 0 );
+
+				const material = new THREE.LineBasicMaterial( {
+					vertexColors: true,
+					// blending: THREE.SubtractiveBlending,
+					blending: THREE.AdditiveBlending,
+					color: 0x444444,
+          transparent: true,
+				} );
+
+				linesMesh = new THREE.LineSegments( geometry, material );
+				group.add( linesMesh );
+
+				//
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.outputEncoding = THREE.sRGBEncoding;
+
+				container.appendChild( renderer.domElement );
+
+				//
+
+				stats = new Stats();
+				// container.appendChild( stats.dom );
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				let vertexpos = 0;
+				let colorpos = 0;
+				let numConnected = 0;
+
+				for ( let i = 0; i < particleCount; i ++ )
+					particlesData[ i ].numConnections = 0;
+
+				for ( let i = 0; i < particleCount; i ++ ) {
+
+					// get the particle
+					const particleData = particlesData[ i ];
+
+					particlePositions[ i * 3 ] += particleData.velocity.x;
+					particlePositions[ i * 3 + 1 ] += particleData.velocity.y;
+					particlePositions[ i * 3 + 2 ] += particleData.velocity.z;
+
+					if ( particlePositions[ i * 3 + 1 ] < - rHalf || particlePositions[ i * 3 + 1 ] > rHalf )
+						particleData.velocity.y = - particleData.velocity.y;
+
+					if ( particlePositions[ i * 3 ] < - rHalf || particlePositions[ i * 3 ] > rHalf )
+						particleData.velocity.x = - particleData.velocity.x;
+
+					if ( particlePositions[ i * 3 + 2 ] < - rHalf || particlePositions[ i * 3 + 2 ] > rHalf )
+						particleData.velocity.z = - particleData.velocity.z;
+
+					if ( effectController.limitConnections && particleData.numConnections >= effectController.maxConnections )
+						continue;
+
+					// Check collision
+					for ( let j = i + 1; j < particleCount; j ++ ) {
+
+						const particleDataB = particlesData[ j ];
+						if ( effectController.limitConnections && particleDataB.numConnections >= effectController.maxConnections )
+							continue;
+
+						const dx = particlePositions[ i * 3 ] - particlePositions[ j * 3 ];
+						const dy = particlePositions[ i * 3 + 1 ] - particlePositions[ j * 3 + 1 ];
+						const dz = particlePositions[ i * 3 + 2 ] - particlePositions[ j * 3 + 2 ];
+						const dist = Math.sqrt( dx * dx + dy * dy + dz * dz );
+
+						if ( dist < effectController.minDistance ) {
+
+							particleData.numConnections ++;
+							particleDataB.numConnections ++;
+
+							const alpha = 1.0 - dist / effectController.minDistance;
+
+							positions[ vertexpos ++ ] = particlePositions[ i * 3 ];
+							positions[ vertexpos ++ ] = particlePositions[ i * 3 + 1 ];
+							positions[ vertexpos ++ ] = particlePositions[ i * 3 + 2 ];
+
+							positions[ vertexpos ++ ] = particlePositions[ j * 3 ];
+							positions[ vertexpos ++ ] = particlePositions[ j * 3 + 1 ];
+							positions[ vertexpos ++ ] = particlePositions[ j * 3 + 2 ];
+
+							colors[ colorpos ++ ] = alpha;
+							colors[ colorpos ++ ] = alpha;
+							colors[ colorpos ++ ] = alpha;
+
+							colors[ colorpos ++ ] = alpha;
+							colors[ colorpos ++ ] = alpha;
+							colors[ colorpos ++ ] = alpha;
+
+							numConnected ++;
+
+						}
+
+					}
+
+				}
+
+
+				linesMesh.geometry.setDrawRange( 0, numConnected * 2 );
+				linesMesh.geometry.attributes.position.needsUpdate = true;
+				linesMesh.geometry.attributes.color.needsUpdate = true;
+
+				pointCloud.geometry.attributes.position.needsUpdate = true;
+
+				requestAnimationFrame( animate );
+
+				stats.update();
+				render();
+
+			}
+
+			function render() {
+
+				const time = Date.now() * 0.001;
+
+				group.rotation.y = time * 0.1;
+				renderer.render( scene, camera );
+
+			}
+		</script>
 
 
 
