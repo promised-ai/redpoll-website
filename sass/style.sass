@@ -62,7 +62,8 @@ a
   width: 100vw
   display: block
   z-index: -3
-  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  // background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  background-image: linear-gradient(to top left, #dddddd 30%, #fff 80%)
 
 #gradient-background-3
   position: fixed
@@ -85,14 +86,10 @@ a
   background: radial-gradient(circle at 100%, #222, #222 50%, #777 75%, #222 75%)
   transform: scale(110%)
 
-
-  // background-image: linear-gradient(to bottom, #29323c 0%, #485563 100%);
-  // background-image: linear-gradient( 58.2deg,  rgba(40,91,212,0.73) -3%, rgba(171,53,163,0.45) 49.3%, rgba(255,204,112,0.37) 97.7% );
-  // background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
-  // background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%);
-  // background-image: linear-gradient(to left, #df89b5 0%, #bfd9fe 100%);
-  // background-image: linear-gradient(-225deg, #77FFD2 0%, #6297DB 48%, #1EECFF 100%);
-  // background-image: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
+  @media (max-width: $mobile-width)
+    background-image: linear-gradient(to bottom right, #333333 30%, #555555 100%)
+    // background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);
+    // background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
 
 .bold
   font-weight: bold
@@ -197,25 +194,27 @@ nav
     @media (max-width: $mobile-width)
       margin-right: 0.25rem
 
-#tri-1
-    position: fixed
-    content: ""
-    width: 0
-    height: 0
-    border-bottom: 80vh solid #1111
-    border-left: 100vw solid transparent
-    transform: translate(0, 10vh)
-    z-index: 0
+// #tri-1
+//   position: fixed
+//   content: ""
+//   width: 100%
+//   height: 50%
+//   bottom: 0
+//   transform: rotate(-30deg) translate(0, 10rem)
+//   z-index: 2
+//   backdrop-filter: invert(70%)
 
-#tri-2
-    position: fixed
-    content: ""
-    width: 0
-    height: 0
-    border-bottom: 100vh solid #1111
-    border-left: 100vw solid transparent
-    transform: translate(0, 10vh)
-    z-index: 0
+// #tri-2
+//   position: fixed
+//   content: ""
+//   width: 100%
+//   height: 50%
+//   bottom: 0
+//   transform: rotate(-25deg) translate(0, 10rem)
+//   z-index: 2
+//   backdrop-filter: invert(60%)
+//   -webkit-backdrop-filter: invert(60%)
+
 
 #title
   h1 
@@ -229,6 +228,7 @@ nav
   p
     padding-top: 1rem
     font-size: 1.2rem
+
 
 .shift-up
   transform: translate(0, -7.4rem)
@@ -260,7 +260,9 @@ nav
   // mix-blend-mode: hard-light
   // mix-blend-mode: difference
   // mix-blend-mode: luminosity
-  // filter: invert(90%)
+  // filter: invert(100%)
+  // opacity: 0.6
+  // filter: invert(100%)
 
 
 section
@@ -278,6 +280,10 @@ section
 
       @media (max-width: $mobile-width)
         font-size: 2.5rem
+
+    h2
+      @media (max-width: $mobile-width)
+        font-size: 1.5rem
 
     &.push-up
       padding-top: 5rem
@@ -310,8 +316,12 @@ section
       inset: 0
       transform: skewY(var(--skew-angle)) translateY(var(--translate-y))
       box-shadow: 10px 10px 30px #1114
-      -webkit-backdrop-filter: blur(100px)
-      backdrop-filter: blur(100px)
+      -webkit-backdrop-filter: blur(100px) brightness(150%) invert(100%)
+      backdrop-filter: blur(100px) brightness(150%) invert(100%)
+
+      @media (max-width: $mobile-width)
+        -webkit-backdrop-filter: brightness(50%)
+        backdrop-filter: brightness(50%)
 
   h1
     font-size: 2.5rem
@@ -390,7 +400,9 @@ div.button
   background: none
   display: inline
   transition: all 0.3s ease
-  background-color: #fff2
+  background: #fff2
+  -webkit-backdrop-filter: blur(100px)
+  backdrop-filter: blur(100px)
 
   &:hover
     // color: deeppink
@@ -617,12 +629,13 @@ table
     width: 10rem
     height: 10rem
     background-size: cover
-    border-radius: 100%
+    border-radius: 50%
     margin: 0 auto
     margin-bottom: 1.5rem
     border: 1px solid #777
-    transition: border-color 0.3s ease
-    transition: filter 0.3s ease
+    // transition: border-radius 0.3s ease
+    // transition: border-color 0.3s ease
+    transition: all 0.3s ease
     filter: grayscale(50%)
 
   .person

@@ -1,0 +1,75 @@
+{% import "macros/signup.html" as signup %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dracula">
+
+<head>
+  {% if "redpoll" in config.base_url %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137238038-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-137238038-1');
+    </script>
+  {% endif %}
+  {% block head %}
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% if section %}
+    <title>{% block title %}{{ section.title }}{% endblock title %}</title>
+  {% elif page %}
+    <title>{% block title %}{{ page.title }}{% endblock title %}</title>
+  {% endif %}
+
+  <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.5/dist/full.css" rel="stylesheet" type="text/css" /> -->
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link rel=" stylesheet" href="{{ config.base_url }}/style.css">
+  <meta name="theme-color" content="#111111" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/avicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+  {% endblock head %}
+</head>
+
+<body>
+  <div id="main">
+    <nav class="flex-center-left">
+      <div class="logo"><a href="{{ config.base_url }}">REDPOLL</a></div>
+      <div><a href="{{ config.base_url }}/consulting">Consulting</a></div>
+      <div><a href="{{ config.base_url }}/mission">About</a></div>
+      <div><a href="{{ config.base_url }}/blog">Blog</a></div>
+      <div><a href="#subscribe-form">Contact</a></div>
+    </nav>
+
+    {% block content %}{% endblock content %}
+
+    <a id="contact-form"></a>
+    <section class="diagonal gradient">
+      <div class="wrapper">
+        {{ signup::signup(heading="Get in touch") }}
+      </div>
+    </section>
+
+    <section class="diagonal half gradient">
+      <div class="wrapper flex-center footer">
+        <div>
+          <a href="https://www.linkedin.com/company/redpoll">Linkedin</a>
+        </div>
+        <div>
+          <a href="mailto:info@redpoll.ai">Contact</a>
+        </div>
+        <div>2023 &copy; Redpoll</div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
