@@ -159,6 +159,17 @@ ul, ol
 .center
   text-align: center
 
+#mobile-nav-items
+  border-left: 1px solid white
+  border-radius: 0
+  margin-left: 1rem
+  padding-left: 1rem
+  font-size: 1.1rem
+
+#mobile-nav-toggle
+  color: white
+  font-size: 1.5rem
+  cursor: pointer
 nav
   position: fixed
   display: flex
@@ -170,14 +181,19 @@ nav
   margin: 1rem
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3)
   z-index: 100
+  transition: all 0.3s ease
+
+  &.closed #mobile-nav-items
+      display: none
+
 
   @media (max-width: $mobile-width)
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3)
     padding: 0.5rem 0.5rem
     margin: 0rem
     border-radius: 0
-    width: 100%
-    // margin: 0.5rem
+    border-top-right-radius: 15px
+    bottom: 0
     
   a
     text-decoration: none
@@ -201,6 +217,15 @@ nav
 
     @media (max-width: $mobile-width)
       margin-right: 0.25rem
+
+@media (max-width: $mobile-width)
+  .no-mobile
+    display: none  
+
+@media (min-width: $mobile-width)
+  .mobile
+    display: none  
+    
 
 // #tri-1
 //   position: fixed
@@ -254,11 +279,17 @@ nav
     font-weight: 200
     letter-spacing: 0.5rem
 
+    @media (max-width: $mobile-width)
+      font-size: 2rem
+
   h2.upper
     font-size: 3rem
     text-transform: uppercase
     font-weight: 200
     letter-spacing: 0.5rem
+
+    @media (max-width: $mobile-width)
+      font-size: 1.7rem
 
   h2.subhead
     font-size: 1.3rem
@@ -299,9 +330,6 @@ section
 
   &.header
     padding-top: 10rem
-
-    @media (max-width: $mobile-width)
-      // padding-top: 5rem
 
     h1
       font-size: 4rem
@@ -350,11 +378,6 @@ section
       // box-shadow: 10px 10px 30px #1114
       // -webkit-backdrop-filter: blur(100px) brightness(150%) invert(100%)
       // backdrop-filter: blur(100px) brightness(150%) invert(100%)
-
-      @media (max-width: $mobile-width)
-        -webkit-backdrop-filter: brightness(50%)
-        backdrop-filter: brightness(50%)
-
   h1
     font-size: 2.5rem
     padding-bottom: 1rem

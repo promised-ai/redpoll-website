@@ -24,7 +24,7 @@
     <title>{% block title %}{{ page.title }}{% endblock title %}</title>
   {% endif %}
 
-  <link rel=" stylesheet" href="{{ config.base_url }}/style.css">
+  <link rel=" stylesheet" href="{{ config.base_url }}/style0001.css">
   <meta name="theme-color" content="#111111" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
@@ -38,12 +38,23 @@
 
 <body>
   <div id="main">
-    <nav class="flex-center-left">
+    <nav class="flex-center-left no-mobile">
       <div class="logo"><a href="{{ config.base_url }}">REDPOLL</a></div>
       <div><a href="{{ config.base_url }}/consulting">Consulting</a></div>
       <div><a href="{{ config.base_url }}/mission">About</a></div>
       <div><a href="{{ config.base_url }}/blog">Blog</a></div>
       <div><a href="#subscribe-form">Contact</a></div>
+    </nav>
+
+    <nav id="mobile-nav" class="flex-center-left mobile closed">
+      <div id="mobile-nav-toggle">&#8801;</div>
+      <div id="mobile-nav-items">
+        <div><a href="{{ config.base_url }}">Home</a></div>
+        <div><a href="{{ config.base_url }}/consulting">Consulting</a></div>
+        <div><a href="{{ config.base_url }}/mission">About</a></div>
+        <div><a href="{{ config.base_url }}/blog">Blog</a></div>
+        <div><a href="#subscribe-form">Contact</a></div>
+      </div>
     </nav>
 
     <div id="animation" style="position: fixed; min-width: 100%; min-height: 100vh; z-index: -1; overflow-x: hidden;"></div>
@@ -70,6 +81,14 @@
     </section>
 
   </div>
+
+  <script>
+    (function() {
+      document.querySelector('#mobile-nav').addEventListener('click', function() {
+        this.classList.toggle('closed')
+      }, false);
+    })();
+  </script>
 
 </body>
 </html>
