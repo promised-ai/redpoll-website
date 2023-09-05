@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock title %}
+{% block head %}
+  {{ super() }}
+{% endblock head %}
+
+{% block content %}
+  <div id="gradient-background-4"></div>
+  <section class="header h100">
+    <div class="wrapper">
+      <h1 class="upper dynamic"><span class="white">We build</span> probabilistic AI/ML <span class="white">tools</span>, <span class="white">programs</span>, and <span class="white">teams</span> for organizations working <span class="white">in humanity’s most important domains</span>.</h1>
+
+      <p>More than 80% of data science efforts are wasted. We believe this is caused by the uninterpretability and brittleness of traditional ML technologies, which forces inefficient data science practices. We take a different approach to ML using probabilistic methodology, which allows us to complete months of work &mdash; with plainly understandable, actionable results &mdash; in days.</p>
+      <br/>
+      <br/>
+      <div>
+        <a href="#subscribe-form" class="plain"><div class="button transparent">Get in touch</div></a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="diagonal">
+    <div class="wrapper">
+      <h1 class="upper">We are <span class="white">terraformers</span></h1>
+      <h3 style="font-weight: 300">
+        Our goal is to improve the conditions of your data science program,
+        build a self-sustaining probabilistic ecosystem, and (mostly) move on.
+      </h3>
+
+    </div>
+  </section>
+
+  <section class="diagonal">
+    <div class="wrapper">
+
+      <h2 class="upper">Probabilistic <span class="white">AI/ML R&amp;D</span></h2>
+      <h3 class="white" style="font-weight: 300;">
+      We have performed probabilistic programming R&amp;D work for some of the world's biggest AI buyers working in the most high-risk domains including the US Department of Defense and multinational corporations.
+      </h3>
+      <br/>
+
+      <div class="grid-2 small">
+        <div>
+          <img src="{{ config.base_url }}/img/icons/noun-research-5840824-FFFFFF.svg" class="icon-md"/>
+          <br/>
+
+          <h3>Low risk through radical candor</h3>
+
+          <p>
+          R&amp;D is risky &mdash; data science R&amp;D doubly so. This is
+          mainly because knowing the right question is hard, and modern ML
+          tools make it as hard as possible to ask questions and to know which
+          questions are answerable with your data. We use technology that
+          allows us to determine quickly (usually in less than two weeks)
+          whether your data can get you where you want to go, and if not, to
+          determine how to address these knowledge gaps. You either learn from
+          your data, or very quickly learn that your efforts are better spent
+          elsewhere.
+          </p>
+        </div>
+        <div>
+
+          <h3>Our Process</h3>
+
+          <ol>
+            <li>Problem identification</li>
+            <li>Onboard to your systems and data</li>
+            <li>Determine whether what is feasible with the data.</li>
+          </ol>
+
+          <center><p class="white">go/no-go decision</p></center>
+
+          <ul>
+            <li>If data are sufficient, build out the project</li>
+            <li>If data are insufficient, develop a data collection or active learning plan (optional)</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="diagonal">
+    <div class="wrapper">
+      <h2 class="upper">Team building</h2>
+        <h2 class="white" style="font-weight: 300;">Build value by building your people, not by bringing in consultants.</h2>
+
+      <br/>
+
+      <div class="grid-2 small">
+        <div>
+          <img src="{{ config.base_url }}/img/icons/noun-team-1674392-FFFFFF.svg" class="icon-md"/>
+          <br/>
+          <h3>Building a probabilistic programming initiative is hard. We can help.</h3>
+          <p>
+          There is a reason probabilistic ML hasn't taken over: it's hard. It requires users to be skilled in Bayesian statistics, machine learning, and usually a domain. Hiring people with expertise in one of these areas is hard enough, but hiring people with them all is nearly impossible, especially if you do not already have people with the expertise to recruit and interview them.
+          </p>
+        </div>
+
+        <div>
+          <br/>
+          <p>We build probabilistic ML teams by improving the people you already have. We engage on a specific project and serve as PMs and leads for that project while training your personnel on the job. As the team needs to grow we can perform recruiting and interviewing services.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="diagonal">
+    <div class="wrapper">
+      <h2 class="upper">Why <span class="white">Probabilistic</span> AI/ML?</h2>
+      <p class="white">We have chosen the Bayesian probabilistic AI/ML paradigm because it prioritizes understanding and uncertainty quantification, which is critical for the domains we work in. We have repeatedly observed first hand how traditional Machine Learning and Data Science methods produce models that cross validate well but fail in production for unknown reasons. In direct contrast to traditional ML, the Bayesian probabilistic paradigm provides the following advantages:
+      </p>
+      <ul>
+        <li>Interpretability</li>
+        <li>Predictions come from distributions, which communicate variance and uncertainty</li>
+        <li>Provides rigorous frameworks for choosing between models</li>
+        <li>Does more with far less data</li>
+        <li>Enables active learning, which helps determine which future data would help us best learn</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="diagonal">
+    <div class="wrapper">
+      <h2 class="upper"><span class="white">Dedicated</span> to Open Source and Rust</h2>
+      <p class="white">Since our whole shtick is building transparent and safe ML tools, it only makes sense to write performance-critical code in a memory-safe language like Rust, and to make the source available for scrutiny.
+      </p>
+      <ul>
+        <li>Lace: Bayesian tabular data analysis for Rust and Python</li>
+        <li>Changepoint: Bayesian change point analysis for Rust and Python</li>
+        <li>rv: Probability distribution and statistical utilities for Rust</li>
+      </ul>
+    </div>
+  </section>
+{% endblock content %}

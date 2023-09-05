@@ -57,13 +57,11 @@
       </div>
     </nav>
 
-    <div id="animation" style="position: fixed; min-width: 100%; min-height: 100vh; z-index: -1; overflow-x: hidden;"></div>
-
     {% block content %}{% endblock content %}
 
     <a id="contact-form"></a>
     <section class="diagonal gradient">
-      <div class="wrapper w-30">
+      <div class="wrapper">
         {{ signup::signup(heading="Get in touch") }}
       </div>
     </section>

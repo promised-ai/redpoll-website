@@ -4,19 +4,17 @@
   {{ super() }}
   {% set_global show_call_to_action = false %}
   {% set_global show_signup_form = false %}
-  <link rel="stylesheet" href="{{ config.base_url }}/blog.css">
 {% endblock head %}
 
 {% block content %}
-  <div id="blog-main" class="content-row">
-    <div class="content-box">
-      <br>
-      <br>
-      <br>
-      <h1 class=blog-heading>{{ section.title }}</h1>
-      <h2 class=blog-subheading>{{ section.extra.subtitle }}</h2>
+  <div id="gradient-background-2"></div>
+  <section id="blog-main">
+    <div class="wrapper">
+      <h1 class=blog-heading>REDPOLL <span class="white">BLOG</span></h1>
+      <!-- <h2 class=blog-subheading>{{ section.extra.subtitle }}</h2> -->
 
       {% for post in section.pages | sort(attribute="date") | reverse %}
+      <div>
         <div class="post">
           <div class="post-left">
             <a href={{ post.permalink }}>
@@ -38,7 +36,7 @@
         </div>
       {% endfor %} 
       <div class="section-spacer"></div>
-    </div>
+      </div>
   </div>
-  <!-- </script> -->
+</section>
 {% endblock content %}

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "blog_base.html" %}
 {% block title %}Redpoll - {{ page.title }}{% endblock title %}
 {% block head %}
   {% set img_url = "../static/img/" ~ page.extra.image %}
@@ -6,44 +6,8 @@
   {{ super() }}
   {% set_global show_call_to_action = false %}
   {% set_global show_signup_form = true %}
-  <link rel="stylesheet" href="{{ config.base_url }}/blog.css">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <style>
-    #lightbox {
-      height: 100%;
-      width: 100%;
-      background-color: #000000dd;
-      position: fixed;
-      z-index: 100;
-      text-align: center;
-      display: none;
-      align-items: center;
-      transition: 1s ease;
-      justify-content: center;
-      transition: all 1s;
-    }
-
-    .lightbox-btn {
-      color: crimson;
-      font-size: 1.2rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid crimson;
-      cursor: pointer;
-      margin: 0 0.5rem;
-      text-align: center;
-    }
-
-    #lightbox-img {
-      max-width: 95vw;
-      max-height: 90vh;
-      margin-left: 2.5vw;
-      margin-right: 2.5vw;
-      margin-top: 2vh;
-      margin-bottom: 1rem;
-    }
-
-  </style>
   <meta name="author" content="{{ page.extra.author }} (Redpoll)">
   <meta property="og:title" content="{{ page.title }}"/>
   <meta property="og:image" content="{{ small_img['url'] }}"/>
@@ -61,98 +25,50 @@
 
 {% block content %}
 
-{% set default_theme = "light-opaque" %}
-{% if page.extra.theme %}
-{% set page_theme = page.extra.theme %}
-{% else  %}
-{% set page_theme = default_theme %}
-{% endif  %}
 
-<div id="lightbox">
-    <div>
-      <img id="lightbox-img" src="white-bird.png">
-      <p><span id=lightbox-close class=lightbox-btn>Close</span><span id=lightbox-theme class=lightbox-btn>Light</span></p>
+<div id="post-main">
+  <div id="post-title" class="half-page">
+    <div id="post-image" style="background-image: url({{ small_img['url'] }})">
+
     </div>
-</div>
-
-<div id="post-main" class="content-row">
-    <img class=bkg-img src="{{ small_img['url'] }}">
-    <div class="content-box-lg" style="display: flex; align-items: center; justify-content:center;">
-      <div id=post-header class="bh-light-transparent">
-
-        <!-- <div id="post-header-blur"> -->
-        <!--   <img class=bkg-img-blur src="{{ small_img }}"> -->
-        <!-- </div> -->
-
-        <!-- <div id="post-header-inner"> -->
-        <!--   <div id=post-meta> -->
-        <!--     <div><span class=post-meta-item>BY</span> {{ page.extra.author }}</div> -->
-        <!--     <div><span class=post-meta-item>ON</span> {{ page.date }}</div> -->
-        <!--     <div><span class=post-meta-item>CAT</span> {{ page.taxonomies.categories }}</div> -->
-          <div id=post-titles>
-            <h1 class=post-heading>{{ page.title }}</h1>
-
-            <div style="max-width: 40rem; margin: 0 auto; border-top: 1px solid #fff;">
-              <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
-
-              <div><span class=post-meta-item>BY</span> {{ page.extra.author }}</div>
-              <div><span class=post-meta-item>ON</span> {{ page.date }}</div>
-              <div><span class=post-meta-item>CAT</span> {{ page.taxonomies.categories }}</div>
-            </div>
-          </div>
-        </div>
-        {% if page.extra.image_attr %}
-        <div class="image-attr"><strong>Image</strong>: {{page.extra.image_attr}}</div>
-        {% endif %}
+    <div class="half-page absolute flex-center">
+      <div id=post-header>
+        <h1 class=post-heading>{{ page.title }}</h1>
+        <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
       </div>
+    </div>
+    {% if page.extra.image_attr %}
+    <div class="image-attr"><strong>Image</strong>: {{page.extra.image_attr}}</div>
+    {% endif %}
+  </div>
+
+  <div id="post-info">
+    <div>
+      <p>{{ page.date }}</p>
+    </div>
+    <div>
+      <p class="bold">Author</p>
+      <p>{{ page.extra.author }}</p>
+    </div>
+    <div>
+      <p>{{ page.taxonomies.categories }}</p>
     </div>
   </div>
 
-  <div id=post-content class="content-row">
+  <div id="post-body">
     <div class="content-box-sm">
-    {% if page.extra.old_redpoll %}
+      {% if page.extra.old_redpoll %}
       <div class='old-redpoll-warning'>
-        <strong>NOTE:</strong> This post was written using an early, and now deprecated, version of Redpoll software. The API has changed, but the concepts are the same.
+        <p><strong>NOTE:</strong> This post was written using an early, and now deprecated, version of Redpoll software. The API has changed, but the concepts are the same.
+        </p>
       </div>
-    {% endif %}
+      {% endif %}
       <a name=content-start></a>
       {{ page.content | safe }}
+      </div>
     </div>
   </div>
 
-  <script>
-    var lightbox = document.getElementById("lightbox");
-    var lightbox_img = document.getElementById('lightbox-img')
-    var lightbox_dark = true
-
-    document.getElementById('lightbox-close').addEventListener('click', function (e) {
-      lightbox.style.display = "none";
-    });
-
-    document.getElementById('lightbox-theme').addEventListener('click', function (e) {
-      if (lightbox_dark) {
-        lightbox_dark = false
-        lightbox.style.backgroundColor = "rgba(255, 255, 255, 0.95)"
-        this.textContent = "Dark"
-      } else {
-        lightbox_dark = true
-        lightbox.style.backgroundColor = "rgba(0, 0, 0, 0.95)"
-        this.textContent = "Light"
-      }
-    });
-
-    document.querySelectorAll('#post-content img').forEach(item => {
-      item.addEventListener('click', function (e) {
-          lightbox_img.setAttribute('src', item.src);
-          lightbox.style.display = "flex";
-      })
-    });
-
-    lightbox.addEventListener('click', function (e) {
-      if (e.target.id == "lightbox") {
-        lightbox.style.display = "none";
-      }
-    })
-  </script>
+</div>
 {% endblock content %}
 

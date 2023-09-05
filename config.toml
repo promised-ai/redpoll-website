@@ -7,14 +7,13 @@ build_search_index = true
 generate_feed = true
 # feed_filename = "feed.xml"
 
-# taxonomies = [
-# 	{name = "categories", paginate_by = 5, rss = true},
-# 	{name = "authors"},
-# ]
+taxonomies = [
+	{name = "categories", paginate_by = 5, rss = true},
+	{name = "authors"},
+]
 
 [markdown]
 highlight_code = true
-# highlight_theme = "zenburn"
 highlight_theme = "OneHalfDark"
 render_emoji = true
 external_links_target_blank = true
