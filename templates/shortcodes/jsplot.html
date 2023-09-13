@@ -1,6 +1,6 @@
-{% set data = load_data(path=path, format="plain") %}
 <center>
   <div style="max-width: 100%;">
+    {% set data = load_data(path=path, format="plain") %}
     {{ data | safe }}
   </div>
   <noscript>
@@ -9,7 +9,13 @@
       </style>
       <div class=img-with-caption>
         <img src={{ img }}>
-        <div class=img-caption>{{caption}}</div>
       </div>
   </noscript>
+  {% if caption %}
+  <div class=img-caption>
+    <p>
+      <strong>Above:&nbsp;</strong>{{caption}}
+    </p>
+  </div>
+  {% endif %}
 </center
