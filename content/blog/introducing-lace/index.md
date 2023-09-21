@@ -83,7 +83,7 @@ sats.predict("Class_of_Orbit", given={"longitude_radians_of_geo": None})
 # ('LEO', 0.002252910143782927)
 ```
 
-Note that calls to `predict` return two values: the prediction and a second number describing uncertainty (Jensen-Shannon divergence among the posterior samples' predictive distributions).
+Note that calls to `predict` return two values: the prediction and a second number describing uncertainty ([Jensen-Shannon divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence) among the posterior samples' predictive distributions).
 
 If you'd like to view the entire predictive distribution rather than just the most likely value (prediction), you can ask about the likelihood of values.
 
@@ -171,7 +171,7 @@ sats.simulate(
 |  4 | Commercial | Communications         |
 
 
-Heck, we can re-simulate the entire dataset. Lace is generally very good at generating tabular synthetic data, outperforming GAN- and Tranformer-based approaches (manuscript under review).
+We can easily re-simulate the entire dataset. Lace is generally very good at generating tabular synthetic data, outperforming deep-learning-based approaches using [Generative Adversarial Netowrks (GANs)](https://en.wikipedia.org/wiki/Generative_adversarial_network) and [Tranformers](https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)) (manuscript under review).
 
 ```python
 sats.simulate(sats.columns, n=sats.shape[0])
@@ -214,7 +214,7 @@ animals.clustermap("rowsim", zmin=0, zmax=1, fn_kwargs={"wrt": ["swims"]})
 }} 
 </div>
 
-Notice that there are two main clusters of animals, those that swims and those that do not. If we were just looking at the data similarity the values would all be either 0 or 1 because the `swims` feature is binary, but here we get more nuanced information. For example, within the animals that swim, there are two similarity groups. These are groups of animals that swims, but we predict that they swim for different reasons.
+Notice that there are two main clusters of animals, those that swims and those that do not. If we were just looking at the data similarity the values would all be either 0 or 1 because the `swims` feature is binary, but here we get more nuanced information. For example, within the animals that swim there are two similarity clusters. These are cluster of animals that swim, but we predict that they swim for different reasons.
 
 # Learn more
 
