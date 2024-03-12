@@ -26,11 +26,13 @@ jobs:
       run: |
         echo ::group::Archive artifact
         tar \
-          --dereference --hard-dereference \
+          --dereference \
+          --hard-dereference \
           --directory "_site" \
           -cvf "$RUNNER_TEMP/artifact.tar" \
           --exclude=.git \
-          --exclude=.github
+          --exclude=.github \
+          .
         echo ::endgroup::
       env:
         INPUT_PATH: ${{ inputs.path }}
