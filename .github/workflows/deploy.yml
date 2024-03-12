@@ -30,7 +30,7 @@ jobs:
           --directory "_site" \
           -cvf "$RUNNER_TEMP/artifact.tar" \
           --exclude=.git \
-          --exclude=.github \
+          --exclude=.github
         echo ::endgroup::
       env:
         INPUT_PATH: ${{ inputs.path }}
