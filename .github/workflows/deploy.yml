@@ -1,18 +1,63 @@
-name: Zola on GitHub Pages
+name: Deploy to Pages
 
 on: 
  push:
   branches:
       - master
 
+
+inputs:
+  name:
+    description: 'Artifact name'
+    required: false
+    default: 'github-pages'
+  path:
+    description: "Path of the directory containing the static assets."
+    required: true
+    default: "_site/"
+  outputs:
+    artifact_id:
+      description: "The ID of the artifact that was uploaded."
+      value: ${{ steps.upload-artifact.outputs.artifact-id }}
+
 jobs:
   build:
-    name: Publish site
+    name: Build Site
     runs-on: ubuntu-latest
     steps:
     - name: Checkout main
       uses: actions/checkout@v4
-    - name: Build and deploy
-      uses: shalzz/zola-deploy-action@v0.18.0
+    - uses: taiki-e/install-action@v2
+      with:
+        tool: zola@0.17.1
+    - name: Compile
+      run: zola build --output-dir _site
+    - name: Fix Permissions
+      run: |
+        chmod -c -R +rX "_site/" | while read line; do
+          echo "::warning title=Invalid file permissions automatically fixed::$line"
+        done
+    - name: Archive artifact
+      run: |
+        echo ::group::Archive artifact
+        tar \
+          --dereference --hard-dereference \
+          --directory "$INPUT_PATH" \
+          -cvf "$RUNNER_TEMP/artifact.tar" \
+          --exclude=.git \
+          --exclude=.github \
+        echo ::endgroup::
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        INPUT_PATH: ${{ inputs.path }}
+
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v3
+
+    - name: Upload artifact
+      id: upload-artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ runner.temp }}/artifact.tar
+        retention-days: ${{ inputs.retention-days }}
+        if-no-files-found: error
