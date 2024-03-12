@@ -5,21 +5,6 @@ on:
   branches:
       - master
 
-
-inputs:
-  name:
-    description: 'Artifact name'
-    required: false
-    default: 'github-pages'
-  path:
-    description: "Path of the directory containing the static assets."
-    required: true
-    default: "_site/"
-  outputs:
-    artifact_id:
-      description: "The ID of the artifact that was uploaded."
-      value: ${{ steps.upload-artifact.outputs.artifact-id }}
-
 jobs:
   build:
     name: Build Site
@@ -42,7 +27,7 @@ jobs:
         echo ::group::Archive artifact
         tar \
           --dereference --hard-dereference \
-          --directory "$INPUT_PATH" \
+          --directory "_site" \
           -cvf "$RUNNER_TEMP/artifact.tar" \
           --exclude=.git \
           --exclude=.github \
@@ -57,7 +42,7 @@ jobs:
       id: upload-artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ inputs.name }}
+        name: github-pages
         path: ${{ runner.temp }}/artifact.tar
-        retention-days: ${{ inputs.retention-days }}
+        retention-days: 1
         if-no-files-found: error
