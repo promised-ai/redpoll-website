@@ -4,29 +4,29 @@
 
 <head>
   {% if "redpoll" in config.base_url %}
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137238038-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137238038-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-      gtag('config', 'UA-137238038-1');
-    </script>
+    gtag('config', 'UA-137238038-1');
+  </script>
   {% endif %}
   {% block head %}
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {% if section %}
-    <title>{% block title %}{{ section.title }}{% endblock title %}</title>
+  <title>{% block title %}{{ section.title }}{% endblock title %}</title>
   {% elif page %}
-    <title>{% block title %}{{ page.title }}{% endblock title %}</title>
+  <title>{% block title %}{{ page.title }}{% endblock title %}</title>
   {% endif %}
 
-  <link rel=" stylesheet" href="{{ config.base_url }}/style0001.css">
+  <link rel=" stylesheet" href="{{ config.base_url }}/style0002.css">
   <meta name="theme-color" content="#111111" />
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
@@ -38,57 +38,34 @@
 
 <body>
   <div id="main">
-    <nav class="flex-center-left no-mobile">
-      <div class="logo"><a href="{{ config.base_url }}">REDPOLL</a></div>
-      <div><a href="{{ config.base_url }}/consulting">Consulting</a></div>
-      <div><a href="{{ config.base_url }}/mission">About</a></div>
-      <div><a href="{{ config.base_url }}/blog">Blog</a></div>
-      <div><a href="#subscribe-form">Contact</a></div>
-    </nav>
 
-    <nav id="mobile-nav" class="flex-center-left mobile closed">
-      <div id="mobile-nav-toggle">&#8801;</div>
-      <div id="mobile-nav-items">
-        <div><a href="{{ config.base_url }}">Home</a></div>
-        <div><a href="{{ config.base_url }}/consulting">Consulting</a></div>
-        <div><a href="{{ config.base_url }}/mission">About</a></div>
-        <div><a href="{{ config.base_url }}/blog">Blog</a></div>
-        <div><a href="#subscribe-form">Contact</a></div>
+    <nav>
+      <div class="inner">
+        <div class="logo">
+          <a href="{{ config.base_url }}">
+            <img id="bird" src="{{ config.base_url }}/img/bird.png" width="40px" />
+          </a>
+        </div>
+        <div class="logo" style="padding-right: 1rem"><a href="{{ config.base_url }}">Redpoll</a></div>
+        <div><a href="{{ config.base_url }}/blog">Posts</a></div>
+        <!-- <div><a href="#subscribe-form">Contact</a></div> -->
       </div>
     </nav>
-
-    <div id="animation" style="position: fixed; min-width: 100%; min-height: 100vh; z-index: -1; overflow-x: hidden;"></div>
 
     {% block content %}{% endblock content %}
 
-    <a id="contact-form"></a>
-    <section class="diagonal gradient">
-      <div class="wrapper w-30">
-        {{ signup::signup(heading="Get in touch") }}
+    <footer>
+      <div>
+        <a href="https://www.linkedin.com/company/redpoll">Linkedin</a>
       </div>
-    </section>
-
-    <section class="diagonal half gradient">
-      <div class="wrapper flex-center footer">
-        <div>
-          <a href="https://www.linkedin.com/company/redpoll">Linkedin</a>
-        </div>
-        <div>
-          <a href="mailto:info@redpoll.ai">Contact</a>
-        </div>
-        <div>2023 &copy; Redpoll</div>
+      <div>
+        <a href="mailto:info@redpoll.ai">Contact</a>
       </div>
-    </section>
+      <div>2024 &copy; Redpoll</div>
+    </footer>
 
   </div>
 
-  <script>
-    (function() {
-      document.querySelector('#mobile-nav').addEventListener('click', function() {
-        this.classList.toggle('closed')
-      }, false);
-    })();
-  </script>
-
 </body>
+
 </html>

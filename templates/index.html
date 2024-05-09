@@ -2,16 +2,16 @@
 {% import "macros/signup.html" as signup %}
 {% extends "base.html" %}
 {% block head %}
-  {{ super() }}
-  <meta name="author" content="Redpoll">
-  <meta property="og:title" content="Redpoll"/>
-  <meta property="og:image" content="{{ config.base_url }}/img/sea-1-small.jpg"/>
-  <meta property="og:description" content="Artificial Intelligence to partner with people; not replace them."/>
-  <meta property="og:url" content="{{ config.base_url }}/" />
-  <meta property="keywords" content="AI, Artificial Intelligence, Explainable AI, Science, Genomics, Defense, Health, Healthcare, Medicine, Data Science, Analytics, Machine Learning, Ethics" />
+{{ super() }}
+<meta name="author" content="Redpoll">
+<meta property="og:title" content="Redpoll" />
+<meta property="og:image" content="{{ config.base_url }}/img/sea-1-small.jpg" />
+<meta property="og:description" content="Artificial Intelligence to partner with people; not replace them." />
+<meta property="og:url" content="{{ config.base_url }}/" />
+<meta property="keywords"
+  content="AI, Artificial Intelligence, Explainable AI, Science, Genomics, Defense, Health, Healthcare, Medicine, Data Science, Analytics, Machine Learning, Ethics" />
 
-  <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/nord.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/nord.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
@@ -23,77 +23,41 @@
 
 <div id="gradient-background-4"></div>
 
-<section class="header h100">
-  <div id="title" class="wrapper">
+<section>
+  <div id="title">
     <div>
-      <img
-        id="bird"
-        src="{{ config.base_url }}/img/bird-white.png"
-        width="100px"
-      />
-      <br/>
-      <h1> AI for <span class="white">Understanding</span></h1>
-    </div>
+      <h1>Automatically find, explain, and fix errors <span class="crimson">without
+          rules</span>.</h1>
+      <h2>Redpoll <span class="crimson">Plover</span> bolts on to your data warehouse to fix errors in, and to
+        protect your databases</h2>
 
-    <h2 style="font-weight: 400; font-size: 1.2rem;">At Redpoll we develop new classes of Artificial Intelligence designed to work <span class="white">with</span> people, not <span class="white">instead of</span> people.</h2>
-    <br/>
-    <br/>
-    <center>
-    <div>
-      <a href="#subscribe-form" class="plain"><div class="button">Get in touch</div></a>
-    </div>
-  </center>
-  </div>
-</section>
+      <!-- <h1>AI only works when it <span class="crimson">doesn't matter</span></h1> -->
+      <!-- <p> -->
+      <!-- The AI industry is built around black box algorithms, like deep learning, which require incredible amounts of -->
+      <!-- data, and which can fail in unexpected ways. These algorithms have found great success in domains for which data -->
+      <!-- are plentiful and cheap, and for which the cost of failure is low &mdash; domains like ad targeting, image -->
+      <!-- classification, chatbots, and content generation. But in safety-intensive domains like healthcare, defense, and -->
+      <!-- public policy, data are sparse and expensive, and the cost of failure is potentially lost lives. Using the same -->
+      <!-- algorithms is unproductive, unsustainable, and dangerous.</p> -->
+      <!-- <p> -->
+      <!-- We believe the best way to solve these hard, impactful problems safely and sustainably is to start from the -->
+      <!-- ground up. To develop new AI techniques based on human cognition. To build expressive, intuitive, and -->
+      <!-- transparent AI that can be operated and understood by both data scientists and domain experts. <span -->
+      <!-- class="crimson">That's why we founded Redpoll.</span> -->
+      <!-- </p> -->
+      <br />
+      <br />
 
+      <!-- <h2>Redpoll is the first ML platform that builds a Bayesian model of your relational databse to fully understand -->
+      <!-- the world -->
+      <!-- according to your data.</h2> -->
 
-<section class="diagonal gradient">
-  <div class="wrapper">
-    <h1 style="font-size: 2.3rem; font-weight: 300">Artificial Intelligence designed from the ground up to work with <span class="white">human intelligence.</span></h1>
-    <br/>
-  </div>
-  <div class="wrapper w-80">
-    <div class="grid-2 wide">
-      <div>
-        <h2 class="thin">How Data Science is done today</h2>
-        <br/>
-        <div class="workflow-item">
-          <div>
-            <img
-              src="{{ config.base_url }}/img/workflows/crisp-dm-light.svg"
-              width="250px"
-            >
-          </div>
-          <div>
-            <h3 class="white">Modern machine learning is designed for automation, not discovery</h3>
-            <p>
-            Today's machine learning (ML) tools are designed to highly optimize and automate away individual tasks. One ML model solves one problem. Thus, the data science workflow consists of doing loads work to (maybe) address a single problem/question. And because ML is developed to take tasks from people, ML hides knowledge in a black box, making it inappropriate for high-risk or knowledge-critical tasks.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h2 class="thin">Doing data science with Redpoll</h2>
-        <br/>
-        <div class="workflow-item">
-          <div>
-            <img src="{{ config.base_url }}/img/workflows/redpoll-light-transparent.svg" width="250px">
-          </div>
-          <div>
-            <h3 class="white">A new way to do data science</h3>
-            <p>
-            Redpoll technology is designed to work <em>with</em> people, not <em>instead</em> of people. Our technology enables a much streamlined workflow in which learning occurs up front, which allows users to ask questions with no additional effort and receive transparent answers to drive discovery and innovation in high-risk, high-impact domains.
-            </p>
-          </div>
-        </div>
-      </div>
-
+      <center>
+        <p>More soon.</p>
+      </center>
     </div>
   </div>
 </section>
-
-
 
 
 {% endblock content %}

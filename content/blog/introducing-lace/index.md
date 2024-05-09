@@ -179,7 +179,7 @@ sats.simulate(sats.columns, n=sats.shape[0])
 
 ## Row/Record similarity
 
-We can also ask which records (rows) are similar in terms of model space. This frees us from having to come up with a distance metric that works well for mixed data types and missing data. It also provides more nuanced information that just looking at the values. To make this a bit more inuitive, we'll switch to an animals example, since people generally have a better sense of what makes animals similar than they do what makes satellites similar.
+We can also ask which records (rows) are similar in terms of model space. This frees us from having to come up with a distance metric that works well for mixed data types and missing data. It also provides more nuanced information that just looking at the values. To make this a bit more inuitive, we'll switch to an animals example, since people generally have a better sense of what makes animals similar.
 
 ```python
 from lace.examples import Animals

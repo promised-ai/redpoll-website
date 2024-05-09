@@ -1,42 +1,25 @@
 {% extends "base.html" %}
 {% block title %}{{ section.title }}{% endblock title %}
 {% block head %}
-  {{ super() }}
-  {% set_global show_call_to_action = false %}
-  {% set_global show_signup_form = false %}
+{{ super() }}
+{% set_global show_call_to_action = false %}
+{% set_global show_signup_form = false %}
 {% endblock head %}
 
 {% block content %}
-  <div id="gradient-background-2"></div>
-  <section id="blog-main">
-    <div class="wrapper">
-      <h1 class=blog-heading>REDPOLL <span class="white">BLOG</span></h1>
-      <!-- <h2 class=blog-subheading>{{ section.extra.subtitle }}</h2> -->
+<section>
+  <div class="wrapper">
+    <h1 class="heading">Redpoll <span class="crimson">posts</span></h1>
 
-      {% for post in section.pages | sort(attribute="date") | reverse %}
-      <div>
-        <div class="post">
-          <div class="post-left">
-            <a href={{ post.permalink }}>
-              <div class="post-inner">
-                <p class="post-date">{{ post.date }}</p>
-                <p><span class=post-at>@</span><span class="post-by">{{ post.extra.author }}</span></p>
-              </div>
-            </a>
-          </div><div class="post-right">
-            <a href={{ post.permalink }}>
-            <div class="post-inner">
-              <div class="post-inner-text">
-                <h1>{{ post.title }}</h1>
-                <p>{{ post.extra.subheading }}</p>
-              </div>
-            </div>
-            </a>
-          </div>
-        </div>
-      {% endfor %} 
-      <div class="section-spacer"></div>
-      </div>
+    {% for post in section.pages | sort(attribute="date") | reverse %}
+    <div class="post">
+      <a href={{ post.permalink }}>
+        <h1>{{ post.title }}</h1>
+      </a>
+      <h2>{{ post.extra.subheading }}</h2>
+      <p>{{ post.date }} by {{ post.extra.author }}</p>
+    </div>
+    {% endfor %}
   </div>
 </section>
 {% endblock content %}
