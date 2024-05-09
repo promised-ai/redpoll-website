@@ -35,7 +35,7 @@
 <div id="post-main">
   <div id="post-title">
     <div id="post-image" style="background-image: url({{ small_img['url'] }})"></div>
-    <div id=post-header class="{{ page.extra.theme }}">
+    <div id=post-header class="{{ page.extra.theme | default(value='light') }}">
       <h1 class=post-heading>{{ page.title }}</h1>
       <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
     </div>

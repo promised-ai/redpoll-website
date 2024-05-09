@@ -12,6 +12,7 @@ author = "Michael T. Schmidt"
 subheading = "Online changepoint detection for rust and python"
 image = "maxim-hopman-fiXLQXAhCfk-unsplash.jpg"
 image_attr = "Photo by Maxim Hopman on Unsplash"
+theme = "light"
 +++
 
 ## Where should I start
