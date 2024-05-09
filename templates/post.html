@@ -1,43 +1,43 @@
-{% extends "blog_base.html" %}
+{% extends "base.html" %}
 {% block title %}Redpoll - {{ page.title }}{% endblock title %}
 {% block head %}
-  {% set img_url = "../static/img/" ~ page.extra.image %}
-  {% set small_img = resize_image(path=img_url, width=1920, height=1080, op="fill") %}
-  {{ super() }}
-  {% set_global show_call_to_action = false %}
-  {% set_global show_signup_form = true %}
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <meta name="author" content="{{ page.extra.author }} (Redpoll)">
-  <meta property="og:title" content="{{ page.title }}"/>
-  <meta property="og:image" content="{{ small_img['url'] }}"/>
-  <meta property="og:description" content="{{ page.extra.subheading }}"/>
-  <meta property="og:url" content="{{ config.base_url }}/{{ page.path }}" />
-  <meta property="keywords" content="{% for item in page.taxonomies.categories %}{% if loop.index == page.taxonomies.categories | length %}{{ item }}{% else %}{{ item }}, {% endif %}{% endfor %}" />
+{% set img_url = "../static/img/" ~ page.extra.image %}
+{% set small_img = resize_image(path=img_url, width=1920, height=1080, op="fill") %}
+{{ super() }}
+{% set_global show_call_to_action = false %}
+{% set_global show_signup_form = true %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<meta name="author" content="{{ page.extra.author }} (Redpoll)">
+<meta property="og:title" content="{{ page.title }}" />
+<meta property="og:image" content="{{ small_img['url'] }}" />
+<meta property="og:description" content="{{ page.extra.subheading }}" />
+<meta property="og:url" content="{{ config.base_url }}/{{ page.path }}" />
+<meta property="keywords"
+  content="{% for item in page.taxonomies.categories %}{% if loop.index == page.taxonomies.categories | length %}{{ item }}{% else %}{{ item }}, {% endif %}{% endfor %}" />
 
-  {% if page.extra.bokeh %}
-    <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.1.min.js" integrity="sha384-kLr4fYcqcSpbuI95brIH3vnnYCquzzSxHPU6XGQCIkQRGJwhg0StNbj1eegrHs12" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        Bokeh.set_log_level("info");
-    </script>
-  {% elif page.extra.plotly %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.26.0/plotly.min.js" integrity="sha512-mS3oJ3NDBADQBxpBYuK/jqeQysit9+O0FWhsxprErA1xluQNlxmUmTaACrZMBoTAmOu0Zn4AR4ao17226DUNlA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  {% endif %}
+{% if page.extra.bokeh %}
+<script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.1.min.js"
+  integrity="sha384-kLr4fYcqcSpbuI95brIH3vnnYCquzzSxHPU6XGQCIkQRGJwhg0StNbj1eegrHs12" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  Bokeh.set_log_level("info");
+</script>
+{% elif page.extra.plotly %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.26.0/plotly.min.js"
+  integrity="sha512-mS3oJ3NDBADQBxpBYuK/jqeQysit9+O0FWhsxprErA1xluQNlxmUmTaACrZMBoTAmOu0Zn4AR4ao17226DUNlA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endif %}
 {% endblock head %}
 
 {% block content %}
 
 
 <div id="post-main">
-  <div id="post-title" class="half-page">
-    <div id="post-image" style="background-image: url({{ small_img['url'] }})">
-
-    </div>
-    <div class="half-page absolute flex-center">
-      <div id=post-header>
-        <h1 class=post-heading>{{ page.title }}</h1>
-        <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
-      </div>
+  <div id="post-title">
+    <div id="post-image" style="background-image: url({{ small_img['url'] }})"></div>
+    <div id=post-header class="{{ page.extra.theme }}">
+      <h1 class=post-heading>{{ page.title }}</h1>
+      <h2 class=post-subheading>{{ page.extra.subheading }}</h2>
     </div>
     {% if page.extra.image_attr %}
     <div class="image-attr"><strong>Image</strong>: {{page.extra.image_attr}}</div>
@@ -45,32 +45,24 @@
   </div>
 
   <div id="post-info">
-    <div>
-      <p>{{ page.date }}</p>
-    </div>
-    <div>
-      <p class="bold">Author</p>
-      <p>{{ page.extra.author }}</p>
-    </div>
-    <div>
-      <p>{{ page.taxonomies.categories }}</p>
-    </div>
+    <p>{{ page.date }} <span class="emph">by</span> {{ page.extra.author }} <span class="emph">in</span> {{
+      page.taxonomies.categories }}</p>
   </div>
 
   <div id="post-body">
     <div class="content-box-sm">
       {% if page.extra.old_redpoll %}
       <div class='old-redpoll-warning'>
-        <p><strong>NOTE:</strong> This post was written using an early, and now deprecated, version of Redpoll software. The API has changed, but the concepts are the same.
+        <p><strong>NOTE:</strong> This post was written using an early, and now deprecated, version of Redpoll software.
+          The API has changed, but the concepts are the same.
         </p>
       </div>
       {% endif %}
       <a name=content-start></a>
       {{ page.content | safe }}
-      </div>
     </div>
   </div>
+</div>
 
 </div>
 {% endblock content %}
-

@@ -11,7 +11,7 @@ categories = ["ml", "tutorial"]
 author = "Baxter Eaves"
 subheading = "Building a supremely useful model in a supremely useful programming language."
 image = "clouds-01.jpg"
-theme = "dark-transparent"
+theme = "dark"
 front_page = true
 +++
 

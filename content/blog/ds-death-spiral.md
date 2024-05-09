@@ -301,7 +301,7 @@ Asking sensible questions requires deep domain expertise, so it would be most ef
 Eliminating iteration through up-front learning and turning a *question-modeling* system into a *question-answering* system significantly streamlines discovery and reduces time to production.
 Under this process, discovery-to-production takes hours or days rather than months or years.
 
-**And the best part is: this technology exists today. You can check out what this looks like in practice <span style="color: crimson">[here](@/redpoll-vs-ml.md)</span> and <span style="color: crimson">[here](@/blog/gamma.md)</span>.**
+**And the best part is: [this technology exists today](https://lace.dev). You can check out what this looks like in practice <span style="color: crimson">[here](@/blog/gamma.md)</span>.**
 
 When we consult for clients, we take their data, feed it through Reformer, and wait until the client has an hour or so to sit with us.
 Then we let them do our job for us.
@@ -344,4 +344,3 @@ The result is the elimination of the vast majority of backtracking and iteration
 - Today's Machine Learning is question-oriented rather than data-oriented; therefore one Machine Learning model can address only one question.
 - Data-oriented, humanistic AI enables a much simpler workflow in which all paths point toward answers, and the only cycle is answering more questions.
 - The humanistic workflow enables _immediate_ ask-and-answer capabilities, enabling stakeholders to directly engage in the discovery process.
-- To see how Redpoll's Reformer platform enables faster discovery [click here](@/redpoll-vs-ml.md).
