@@ -11,10 +11,6 @@
 <meta property="keywords"
   content="AI, Artificial Intelligence, Explainable AI, Science, Genomics, Defense, Health, Healthcare, Medicine, Data Science, Analytics, Machine Learning, Ethics" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/nord.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
-<script>hljs.highlightAll();</script>
-
 {% endblock head %}
 
 {% block content %}
@@ -28,36 +24,332 @@
     <div>
       <h1>Automatically find, explain, and fix errors <span class="crimson">without
           rules</span>.</h1>
-      <h2>Redpoll <span class="crimson">Plover</span> bolts on to your data warehouse to find and fix bad data and to
-        minimize future errors. Automatically.</h2>
-
-      <!-- <h1>AI only works when it <span class="crimson">doesn't matter</span></h1> -->
-      <!-- <p> -->
-      <!-- The AI industry is built around black box algorithms, like deep learning, which require incredible amounts of -->
-      <!-- data, and which can fail in unexpected ways. These algorithms have found great success in domains for which data -->
-      <!-- are plentiful and cheap, and for which the cost of failure is low &mdash; domains like ad targeting, image -->
-      <!-- classification, chatbots, and content generation. But in safety-intensive domains like healthcare, defense, and -->
-      <!-- public policy, data are sparse and expensive, and the cost of failure is potentially lost lives. Using the same -->
-      <!-- algorithms is unproductive, unsustainable, and dangerous.</p> -->
-      <!-- <p> -->
-      <!-- We believe the best way to solve these hard, impactful problems safely and sustainably is to start from the -->
-      <!-- ground up. To develop new AI techniques based on human cognition. To build expressive, intuitive, and -->
-      <!-- transparent AI that can be operated and understood by both data scientists and domain experts. <span -->
-      <!-- class="crimson">That's why we founded Redpoll.</span> -->
-      <!-- </p> -->
-      <br />
-      <br />
-
-      <!-- <h2>Redpoll is the first ML platform that builds a Bayesian model of your relational databse to fully understand -->
-      <!-- the world -->
-      <!-- according to your data.</h2> -->
-
-      <center>
-        <p>More soon.</p>
-      </center>
+      <h2>Redpoll <span class="crimson">Plover</span> is the only AI data platform that finds and explains erroneous
+        values in datasets to cultivate information and improve your data's most important function: to help you learn.
+      </h2>
     </div>
   </div>
 </section>
+
+<h1 class="section-heading">For <span class="crimson">information</span> cultivation</h1>
+
+<section class="code-section">
+  <div>
+    <div class="one-half">
+      <div class="column top">
+        <div>
+          <h1>What it <span class="crimson">is not</span></h1>
+          <p>There are many data quality and observabilty platforms out there and they all do one or more of the
+            following:
+          </p>
+          <ul>
+            <li>
+              <p>
+                focus on mechanial failures of your data architecture that can be completely avoided with solid database
+                architecture i.e. <span class="crimson">you can do it yourself</span>;</p>
+            </li>
+            <li>
+              <p>
+                do anomaly/outlier detection by looking for distributional changes in single columns, <span
+                  class="crimson">which requires that a certain amount of bad data make it into prod</span> in order to
+                make the comparisson and ignores the context of the data;
+              </p>
+            </li>
+            <li>
+              <p>
+                use <span class="crimson">error</span> between predictions made by your machine learning models and the observed data as a measure of anomaly, which requires you to go through the effort of building an ML model that is more accurate than your data;
+              </p>
+            </li>
+            <li>
+              <p>flatten your databse, throwing out your carefully designed relational structure and biasing learning toward the entities that interact most with the database.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="column top">
+        <div>
+          <h1>What it <span class="crimson">is</span></h1>
+          <p><span class="crimson">Plover focuses singly of improving the veracity of the values in your databases toward improving the
+              information in your
+              databases, and thus improving your ability to learn</span>. By creating a model of your entire database
+            (without
+            flattening it) we are able to evaluate the erronerousness
+            of each datum individually. This allows us to pluck out (or impute) individual bad data and protect prod
+            without lag.</p>
+        </div>
+      </div>
+      <div>
+        <div>
+</section>
+
+<h1 class="section-heading">How it works</h1>
+
+<section class="code-section dark">
+  <div>
+    <div>
+      <h1>1. Build a model of your data</h1>
+    </div>
+    <div class="two-thirds">
+      <div class="column"> 
+      <!-- <img src="/img/plover/01-fit.png" /> -->
+          {{ '```python
+from plover.source import ImmutableSqlSource
+from plover.store import AwsS3Store
+from plover.backend import AwsBackend
+from plover.engine import DatabaseEngine
+
+conn = connect_to_sql_database()
+
+db_engine = (
+  DatabaseEngine(
+    source=ImmutableSqlSource(conn, "SATELLTIES_WH"),
+    store=AwsS3Store("myorg-plover", "SATELLTIES_WH"),
+    backend=AwsBackend("myorg-plover"),
+  )
+  .fit()
+  .persist()
+  .metalearn()
+  .persis()
+)
+```' | markdown(inline=true) | safe}}
+      </div>
+      <div class="column">
+        <div>
+          <h3>Holistic modeling and metalearning</h3>
+          <p>Plover builds a holistic model of the world as defined by your data, then learns a metamodel to firther
+            refine its understanding of the information in your data.
+          </p>
+        </div>
+      </div>
+      <div>
+        <div>
+</section>
+
+<section class="code-section">
+  <div>
+    <div>
+      <h1>2. Identify Likely Errors</h1>
+    </div>
+    <div class="two-thirds">
+      <div class="column">
+        <div>
+          {{ "
+```python
+top_5_errors = (
+  db_engine
+    .metrics
+    .errorness
+    .sort(by=['Confusion'], descending=True)
+    .head(5)
+)
+```
+          "
+          |
+          markdown(inline=true) | safe}}
+          <!-- <img src="/img/plover/02-id.png" /> -->
+          <div>
+            <table border="1" class="dataframe">
+              <thead>
+                <tr>
+                  <th>Row</th>
+                  <th>Column</th>
+                  <th>Confusion</th>
+                  <th>Observed</th>
+                  <th>Predicted</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Intelsat 903</td>
+                  <td>Eccentricity</td>
+                  <td>10.514456</td>
+                  <td>0.793069999999…</td>
+                  <td>0.000335826120…</td>
+                </tr>
+                <tr>
+                  <td>Intelsat 902</td>
+                  <td>Inclination_ra…</td>
+                  <td>10.036763</td>
+                  <td>25.06467339</td>
+                  <td>0.002274957131…</td>
+                </tr>
+                <tr>
+                  <td>Intelsat 903</td>
+                  <td>Apogee_km</td>
+                  <td>7.853968</td>
+                  <td>358802</td>
+                  <td>35792.92656399…</td>
+                </tr>
+                <tr>
+                  <td>DSP 20 (USA 14…</td>
+                  <td>Period_minutes…</td>
+                  <td>6.695287</td>
+                  <td>142.08</td>
+                  <td>1436.095724064…</td>
+                </tr>
+                <tr>
+                  <td>SDS III-6 (Sat…</td>
+                  <td>Source_Used_fo…</td>
+                  <td>4.93515</td>
+                  <td>JM/5_11</td>
+                  <td>ZARYA</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div>
+          <h3>Inconsistency is key</h3>
+          <p>Plover finds errors by identifying data that are inconsistent with its model of your data or cause
+            confusion.</p>
+        </div>
+      </div>
+      <div>
+        <div>
+</section>
+
+<section class="code-section">
+  <div>
+    <div>
+      <h1>3. Find similar errors</h1>
+    </div>
+    <div class="two-thirds">
+      <div class="column">
+        <div>
+          {{ '
+```python
+errs_like = db_engine.errors_like(
+  "DSP 20 (USA 149) (Defense Support Program)",
+  "Period_minutes"
+)
+```' | markdown(inline=true) | safe}}
+          <!-- <img src="/img/plover/03-similar.png" /> -->
+          <div>
+            <table border="1" class="dataframe">
+              <thead>
+                <tr>
+                  <th>row</th>
+                  <th>rowsim</th>
+                  <th>Observed</th>
+                  <th>Predicted</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>SDS III-7 (Sat…</td>
+                  <td>0.988281</td>
+                  <td>23.94</td>
+                  <td>1436.088006</td>
+                </tr>
+                <tr>
+                  <td>SDS III-6 (Sat…</td>
+                  <td>0.964844</td>
+                  <td>14.36</td>
+                  <td>1436.113453</td>
+                </tr>
+                <tr>
+                  <td>Advanced Orion…</td>
+                  <td>0.9453125</td>
+                  <td>23.94</td>
+                  <td>1436.105354</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div>
+          <h3>Metareasoning</h3>
+          <p>After identifying an error, Plover can identify similar errors by finding data that are inconsistent or
+            confusing in similar ways.
+          </p>
+        </div>
+      </div>
+      <div>
+        <div>
+</section>
+
+<section class="code-section">
+  <div>
+    <div>
+      <h1>4. Identify errors in incoming data</h1>
+    </div>
+    <div class="two-thirds">
+      <div class="column">
+        <div>
+          {{ '
+```python
+err = db_engine.detect(new_satellite_record)
+err[0]
+```' | markdown(inline=true) | safe}}
+          <!-- <img src="/img/plover/04-protect.png" /> -->
+          <div>
+            <table border="1" class="dataframe">
+              <thead>
+                <tr>
+                  <th>Row</th>
+                  <th>Column</th>
+                  <th>Incon Quantile</th>
+                  <th>Observed</th>
+                  <th>Predicted</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Satmex 8</td>
+                  <td>Users</td>
+                  <td>0.99998</td>
+                  <td>Commecial</td>
+                  <td>Commercial</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div>
+          <h3>Protect Prod</h3>
+          <p>Compute how confusing or inconsistent data are before they make it into the database to protect production
+            systems</p>
+        </div>
+      </div>
+      <div>
+        <div>
+</section>
+
+<section class="code-section">
+  <div>
+    <div>
+      <h1>5. Fill knowledge gaps</h1>
+    </div>
+    <div class="two-thirds">
+      <div class="column">
+        <div>
+          {{ '
+```python
+to_fill = db_engine.find_missing_to_fill(
+  to_help_predict="Purpose"
+)
+
+to_fill[0].show()
+```' | markdown(inline=true) | safe}}
+        </div>
+      </div>
+      <div class="column">
+        <div>
+          <h3>All (missing) data are not created equal</h3>
+          <p>Plover can identify missing fields that are most likely to reduce uncertainty in specific predictions if filled in.</p>
+        </div>
+      </div>
+      <div>
+        <div>
+</section>
+
 
 
 {% endblock content %}
