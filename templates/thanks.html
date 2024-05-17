@@ -1,0 +1,18 @@
+{% import "macros/person.html" as person %}
+{% import "macros/signup.html" as signup %}
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block content %}
+
+<section>
+  <div>
+    <h1>Thanks!</h1>
+    <p>We'll get back to you shortly.</p>
+    <img src="/img/main/plover-thanks-3.webp" height="600px"/>
+  </div>
+</section>
+
+{% endblock content %}

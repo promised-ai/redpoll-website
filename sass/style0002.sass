@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap')
 
-$small: 400px
+$small: 900px
+$mobile: 500px
 
 body, html
 	margin: 0
 	padding: 0
 
-p, h1, h2, h3, h4, h5, h6
+p, h1, h2, h3, h4, h5, h6, button, input
 	font-family: "Playfair Display", serif
 	color: #333
 
@@ -22,17 +23,17 @@ a
 
 #main
 	position: relative
-	max-width: 60rem
 	margin: 0 auto
 	padding: 0 1rem
 	
 nav
-	width: 100%
+	width: 100vw
+	z-index: 100
 	background-color: white
-	position: relative
+	position: fixed
+	top: 0
 
 	div.inner
-		top: 0
 		padding: 1rem
 		// padding-top: 1.5rem
 		border-bottom: 1px solid #333
@@ -62,21 +63,69 @@ h1.section-heading
 	text-align: center
 	margin-bottom: 0
 	padding-bottom: 0
+	padding-top: 2rem
+
+	@media screen and (max-width: $small)
+		font-size: 2.5rem
+		padding-top: 1rem
+
+
+.subtle
+	opacity: 0.4
+
+
+#people
+	display: grid
+	grid-template-columns: 1fr 1fr 1fr
+	gap: 3rem
+	width: 100%
+
+	@media screen and (max-width: $mobile)
+		display: block
+
+		img
+			display: block
+			margin: 0 auto
+
 
 section
+	max-width: 60rem
+	margin: 0 auto
 	min-height: 100vh
 	display: flex
 	align-items: center
 	border-bottom: 1px solid #bbb
 
+	@media screen and (max-width: $small)
+		display: block
 	h1
 		font-size: 2.3rem
 		font-weight: 400
 
+	&.wide
+		max-width: 80rem
+
+	&.full-width
+		max-width: 100%
+
+	&.expo
+		h2
+			font-weight: 300
+			text-align: center
+			font-size: 1.5rem
+			margin-top: 2rem
+
 	&.code-section
 		min-height: 0
-		padding-top: 4rem
-		padding-bottom: 4rem
+		padding-top: 5rem
+		padding-bottom: 5rem
+
+		@media screen and (max-width: $small)
+			padding-top: 3rem
+			padding-bottom: 3rem
+
+			h1
+				font-size: 2rem
 
 		p
 			font-size: 1.1rem
@@ -89,9 +138,12 @@ section
 			font-size: 1.3rem
 			font-style: italic		
 
-		div.two-thirds, div.one-half
+		div.two-thirds, div.one-half, div.three-col
 			display: grid
 			gap: 4rem
+
+			@media screen and (max-width: $small)
+				display: block
 
 			pre
 				box-shadow: 5px 5px 30px #33333333
@@ -99,10 +151,13 @@ section
 				font-size: 0.9rem
 				line-height: 1.3
 				padding: 2rem
+				overflow-x: scroll
+
+				@media screen and (max-width: $small)
+					width: 100%
 
 			img
 				width: 100%
-				filter: drop-shadow(10px 10px 20px rgba(33, 33, 33, 0.3))
 
 			div.column
 				display: flex
@@ -127,23 +182,56 @@ section
 		div.one-half
 			grid-template-columns: 1fr 1fr
 
+		div.three-col
+			grid-template-columns: 4fr 7fr 4fr
+
+			img
+				width: 100%
+				filter: contrast(110%)
+
 
 div.flex
 	display: flex
 
+div.person
+	img
+		width: 100%
+		max-width: 200px
+		border-radius: 50%
+		border: 3mm double #555
+
+	h1
+		pdding: 0rem
+		margin: 0rem
+		padding-top: 2rem
+		font-size: 2rem
+
+	h2
+		pdding: 0rem
+		margin: 0rem
+		font-size: 1.2rem
+		margin-top: 0.5rem
+		
+
 
 #title
+	width: 100%
+	background-size: cover
+	// align-items: flex-start
+	background-color: rgba(255, 255, 255, 0.7)
+	background-blend-mode: lighten
+
 	h1
 		margin: 0
 		padding: 0
 		padding-bottom: 2rem
-		font-size: 5rem
+		font-size: 4rem
 		font-weight: 400
 
 	h2
 		max-width: 40rem
 		margin: 0 auto
-		font-size: 1.2rem
+		font-size: 1.1rem
 		font-weight: 300
 		line-height: 2
 		padding-bottom: 4rem
@@ -158,6 +246,49 @@ div.flex
 		// font-family: Helvetica, Arial, sans-serif
 		color: #bbb
 		font-style: italic
+
+	#title-inner
+		display: flex
+		gap: 3rem
+		align-items: center
+		max-width: 60rem
+		margin: 0 auto
+
+		@media screen and (min-width: $small)
+			img
+				max-height: 600px
+				width: auto
+
+		@media screen and (max-width: $small)
+			margin-top: 4rem
+			display: block
+			width: 100%
+
+			h1
+				font-size: 3rem
+
+			img
+				max-height: 600px
+				width: auto
+				margin: 0 auto
+				max-width: 300px
+				height: auto
+
+			#img-container
+				display: flex
+				max-width: 30rem
+				margin: 0 auto
+				align-items: center
+				gap: 1rem
+
+		@media screen and (max-width: $mobile)
+			img
+				width: 100%
+				height: auto
+
+			#img-container
+				display: block
+				widht: 100%
 
 
 footer
@@ -221,7 +352,39 @@ div.post
 	margin: 0 auto
 
 
+#cta
+	position: fixed
+	right: 0
+	z-index: 100
+	background-color: #333
+	color: white
+	// font-family: helvetica, arial, sans
+	padding: 1.5rem 2rem
+	// margin: 1rem
+	transition: background-color 0.3s ease
+
+	@media screen and (max-width: $small)
+		bottom: 0
+
+	@media screen and (min-width: $small)
+		top: 0
+
+	&:hover
+		background-color: crimson
+
+	a
+		font-style: italic
+		color: white
+		text-decoration: none
+		text-transform: uppercase
+		font-size: 0.9rem
+		font-weight: 200
+		letter-spacing: 0.1rem
+
+
 #post-title
+	// max-width: 60rem
+	// margin: 0 auto
 	position: relative
 	display: grid
 	padding: 10rem 3rem
@@ -230,6 +393,8 @@ div.post
 		padding: 5rem 1rem
 
 	#post-header
+		max-width: 40rem
+		margin: 0 auto
 		z-index: 10
 
 		&.dark
@@ -273,6 +438,9 @@ div.post
 
 
 #post-info
+	max-width: 40rem
+	margin: 0 auto
+
 	.emph
 		margin-left: 0.5rem
 		margin-right: 0.25rem
@@ -280,6 +448,7 @@ div.post
 		color: crimson
 
 pre
+	overflow-x: scroll
 	border-radius: 10px
 	padding: 1rem
 	
@@ -309,6 +478,14 @@ pre
 		padding: 0.5rem 1rem
 		background-color: #fee
 
+	pre
+		overflow-x: scroll
+		border-left: 8px solid #ddd
+		border-right: 8px solid #ddd
+		border-top: 1px solid #ddd
+		border-bottom: 1px solid #ddd
+		border-radius: 0
+
 table
 	border-collapse: collapse
 	border-bottom: 1px solid black
@@ -324,3 +501,44 @@ table
 
 	tr:hover
 		background-color: #f2f2f2
+
+	@media screen and (max-width: $small)
+		width: 100%
+
+
+#signup
+	max-width: 20rem
+	margin: 0 auto
+
+	form
+		input
+			width: 100%
+		div
+			padding-bottom: 1rem
+
+
+button, label
+	font-size: 1rem
+
+label
+	font-style: italic
+
+input
+	border: none
+	border-bottom: 1px solid #333
+	margin-top: 0.5rem
+	font-size: 1rem
+
+button
+	border-radius: 0
+	background-color: white
+	border: 1px solid #333
+	padding: 0.5rem 1rem
+
+	transition: all 0.3s ease
+
+	&:hover
+		color: black
+		background-color: #eee
+
+	

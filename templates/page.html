@@ -75,21 +75,5 @@
 {% endblock head %}
 
 {% block content %}
-  <!-- <div id=blog-main-background></div> -->
-  <div id=background class="background-filter"></div>
-
-  <div style="position: relative; margin: 0 0.5rem;">
-    <!-- <div id="landing" class=full-page-flex> -->
-    <div id="landing">
-      <div id="title">
-        <!-- <img src="{{ config.base_url }}/img/bird-white.png" width="100px"> -->
-          <div style="max-width: 40rem; margin: 0rem auto;">
-            <div style="text-align: left">
-              {{ page.content | safe }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+{{ page.content | safe }}
 {% endblock content %}

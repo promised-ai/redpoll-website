@@ -2,13 +2,17 @@
 {% block title %}{{ section.title }}{% endblock title %}
 {% block head %}
 {{ super() }}
-{% set_global show_call_to_action = false %}
-{% set_global show_signup_form = false %}
+{% set_global show_signup_form = true %}
 {% endblock head %}
 
 {% block content %}
 <section>
   <div class="wrapper">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     <h1 class="heading">Redpoll <span class="crimson">posts</span></h1>
 
     {% for post in section.pages | sort(attribute="date") | reverse %}

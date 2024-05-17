@@ -24,7 +24,7 @@
   <title>{% block title %}{{ page.title }}{% endblock title %}</title>
   {% endif %}
 
-  <link rel=" stylesheet" href="{{ config.base_url }}/style0002.css">
+  <link rel="stylesheet" href="{{ get_url(path='/style0002.css', cachebust=true) }}">
   <meta name="theme-color" content="#111111" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -37,22 +37,55 @@
 </head>
 
 <body>
+  <nav>
+    <div class="inner">
+      <div class="logo">
+        <a href="{{ config.base_url }}">
+          <img id="bird" src="{{ config.base_url }}/img/bird.png" width="40px" />
+        </a>
+      </div>
+      <div class="logo" style="padding-right: 1rem"><a href="{{ config.base_url }}">Redpoll</a></div>
+      <div><a href="{{ config.base_url }}/blog">Posts</a></div>
+      <!-- <div><a href="#subscribe-form">Contact</a></div> -->
+    </div>
+  </nav>
+
+  {% if show_signup_form %}
+  <div id="cta"><a href="#signup">Partner with us</a></div>
+  {% endif %}
+
   <div id="main">
 
-    <nav>
-      <div class="inner">
-        <div class="logo">
-          <a href="{{ config.base_url }}">
-            <img id="bird" src="{{ config.base_url }}/img/bird.png" width="40px" />
-          </a>
-        </div>
-        <div class="logo" style="padding-right: 1rem"><a href="{{ config.base_url }}">Redpoll</a></div>
-        <div><a href="{{ config.base_url }}/blog">Posts</a></div>
-        <!-- <div><a href="#subscribe-form">Contact</a></div> -->
-      </div>
-    </nav>
-
     {% block content %}{% endblock content %}
+
+    {% if show_signup_form %}
+    <section>
+      <div id="signup">
+        <h1>Become a partner</h1>
+        <p>Partner with us to bring Plover to your infrasturucture and to enhance the information within your data
+          systems.</p>
+        <br />
+        <br />
+        <form action="https://formspree.io/f/xwkgzago" method="post">
+          <div>
+            <label for="name">Name</label>
+            <input name="name" id="name" type="text">
+          </div>
+
+          <div>
+            <label for="org">Organization</label>
+            <input name="org" id="org" type="text">
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input name="Email" id="email" type="email">
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+    {% endif %}
 
     <footer>
       <div>
