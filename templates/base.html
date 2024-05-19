@@ -39,20 +39,23 @@
 <body>
   <nav>
     <div class="inner">
-      <div class="logo">
-        <a href="{{ config.base_url }}">
-          <img id="bird" src="{{ config.base_url }}/img/bird.png" width="40px" />
-        </a>
+      <div id="nav-left">
+        <div class="logo">
+          <a href="{{ config.base_url }}">
+            <img id="bird" src="{{ config.base_url }}/img/bird.png" width="40px" />
+          </a>
+        </div>
+        <div class="logo" style="padding-right: 1rem"><a href="{{ config.base_url }}">Redpoll</a></div>
+        <div><a href="{{ config.base_url }}/blog">Posts</a></div>
       </div>
-      <div class="logo" style="padding-right: 1rem"><a href="{{ config.base_url }}">Redpoll</a></div>
-      <div><a href="{{ config.base_url }}/blog">Posts</a></div>
-      <!-- <div><a href="#subscribe-form">Contact</a></div> -->
+      <div id="nav-right">
+        {% if show_signup_form %}
+        <div id="cta"><a href="#signup">Partner with us</a></div>
+        {% endif %}
+      </div>
     </div>
   </nav>
 
-  {% if show_signup_form %}
-  <div id="cta"><a href="#signup">Partner with us</a></div>
-  {% endif %}
 
   <div id="main">
 
