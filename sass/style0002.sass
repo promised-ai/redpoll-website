@@ -25,6 +25,9 @@ a
 	position: relative
 	margin: 0 auto
 	padding: 0 1rem
+
+	@media screen and (max-width: $mobile)
+		padding: 0 0.5rem
 	
 nav
 	width: 100vw
@@ -57,6 +60,22 @@ nav
 
 		a
 			text-decoration: none
+
+	@media screen and (max-width: $mobile)
+		font-size: 0.9rem
+		div.inner
+			padding: 0.5rem
+
+			display: flex
+			align-items: center
+	
+
+			.logo
+				padding-right: 0.5rem
+				padding-right: 0.25rem
+
+			div
+				padding: 0 0.25rem
 
 h1.section-heading
 	font-size: 4rem
@@ -153,8 +172,12 @@ section
 				padding: 2rem
 				overflow-x: scroll
 
-				@media screen and (max-width: $small)
-					width: 100%
+				// @media screen and (max-width: $small)
+				// 	width: 100%
+
+				@media screen and (max-width: $mobile)
+					// width: 100%
+					font-size: 0.9rem
 
 			img
 				width: 100%
@@ -165,6 +188,9 @@ section
 
 				&.top
 					align-items: flex-start
+
+				@media screen and (max-width: $small)
+					overflow-x: scroll
 
 			table
 				margin-top: 4rem
@@ -259,7 +285,7 @@ div.person
 				max-height: 600px
 				width: auto
 
-		@media screen and (max-width: $small)
+		@media screen and (max-width: $small) and (min-width: $mobile)
 			margin-top: 4rem
 			display: block
 			width: 100%
@@ -268,6 +294,7 @@ div.person
 				font-size: 3rem
 
 			img
+				display: block
 				max-height: 600px
 				width: auto
 				margin: 0 auto
@@ -282,13 +309,20 @@ div.person
 				gap: 1rem
 
 		@media screen and (max-width: $mobile)
+			margin-top: 4rem
+			display: block
+			width: 100%
+
 			img
+				display: block
 				width: 100%
-				height: auto
 
 			#img-container
 				display: block
 				widht: 100%
+
+			h1
+				font-size: 3rem
 
 
 footer
@@ -352,22 +386,24 @@ div.post
 	margin: 0 auto
 
 
+.no-mobile
+	@media screen and (max-width: $mobile)
+		display: none
+
+
 #cta
 	position: fixed
 	right: 0
 	z-index: 100
 	background-color: #333
 	color: white
-	// font-family: helvetica, arial, sans
 	padding: 1.5rem 2rem
-	// margin: 1rem
 	transition: background-color 0.3s ease
+	top: 0
 
-	@media screen and (max-width: $small)
-		bottom: 0
-
-	@media screen and (min-width: $small)
-		top: 0
+	@media screen and (max-width: $mobile)
+		background-color: crimson
+		padding: 1rem 1rem
 
 	&:hover
 		background-color: crimson
@@ -504,6 +540,7 @@ table
 
 	@media screen and (max-width: $small)
 		width: 100%
+		font-size: 0.9rem
 
 
 #signup
