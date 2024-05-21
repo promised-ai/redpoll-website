@@ -135,7 +135,9 @@ section
 		div:first-child
 			max-width: 70rem
 			margin: 0 auto
-			overflow-x: scroll
+
+			// :not(pre)
+			// 	overflow-x: hidden
 
 		@media screen and (max-width: $small)
 			display: block
@@ -165,8 +167,6 @@ section
 
 			pre
 				box-shadow: 5px 5px 30px #33333333
-				width: 550px
-				font-size: 0.8rem
 				line-height: 1.3
 				padding: 2rem
 				overflow-x: scroll
@@ -190,7 +190,6 @@ section
 
 					pre
 						max-width: 100vw
-						font-size: 0.5rem
 
 			table
 				margin-top: 4rem
