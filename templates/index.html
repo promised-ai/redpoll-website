@@ -81,8 +81,8 @@ conn = connect_to_sql_database()
 
 db_engine = (
   DatabaseEngine(
-    source=ImmutableSqlSource(conn, "SATELLTIES_WH"),
-    store=AwsS3Store("myorg-plover", "SATELLTIES_WH"),
+    source=ImmutableSqlSource(conn, "SATELLITES_WH"),
+    store=AwsS3Store("myorg-plover", "SATELLITES_WH"),
     backend=AwsBackend("myorg-plover"),
   )
   .fit()
