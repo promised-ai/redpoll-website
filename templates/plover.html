@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <script type="module">
+  import init, * as bindings from "{{ get_url(path="/plover/wasm-plover.js", cachebust=true) }}";
+    const wasm = await init("{{ get_url(path="/plover/wasm-plover.wasm", cachebust=true) }}");
+    window.wasmBindings = bindings;
+    dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+  </script>
+  <style>
+    .thaw-upload-dragger,
+    button.thaw-button {
+      border-radius: 0;
+      background: none;
+      /*font-family: "Open Sans", sans-serif;*/
+      font-size: 16px;
+      letter-spacing: 2px;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #000;
+      cursor: pointer;
+      border: 3px solid;
+      padding: 0.5em 1em;
+      box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      transition: all 0.3s ease;
+    }
+
+    button.thaw-button {
+      maring-top: 1em;
+    }
+
+    .thaw-upload-dragger:active,
+    button.thaw-button:active {
+      background-color: none;
+      box-shadow: 0px 0px 0px 0px;
+      top: 5px;
+      left: 5px;
+    }
+
+    .thaw-upload-dragger:hover,
+    button.thaw-button:hover {
+      background: none;
+      background-color: none;
+      border: 3px solid crimson;
+      color: crimson;
+    }
+
+    .thaw-table {
+      border-radius: 0;
+      border: none;
+    }
+
+    .thaw-table thead {
+      background-color: #333;
+      color: white;
+    }
+
+    .thaw-table thead th {
+      background-color: #333;
+      color: white;
+      font-weight: 300;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      letter-spacing: 0.2rem;
+    }
+
+    .thaw-table tr {
+      border-bottom: 1px solid black;
+    }
+
+    .thaw-progress {
+      background: none;
+      background-color: white;
+    }
+
+    .thaw-progress__progress-inner {
+      background-color: crimson;
+    }
+
+    .thaw-wave:hover {
+      background-color: none;
+    }
+
+    .thaw-button:hover:not(.thaw-button--disabled, .thaw-button--outlined) {
+      background: none;
+      border-color: crimson;
+    }
+
+    .thaw-progress__progress {
+      background: none;
+    }
+
+    .fp-flex {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: calc(100vh - 2rem);
+      flex-direction: column;
+    }
+
+    @media (width > 1250px) {
+      .fp-flex {
+        display: flex;
+        justify-content: center;
+        height: calc(100vh - 2rem);
+        width: 100%;
+        flex-direction: column;
+      }
+
+    }
+  </style>
+<link rel="modulepreload" href="{{ get_url(path="/plover/wasm-plover.js", cachebust=true) }}" crossorigin=anonymous>
+  <link rel="modulepreload" href="{{ get_url(path="/plover/worker.js", cachebust=true) }}" crossorigin=anonymous>
+  <link rel="preload" href="{{ get_url(path="/plover/wasm-plover.wasm", cachebust=true) }}" crossorigin=anonymous as="fetch" type="application/wasm">
+{% endblock head %}
+
+{% block content %}
+  <h2>Plover</h2>
+  <div id="plover-app"></div>
+{% endblock content %}
