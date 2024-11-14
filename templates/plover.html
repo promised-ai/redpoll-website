@@ -1,125 +1,201 @@
 {% extends "base.html" %}
 
 {% block head %}
-  {{ super() }}
-  <script type="module">
-  import init, * as bindings from "{{ get_url(path="/plover/wasm-plover.js", cachebust=true) }}";
-    const wasm = await init("{{ get_url(path="/plover/wasm-plover.wasm", cachebust=true) }}");
-    window.wasmBindings = bindings;
-    dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
-  </script>
-  <style>
-    .thaw-upload-dragger,
-    button.thaw-button {
-      border-radius: 0;
-      background: none;
-      /*font-family: "Open Sans", sans-serif;*/
-      font-size: 16px;
-      letter-spacing: 2px;
-      text-decoration: none;
-      text-transform: uppercase;
-      color: #000;
-      cursor: pointer;
-      border: 3px solid;
-      padding: 0.5em 1em;
-      box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
-      position: relative;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-      transition: all 0.3s ease;
-    }
+{{ super() }}
+{% set_global show_signup_form = true %}
+<script type="module" nonce="ndP3I8laaswaU1ugeYtzvA==">
+  import init, * as bindings from '/scripts/wasm-plover-7f063bc28e581443.js';
+  const wasm = await init('/scripts/wasm-plover-7f063bc28e581443_bg.wasm');
 
-    button.thaw-button {
-      maring-top: 1em;
-    }
+  window.wasmBindings = bindings;
 
-    .thaw-upload-dragger:active,
-    button.thaw-button:active {
-      background-color: none;
-      box-shadow: 0px 0px 0px 0px;
-      top: 5px;
-      left: 5px;
-    }
+  dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+</script>
+<style>
+  .thaw-upload-dragger,
+  button.thaw-button {
+    border-radius: 0;
+    background: none;
+    /*font-family: "Open Sans", sans-serif;*/
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.5em 1em;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: all 0.3s ease;
+  }
 
-    .thaw-upload-dragger:hover,
-    button.thaw-button:hover {
-      background: none;
-      background-color: none;
-      border: 3px solid crimson;
-      color: crimson;
-    }
+  button.thaw-button {
+    maring-top: 1em;
+  }
 
-    .thaw-table {
-      border-radius: 0;
-      border: none;
-    }
+  .thaw-upload-dragger:active,
+  button.thaw-button:active {
+    background-color: none;
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
+  }
 
-    .thaw-table thead {
-      background-color: #333;
-      color: white;
-    }
+  .thaw-upload-dragger:hover,
+  button.thaw-button:hover {
+    background: none;
+    background-color: none;
+    border: 3px solid crimson;
+    color: crimson;
+  }
 
-    .thaw-table thead th {
-      background-color: #333;
-      color: white;
-      font-weight: 300;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      letter-spacing: 0.2rem;
-    }
+  .thaw-table {
+    border-radius: 0;
+    border: none;
+  }
 
-    .thaw-table tr {
-      border-bottom: 1px solid black;
-    }
+  .thaw-table thead {
+    background-color: #333;
+    color: white;
+  }
 
-    .thaw-progress {
-      background: none;
-      background-color: white;
-    }
+  .thaw-table thead th {
+    background-color: #333;
+    color: white;
+    font-weight: 300;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    letter-spacing: 0.2rem;
+  }
 
-    .thaw-progress__progress-inner {
-      background-color: crimson;
-    }
+  .thaw-table tr {
+    border-bottom: 1px solid black;
+  }
 
-    .thaw-wave:hover {
-      background-color: none;
-    }
+  .thaw-progress {
+    background: none;
+    background-color: white;
+  }
 
-    .thaw-button:hover:not(.thaw-button--disabled, .thaw-button--outlined) {
-      background: none;
-      border-color: crimson;
-    }
+  .thaw-progress__progress-inner {
+    background-color: crimson;
+  }
 
-    .thaw-progress__progress {
-      background: none;
-    }
+  .thaw-wave:hover {
+    background-color: none;
+  }
 
+  .thaw-button:hover:not(.thaw-button--disabled, .thaw-button--outlined) {
+    background: none;
+    border-color: crimson;
+  }
+
+  .thaw-progress__progress {
+    background: none;
+  }
+
+  .fp-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 2rem);
+    flex-direction: column;
+  }
+
+
+  @media (width > 1250px) {
     .fp-flex {
       display: flex;
       justify-content: center;
-      align-items: center;
-      width: 100%;
       height: calc(100vh - 2rem);
+      width: 100%;
       flex-direction: column;
     }
 
-    @media (width > 1250px) {
-      .fp-flex {
-        display: flex;
-        justify-content: center;
-        height: calc(100vh - 2rem);
-        width: 100%;
-        flex-direction: column;
-      }
+  }
 
-    }
-  </style>
-<link rel="modulepreload" href="{{ get_url(path="/plover/wasm-plover.js", cachebust=true) }}" crossorigin=anonymous>
-  <link rel="modulepreload" href="{{ get_url(path="/plover/worker.js", cachebust=true) }}" crossorigin=anonymous>
-  <link rel="preload" href="{{ get_url(path="/plover/wasm-plover.wasm", cachebust=true) }}" crossorigin=anonymous as="fetch" type="application/wasm">
+  #plover-caveats {
+    height: 100vh;
+    border-right: 1px solid #333;
+    display: grid;
+    grid-template-columns: auto 4rem;
+  }
+
+  #plover-instructions {
+    padding-top: 6rem;
+    padding-left: 3rem;
+    display: block;
+  }
+
+  #plover-main {
+    display: grid;
+    grid-template-columns: 25rem auto;
+    gap: 2rem
+  }
+
+  #plover-app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
+  #plover-app {
+    width: 100%;
+    padding-top: 5rem;
+  }
+</style>
 {% endblock head %}
 
 {% block content %}
-  <h2>Plover</h2>
-  <div id="plover-app"></div>
+<div id="plover-main">
+  <div id="plover-caveats">
+    <div id="plover-instructions">
+      <h2>Use Plover to find a few potential errors or anomalies in a CSV file</h2>
+      <p>This application runs locally in your browser. The advantage is that <strong>no data leaves your
+          machine</strong>. The disavantage is that is is slow.</p>
+
+      <h3>What's missing</h3>
+      <ul>
+        <li>To get this to run in a reasonable time on a single core in your browser <b>we've had to turn down the
+            quality</b>.
+        </li>
+        <li>You don't have access to metric values to tell you <i>how erroneous</i> data are.</li>
+        <li>You don't have access to explanations.</li>
+      </ul>
+
+      <h3>CSV data requirements</h3>
+      <ul>
+        <li>The CSV file size cannot exceeed 1MB</li>
+        <li>The file must contain a unique ID column named "ID"</li>
+        <li>The file must have a header</li>
+        <li>Missing values must be empty cells. No sentinel values (e.g. 99)</li>
+        <li>This demo only support continuous and categorical data</li>
+      </ul>
+
+      <h3>Ready-to-use dataset</h3>
+      <ul>
+        <li><a
+            href="https://raw.githubusercontent.com/promised-ai/lace/refs/heads/master/lace/resources/datasets/satellites/data.csv">Satellites<a>
+        </li>
+        <li><a
+            href="https://raw.githubusercontent.com/promised-ai/lace/refs/heads/master/lace/resources/datasets/animals/data.csv">Animals<a>
+        </li>
+      </ul>
+
+      <h3>Want to learn more?</h3>
+      <ul>
+        <li><a href="#signup">Reach out</a></li>
+        <li><a href="https://www.linkedin.com/company/redpoll">Follow us on Linkedin</a></li>
+      </ul>
+
+    </div>
+  </div>
+  <div id="plover-app-container">
+    <div id="plover-app"></div>
+  </div>
+</div>
 {% endblock content %}
