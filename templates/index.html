@@ -7,7 +7,8 @@
 <meta name="author" content="Redpoll">
 <meta property="og:title" content="Redpoll" />
 <meta property="og:image" content="{{ config.base_url }}/img/plover-7.webp" />
-<meta property="og:description" content="Cultivate information and improve your data's most important function: to help you learn." />
+<meta property="og:description"
+  content="Cultivate information and improve your data's most important function: to help you learn." />
 <meta property="og:url" content="{{ config.base_url }}/" />
 <meta property="keywords"
   content="AI, Artificial Intelligence, Explainable AI, Science, Genomics, Defense, Health, Healthcare, Medicine, Data Science, Analytics, Machine Learning, Ethics" />
@@ -15,49 +16,51 @@
 {% endblock head %}
 
 {% block content %}
-
-
-
 <section id="title" class="full-width">
-    <div id="title-inner">
-      <div class="col-1">
-        <div id="img-container">
-          <img
-            src="/img/main/plover-7.webp"
-          />
-          <p class="no-mobile" style="font-size: 0.8rem"><span class="crimson">The Egyptian Plover</span>: Rhymes with "over". An African waterbird that maintains a (dubious) symbiotic relationship with crocodies, feeding on decaying meat lodged between their teeth.</p>
-        </div>
-      </div>
-      <div class="col-2">
-        <h1>Automatically find, explain, and fix errors <span class="crimson">without
-            rules</span>.</h1>
-        <h2>Redpoll <span class="crimson">Plover</span> is the only AI data platform that finds and explains erroneous
-          values in datasets to cultivate information and improve your data's most important function: to help you learn.
-        </h2>
+  <div id="title-inner">
+    <div class="col-1">
+      <div id="img-container">
+        <img src="/img/main/plover-7.webp" />
+        <p class="no-mobile" style="font-size: 0.8rem"><span class="crimson">The Egyptian Plover</span>: Rhymes with
+          "over". An African waterbird that maintains a (dubious) symbiotic relationship with crocodies, feeding on
+          decaying meat lodged between their teeth.</p>
       </div>
     </div>
+    <div class="col-2">
+      <h1>Automatically find, explain, and fix errors <span class="crimson">without
+          rules</span>.</h1>
+      <h2>Your organization's performance is limited by the quality of the data that underlies its learning and decision
+        making. Redpoll <span class="crimson">Plover</span> is the only AI data platform that bolts onto your data
+        system to automatically find, explain, and mitigate bad data to help your organization perform at its peak
+        potential.
+      </h2>
+      <center>
+        <a href="/plover"><button>Try it in your browser</button></a>
+      </center>
+    </div>
+  </div>
 </section>
 
 <section class="code-section wide expo">
   <div>
-  <h1 class="section-heading">What <span class="crimson">Plover</span> can do:</h1>
-  <br/>
-  <br/>
-  <br/>
-  <div class="three-col">
-    <div>
-      <img src="/img/main/plover-1.webp" />
-      <h2>Automatically identify erroneous values</h2>
+    <h1 class="section-heading">What <span class="crimson">Plover</span> can do:</h1>
+    <br />
+    <br />
+    <br />
+    <div class="three-col">
+      <div>
+        <img src="/img/main/plover-1.webp" />
+        <h2>Automatically identify erroneous values</h2>
+      </div>
+      <div>
+        <img src="/img/main/plover-3.webp" />
+        <h2>Protect your dataset from future erroneous values</h2>
+      </div>
+      <div>
+        <img src="/img/main/plover-4.webp" />
+        <h2>Identify the best data to collect for learning</h2>
+      </div>
     </div>
-    <div>
-      <img src="/img/main/plover-3.webp" />
-      <h2>Protect your dataset from future erroneous values</h2>
-    </div>
-    <div>
-      <img src="/img/main/plover-4.webp" />
-      <h2>Identify the best data to collect for learning</h2>
-    </div>
-  </div>
   </div>
 </section>
 
@@ -72,25 +75,25 @@
       <div class="column">
         <!-- <img src="/img/plover/01-fit.png" /> -->
         {{ '```python
-from plover.source import ImmutableSqlSource
-from plover.store import AwsS3Store
-from plover.backend import AwsBackend
-from plover.engine import DatabaseEngine
+        from plover.source import ImmutableSqlSource
+        from plover.store import AwsS3Store
+        from plover.backend import AwsBackend
+        from plover.engine import DatabaseEngine
 
-conn = connect_to_sql_database()
+        conn = connect_to_sql_database()
 
-db_engine = (
-  DatabaseEngine(
-    source=ImmutableSqlSource(conn, "SATELLITES_WH"),
-    store=AwsS3Store("myorg-plover", "SATELLITES_WH"),
-    backend=AwsBackend("myorg-plover"),
-  )
-  .fit()
-  .persist()
-  .metalearn()
-  .persist()
-)
-```' | markdown(inline=true) | safe}}
+        db_engine = (
+        DatabaseEngine(
+        source=ImmutableSqlSource(conn, "SATELLITES_WH"),
+        store=AwsS3Store("myorg-plover", "SATELLITES_WH"),
+        backend=AwsBackend("myorg-plover"),
+        )
+        .fit()
+        .persist()
+        .metalearn()
+        .persist()
+        )
+        ```' | markdown(inline=true) | safe}}
       </div>
       <div class="column">
         <div>
@@ -111,67 +114,67 @@ db_engine = (
     </div>
     <div class="two-thirds">
       <div class="column">
-          {{ "```python
-top_5_errors = (
-  db_engine
-    .metrics
-    .errorness
-    .sort(by=['Confusion'], descending=True)
-    .head(5)
-)
-```
-" | markdown(inline=true) | safe}}
-          <!-- <img src="/img/plover/02-id.png" /> -->
-          <div>
-            <table border="1" class="dataframe">
-              <thead>
-                <tr>
-                  <th>Row</th>
-                  <th>Column</th>
-                  <th>Confusion</th>
-                  <th>Observed</th>
-                  <th>Predicted</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Intelsat 903</td>
-                  <td>Eccentricity</td>
-                  <td>10.514456</td>
-                  <td>0.793069999999…</td>
-                  <td>0.000335826120…</td>
-                </tr>
-                <tr>
-                  <td>Intelsat 902</td>
-                  <td>Inclination_ra…</td>
-                  <td>10.036763</td>
-                  <td>25.06467339</td>
-                  <td>0.002274957131…</td>
-                </tr>
-                <tr>
-                  <td>Intelsat 903</td>
-                  <td>Apogee_km</td>
-                  <td>7.853968</td>
-                  <td>358802</td>
-                  <td>35792.92656399…</td>
-                </tr>
-                <tr>
-                  <td>DSP 20 (USA 14…</td>
-                  <td>Period_minutes…</td>
-                  <td>6.695287</td>
-                  <td>142.08</td>
-                  <td>1436.095724064…</td>
-                </tr>
-                <tr>
-                  <td>SDS III-6 (Sat…</td>
-                  <td>Source_Used_fo…</td>
-                  <td>4.93515</td>
-                  <td>JM/5_11</td>
-                  <td>ZARYA</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        {{ "```python
+        top_5_errors = (
+        db_engine
+        .metrics
+        .errorness
+        .sort(by=['Confusion'], descending=True)
+        .head(5)
+        )
+        ```
+        " | markdown(inline=true) | safe}}
+        <!-- <img src="/img/plover/02-id.png" /> -->
+        <div>
+          <table border="1" class="dataframe">
+            <thead>
+              <tr>
+                <th>Row</th>
+                <th>Column</th>
+                <th>Confusion</th>
+                <th>Observed</th>
+                <th>Predicted</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Intelsat 903</td>
+                <td>Eccentricity</td>
+                <td>10.514456</td>
+                <td>0.793069999999…</td>
+                <td>0.000335826120…</td>
+              </tr>
+              <tr>
+                <td>Intelsat 902</td>
+                <td>Inclination_ra…</td>
+                <td>10.036763</td>
+                <td>25.06467339</td>
+                <td>0.002274957131…</td>
+              </tr>
+              <tr>
+                <td>Intelsat 903</td>
+                <td>Apogee_km</td>
+                <td>7.853968</td>
+                <td>358802</td>
+                <td>35792.92656399…</td>
+              </tr>
+              <tr>
+                <td>DSP 20 (USA 14…</td>
+                <td>Period_minutes…</td>
+                <td>6.695287</td>
+                <td>142.08</td>
+                <td>1436.095724064…</td>
+              </tr>
+              <tr>
+                <td>SDS III-6 (Sat…</td>
+                <td>Source_Used_fo…</td>
+                <td>4.93515</td>
+                <td>JM/5_11</td>
+                <td>ZARYA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="column">
         <div>
@@ -179,7 +182,8 @@ top_5_errors = (
           <p>Plover finds errors by identifying data that are inconsistent with its model of your data or cause
             confusion.</p>
           <p>
-            Plover also shows you the observed value and its predicted value, which you may use to overwrite erroneous values.
+            Plover also shows you the observed value and its predicted value, which you may use to overwrite erroneous
+            values.
           </p>
         </div>
       </div>
@@ -196,11 +200,11 @@ top_5_errors = (
       <div class="column">
         <div>
           {{ '```python
-errs_like = db_engine.errors_like(
-  "DSP 20 (USA 149) (Defense Support Program)",
-  "Period_minutes"
-)
-```' | markdown(inline=true) | safe}}
+          errs_like = db_engine.errors_like(
+          "DSP 20 (USA 149) (Defense Support Program)",
+          "Period_minutes"
+          )
+          ```' | markdown(inline=true) | safe}}
           <!-- <img src="/img/plover/03-similar.png" /> -->
           <div>
             <table border="1" class="dataframe">
@@ -255,33 +259,33 @@ errs_like = db_engine.errors_like(
     </div>
     <div class="two-thirds">
       <div class="column">
-          {{ '```python
-err = db_engine.detect(new_satellite_record)
-err[0]
-```' | markdown(inline=true) | safe}}
-          <!-- <img src="/img/plover/04-protect.png" /> -->
-          <div>
-            <table border="1" class="dataframe">
-              <thead>
-                <tr>
-                  <th>Row</th>
-                  <th>Column</th>
-                  <th>Incon Quantile</th>
-                  <th>Observed</th>
-                  <th>Predicted</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Satmex 8</td>
-                  <td>Users</td>
-                  <td>0.99998</td>
-                  <td>Commecial</td>
-                  <td>Commercial</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        {{ '```python
+        err = db_engine.detect(new_satellite_record)
+        err[0]
+        ```' | markdown(inline=true) | safe}}
+        <!-- <img src="/img/plover/04-protect.png" /> -->
+        <div>
+          <table border="1" class="dataframe">
+            <thead>
+              <tr>
+                <th>Row</th>
+                <th>Column</th>
+                <th>Incon Quantile</th>
+                <th>Observed</th>
+                <th>Predicted</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Satmex 8</td>
+                <td>Users</td>
+                <td>0.99998</td>
+                <td>Commecial</td>
+                <td>Commercial</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="column">
         <div>
@@ -303,12 +307,12 @@ err[0]
       <div class="column">
         <div>
           {{ '```python
-to_fill = db_engine.find_missing_to_fill(
-  to_help_predict="Purpose"
-)
+          to_fill = db_engine.find_missing_to_fill(
+          to_help_predict="Purpose"
+          )
 
-to_fill[0].show()
-```' | markdown(inline=true) | safe}}
+          to_fill[0].show()
+          ```' | markdown(inline=true) | safe}}
         </div>
       </div>
       <div class="column">
@@ -327,9 +331,9 @@ to_fill[0].show()
 
 <section style="min-height: 0; padding-top: rem; padding-bottom: 5rem; display: block;">
   <h1 class="section-heading">Machine learning + human learning + engineering</h1>
-  <br/>
-  <br/>
-  <br/>
+  <br />
+  <br />
+  <br />
   <!-- <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; width: 100%"> -->
   <div id="people">
     <div class="person">
@@ -337,7 +341,9 @@ to_fill[0].show()
       <h1>Baxter Eaves</h1>
       <h2>CEO</h2>
       <p>
-      Baxter is a US Navy veteran and holds a PhD in Experimental Psychology from the University of Louisville where he developed computational models of human trust and social learning. He has led a number of DARPA projects and brings 13 years of experience deploying human-inspired AI tech in high-risk industries.
+        Baxter is a US Navy veteran and holds a PhD in Experimental Psychology from the University of Louisville where
+        he developed computational models of human trust and social learning. He has led a number of DARPA projects and
+        brings 13 years of experience deploying human-inspired AI tech in high-risk industries.
       </p>
     </div>
     <div class="person">
@@ -345,8 +351,10 @@ to_fill[0].show()
       <h1>Patrick Shafto</h1>
       <h2>Scientist at large</h2>
       <p>
-      Patrick is a program manager at DARPA under the Information Innovation office (I20) and professor of Data Sciences at Rutgers University - Newark. He has led a number of projects for agencies including DARPA, DOD, and NSF, and his publications have appeared in top journals of machine and human learning.
-          </p>
+        Patrick is a program manager at DARPA under the Information Innovation office (I20) and professor of Data
+        Sciences at Rutgers University - Newark. He has led a number of projects for agencies including DARPA, DOD, and
+        NSF, and his publications have appeared in top journals of machine and human learning.
+      </p>
       </p>
     </div>
     <div class="person">
@@ -354,7 +362,9 @@ to_fill[0].show()
       <h1>Michael Schmidt</h1>
       <h2>Principal ML Engineer</h2>
       <p>
-      Michael has 14 years of research and engineering experience. He has built production models for healthcare, agronomy, finance, and law; and has conducted research in the areas of high-energy physics, differential geometry, plasma physics, and high-performance computing.
+        Michael has 14 years of research and engineering experience. He has built production models for healthcare,
+        agronomy, finance, and law; and has conducted research in the areas of high-energy physics, differential
+        geometry, plasma physics, and high-performance computing.
       </p>
     </div>
   </div>
@@ -374,7 +384,8 @@ to_fill[0].show()
           <ul>
             <li>
               <p>
-                focus on mechanical failures of your data architecture that can be completely avoided with solid database
+                focus on mechanical failures of your data architecture that can be completely avoided with solid
+                database
                 architecture i.e. <span class="crimson">you can do it yourself</span>;</p>
             </li>
             <li>

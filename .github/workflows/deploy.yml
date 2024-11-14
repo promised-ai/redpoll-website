@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v4
     - uses: taiki-e/install-action@v2
       with:
-        tool: zola@0.17.1
+        tool: zola@0.19.2
     - name: Compile
       run: zola build --output-dir _site
     - name: Fix Permissions

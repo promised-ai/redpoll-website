@@ -4,7 +4,7 @@ base_url = "https://redpoll.ai"
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
 build_search_index = true
-generate_feed = true
+generate_feeds = true
 # feed_filename = "feed.xml"
 
 taxonomies = [
