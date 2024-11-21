@@ -4,8 +4,8 @@
 {{ super() }}
 {% set_global show_signup_form = true %}
 <script type="module" nonce="ndP3I8laaswaU1ugeYtzvA==">
-  import init, * as bindings from '/scripts/wasm-plover-7f063bc28e581443.js';
-  const wasm = await init('/scripts/wasm-plover-7f063bc28e581443_bg.wasm');
+  import init, * as bindings from '/scripts/wasm-plover-fd7a5b4c8bd8582.js';
+  const wasm = await init('/scripts/wasm-plover-fd7a5b4c8bd8582_bg.wasm');
 
   window.wasmBindings = bindings;
 
@@ -163,17 +163,19 @@
         <li>To get this to run in a reasonable time on a single core in your browser <b>we've had to turn down the
             quality</b>.
         </li>
-        <li>You don't have access to metric values to tell you <i>how erroneous</i> data are.</li>
-        <li>You don't have access to explanations.</li>
+        <li>No metric values to tell you <i>how erroneous</i> data are.</li>
+        <li>No explanations attribute errors</li>
+        <li>No meta similarity to identify data with similar errors</li>
+        <li>No error/anomaly computation on hypothetical out-of-table data</li>
       </ul>
 
       <h3>CSV data requirements</h3>
       <ul>
         <li>The CSV file size cannot exceeed 1MB</li>
-        <li>The file must contain a unique ID column named "ID"</li>
+        <li>The index column (if supplied) must have unique values</li>
         <li>The file must have a header</li>
         <li>Missing values must be empty cells. No sentinel values (e.g. 99)</li>
-        <li>This demo only support continuous and categorical data</li>
+        <li>This demo only support continuous and categorical data with at most 256 categories</li>
       </ul>
 
       <h3>Ready-to-use dataset</h3>
