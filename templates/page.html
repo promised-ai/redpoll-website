@@ -1,79 +1,11 @@
 {% extends "base.html" %}
 {% block title %}{{ page.title }}{% endblock title %}
 {% block head %}
-  {{ super() }}
-<style>
-
-  #title {
-    padding-top: 20vh;
-  }
-
-  #background {
-    background-color: #aaa;
-    position: fixed;
-    background-image: radial-gradient(circle at 15% 15%, rgba(15, 15, 35, 0.0) 0%, rgba(15, 15, 35, 0.0) 25%, rgba(55, 15, 15, 0.5) 75%, rgba(15, 15, 15, 1.0) 100%), url({{ page.extra.background | safe }});
-    background-position: 50% 50%;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    z-index: 0;
-    transition: 1.0s all;
-    transition: 1s filter ease;
-    filter: brightness(0.7);
-  }
-
-  hr {
-    border: none;
-    border-bottom: 1px solid white;
-  }
-
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  h2 {
-    text-align: center;
-  }
-
-  p {
-    text-align: center;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  ul, ol {
-    text-align: left;
-  }
-
-  @media only screen and (max-width: 600px) {
-    .full-page-flex {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    #title {
-      padding-top: 0;
-    }
-
-    h1 {
-      font-size: 7vw;
-    }
-
-    #landing {
-      padding-top: 8rem;
-    }
-
-    #background {
-      background-color: #888;
-      background-image: radial-gradient(circle at 50% 0%, rgba(105, 105, 105, 1.0) 0%, rgba(125, 125, 125, 1.0) 25%, rgba(155, 155, 155, 1.0) 75%, rgba(155, 155, 155, 1.0) 100%);
-    }
-  }
-</style>
+{{ super() }}
 {% endblock head %}
 
 {% block content %}
-{{ page.content | safe }}
+<div style="max-width: 50rem; margin: 0 auto; padding-top: 5rem;">
+  {{ page.content | safe }}
+</div>
 {% endblock content %}
