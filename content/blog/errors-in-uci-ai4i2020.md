@@ -15,7 +15,7 @@ theme = "light-transparent"
 front_page = false
 +++
 
-**TL;DR**: Plover found nine mislabeled records. Download the cleaned data [here](/datasets/#uci-ml-repository-ai4i-2020-predictive-maintenance-dataset).
+**TL;DR**: Plover found nine mislabeled records. Download the cleaned data [here](/datasets/#uci-ml-repository-ai4i-2020-predictive-maintenance-dataset). Try Plover in your browser [here](/plover).
 
 ---
 
@@ -53,18 +53,15 @@ Let's dig in. We're going to do everything in the python bindings today, so we'l
 ```python
 from plover import Plover
 from plover.source import DataFrame
-from plover import store
-from plover import backend
 
 plvr = (
-    Plover(
+    Plover.local(
         source=DataFrame.csv(
             "ai4i2020.csv",
             index_col="UID",
             schema="auto"
         ),
-        store=store.Local("ai4i2020.plvrstore"),
-        backend=backend.Local(),
+        store="ai4i2020.plvrstore",
     )
     .fit()
     .compute_metrics()
@@ -73,9 +70,9 @@ plvr = (
 )
 ```
 
-We use a local dataset using the `DataFrame` source, store our metadata locally using the `Local` store, and use a local machine learning backend. The `fit` command build a inference model of the data. The `compute_metrics` method computes the error/anomaly metrics for each cell. The `metalearn` method creates a second-order machine learner that allows similarity queries as we'll see below. The `persist` method saves everything to the local store so we can resume later.
+We use a local dataset using the `DataFrame` source, store our metadata locally using the `Local` store, and use a local machine learning backend. The `fit` command builds an inference model of the data. The `compute_metrics` method computes the error/anomaly metrics for each cell. The `metalearn` method creates a second-order machine learner that allows similarity queries, as we'll see below. The `persist` method saves everything to the local store so we can resume later.
 
-Now that we've done that, let's find the top five most likely errors.
+Now that we've done all that, let's find the top five most likely errors.
 
 ```python
 plvr.errors(top=5)
@@ -90,7 +87,7 @@ plvr.errors(top=5)
 | 1493 | OSF | 50.205087 | 0 | 0 |
 
 
-The above table shown the inconsitency metric as `ic`. The important thing is that more inconsistency means more likely and error. You can see the steep falloff. Interestingly there are two cells from record `9016` in the top five errors. Let's ask plover to explain whcih features are responsible for `TWF`'s high inconsistency on record `9016`.
+The above table shows the inconsistency metric as `ic`. The important thing is that more inconsistency means more likely an error. You can see the steep falloff in `ic` from top to bottom. Interestingly there are two cells from record `9016` in the top five errors. Let's ask plover to explain which features are responsible for `TWF`'s high inconsistency on record `9016`.
 
 ```python
 plvr.explain(row="9016", col="TWF")
@@ -102,7 +99,8 @@ plvr.explain(row="9016", col="TWF")
 |  1 | Machine failure        | 5.06351  | 1        | 0         |
 |  2 | Tool wear [min]        | 0.549236 | 210.0    | 114.47    |
 
-Plover is telling us that the `Machine Failure` column is generally responsible for all the inconsistency. In a dist second is `Tool wear [min]`. Let's take a look at record "9016".
+The above tables shows us how much inconsistency is left after removing certain features. Features are sorted by their contribution to the uncertainty in the target variable, in this case, `TWF`.
+Plover is telling us that the `Machine Failure` value is generally responsible for all the inconsistency. In a distant second is `Tool wear [min]`. Let's take a look at record "9016".
 
 ```python
 plvr.data(row="9016")
@@ -123,13 +121,13 @@ plvr.data(row="9016")
 | OSF                     | 0      |
 | RNF                     | 0      |
 
-Right off the bat we see that `Machine failure` is `1` but all of the failure modes are `0`. According to the data documentation
+Right off the bat we see that `Machine failure` is `1` but all the failure modes are `0`. According to the data documentation
 
 > If at least one of the above failure modes is true, the process fails and the 'machine failure' label is set to 1. 
 
 We have an error! Plover correctly identified that `Machine Failure` should be 0.
 
-An error that happend once can happen again, so we need to find similar errors. We can do this one of two ways: we can write a rule and filter the dataset (which would be really easy in this case), or we can ask plover to find similar cells.
+An error that happens once can happen again, so we need to find similar errors. We can do this one of two ways: we can write a rule and filter the dataset (which would be really easy in this case, but really difficult in general), or we can ask plover to find similar cells.
 
 ```python
 plvr.similar_cells(row="9016", col="Machine failure").head(10)
@@ -148,7 +146,7 @@ plvr.similar_cells(row="9016", col="Machine failure").head(10)
 |  5910 | 0.5625   |
 |  4703 | 0.554688 |
 
-There are eight cells that have a high meta similarity with the error we found. Since it's easy to do in this case, let's filter the data to pull out all the rows for which `Machine failure` is 1 but all of the failure modes are 0.
+There are eight cells that have a high meta similarity with the error we found. Since it's easy to do in this case, let's filter the data to pull out all the rows in which `Machine failure` is 1 but every failure mode is 0.
 
 ```python
 failure_modes = ["TWF", "HDF", "PWF", "OSF", "RNF"]
@@ -172,17 +170,17 @@ df[
 | 8507 |     0 |     0 |     0 |     0 |     0 |                 1 |
 | 9016 |     0 |     0 |     0 |     0 |     0 |                 1 |
 
-Cross-checking the meta-similar records with the filter, we see that meta-similarity found the same entries as the hard-coded rule.
+Cross-checking the meta-similar records with the filter, we see that meta-similarity found the same entries as the hard-coded rule. Nice!
 
-Digging in more, and recreating the failure rules supplied by the dataset authors, it turns out the entry 9016 could have suffered from a tool wear failure (TWF) since its tool wear was greater than 200 minutes. However, since TWF is a random and rare failure for tool wears greater than 200, we decided to mark 9016 as not having failed.
+Digging in more, and recreating the failure rules supplied by the dataset authors, it turns out the entry `9016` could have suffered from a tool wear failure (TWF) since its tool wear was greater than 200 minutes. However, since `TWF` is a random and rare failure for tool wears greater than 200, we decided to mark `9016` as not having failed in the cleaned dataset.
 
 ## Conclusion
 
-All processes are prone to errors, so all data &mdash; even synthetic &mdash; can contain the evidence of those errors in the form of so-called bad data. We showed how Plover can easily identify erroneous data and how we can use meta-similarity to identify similar errors. In this case, we found a very salient error in part 9016 and used similarity to find all other data exhibiting that particular error without having to write a rule.
+All processes are prone to errors, so all data &mdash; even synthetic &mdash; can contain the evidence of those errors in the form of so-called bad data. We showed how Plover can easily identify erroneous data and how we can use meta-similarity to identify similar errors. In this case, Plover found a very salient error in part `9016` and used meta-similarity to find all other data exhibiting that particular error without having to write a single rule.
 
 ## Changelog
 
-Download the cleaned data [here](/datasets/#uci-ml-repository-ai4i-2020-predictive-maintenance-dataset).
+Download the cleaned data [here](/datasets/#uci-ml-repository-ai4i-2020-predictive-maintenance-dataset). And try Plover in your browser [here](/plover).
 
 | UID (row) |          Column | Original | New |
 |-----------|-----------------|----------|-----|
