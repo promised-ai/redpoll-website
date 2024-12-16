@@ -130,10 +130,14 @@
   #plover-caveats-toggle {
     display: none;
     text-align: right;
+    backgroundc-color: white;
   }
 
   #plover-caveats-show {
     display: none;
+    backgroundc-color: white;
+    z-index: 5;
+    box-shadow: 5px 5px 20px #3333;
   }
 
   #plover-instructions {
@@ -145,7 +149,8 @@
   #plover-main {
     display: grid;
     grid-template-columns: 25rem auto;
-    gap: 2rem
+    gap: 2rem;
+    height: auto;
   }
 
   #plover-app-container {
@@ -160,8 +165,16 @@
   }
 
   @media screen and (max-width: 900px) {
+    #main {
+      overflow-x: scroll;
+    }
+
     #plover-main {
       display: block;
+    }
+
+    #plover-app-container {
+      display: none;
     }
 
     #plover-caveats-show {
@@ -174,7 +187,7 @@
 
     #plover-caveats {
       max-width: 400px;
-      position: absolute;
+      height: auto;
     }
 
     #plover-caveats-toggle {
@@ -241,29 +254,32 @@
     </div>
   </div>
   <div id="plover-app-container">
-      <button id="plover-caveats-show">Show Information</button>
+    <button id="plover-caveats-show">Show Information</button>
     <div id="plover-app"></div>
   </div>
 </div>
 
 <script>
-// Get the div element and button
-const div = document.getElementById('plover-caveats');
-const hideButton = document.getElementById('plover-caveats-hide');
-const showButton = document.getElementById('plover-caveats-show');
+  // Get the div element and button
+  const caveats = document.getElementById('plover-caveats');
+  const app = document.getElementById('plover-app-container');
+  const hideButton = document.getElementById('plover-caveats-hide');
+  const showButton = document.getElementById('plover-caveats-show');
 
-function hideCaveats() {
-  div.style.display = 'none';
-  showButton.display = 'inline';
-}
+  function hideCaveats() {
+    caveats.style.display = 'none';
+    app.style.display = 'flex'
+    showButton.display = 'inline';
+  }
 
-function showCaveats() {
-  div.style.display = 'grid';
-  showButton.display = 'none';
-}
+  function showCaveats() {
+    caveats.style.display = 'grid';
+    app.style.display = 'none'
+    showButton.display = 'none';
+  }
 
-hideButton.addEventListener('click', hideCaveats);
-showButton.addEventListener('click', showCaveats);
+  hideButton.addEventListener('click', hideCaveats);
+  showButton.addEventListener('click', showCaveats);
 
 </script>
 {% endblock content %}
