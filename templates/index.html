@@ -21,18 +21,21 @@
     <div class="col-1">
       <div id="img-container">
         <img src="/img/main/plover-7.webp" />
-        <p class="no-mobile" style="font-size: 0.8rem"><span class="crimson">The Egyptian Plover</span>: Rhymes with
+        <p class="no-mobile" style="font-size: 0.9rem"><span class="crimson">The Egyptian Plover</span>: Rhymes with
           "over". An African waterbird that maintains a (dubious) symbiotic relationship with crocodies, feeding on
           decaying meat lodged between their teeth.</p>
       </div>
     </div>
     <div class="col-2">
-      <h1>Automatically find, explain, and fix errors <span class="crimson">without
-          rules</span>.</h1>
-      <h2>Your organization's performance is limited by the quality of the data that underlies its learning and decision
-        making. Redpoll <span class="crimson">Plover</span> is the only AI data platform that bolts onto your data
-        system to automatically find, explain, and mitigate bad data to help your organization perform at its peak
-        potential.
+      <!-- <h1>Automatically find, explain, and fix errors <span class="crimson">without -->
+          <!-- rules</span>.</h1> -->
+      <!-- <h1>Automatically find, explain, and fix errors <span class="crimson">and their causes</span>.</h1> -->
+      <!-- <h1>A Machine Learning Powered Immune System For Your Business</h1> -->
+      <h1>
+      Healthy Data, Healthy Business: Your ML-Powered Quality Sentinel
+      </h1>
+      <h2>
+      From detecting data errors and anomalies to diagnosing process inefficiencies, Plover continuously monitors your business operations via your data systems to automatically identify issues, and improve and maintain the health of your business.
       </h2>
       <center>
         <a href="/plover"><button>Try it in your browser</button></a>
@@ -43,7 +46,8 @@
 
 <section class="code-section wide expo">
   <div>
-    <h1 class="section-heading">What <span class="crimson">Plover</span> can do:</h1>
+    <!-- <h1 class="section-heading">What <span class="crimson">Plover</span> can do:</h1> -->
+    <h1 class="section-heading">Clean your data &amp; use it to identify issues</h1>
     <br />
     <br />
     <br />
@@ -58,7 +62,7 @@
       </div>
       <div>
         <img src="/img/main/plover-4.webp" />
-        <h2>Identify the best data to collect for learning</h2>
+        <h2>Help diagnose the cause of errors</h2>
       </div>
     </div>
   </div>
@@ -67,33 +71,33 @@
 
 <section class="code-section">
   <div>
-    <h1 class="section-heading">How it works</h1>
+    <h1 class="section-heading">From deployment to action in a few lines of code</h1>
     <div>
       <h1>1. Plover builds a model of your data</h1>
     </div>
     <div class="two-thirds">
       <div class="column">
         <!-- <img src="/img/plover/01-fit.png" /> -->
-        {{ '```python
-        from plover.source import ImmutableSqlSource
-        from plover.store import AwsS3Store
-        from plover.backend import AwsBackend
-        from plover.engine import DatabaseEngine
+        {{'```python
+from plover.source import ImmutableSqlSource
+from plover.store import AwsS3Store
+from plover.backend import AwsBackend
+from plover.engine import DatabaseEngine
 
-        conn = connect_to_sql_database()
+conn = connect_to_sql_database()
 
-        db_engine = (
-        DatabaseEngine(
-        source=ImmutableSqlSource(conn, "SATELLITES_WH"),
-        store=AwsS3Store("myorg-plover", "SATELLITES_WH"),
-        backend=AwsBackend("myorg-plover"),
-        )
-        .fit()
-        .persist()
-        .metalearn()
-        .persist()
-        )
-        ```' | markdown(inline=true) | safe}}
+db_engine = (
+  DatabaseEngine(
+    source=ImmutableSqlSource(conn, "SATELLITES_WH"),
+    store=AwsS3Store("myorg-plover", "SATELLITES_WH"),
+    backend=AwsBackend("myorg-plover"),
+  )
+  .fit()
+  .persist()
+  .metalearn()
+  .persist()
+)
+```' | markdown(inline=true) | safe}}
       </div>
       <div class="column">
         <div>
@@ -115,15 +119,14 @@
     <div class="two-thirds">
       <div class="column">
         {{ "```python
-        top_5_errors = (
-        db_engine
-        .metrics
-        .errorness
-        .sort(by=['Confusion'], descending=True)
-        .head(5)
-        )
-        ```
-        " | markdown(inline=true) | safe}}
+top_5_errors = (
+  db_engine
+    .metrics
+    .errorness
+    .sort(by=['Confusion'], descending=True)
+    .head(5)
+)
+```" | markdown(inline=true) | safe}}
         <!-- <img src="/img/plover/02-id.png" /> -->
         <div>
           <table border="1" class="dataframe">
@@ -200,11 +203,11 @@
       <div class="column">
         <div>
           {{ '```python
-          errs_like = db_engine.errors_like(
-          "DSP 20 (USA 149) (Defense Support Program)",
-          "Period_minutes"
-          )
-          ```' | markdown(inline=true) | safe}}
+errs_like = db_engine.errors_like(
+    "DSP 20 (USA 149) (Defense Support Program)",
+    "Period_minutes"
+)
+```' | markdown(inline=true) | safe}}
           <!-- <img src="/img/plover/03-similar.png" /> -->
           <div>
             <table border="1" class="dataframe">
@@ -259,10 +262,10 @@
     </div>
     <div class="two-thirds">
       <div class="column">
-        {{ '```python
-        err = db_engine.detect(new_satellite_record)
-        err[0]
-        ```' | markdown(inline=true) | safe}}
+{{ '```python
+err = db_engine.detect(new_satellite_record)
+err[0]
+```' | markdown(inline=true) | safe}}
         <!-- <img src="/img/plover/04-protect.png" /> -->
         <div>
           <table border="1" class="dataframe">
@@ -306,13 +309,13 @@
     <div class="two-thirds">
       <div class="column">
         <div>
-          {{ '```python
-          to_fill = db_engine.find_missing_to_fill(
-          to_help_predict="Purpose"
-          )
+{{ '```python
+to_fill = db_engine.find_missing_to_fill(
+  to_help_predict="Purpose"
+)
 
-          to_fill[0].show()
-          ```' | markdown(inline=true) | safe}}
+to_fill[0].show()
+```' | markdown(inline=true) | safe}}
         </div>
       </div>
       <div class="column">
@@ -373,56 +376,77 @@
 
 <section class="code-section">
   <div>
-    <h1 class="section-heading">For <span class="crimson">information</span> cultivation</h1>
-    <div class="one-half">
-      <div class="column top">
-        <div>
-          <h1>What it <span class="crimson">is not</span></h1>
-          <p>There are many data quality and observabilty platforms out there and they all do one or more of the
-            following:
-          </p>
-          <ul>
-            <li>
-              <p>
-                focus on mechanical failures of your data architecture that can be completely avoided with solid
-                database
-                architecture i.e. <span class="crimson">you can do it yourself</span>;</p>
-            </li>
-            <li>
-              <p>
-                do anomaly/outlier detection by looking for distributional changes in single columns, <span
-                  class="crimson">which requires that a certain amount of bad data make it into prod</span> in order to
-                make the comparison and ignores the context of the data;
-              </p>
-            </li>
-            <li>
-              <p>
-                use <span class="crimson">error</span> between predictions made by your machine learning models and the
-                observed data as a measure of anomaly, which requires you to go through the effort of building an ML
-                model that is more accurate than your data;
-              </p>
-            </li>
-            <li>
-              <p>flatten your database, throwing out your carefully designed relational structure and biasing learning
-                toward the entities that interact most with the database.
-              </p>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="column top">
-        <div>
-          <h1>What it <span class="crimson">is</span></h1>
-          <p><span class="crimson">Plover focuses singly of improving the veracity of the values in your databases
-              toward improving the
-              information in your
-              databases, and thus improving your ability to learn</span>. By creating a model of your entire database
-            (without
-            flattening it) we are able to evaluate the erroneousness
-            of each datum individually. This allows us to pluck out (or impute) individual bad data and protect prod
-            without lag.</p>
-        </div>
-      </div>
+    <!-- <h1 class="section-heading">For <span class="crimson">information</span> cultivation</h1> -->
+    <h1 class="section-heading">Frequently asked <span class="crimson">questions</span></h1>
+          <div class="faq-question">
+            <p class="question">Is Plover another wrapper around Chat GPT, Claude, llama, etc?</p>
+            <p class="answer">No. Plover is proprietary probabilitstic machine learning model designed for semi structured relational data. Plover is designed to be explainable and to properly quantify uncertainty.</p>
+          </div>
+
+          <div class="faq-question">
+            <p class="question">What data is Plover trained on?</p>
+            <p class="answer">Your data and <bold>only</bold> your data. Plover is hyperfocused on your unique business.</p>
+          </div>
+
+          <div class="faq-question">
+            <p class="question">Is Plover secure?</p>
+            <p class="answer">Plover is installed on your infrastructure whether that be in the cloud or in an air gapped electromagnetically secure environment. Plover is exactly as secure as your systems &mdash; no more, no less.</p>
+          </div>
+
+          <div class="faq-question">
+            <p class="question">Does Plover transmit my data externally?</p>
+            <p class="answer"> No.</p>
+          </div>
+
+    <!-- <div class="one-half"> -->
+      <!-- <div class="column top"> -->
+          <!-- <h1>Frequently asked <span class="crimson">Questions</span></h1> -->
+          <!-- <h1>What it <span class="crimson">is not</span></h1> -->
+          <!-- <p>There are many data quality and observabilty platforms out there and they all do one or more of the -->
+            <!-- following: -->
+          <!-- </p> -->
+          <!-- <ul> -->
+            <!-- <li> -->
+              <!-- <p> -->
+                <!-- focus on mechanical failures of your data architecture that can be completely avoided with solid -->
+                <!-- database -->
+                <!-- architecture i.e. <span class="crimson">you can do it yourself</span>;</p> -->
+            <!-- </li> -->
+            <!-- <li> -->
+              <!-- <p> -->
+                <!-- do anomaly/outlier detection by looking for distributional changes in single columns, <span -->
+                  <!-- class="crimson">which requires that a certain amount of bad data make it into prod</span> in order to -->
+                <!-- make the comparison and ignores the context of the data; -->
+              <!-- </p> -->
+            <!-- </li> -->
+            <!-- <li> -->
+              <!-- <p> -->
+                <!-- use <span class="crimson">error</span> between predictions made by your machine learning models and the -->
+                <!-- observed data as a measure of anomaly, which requires you to go through the effort of building an ML -->
+                <!-- model that is more accurate than your data; -->
+              <!-- </p> -->
+            <!-- </li> -->
+            <!-- <li> -->
+              <!-- <p>flatten your database, throwing out your carefully designed relational structure and biasing learning -->
+                <!-- toward the entities that interact most with the database. -->
+              <!-- </p> -->
+            <!-- </li> -->
+          <!-- </ul> -->
+        <!-- </div> -->
+      <!-- </div> -->
+      <!-- <div class="column top"> -->
+        <!-- <div> -->
+          <!-- <h1>What it <span class="crimson">is</span></h1> -->
+          <!-- <p><span class="crimson">Plover focuses singly of improving the veracity of the values in your databases -->
+              <!-- toward improving the -->
+              <!-- information in your -->
+              <!-- databases, and thus improving your ability to learn</span>. By creating a model of your entire database -->
+            <!-- (without -->
+            <!-- flattening it) we are able to evaluate the erroneousness -->
+            <!-- of each datum individually. This allows us to pluck out (or impute) individual bad data and protect prod -->
+            <!-- without lag.</p> -->
+        <!-- </div> -->
+      <!-- </div> -->
       <div>
         <div>
 </section>

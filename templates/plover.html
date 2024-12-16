@@ -123,6 +123,17 @@
     border-right: 1px solid #333;
     display: grid;
     grid-template-columns: auto 4rem;
+    background-color: white;
+    z-index: 2;
+  }
+
+  #plover-caveats-toggle {
+    display: none;
+    text-align: right;
+  }
+
+  #plover-caveats-show {
+    display: none;
   }
 
   #plover-instructions {
@@ -147,6 +158,29 @@
     width: 100%;
     padding-top: 5rem;
   }
+
+  @media screen and (max-width: 900px) {
+    #plover-main {
+      display: block;
+    }
+
+    #plover-caveats-show {
+      display: inline;
+      position: fixed;
+      height: 4rem;
+      bottom: 0;
+      margin-bottom: 1rem;
+    }
+
+    #plover-caveats {
+      max-width: 400px;
+      position: absolute;
+    }
+
+    #plover-caveats-toggle {
+      display: block;
+    }
+  }
 </style>
 {% endblock head %}
 
@@ -154,6 +188,9 @@
 <div id="plover-main">
   <div id="plover-caveats">
     <div id="plover-instructions">
+      <div id="plover-caveats-toggle">
+        <button id="plover-caveats-hide">Hide</button>
+      </div>
       <h2>Use Plover to find a few potential errors or anomalies in a CSV file</h2>
       <p>This application runs locally in your browser. The advantage is that <strong>no data leaves your
           machine</strong>. The disavantage is that is is slow.</p>
@@ -200,7 +237,29 @@
     </div>
   </div>
   <div id="plover-app-container">
+      <button id="plover-caveats-show">Show Information</button>
     <div id="plover-app"></div>
   </div>
 </div>
+
+<script>
+// Get the div element and button
+const div = document.getElementById('plover-caveats');
+const hideButton = document.getElementById('plover-caveats-hide');
+const showButton = document.getElementById('plover-caveats-show');
+
+function hideCaveats() {
+  div.style.display = 'none';
+  showButton.display = 'inline';
+}
+
+function showCaveats() {
+  div.style.display = 'grid';
+  showButton.display = 'none';
+}
+
+hideButton.addEventListener('click', hideCaveats);
+showButton.addEventListener('click', showCaveats);
+
+</script>
 {% endblock content %}
