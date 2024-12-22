@@ -50,7 +50,8 @@
   <div>
     <!-- <h1 class="section-heading">What <span class="crimson">Plover</span> can do:</h1> -->
     <h1 class="section-heading">Data aren't messy, processes are.</h1>
-    <h2>So-called "messy data" are evidence of messy processes. Plover automatically identifies and explain erroneous and anomalous data to help you find opportunities for organizational effeciency gains.</h2>
+    <h2>So-called "messy data" are evidence of messy processes. Plover automatically identifies and explains erroneous
+      and anomalous data to help you find opportunities for organizational effeciency gains.</h2>
     <br />
     <br />
     <br />
@@ -82,25 +83,25 @@
       <div class="column">
         <!-- <img src="/img/plover/01-fit.png" /> -->
         {{'```python
-from plover.source import ImmutableSqlSource
-from plover.store import AwsS3Store
-from plover.backend import AwsBackend
-from plover.engine import DatabaseEngine
+        from plover.source import ImmutableSqlSource
+        from plover.store import AwsS3Store
+        from plover.backend import AwsBackend
+        from plover.engine import DatabaseEngine
 
-conn = connect_to_sql_database()
+        conn = connect_to_sql_database()
 
-db_engine = (
-  DatabaseEngine(
-    source=ImmutableSqlSource(conn, "SATELLITES_WH"),
-    store=AwsS3Store("myorg-plover", "SATELLITES_WH"),
-    backend=AwsBackend("myorg-plover"),
-  )
-  .fit()
-  .persist()
-  .metalearn()
-  .persist()
-)
-```' | markdown(inline=true) | safe}}
+        db_engine = (
+        DatabaseEngine(
+        source=ImmutableSqlSource(conn, "SATELLITES_WH"),
+        store=AwsS3Store("myorg-plover", "SATELLITES_WH"),
+        backend=AwsBackend("myorg-plover"),
+        )
+        .fit()
+        .persist()
+        .metalearn()
+        .persist()
+        )
+        ```' | markdown(inline=true) | safe}}
       </div>
       <div class="column">
         <div>
@@ -122,14 +123,14 @@ db_engine = (
     <div class="two-thirds">
       <div class="column">
         {{ "```python
-top_5_errors = (
-  db_engine
-    .metrics
-    .errorness
-    .sort(by=['Confusion'], descending=True)
-    .head(5)
-)
-```" | markdown(inline=true) | safe}}
+        top_5_errors = (
+        db_engine
+        .metrics
+        .errorness
+        .sort(by=['Confusion'], descending=True)
+        .head(5)
+        )
+        ```" | markdown(inline=true) | safe}}
         <!-- <img src="/img/plover/02-id.png" /> -->
         <div>
           <table border="1" class="dataframe">
@@ -185,7 +186,8 @@ top_5_errors = (
       <div class="column">
         <div>
           <h3>Inconsistency is key</h3>
-          <p>Plover finds errors by identifying data that are inconsistent with its model of your data, and shows you the observed value and its predicted value, which you may use to overwrite erroneous
+          <p>Plover finds errors by identifying data that are inconsistent with its model of your data, and shows you
+            the observed value and its predicted value, which you may use to overwrite erroneous
             values.
           </p>
         </div>
@@ -203,11 +205,11 @@ top_5_errors = (
       <div class="column">
         <div>
           {{ '```python
-errs_like = db_engine.errors_like(
-  "DSP 20 (USA 149) (Defense Support Program)",
-  "Period_minutes"
-)
-```' | markdown(inline=true) | safe}}
+          errs_like = db_engine.errors_like(
+          "DSP 20 (USA 149) (Defense Support Program)",
+          "Period_minutes"
+          )
+          ```' | markdown(inline=true) | safe}}
           <!-- <img src="/img/plover/03-similar.png" /> -->
           <div>
             <table border="1" class="dataframe">
@@ -246,7 +248,8 @@ errs_like = db_engine.errors_like(
       <div class="column">
         <div>
           <h3>Metareasoning</h3>
-          <p>After identifying an error, Plover can identify similar errors by finding data that have similar information profiles.
+          <p>After identifying an error, Plover can identify similar errors by finding data that have similar
+            information profiles.
           </p>
         </div>
       </div>
@@ -262,9 +265,9 @@ errs_like = db_engine.errors_like(
     <div class="two-thirds">
       <div class="column">
         {{ '```python
-err = db_engine.detect(new_satellite_record)
-err[0]
-```' | markdown(inline=true) | safe}}
+        err = db_engine.detect(new_satellite_record)
+        err[0]
+        ```' | markdown(inline=true) | safe}}
         <!-- <img src="/img/plover/04-protect.png" /> -->
         <div>
           <table border="1" class="dataframe">
@@ -371,7 +374,9 @@ err[0]
 
     <div class="faq-question">
       <p class="question">Is Plover expensive to train? Does it require special hardware like GPUs?</p>
-      <p class="answer"> No. You can train and query a simple Plover model in a couple of minutes on an old iPhone. Don't believe us? Hop over to <a href="/plover">the demo</a> on your smartphone, download one of the provided datasets, put your smartphone in airplane mode, and test it out.</p>
+      <p class="answer"> No. You can train and query a simple Plover model in a couple of minutes on an old iPhone.
+        Don't believe us? Hop over to <a href="/plover">the demo</a> on your smartphone, download one of the provided
+        datasets, put your smartphone in airplane mode, and test it out.</p>
     </div>
 
     <!-- <div class="one-half"> -->
